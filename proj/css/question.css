@@ -14,3 +14,18 @@
 .author {
     float: right;
 }
+
+.comment * {
+    display: inline;
+    font-size: 0.9rem;
+}
+
+.comment {
+    padding: 0.2rem;
+    padding-bottom: 0rem;
+    margin-bottom: 0.5rem;
+}
+
+.responseSection {
+    margin: 2rem 0rem;
+}
