@@ -1,0 +1,17 @@
+.container {
+    margin: 0em;
+    padding: 0em;
+}
+
+img {
+    max-width: 100%;
+}
+
+.card{
+    margin-bottom:3em;
+    width: 55em;;
+}
+
+.profile_info {
+    margin-left: 4em;
+}
