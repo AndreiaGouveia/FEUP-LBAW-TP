@@ -17,8 +17,11 @@ body {
     margin-right: 0.7em;
 }
 
-
 .section-break {
     margin: 2rem auto 2rem;
 }
-  
+
+.btn {
+    margin-bottom: 3px;
+    margin-right: 5px
+}

@@ -1,0 +1,16 @@
+.content {
+    margin: 3rem 12rem;
+}
+
+.topics,
+.description {
+    margin-top: 1rem;
+}
+
+.info * {
+    display: inline;
+}
+
+.author {
+    float: right;
+}
