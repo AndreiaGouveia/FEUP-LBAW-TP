@@ -7,10 +7,10 @@ function drawHeaderMember()
             <img src="../logo.png" width="40" height="50" class="d-inline-block align-center" alt="">
             Papagaio
         </a>
-
-        <button type="button" class="btn button"><span><i class="fas fa-plus-circle"></i></span></button>
-
+        
         <form class="form-inline">
+            
+            <button class="btn search"><i class="fas fa-search"></i></button>
             <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button class="btn search"><i class="fas fa-search"></i></button>
 
@@ -35,9 +35,9 @@ function drawHeaderVisitor()
             Papagaio
         </a>
 
-        <button type="button" class="btn button"><span><i class="fas fa-plus-circle"></i></span></button>
-
         <form class="form-inline">
+        
+            <button type="button" class="btn button"><span><i class="fas fa-plus-circle"></i></span></button>
             <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button class="btn"><i class="fas fa-search"></i></button>
 
