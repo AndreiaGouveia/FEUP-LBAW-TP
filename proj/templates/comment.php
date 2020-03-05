@@ -19,7 +19,7 @@ function drawComment($commment, $author)
 ?>
 
     <div class="comment card">
-        <div class="comment">
+        <div class="comment pb-0">
             <p><?= $commment ?></p>
             <footer class="blockquote-footer"><?= $author ?></footer>
         </div>

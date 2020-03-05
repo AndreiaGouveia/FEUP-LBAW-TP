@@ -3,6 +3,7 @@ include_once("../templates/header.php");
 include_once("../templates/question.php");
 include_once("../templates/comment.php");
 include_once("../templates/response.php");
+include_once("../templates/footer.php");
 ?>
 
 <!doctype html>
@@ -46,6 +47,8 @@ include_once("../templates/response.php");
 
         </div>
     </div>
+
+    <?php drawFooter(); ?>
 </body>
 
 </html>
