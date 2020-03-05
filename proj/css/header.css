@@ -2,6 +2,7 @@
     position: relative;
     top: 0;
     width: 100%;
+    margin-bottom: 1.5rem;
 }
 
 .badge-light {
@@ -80,3 +81,5 @@ button.btn:nth-child(2) {
     right: 0;
     color:#FF505F;
   }
+
+
