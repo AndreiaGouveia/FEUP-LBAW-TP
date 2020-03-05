@@ -17,6 +17,7 @@ include_once("../templates/footer.php");
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/question.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
     <script src="https://kit.fontawesome.com/4f1925ab80.js" crossorigin="anonymous"></script>
 
     <title>Question from a beardy</title>
@@ -29,21 +30,25 @@ include_once("../templates/footer.php");
 
     <div class="content">
 
-        <div class="col-8">
-        <?php drawQuestion(); ?>
+        <div class="row">
+            <div class="col-8">
+                <?php drawQuestion(); ?>
 
-        <hr class="section-break" />
+                <hr class="section-break" />
 
-        <div class="commentSection">
-            <?php drawCommentSection(); ?>
-        </div>
+                <div class="commentSection">
+                    <?php drawCommentSection(); ?>
+                </div>
 
-        <div class="responseSection">
-            <?php drawResponseSection(); ?>
-        </div>
+                <div class="responseSection">
+                    <?php drawResponseSection(); ?>
+                </div>
 
-        </div>
-        <div class="sidebar col">
+            </div>
+            <div class="sidebar col">
+
+                <?php drawRecomendations(); ?>
+            </div>
 
         </div>
     </div>

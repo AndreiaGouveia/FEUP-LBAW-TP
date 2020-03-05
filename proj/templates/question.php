@@ -51,7 +51,23 @@ function drawTopic($topic)
 {
 ?>
 
-    <button class="topic btn-secondary btn-sm"><?=$topic?></button>
+    <button class="topic btn-secondary btn-sm"><?= $topic ?></button>
+
+<?php
+}
+
+function drawRecomendations()
+{
+
+?>
+
+<div class="card">
+        <h6 class="card-header">Recomendations</h6>
+        <div class="btn card-body">
+            <p class="card-text">Será que o meu cão está demasiado gordo?</p>
+            <p class="card-text">Como domisticar um crocodilo?</p>
+        </div>
+    </div>
 
 <?php
 }

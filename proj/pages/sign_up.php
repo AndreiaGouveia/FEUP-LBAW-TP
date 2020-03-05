@@ -15,6 +15,7 @@ include_once("../templates/header.php");
     <script src="https://kit.fontawesome.com/4f1925ab80.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
     <title>Papagaio</title>
 </head>
 
