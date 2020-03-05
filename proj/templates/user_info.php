@@ -13,7 +13,7 @@ function drawUserInfo()
             <h6><span class="badge badge-light"> <i class="fas fa-pencil-alt"></i> </span>Veterinário</h6>
             <h6><span class="badge badge-light"> <i class="fas fa-map-marker-alt"></i> </span>Porto, Portugal</h6>
             <h6><span class="badge badge-light"> <i class="fas fa-gem"></i> </span>1120 Pontos</h6>
-            <h6><br></h6>
+            <hr class="section-break" />
             <h5>Contribuições </h5>
             <h6><span class="badge badge-light"> <i class="fas fa-question"></i> </span>120 Perguntas</h6>
             <h6><span class="badge badge-light"> <i class="far fa-check-square"></i> </span>345 Respotas</h6>
