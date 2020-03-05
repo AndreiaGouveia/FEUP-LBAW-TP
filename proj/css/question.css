@@ -2,17 +2,8 @@
     margin: 3rem 12rem;
 }
 
-.topics,
-.description {
-    margin-top: 1rem;
-}
-
 .info * {
     display: inline;
-}
-
-.author {
-    float: right;
 }
 
 .comment * {
@@ -22,10 +13,13 @@
 
 .comment {
     padding: 0.2rem;
-    padding-bottom: 0rem;
     margin-bottom: 0.5rem;
 }
 
 .responseSection {
     margin: 2rem 0rem;
+}
+
+.btn-primary {
+    align-self: flex-end;
 }

@@ -23,6 +23,15 @@ function drawResponseSection()
 
     </ul>
 
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">A tua Resposta</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
 <?php
 
 }
@@ -36,8 +45,8 @@ function drawResponse($response, $author)
     <li class="media">
         <img src="https://via.placeholder.com/64" class="align-self-start mr-3" alt="user image">
         <div class="media-body">
-            <h5 class="mt-0"><?=$author?></h5>
-            <p><?=$response?></p>
+            <h5 class="mt-0"><?= $author ?></h5>
+            <p><?= $response ?></p>
         </div>
     </li>
 
