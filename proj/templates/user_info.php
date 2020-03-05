@@ -6,7 +6,7 @@ function drawUserInfo()
 
     <div class="profile_info">
 
-        <img src="..\profile_picture.png" width="300" height="300" class="d-inline-block align-center" alt="">
+        <img src="..\profile_picture.png" width="250" height="250" class="d-inline-block align-center" alt="">
         <h6><br></h6>
         <div class="profile_data">
             <h3>João Pinheiro<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></h3>

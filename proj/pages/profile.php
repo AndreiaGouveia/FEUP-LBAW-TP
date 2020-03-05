@@ -25,8 +25,8 @@ include_once("../templates/user_info.php");
     <div class="header"> <?php drawHeaderVisitor();  ?> </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4"> <?php drawUserInfo(); ?></div>
-            <div class="col-sm-8"> <?php drawProfileActivity(); ?></div>
+            <div class="col-3"> <?php drawUserInfo(); ?></div>
+            <div class="col-9"> <?php drawProfileActivity(); ?></div>
         </div>
     </div>
 </body>

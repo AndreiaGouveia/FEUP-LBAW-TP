@@ -1,17 +1,27 @@
-.container {
-    margin: 0em;
-    padding: 0em;
+h3 {
+    padding-bottom: 0.3em;
+    font-weight: 350;
 }
 
 img {
     max-width: 100%;
 }
 
-.card{
-    margin-bottom:3em;
-    width: 55em;;
+.card {
+   margin-bottom: 2%;
 }
 
-.profile_info {
-    margin-left: 4em;
+.card-body {
+    padding-bottom: 0.7em;
+    padding-top: 0.7em;
+}
+
+
+.card-title {
+    font-weight: 550;
+    padding-bottom: 0%;
+}
+
+.btn {
+    text-align: justify;
 }
