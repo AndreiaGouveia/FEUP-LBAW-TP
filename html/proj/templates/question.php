@@ -38,6 +38,11 @@ function drawQuestion()
 function drawInfoQuestion()
 {
 ?>
+
+    <button class="btn py-0 px-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <i class="far fa-comment"></i></button>
+    </button>
+
     <button type="radio" class="btn px-1 py-0 ml-2" id="thumbs-up" name="votes">
         <i class="far fa-thumbs-up"></i></button>
     <label for="thumbs-up" style="margin-bottom: 0px">17</label>

@@ -1,9 +1,10 @@
 <?php
+
+include_once("../templates/profile_activity.php");
 function drawResponseSection()
 {
 
 ?>
-
     <h5>3 responses</h5>
 
     <ul class="list-unstyled">
@@ -22,7 +23,7 @@ function drawResponseSection()
         ?>
 
     </ul>
-
+    <hr class="section-break" />
     <form>
         <div class="form-group">
             <label for="exampleInputEmail1">A tua Resposta</label>
@@ -38,18 +39,12 @@ function drawResponseSection()
 
 function drawResponse($response, $author)
 {
-
 ?>
-
     <hr class="section-break" />
-    <li class="media">
-        <img src="https://via.placeholder.com/64" class="align-self-start mr-3" alt="user image">
-        <div class="media-body">
-            <h5 class="mt-0"><?= $author ?></h5>
-            <p><?= $response ?></p>
-        </div>
-    </li>
-
+    <div class="py-2">
+        <?php drawHeaderActivity($author, "", "", "22/02/2020"); ?>
+        <p class="card-text"><?= $response ?></p>
+    </div>
 <?php
 }
 
