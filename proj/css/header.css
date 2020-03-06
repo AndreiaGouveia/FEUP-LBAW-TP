@@ -1,15 +1,8 @@
-.header {
-    position: relative;
-    top: 0;
-    width: 100%;
-    margin-bottom: 1.5rem;
-}
-
 .badge-light {
     background-color: white;
 }
 
-button.btn:nth-child(2) {
+.button.btn:nth-child(2) {
     padding-left: 0.0em;
 }
 
@@ -20,15 +13,24 @@ button.btn:nth-child(2) {
 
 .btn-primary:hover {
     border-color: transparent;
-    background-color: #FF505F;
+    background-color: #04CC4A;
+    filter: brightness(110%);
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-link {
+.btn-log-in {
+    background-color: white;
+    border-color: #04CC4A;
     color: #04CC4A;
+    filter: brightness(105%);
 }
 
-.btn-link:hover {
-    color: #FF505F;
+.btn-log-in:hover {
+    background-color: white;
+    border-color: #04CC4A;
+    color: #04CC4A;
+    filter: brightness(110%);
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 .btn-secondary {
@@ -38,44 +40,6 @@ button.btn:nth-child(2) {
 }
 
 .btn-secondary:hover {
-    background-color: transparent;
-    border-color: #FF505F;
-    color: #FF505F;
-}
-
-.button {
-    color: #04CC4A;
-    text-align: center;
-    font-size: 1.2rem;
-    transition: all 0.5s;
-    cursor: pointer;
-}
-
-.button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0s;
-    color: #04CC4A;
-}
-
-.button span:after {
-    content: 'Perguntar';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    left: -7em;
-    transition: 0s;
-    color: #04CC4A;
-}
-
-.button:hover span {
-    padding-right: 25px;
-    color: #FF505F;
-}
-
-.button:hover span:after {
-    opacity: 1;
-    right: 0;
-    color: #FF505F;
+    border-color: transparent;
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
 }

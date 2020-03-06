@@ -2,16 +2,17 @@
 function drawHeaderMember()
 {
 ?>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="../logo.png" width="40" height="50" class="d-inline-block align-center" alt="">
             Papagaio
         </a>
-        
+
         <form class="form-inline">
-            
+
             <button class="btn search"><i class="fas fa-search"></i></button>
             <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
+            <button type="button" class="btn btn-primary mr-3"><i class="fas fa-plus-circle mr-1"></i> Adicionar Questão</button>
             <button class="btn search"><i class="fas fa-search"></i></button>
 
             <div class="btn-group">
@@ -29,21 +30,24 @@ function drawHeaderMember()
 function drawHeaderVisitor()
 {
 ?>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light mb-4">
         <a class="navbar-brand" href="#">
             <img src="../logo.png" width="40" height="50" class="d-inline-block align-center" alt="">
             Papagaio
         </a>
 
-        <form class="form-inline">
-        
-            <button type="button" class="btn button"><span><i class="fas fa-plus-circle"></i></span></button>
-            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
-            <button class="btn"><i class="fas fa-search"></i></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
 
-            <button type="button" class="btn btn-link">Iniciar sessão</button>
-            <button type="button" class="btn btn-primary">Registar</button>
-        </form>
+            </ul>
+            <form class="navbar-nav form-inline">
+                <input class="form-control mr-auto" type="search" placeholder="Pesquisar" aria-label="Search">
 
+                <button type="button" class="btn mr-3"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-log-in mr-1">Iniciar sessão</button>
+                <button type="button" class="btn btn-primary">Registar</button>
+            </form>
+        </div>
     </nav>
+
 <?php } ?>

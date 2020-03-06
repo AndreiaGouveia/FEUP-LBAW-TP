@@ -3,14 +3,12 @@ function drawProfileActivity()
 {
 ?>
     <div>
-        <h3>Atividade recente </h3>
-
+        <h3 class="font-weight-normal mb-4">Atividade recente </h3>
         <?php
-        drawAnswerActivity();
-
-        drawQuestionActivity();
-
-        drawCommentActivity();
+        drawAnswerActivity("04/03/2020", "O meu gato anda muito triste, o que se passa?", "Se o gato apenas parece triste, preste atenção se houve fatores recentes que possam ter desencadeado um quadro depressivo: você tem tido tempo para brincar com ele? A sua família tem dado atenção a ele? Há algum animal ou membro novo na família (ele pode estar com ciúmes)?");
+        drawQuestionActivity("02/03/2020", "Qual o melhor sítio para passear o meu cão?", "Se o gato apenas parece triste, preste atenção se houve fatores recentes que possam ter desencadeado um quadro depressivo: você tem tido tempo para brincar com ele? A sua família tem dado atenção a ele? Há algum animal ou membro novo na família (ele pode estar com ciúmes)?");
+        drawCommentToQuestionActivity("01/03/2020", "Porque é que o meu gato não anda a comer?", "O seu gato tem andando triste? Poderá ser um motivo...");
+        drawCommentToAnswerActivity("01/03/2020", "Porque é que o meu gato não anda a comer?", "Não concordo com esta resposta! Cuidado!");
 
         ?>
     </div>
@@ -18,48 +16,77 @@ function drawProfileActivity()
 
 }
 
-function drawQuestionActivity()
+function drawHeaderActivity($name, $action, $actionInBold, $date)
 {
 ?>
 
-    <div class="card">
-        <h6 class="card-header">No dia 02/03/2020 perguntou:</h6>
-        <div class="btn card-body">
-            <p class="card-title">Qual o melhor sítio para passear o meu cão?</p>
-            <p class="card-text">Mudei-me recentemente para a zona do Porto e gostava de saber qual o melhor sítio para levar o meu fiel amigo. Alguma sugestão?</p>
-        </div>
-    </div>
-<?php
-}
-
-function drawAnswerActivity()
-{
-?>
-
-    <div class="card">
-        <h6 class="card-header">No dia 04/03/2020 respondeu:</h6>
-        <div class="btn card-body">
-            <p class="card-title">O meu gato anda muito triste, o que se passa?</p>
-            <p class="card-text">Se o gato apenas parece triste, preste atenção se houve fatores recentes que possam ter desencadeado um quadro depressivo: você tem tido tempo para brincar com ele? A sua família tem dado atenção a ele? Há algum animal ou membro novo na família (ele pode estar com ciúmes)?</p>
+    <div id="header-card d-inline">
+        <img src="..\profile_picture.png" class="img_inside mr-2" alt="">
+        <div class="header-text">
+            <p class="mb-0 font-weight-bold d-inline"><?= $name ?></p>
+            <p class="mb-0 d-inline"><?= $action ?></p>
+            <p class="mb-0 font-weight-bold d-inline"><?= $actionInBold ?>
+                <p class="mb-3"><?= $date ?></p>
         </div>
     </div>
 
 <?php
 }
 
-function drawCommentActivity()
+function drawAnswerActivity($date, $title, $response)
 {
-
 ?>
+    <div class="mb-3">
 
-    <div class="card">
-        <h6 class="card-header">No dia 01/03/2020 comentou:</h6>
-        <div class="btn card-body">
-            <p class="card-title">Porque é que o meu gato não anda a comer?</p>
-            <p class="card-text">Preciso de mais informação para responder a essa pergunta. À quanto tempo o seu animal está assim? É a primeira vez que isto acontece?</p>
+        <div href="#" class="activity card py-3 px-4">
+            <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
         </div>
     </div>
 
+<?php
+}
+
+function drawQuestionActivity($date, $title, $description)
+{
+?>
+    <div class="mb-3">
+
+        <div href="#" class="activity card py-3 px-4">
+            <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
+            <h5 class="card-title"><?= $title ?></h5>
+            <p class="card-text"><?= $description ?></p>
+        </div>
+    </div>
+
+<?php
+}
+
+function drawCommentToAnswerActivity($date, $title, $response)
+{
+?>
+    
+    <div class="mb-3">
+        <div href="#" class="activity card py-3 px-4">
+            <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
+        </div>
+    </div>
+
+<?php
+}
+
+function drawCommentToQuestionActivity($date, $title, $response)
+{
+    //TODO: comentou uma resposta à pergunta
+?>
+    
+    <div class="mb-3">
+        <div href="#" class="activity card py-3 px-4">
+            <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
+        </div>
+    </div>
 
 <?php
 }

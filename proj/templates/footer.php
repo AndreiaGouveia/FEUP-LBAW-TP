@@ -4,7 +4,7 @@ function drawFooter()
 
 ?>
     <!-- Footer -->
-    <footer class="page-footer bg-light pb-4 pt-4">
+    <footer class="page-footer bg-light pb-4 pt-4 mt-5">
 
         <!-- Footer Links -->
         <div class="container text-center text-md-left">
