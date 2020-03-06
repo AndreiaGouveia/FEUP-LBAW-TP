@@ -36,12 +36,10 @@ function drawHeaderActivity($name, $action, $actionInBold, $date)
 function drawAnswerActivity($date, $title, $response)
 {
 ?>
-    <div class="mb-3">
 
-        <div href="#" class="activity card py-3 px-4">
-            <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
-            <p class="card-text"><?= $response ?></p>
-        </div>
+    <div href="#" class="activity py-4 px-4 border-top ">
+        <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
+        <p class="card-text"><?= $response ?></p>
     </div>
 
 <?php
@@ -50,13 +48,12 @@ function drawAnswerActivity($date, $title, $response)
 function drawQuestionActivity($date, $title, $description)
 {
 ?>
-    <div class="mb-3">
 
-        <div href="#" class="activity card py-3 px-4">
-            <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
-            <h5 class="card-title"><?= $title ?></h5>
-            <p class="card-text"><?= $description ?></p>
-        </div>
+
+    <div href="#" class="activity py-4 px-4 border-top">
+        <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
+        <h5 class="title"><?= $title ?></h5>
+        <p class="text"><?= $description ?></p>
     </div>
 
 <?php
@@ -65,12 +62,11 @@ function drawQuestionActivity($date, $title, $description)
 function drawCommentToAnswerActivity($date, $title, $response)
 {
 ?>
-    
-    <div class="mb-3">
-        <div href="#" class="activity card py-3 px-4">
-            <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
-            <p class="card-text"><?= $response ?></p>
-        </div>
+
+
+    <div href="#" class="activity py-4 px-4 border-top">
+        <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
+        <p class="card-text"><?= $response ?></p>
     </div>
 
 <?php
@@ -80,12 +76,11 @@ function drawCommentToQuestionActivity($date, $title, $response)
 {
     //TODO: comentou uma resposta à pergunta
 ?>
-    
-    <div class="mb-3">
-        <div href="#" class="activity card py-3 px-4">
-            <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
-            <p class="card-text"><?= $response ?></p>
-        </div>
+
+
+    <div href="#" class="activity py-4 px-4 border-top">
+        <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
+        <p class="card-text"><?= $response ?></p>
     </div>
 
 <?php
