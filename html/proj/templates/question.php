@@ -38,21 +38,23 @@ function drawQuestion()
 function drawInfoQuestion()
 {
 ?>
-
     <button class="btn py-0 px-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         <i class="far fa-comment"></i></button>
     </button>
 
-    <button type="radio" class="btn px-1 py-0 ml-2" id="thumbs-up" name="votes">
-        <i class="far fa-thumbs-up"></i></button>
-    <label for="thumbs-up" style="margin-bottom: 0px">17</label>
+    <button type="radio" class="btn px-1 py-0 ml-2" data-toggle="tooltip" data-placement="bottom" title="Eu gosto disto">
+        <i class="far fa-thumbs-up"></i>
+        <label style="margin-bottom: 0px">17</label>
+    </button>
 
-    <button type="radio" class="btn px-1 py-0 ml-2" id="thumbs-down" name="votes">
-        <i class="far fa-thumbs-down"></i></button>
-    <label for="thumbs-down" style="margin-bottom: 0px">7</label>
+    <button type="radio" class="btn px-1 py-0 ml-2" data-toggle="tooltip" data-placement="bottom" title="Eu não gosto disto">
+        <i class="far fa-thumbs-down"></i>
+        <label style="margin-bottom: 0px">7</label>
+    </button>
 
-    <button class="btn px-1 py-0 ml-3">
+    <button class="btn px-1 py-0 ml-3" data-toggle="tooltip" data-placement="bottom" title="Guardar">
         <i class="far fa-star"></i></button>
+
 <?php
 }
 

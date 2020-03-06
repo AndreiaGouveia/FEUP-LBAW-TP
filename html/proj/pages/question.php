@@ -29,6 +29,11 @@ include_once("../templates/footer.php");
 </head>
 
 
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 
 <body>
     <div class="header"> <?php drawHeaderVisitor();  ?> </div>
