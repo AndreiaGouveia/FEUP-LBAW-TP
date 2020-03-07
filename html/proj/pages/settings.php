@@ -1,8 +1,6 @@
 <?php
 include_once("../templates/header.php");
 include_once("../templates/footer.php");
-include_once("../templates/profile_activity.php");
-include_once("../templates/user_info.php");
 ?>
 
 <!doctype html>
@@ -27,8 +25,8 @@ include_once("../templates/user_info.php");
     <?php drawHeaderVisitor();  ?>
     <div class="container">
         <div class="row">
-            <div class="col-md" > <?php drawUserInfo(); ?></div>
-            <div class="col-md-8"> <?php drawProfileActivity(); ?></div>
+            <div class="col" > <?php  ?></div>
+            <div class="col-8"> <?php  ?></div>
         </div>
     </div>
 
