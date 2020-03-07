@@ -36,7 +36,7 @@ include_once("../templates/footer.php");
 </script>
 
 <body>
-    <?php drawHeaderVisitor();?>
+    <?php drawHeaderMember();?>
 
     <div class="content">
 
