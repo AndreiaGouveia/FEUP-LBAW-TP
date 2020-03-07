@@ -4,7 +4,7 @@ function drawCommentSection()
 {
 ?>
 
-    <div class="comment-block border-bottom pt-2 pb-3">
+    <div class="comment-block border-top pl-3 pt-2 pb-3">
         <?php
         drawComment("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.", "Someone famous");
         drawComment("Eruditi ornatus consectetuer no eam, ei qui ocurreret dissentias, velit laoreet ceteros ne ius. Aperiri nonumes inciderint sea et, simul argumentum an mea.", "His an Maiorum");

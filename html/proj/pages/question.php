@@ -36,7 +36,7 @@ include_once("../templates/footer.php");
 </script>
 
 <body>
-    <div class="header"> <?php drawHeaderVisitor();  ?> </div>
+    <?php drawHeaderVisitor();?>
 
     <div class="content">
 
@@ -45,10 +45,6 @@ include_once("../templates/footer.php");
 
                 <div class="pb-3 mb-1 border-bottom">
                     <?php drawQuestion(); ?>
-                </div>
-
-                <div class="commentSection collapse" id="collapseExample">
-                    <?php drawCommentSection(); ?>
                 </div>
 
                 <div class="responseSection mt-4">

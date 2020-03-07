@@ -22,7 +22,9 @@ include_once("../templates/header.php");
 
 
 <body>
-    <div class="header"> <?php drawHeaderVisitor();  ?> </div>
+    
+    <?php drawHeaderVisitor();?>
+     
     <form class="login">
 
         <div class="content">

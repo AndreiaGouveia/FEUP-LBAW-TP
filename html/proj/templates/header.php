@@ -12,8 +12,9 @@ function drawHeaderMember()
         <form class="form-inline">
 
             <input class="form-control mr-auto" type="search" placeholder="Pesquisar" aria-label="Search">
-
             <button type="button" class="btn mr-3"><i class="fas fa-search"></i></button>
+
+            <button type="button" class="btn btn-primary mr-3"><i class="fas fa-plus-circle mr-1"></i> Adicionar Questão</button>
             <button type="button" class="btn btn-log-in mr-1">Iniciar sessão</button>
             <button type="button" class="btn btn-primary">Registar</button>
         </form>
@@ -36,8 +37,9 @@ function drawHeaderVisitor()
             
             <form class="navbar-nav form-inline">
                 <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
-
                 <button type="button" class="btn mr-3"><i class="fas fa-search"></i></button>
+
+                <button type="button" class="btn btn-primary mr-3"><i class="fas fa-plus-circle mr-1"></i> Adicionar Questão</button>
                 <button type="button" class="btn btn-log-in mr-1">Iniciar sessão</button>
                 <button type="button" class="btn btn-primary">Registar</button>
             </form>
