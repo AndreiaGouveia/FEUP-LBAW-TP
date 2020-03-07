@@ -1,0 +1,11 @@
+.img-settings {
+    object-fit: cover;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+}
+
+.list-group-item.active {
+    background-color: #04CC4A;
+    border: transparent;
+}

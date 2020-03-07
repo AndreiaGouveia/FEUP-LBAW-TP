@@ -22,11 +22,17 @@ function drawHeaderMember()
                 </div>
 
                 <button type="button" class="btn btn-primary mr-4"><i class="fas fa-plus-circle mr-1"></i> Adicionar Questão</button>
+
                 <div class="btn-group">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </button>
+
+                    <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="settings.php">Settings</a>
+                    </div>
                 </div>
+
             </form>
         </div>
     </nav>
