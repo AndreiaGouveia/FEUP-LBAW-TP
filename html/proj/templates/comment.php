@@ -10,7 +10,14 @@ function drawCommentSection()
         drawComment("Eruditi ornatus consectetuer no eam, ei qui ocurreret dissentias, velit laoreet ceteros ne ius. Aperiri nonumes inciderint sea et, simul argumentum an mea.", "His an Maiorum");
         drawComment("Aperiri nonumes inciderint sea et, simul argumentum an mea!!!", "Velit Laoreet");
         ?>
+
+        <form class="form-inline mt-3">
+            <img src="..\profile_picture.png" class="img-comment mr-2 mt-1" alt="">
+            <input class="form-control flex-fill" id="exampleFormControlTextarea1"></input>
+            <button type="submit" class="btn btn-primary ml-1">Submit</button>
+        </form>
     </div>
+
 <?php
 }
 

@@ -29,7 +29,7 @@ function drawResponseSection()
             <label for="exampleInputEmail1">A tua Resposta</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
-        <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Submit</button></div>
+        <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Submeter</button></div>
     </form>
 
 
