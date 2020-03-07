@@ -27,18 +27,23 @@ function drawQuestion()
 
 
         <div class="info d-flex justify-content-end">
-            <?php drawInfoQuestion(); ?>
+            <?php drawInfoQuestion("commentSectionQuestion"); ?>
         </div>
 
+    </div>
+
+
+    <div class="commentSection collapse" id="commentSectionQuestion">
+        <?php drawCommentSection(); ?>
     </div>
 
 <?php
 }
 
-function drawInfoQuestion()
+function drawInfoQuestion($idOfCommentSection)
 {
 ?>
-    <button class="btn py-0 px-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn py-0 px-2" type="button" data-toggle="collapse" data-target="#<?=$idOfCommentSection?>" aria-expanded="false" aria-controls=<?=$idOfCommentSection?>>
         <i class="far fa-comment"></i></button>
     </button>
 
