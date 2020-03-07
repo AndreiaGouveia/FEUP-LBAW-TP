@@ -8,7 +8,7 @@ function drawHeaderMember()
             Papagaio
         </a>
 
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <div class="navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
 
             <form class="navbar-nav form-inline">
                 <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
@@ -36,7 +36,7 @@ function drawHeaderVisitor()
             Papagaio
         </a>
 
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <div class="navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
 
             <form class="navbar-nav form-inline">
                 <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
