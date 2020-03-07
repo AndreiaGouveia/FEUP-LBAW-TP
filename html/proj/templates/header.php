@@ -43,7 +43,11 @@ function drawHeaderVisitor()
             Papagaio
         </a>
 
-        <div class="navbar-collapse d-flex ml-5" id="navbarSupportedContent">
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>-->
+
+        <div class="navbar-collapse ml-5" id="navbarSupportedContent">
 
             <form class="navbar-nav form-inline flex-fill">
                 <div class="input-group flex-fill mr-3">
