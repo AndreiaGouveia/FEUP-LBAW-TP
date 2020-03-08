@@ -27,7 +27,7 @@ function drawProfileSettings()
 
                     <div class="content mb-4">
                         <label for="inputLocalização">Localização</label>
-                        <input type="text" id="inputLocalização" class="form-control" placeholder="Localização" required="" autofocus="">
+                        <input type="text" id="inputLocalização" class="form-control" placeholder="Localização" autofocus="">
                     </div>
 
                 </div>
@@ -43,7 +43,7 @@ function drawProfileSettings()
 
             <div class="content mb-4">
                 <label for="textAreaBio">Bio</label>
-                <textarea type="text" id="textAreaBio" class="form-control" placeholder="Bio" required="" autofocus="" rows="3"></textarea>
+                <textarea type="text" id="textAreaBio" class="form-control" placeholder="Bio" autofocus="" rows="3"></textarea>
             </div>
 
             <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Atualizar Perfil</button></div>

@@ -43,7 +43,7 @@ function drawQuestion()
 function drawInfoQuestion($idOfCommentSection)
 {
 ?>
-    <button class="btn py-0 px-2" type="button" data-toggle="collapse" data-target="#<?=$idOfCommentSection?>" aria-expanded="false" aria-controls=<?=$idOfCommentSection?>>
+    <button class="btn py-0 px-2" type="button" data-toggle="collapse" data-target="#<?= $idOfCommentSection ?>" aria-expanded="false" aria-controls=<?= $idOfCommentSection ?>>
         <i class="far fa-comment"></i></button>
     </button>
 
@@ -83,6 +83,41 @@ function drawRecomendations()
         <p class="card-text">Será que o meu cão está demasiado gordo?</p>
         <p class="card-text">Como domisticar um crocodilo?</p>
     </div>
+
+<?php
+}
+
+function drawAddQuestion($titlePage, $titleQuestion = "", $description = "", $topics = "")
+{
+?>
+    <h3 class="font-weight-normal mb-3"><?= $titlePage ?></h3>
+    <hr class="section-break" />
+
+    <form>
+        <div class="form-group">
+
+            <div class="content mb-4">
+                <label for="inputTitle">Titulo</label>
+                <input id="inputTitle" class="form-control" placeholder="Titulo" required="" autofocus="" value="<?= $titleQuestion ?>">
+            </div>
+
+            <div class="content mb-4">
+                <label for="textAreaDescription">Descrição</label>
+                <textarea id="textAreaDescription" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"><?= $description ?></textarea>
+            </div>
+
+            <div class="content mb-4">
+                <label for="inputTopics">Tópicos</label>
+                <input id="inputTopics" class="form-control" placeholder="Tópicos" required="" autofocus="" value="<?= $topics ?>">
+            </div>
+
+            <div class="d-flex justify-content-end d-inline">
+                <button class="btn btn-secondary mr-2">Cancelar</button>
+                <button type="submit" class="btn btn-primary"><?= $titlePage ?>
+            </div>
+
+        </div>
+    </form>
 
 <?php
 }

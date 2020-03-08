@@ -1,8 +1,7 @@
 <?php
 include_once("../templates/header.php");
+include_once("../templates/question.php");
 include_once("../templates/footer.php");
-include_once("../templates/profile_activity.php");
-include_once("../templates/user_info.php");
 ?>
 
 <!doctype html>
@@ -15,7 +14,7 @@ include_once("../templates/user_info.php");
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+    <link rel="stylesheet" type="text/css" href="../css/question.css">
     <link rel="stylesheet" type="text/css" href="../css/header.css">
     <script src="https://kit.fontawesome.com/4f1925ab80.js" crossorigin="anonymous"></script>
 
@@ -23,16 +22,15 @@ include_once("../templates/user_info.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <title>Papagaio</title>
+    <title>Add Question</title>
 </head>
 
 <body>
-    
+
     <?php drawHeaderMember();  ?>
     <div class="container">
-        <div class="row">
-            <div class="col-md" > <?php drawUserInfo(); ?></div>
-            <div class="col-md-8"> <?php drawProfileActivity(); ?></div>
+        <div class="col-md-8 mx-auto">
+            <?php drawAddQuestion("Adicionar Pergunta"); ?>
         </div>
     </div>
 

@@ -38,7 +38,7 @@ function drawHeaderMemberDesktop()
                 </div>
             </div>
 
-            <button type="button" class="btn btn-primary mr-4"><i class="fas fa-plus-circle mr-1"></i> Adicionar Questão</button>
+            <a type="button" class="btn btn-primary mr-4" href="add_question.php"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
 
             <div class="btn-group">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,7 +46,9 @@ function drawHeaderMemberDesktop()
                 </button>
 
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="settings.php">Settings</a>
+                    <a class="dropdown-item" href="settings.php">Definições</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Terminar Sessão</a>
                 </div>
             </div>
 
@@ -80,7 +82,8 @@ function drawHeaderMemberMobile()
                     </button>
 
                     <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="settings.php">Settings</a>
+                        <a class="dropdown-item" href="login.php">Iniciar Sessão</a>
+                        <a class="dropdown-item" href="sign_up.php">Registar</a>
                     </div>
                 </div>
 
@@ -147,8 +150,8 @@ function drawHeaderVisitorDesktop()
                 </div>
             </div>
 
-            <button type="button" class="btn btn-log-in mr-1">Iniciar sessão</button>
-            <button type="button" class="btn btn-primary">Registar</button>
+            <a type="button" class="btn btn-log-in mr-1" href="login.php">Iniciar sessão</a>
+            <a type="button" class="btn btn-primary" href="sign_up.php">Registar</a>
 
         </form>
     </nav>
@@ -181,7 +184,8 @@ function drawHeaderVisitorMobile()
                     </button>
 
                     <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="settings.php">Settings</a>
+                        <a class="dropdown-item" href="login.php">Iniciar Sessão</a>
+                        <a class="dropdown-item" href="sign_up.php">Registar</a>
                     </div>
                 </div>
 
