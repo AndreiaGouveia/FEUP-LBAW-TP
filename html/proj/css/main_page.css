@@ -1,18 +1,28 @@
-.mainContent{
+.container{
     display: flex;
-    flex-direction: row;
 }
 
 .wellcome {
-    background-image: radial-gradient(circle, rgb(184, 255, 200), lightgreen , rgb(94, 218, 94));
-    padding: 4.5em;
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(to bottom right,rgb(248, 91, 91),rgb(253, 253, 84), rgb(213, 245, 99), lightgreen ,rgb(119, 255, 119), rgb(94, 218, 94));
     text-align: center;
-    color: antiquewhite;
-    font-size: 50px;
+    color: rgba(245, 245, 245, 0.884);
+    font-size: 5em;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-.related {
-    border-color: black;
-    text-align: justify;
+.wellcome p{
+    margin-left: 1.5em;
+    margin-top: 2.5em;
+}
+
+.related{
+    margin-left:1em;
+}
+
+.wellcomeLogo{
+
+    width: 19%;
+    height: 19%;
 }

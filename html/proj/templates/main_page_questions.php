@@ -6,7 +6,7 @@ function drawMainPageQuestions()
 {
 ?>
     <div>
-        <h3 class="font-weight-normal mb-3">Questões Populares </h3>
+        <h2 class="font-weight-normal mb-3">Questões Populares </h2>
         <?php
         drawMainPageQuestion("12/03/2020", "Porque é que o meu pássaro não gosta de papagaios?", "Não concordo com este comportamento! Cuidado!");
         drawMainPageQuestion("28/03/2020", "Quantos grãos de aveia consegue um gato comer", "Não concordo com esta resposta! Cuidado!");

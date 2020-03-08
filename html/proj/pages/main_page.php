@@ -37,26 +37,29 @@ include_once("../templates/footer.php");
     <?php drawHeaderMember();?>
 
     <div class="wellcome">
+        <img src="..\logo.png" class="wellcomeLogo" alt="">
         <p>Bem-vindo à comunidade!</p>
     </div>
-
-    <div class = "mainContent">
-        <div class="content">
+        <div class="container">
             <?php 
                 drawMainPageQuestions();
             ?>
-        </div>
 
-        <div class="related">
-                <h1>Tópicos Relacionados</h1>
-                <button class="btn btn-secondary btn-sm px-2 py-0">Papagaio?</button>
-                <button class="btn btn-secondary btn-sm px-2 py-0">Gatos</button>
-                <button class="btn btn-secondary btn-sm px-2 py-0">Tartaruga maluca</button>
-                <button class="btn btn-secondary btn-sm px-2 py-0">Gaivotas</button>
-                <button class="btn btn-secondary btn-sm px-2 py-0">Ratos voadores</button>
-                <button class="btn btn-secondary btn-sm px-2 py-0">Codv-19</button>
+            <div class="related">
+                    <h2>Tópicos Relacionados</h2>
+                    <hr class="section-break">
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Papagaio?</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Gatos</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Tartaruga maluca</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Gaivotas</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Ratos voadores</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Codv-19</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Gato reencarnação de jesus</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Cão vegan</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Hiena vegan</button>
+                    <button class="btn btn-secondary btn-sm px-2 py-0">Traumatismo</button>
+            </div>
         </div>
-    </div>
 
 
 
