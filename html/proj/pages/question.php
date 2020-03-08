@@ -38,10 +38,10 @@ include_once("../templates/footer.php");
 <body>
     <?php drawHeaderMember();?>
 
-    <div class="content">
+    <div class="container">
 
         <div class="row">
-            <div class="col-8">
+            <div class="col-md-8">
 
                 <div class="pb-3 mb-1 border-bottom">
                     <?php drawQuestion(); ?>
@@ -52,7 +52,7 @@ include_once("../templates/footer.php");
                 </div>
 
             </div>
-            <div class="sidebar col">
+            <div class="sidebar col-md">
 
                 <?php drawRecomendations(); ?>
             </div>

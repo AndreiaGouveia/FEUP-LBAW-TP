@@ -22,11 +22,17 @@ function drawHeaderMember()
                 </div>
 
                 <button type="button" class="btn btn-primary mr-4"><i class="fas fa-plus-circle mr-1"></i> Adicionar Questão</button>
+
                 <div class="btn-group">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </button>
+
+                    <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="settings.php">Settings</a>
+                    </div>
                 </div>
+
             </form>
         </div>
     </nav>
@@ -43,7 +49,11 @@ function drawHeaderVisitor()
             Papagaio
         </a>
 
-        <div class="navbar-collapse d-flex ml-5" id="navbarSupportedContent">
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>-->
+
+        <div class="navbar-collapse ml-5" id="navbarSupportedContent">
 
             <form class="navbar-nav form-inline flex-fill">
                 <div class="input-group flex-fill mr-3">
