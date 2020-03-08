@@ -31,7 +31,7 @@ include_once("../templates/footer.php");
     <?php drawHeaderMember();  ?>
     <div class="container">
         <div class="row">
-            
+
             <div class="col-md pr-5 mr-4 d-none d-xl-block">
                 <div class="list-group" id="list-tab" role="tablist">
                     <a class="list-group-item list-group-item-action active py-2" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Perfil</a>
@@ -39,7 +39,8 @@ include_once("../templates/footer.php");
                 </div>
             </div>
 
-            <div class="col-md d-xl-none mb-4">
+            <!-- mobile version -->
+            <div class="col-md d-xl-none mb-4 mobile">
                 <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
                     <a class="list-group-item list-group-item-action active py-2" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Perfil</a>
                     <a class="list-group-item list-group-item-action py-2" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Conta</a>
