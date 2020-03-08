@@ -1,0 +1,18 @@
+.mainContent{
+    display: flex;
+    flex-direction: row;
+}
+
+.wellcome {
+    background-image: radial-gradient(circle, rgb(184, 255, 200), lightgreen , rgb(94, 218, 94));
+    padding: 4.5em;
+    text-align: center;
+    color: antiquewhite;
+    font-size: 50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.related {
+    border-color: black;
+    text-align: justify;
+}
