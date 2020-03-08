@@ -39,6 +39,7 @@ include_once("../templates/footer.php");
     <div class="wellcome">
         <img src="..\logo.png" class="wellcomeLogo" alt="">
         <p>Bem-vindo à comunidade!</p>
+        <img src="..\branch.png" class="branch" alt="">
     </div>
         <div class="container">
             <?php 

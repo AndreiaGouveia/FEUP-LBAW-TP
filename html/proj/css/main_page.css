@@ -5,16 +5,16 @@
 .wellcome {
     display: flex;
     flex-direction: row;
-    background-image: linear-gradient(to bottom right,rgb(248, 91, 91),rgb(253, 253, 84), rgb(213, 245, 99), lightgreen ,rgb(119, 255, 119), rgb(94, 218, 94));
+    justify-content: space-evenly;
+    background-image: linear-gradient(to bottom right,rgb(248, 91, 91),rgb(253, 253, 84), rgb(213, 245, 99), lightgreen ,rgb(97, 221, 97), rgb(83, 201, 83));
     text-align: center;
-    color: rgba(245, 245, 245, 0.884);
     font-size: 5em;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .wellcome p{
-    margin-left: 1.5em;
-    margin-top: 2.5em;
+    
+    color:rgb(249, 142, 95); font-family: 'Open Sans Condensed', sans-serif; font-size: 64px; font-weight: 700; line-height: 64px; margin: 0 0 0; padding: 20px 30px; text-align: center; text-transform: uppercase;
+    margin-top: 3.25em;
 }
 
 .related{
@@ -22,7 +22,13 @@
 }
 
 .wellcomeLogo{
+    margin-right: 1.05em;
+    width: 19%;
+    height: 19%;
+}
 
+.branch{
+    margin-left: 1.05em;
     width: 19%;
     height: 19%;
 }
