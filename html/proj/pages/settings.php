@@ -28,7 +28,7 @@ include_once("../templates/footer.php");
 
 <body>
 
-    <?php drawHeaderMember();  ?>
+    <?php drawHeaderVisitor();  ?>
     <div class="container">
         <div class="row">
 
