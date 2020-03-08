@@ -1,0 +1,15 @@
+body button {
+  display: flex;
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50; /* Green */
+  border-radius: 50%;
+
+  text-align: center;
+  padding: 2em;
+  }
+
+body button a {
+    display: inline-block;
+    text-decoration: none;
+}
