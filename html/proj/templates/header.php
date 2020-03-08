@@ -45,7 +45,14 @@ function drawHeaderMemberDesktop()
                     <i class="fas fa-user"></i>
                 </button>
 
-                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-item">
+                        <img src="..\profile_picture.png" class="img-header float-left" alt="">
+                        <p style="margin-left: 1.7rem">João Pinheiro<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                    </div>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="profile.php">O meu Perfil</a>
                     <a class="dropdown-item" href="settings.php">Definições</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Terminar Sessão</a>
@@ -76,14 +83,24 @@ function drawHeaderMemberMobile()
                     <i class="fa fa-search"></i></button>
                 </button>
 
+                <a type="button" class="btn btn-primary btn-sm mr-3" href="add_question.php"><i class="fas fa-plus-circle"></i></a>
+
                 <div class="btn-group">
                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </button>
 
                     <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="login.php">Iniciar Sessão</a>
-                        <a class="dropdown-item" href="sign_up.php">Registar</a>
+                        <div class="dropdown-item">
+                            <img src="..\profile_picture.png" class="img-header float-left" alt="">
+                            <p style="margin-left: 1.7rem">João Pinheiro<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                        </div>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="profile.php">O meu Perfil</a>
+                        <a class="dropdown-item" href="settings.php">Definições</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Terminar Sessão</a>
                     </div>
                 </div>
 
@@ -122,7 +139,7 @@ function drawHeaderVisitor()
         <?php drawHeaderVisitorDesktop(); ?>
     </div>
     <div class="sticky-top d-xl-none">
-        <?php drawHeaderMemberMobile(); ?>
+        <?php drawHeaderVisitorMobile(); ?>
     </div>
 
 <?php }
@@ -176,7 +193,6 @@ function drawHeaderVisitorMobile()
                 <button class="btn btn-secondary btn-sm mr-3" type="button" data-toggle="collapse" data-target="#searchBarInput" aria-expanded="false" aria-controls="searchBarInput">
                     <i class="fa fa-search"></i></button>
                 </button>
-                <button type="button" class="btn btn-primary btn-sm mr-3"><i class="fas fa-plus-circle"></i></button>
 
                 <div class="btn-group">
                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
