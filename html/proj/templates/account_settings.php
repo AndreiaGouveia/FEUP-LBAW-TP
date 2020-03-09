@@ -1,4 +1,7 @@
 <?php
+
+include_once("popup.php");
+
 function drawAccountSettings()
 {
 
@@ -16,7 +19,7 @@ function drawPasswordSettings()
 
     <form>
         <div class="form-group">
-            
+
             <div class="content mb-4">
                 <label for="inputPreviousPassword">Palavra-Passe Antiga</label>
                 <input type="password" id="inputPreviousPassword" class="form-control" placeholder="Palavra-Passe Antiga" required="" autofocus="">
@@ -46,14 +49,17 @@ function drawDeletingAccountSettings()
     <h3 class="font-weight-normal text-danger mb-3">Eliminar Conta</h3>
     <hr class="section-break" />
 
-    <form>
-        <div class="form-group">
 
-            <label for="deleteAccount">Uma vez eliminada a conta, não há como voltar a trás. Por favor, tenha a certeza.</label><br>
-            <div class="d-flex justify-content-end"><button type="submit" id="deleteAccount" class="btn btn-danger">Eliminar Conta</button></div>
+    <div class="form-group">
 
+        <label for="deleteAccount">Uma vez eliminada a conta, não há como voltar a trás. Por favor, tenha a certeza.</label><br>
+        <div class="d-flex justify-content-end">
+            <button id="deleteAccount" class="btn btn-danger" data-toggle="modal" data-target="#deletingAccountPopUp">Eliminar Conta</button>
         </div>
-    </form>
+        <?php deletingAccountPopUp("deletingAccountPopUp") ?>
+
+
+    </div>
 
 <?php
 }

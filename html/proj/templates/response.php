@@ -44,7 +44,7 @@ function drawResponse($response, $author, $idOfCommentSection)
         <?php drawHeaderActivity($author, "", "", "22/02/2020"); ?>
         <p class="card-text"><?= $response ?></p>
         <div class="info row justify-content-end mx-0">
-            <?php drawInfoQuestion($idOfCommentSection); ?>
+            <?php drawInfoContent($idOfCommentSection); ?>
         </div>
     </div>
 

@@ -1,4 +1,6 @@
 <?php
+include_once("../templates/topic.php");
+
 function drawProfileActivity()
 {
 ?>
@@ -54,6 +56,14 @@ function drawAnswerActivity($date, $title, $response)
     <div href="#" class="activity py-4 px-4 border-top ">
         <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
         <p class="card-text"><?= $response ?></p>
+        <div class="topics align-items-center">
+            <?php
+            drawTopic("Lorem");
+            drawTopic("Consectetur");
+            drawTopic("Elementum");
+            drawTopic("Donec");
+            ?>
+        </div>
     </div>
 
 <?php

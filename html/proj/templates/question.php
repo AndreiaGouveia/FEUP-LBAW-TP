@@ -16,8 +16,8 @@ function drawQuestion()
             Nam accumsan turpis sit amet sem semper, vel sodales sapien pretium. Integer est felis, mollis sed tempor vitae, imperdiet ac nibh. Sed in cursus ligula, ac molestie velit. Suspendisse quis ultricies dui, eu mattis est. Curabitur sit amet magna ultrices magna consectetur tempor. Pellentesque venenatis ligula ut mollis pellentesque. Duis imperdiet ex vel nibh hendrerit, eu auctor mauris porta. Quisque in consectetur elit. Sed quis faucibus ante. Nullam est turpis, rhoncus non metus quis, dignissim bibendum quam.</p>
     </div>
 
-    <div class="row justify-content-between my-3 px-0 mx-0">
-        <div class="topics">
+    <div class="row justify-content-between align-items-center my-3 px-0 mx-0">
+        <div class="topics align-items-center">
             <?php
             drawTopic("Lorem");
             drawTopic("Consectetur");
@@ -26,8 +26,8 @@ function drawQuestion()
             ?>
         </div>
 
-        <div class="info row justify-content-end mx-0">
-            <?php drawInfoQuestion("commentSectionQuestion"); ?>
+        <div class="info row justify-content-end align-items-center mx-0">
+            <?php drawInfoContent("commentSectionQuestion"); ?>
         </div>
 
     </div>
@@ -40,7 +40,7 @@ function drawQuestion()
 <?php
 }
 
-function drawInfoQuestion($idOfCommentSection)
+function drawInfoContent($idOfCommentSection)
 {
 ?>
 
@@ -65,14 +65,14 @@ function drawInfoQuestion($idOfCommentSection)
 
 
     <div class="dropdown">
-        <button class="btn px-1 py-0 ml-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+        <button class="btn px-1 py-0 ml-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Editar</a>
             <a class="dropdown-item" href="#">Eliminar</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" data-toggle="modal" data-target="#<?=$idOfCommentSection?>">Reportar</a>
+            <a class="dropdown-item" data-toggle="modal" data-target="#<?= $idOfCommentSection ?>">Reportar</a>
         </div>
     </div>
 
