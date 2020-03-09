@@ -1,7 +1,6 @@
 <?php
 include_once("../templates/header.php");
 include_once("../templates/main_page_questions.php");
-include_once("../templates/topic.php");
 include_once("../templates/footer.php");
 ?>
 
