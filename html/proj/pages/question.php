@@ -31,12 +31,13 @@ include_once("../templates/footer.php");
 
 <script>
     $(function() {
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[toggle]').tooltip()
     })
 </script>
 
 <body>
-    <?php drawHeaderMember();?>
+    <?php drawHeaderMember(); ?>
+
 
     <div class="container mt-5">
 

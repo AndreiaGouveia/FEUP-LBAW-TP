@@ -2,12 +2,12 @@
 
 include_once("../templates/profile_activity.php");
 include_once("../templates/topic.php");
+include_once("../templates/popup.php");
 
 function drawQuestion()
 {
     drawHeaderActivity("João Pinheiro", "perguntou:", "", "22/02/2020");
 ?>
-
     <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed neque arcu. Nunc eu elementum purus. Vestibulum finibus maximus vestibulum. </h2>
 
     <div class="description mt-3">
@@ -16,7 +16,7 @@ function drawQuestion()
             Nam accumsan turpis sit amet sem semper, vel sodales sapien pretium. Integer est felis, mollis sed tempor vitae, imperdiet ac nibh. Sed in cursus ligula, ac molestie velit. Suspendisse quis ultricies dui, eu mattis est. Curabitur sit amet magna ultrices magna consectetur tempor. Pellentesque venenatis ligula ut mollis pellentesque. Duis imperdiet ex vel nibh hendrerit, eu auctor mauris porta. Quisque in consectetur elit. Sed quis faucibus ante. Nullam est turpis, rhoncus non metus quis, dignissim bibendum quam.</p>
     </div>
 
-    <div class="d-flex justify-content-between my-3">
+    <div class="row justify-content-between my-3 px-0 mx-0">
         <div class="topics">
             <?php
             drawTopic("Lorem");
@@ -26,8 +26,7 @@ function drawQuestion()
             ?>
         </div>
 
-
-        <div class="info d-flex justify-content-end">
+        <div class="info row justify-content-end mx-0">
             <?php drawInfoQuestion("commentSectionQuestion"); ?>
         </div>
 
@@ -44,22 +43,41 @@ function drawQuestion()
 function drawInfoQuestion($idOfCommentSection)
 {
 ?>
-    <button class="btn py-0 px-2" type="button" data-toggle="collapse" data-target="#<?= $idOfCommentSection ?>" aria-expanded="false" aria-controls=<?= $idOfCommentSection ?>>
-        <i class="far fa-comment"></i></button>
+
+    <button class="btn px-2 py-0" data-toggle="collapse" toggle="" data-placement="bottom" title="Deixe o seu comentário" data-target="#<?= $idOfCommentSection ?>" aria-expanded="false" aria-controls=<?= $idOfCommentSection ?>>
+        <i class="far fa-comment"></i>
+        <label style="margin-bottom: 0px" class="pl-1">Comentar</label>
     </button>
 
-    <button type="radio" class="btn px-1 py-0 ml-2" data-toggle="tooltip" data-placement="bottom" title="Eu gosto disto">
+    <button type="radio" class="btn px-1 py-0 ml-4" toggle="" data-placement="bottom" title="Eu gosto disto">
         <i class="far fa-thumbs-up"></i>
         <label style="margin-bottom: 0px">17</label>
     </button>
 
-    <button type="radio" class="btn px-1 py-0 ml-2" data-toggle="tooltip" data-placement="bottom" title="Eu não gosto disto">
-        <i class="far fa-thumbs-down"></i>
-        <label style="margin-bottom: 0px">7</label>
+    <button type="radio" class="btn px-1 py-0 ml-2" toggle="" data-placement="bottom" title="Eu não gosto disto">
+        <i class="far fa-thumbs-down d-inline"></i>
+        <label style="margin-bottom: 0px" class="d-inline">7</label>
     </button>
 
-    <button class="btn px-1 py-0 ml-3" data-toggle="tooltip" data-placement="bottom" title="Guardar">
-        <i class="far fa-star"></i></button>
+    <button class="btn px-1 py-0 ml-4" toggle="" data-placement="bottom" title="Guardar">
+        <i class="far fa-star"></i>
+    </button>
+
+
+    <div class="dropdown">
+        <button class="btn px-1 py-0 ml-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <i class="fas fa-ellipsis-h"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Editar</a>
+            <a class="dropdown-item" href="#">Eliminar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" data-toggle="modal" data-target="#<?=$idOfCommentSection?>">Reportar</a>
+        </div>
+    </div>
+
+    <?php reportPopUp($idOfCommentSection); ?>
+
 
 <?php
 }

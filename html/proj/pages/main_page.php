@@ -24,18 +24,23 @@ include_once("../templates/footer.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-    <title>Main Page <(º^º)/ </title> </head> 
+    <title>Main Page</title>
+</head>
 
 <body>
     <?php drawHeaderMember(); ?>
 
-    <div class="welcome mb-5 d-flex justify-content-between align-items-center">
-        <img src="..\logo.png" class="welcomeLogo d-inline" alt="logoBig">
-        <h1 class="d-inline">Bem-vindo à comunidade!</h1>
-        <img src="..\branch.png" class="branch d-inline" alt="branch">
+    <div class="welcome d-flex justify-content-between align-items-center pt-2">
+        <div class="flex-fill">
+            <h1 class="text-center">Bem-Vindo ao Papagaio!</h1>
+            <h2 class="text-center">Entre no mundo do conhecimento Animal.</h2>
+        </div>
+        <img src="..\top_part_logo.png" class="welcomeLogo d-inline" alt="logoBig">
     </div>
 
-    <div class="container">
+    <img src="..\bottom_part_logo.png" class="welcomeLogo d-inline float-right" alt="logoBig">
+
+    <div class="container mt-5">
         <div class="row flex-column-reverse flex-lg-row">
             <div class="col-md-8"> <?php drawMainPageQuestions(); ?></div>
             <div class="col-md mb-4"> <?php drawRecommendationOfTopics(); ?></div>

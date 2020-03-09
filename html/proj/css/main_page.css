@@ -1,18 +1,21 @@
 .welcome {
-    background-image: linear-gradient(to bottom right, rgb(248, 91, 91), rgb(253, 253, 84), rgb(213, 245, 99), lightgreen, rgb(97, 221, 97), rgb(83, 201, 83));
+    background-image: linear-gradient(to bottom right, rgb(253, 253, 84), rgb(213, 245, 99), lightgreen, rgb(97, 221, 97), rgb(83, 201, 83));
 }
 
 .welcome h1 {
-    color: rgb(249, 142, 95);
+    color: white;
     font-size: 5vw;
+    text-shadow: 0 0.4rem 0.2rem rgba(0, 0, 0, 0.2);
+}
+
+.welcome h2 {
+    color: white;
+    font-size: 2vw;
 }
 
 .welcomeLogo {
-    width: 12%;
-    height: 12%;
-}
-
-.branch {
-    width: 12%;
-    height: 12%;
+    width: 20%;
+    height: 20%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
