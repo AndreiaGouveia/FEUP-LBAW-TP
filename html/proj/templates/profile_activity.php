@@ -74,7 +74,6 @@ function drawCommentToAnswerActivity($date, $title, $response)
 
 function drawCommentToQuestionActivity($date, $title, $response)
 {
-    //TODO: comentou uma resposta à pergunta
 ?>
 
 
