@@ -27,16 +27,16 @@ function drawHeaderMemberDesktop()
         </a>
 
 
-        <form class="navbar-nav form-inline flex-fill ml-3">
+        <div class="navbar-nav form-inline flex-fill ml-3">
 
-            <div class="input-group flex-fill mr-3">
-                <input type="text" class="form-control flex-fill" placeholder="Pesquisa">
+            <form class="input-group flex-fill mr-3" action="../pages/search.php">
+                <input name="search" type="text" class="form-control flex-fill" placeholder="Pesquisa">
                 <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button">
+                    <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
-            </div>
+            </form>
 
             <a type="button" class="btn btn-primary mr-4" href="add_question.php"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
 
@@ -59,7 +59,7 @@ function drawHeaderMemberDesktop()
                 </div>
             </div>
 
-        </form>
+        </div>
     </nav>
 
 
@@ -77,9 +77,9 @@ function drawHeaderMemberMobile()
             </a>
 
 
-            <form class="navbar-collapse navbar-nav form-inline justify-content-end">
+            <div class="navbar-collapse navbar-nav form-inline justify-content-end">
 
-                <button class="btn btn-secondary btn-sm mr-3" type="button" data-toggle="collapse" data-target="#searchBarInput" aria-expanded="false" aria-controls="searchBarInput">
+                <button class="btn btn-secondary btn-sm mr-3" type="button" id="searchMobileButton" data-toggle="collapse" data-target="#searchBarInput" aria-expanded="false" aria-controls="searchBarInput">
                     <i class="fa fa-search"></i></button>
                 </button>
 
@@ -104,7 +104,7 @@ function drawHeaderMemberMobile()
                     </div>
                 </div>
 
-            </form>
+            </div>
 
         </nav>
 
@@ -119,14 +119,15 @@ function drawHeaderMemberMobile()
 function popDownSearchBarMobile()
 {
 ?>
-    <div class="input-group flex-fill mr-3">
-        <input type="text" class="form-control d-inline" placeholder="Pesquisa">
+
+    <form class="input-group form-inline flex-fill mr-3" action="../pages/search.php">
+        <input name="search" type="text" class="form-control" placeholder="Pesquisa">
         <div class="input-group-append">
-            <button class="btn btn-secondary" type="button">
+            <button class="btn btn-secondary" type="submit">
                 <i class="fa fa-search"></i>
             </button>
         </div>
-    </div>
+    </form>
 
 <?php
 }
@@ -156,63 +157,63 @@ function drawHeaderVisitorDesktop()
         </a>
 
 
-        <form class="navbar-nav form-inline flex-fill ml-3">
+        <div class="navbar-nav form-inline flex-fill ml-3">
 
-            <div class="input-group flex-fill mr-3">
-                <input type="text" class="form-control flex-fill" placeholder="Pesquisa">
+            <form class="input-group flex-fill mr-3" action="../pages/search.php">
+                <input name="search" type="text" class="form-control flex-fill" placeholder="Pesquisa">
                 <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button">
+                    <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
-            </div>
+            </form>
 
             <a type="button" class="btn btn-log-in mr-1" href="login.php">Iniciar sessão</a>
             <a type="button" class="btn btn-primary" href="sign_up.php">Registar</a>
 
-        </form>
-    </nav>
+            </form>
+        </div>
 
 
-<?php
+    <?php
 }
 
 function drawHeaderVisitorMobile()
 {
-?>
-    <div class="nav-bar navbar-expand navbar-light bg-light pb-2">
-        <nav class="navbar navbar-expand">
+    ?>
+        <div class="nav-bar navbar-expand navbar-light bg-light pb-2">
+            <nav class="navbar navbar-expand">
 
-            <a class="navbar-brand mr-5" href="#">
-                <img src="../logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
-            </a>
+                <a class="navbar-brand mr-5" href="#">
+                    <img src="../logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
+                </a>
 
 
-            <form class="navbar-collapse navbar-nav form-inline justify-content-end">
+                <form class="navbar-collapse navbar-nav form-inline justify-content-end">
 
-                <button class="btn btn-secondary btn-sm mr-3" type="button" data-toggle="collapse" data-target="#searchBarInput" aria-expanded="false" aria-controls="searchBarInput">
-                    <i class="fa fa-search"></i></button>
-                </button>
-
-                <div class="btn-group">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
+                    <button class="btn btn-secondary btn-sm mr-3" type="button" data-toggle="collapse" data-target="#searchBarInput" aria-expanded="false" aria-controls="searchBarInput">
+                        <i class="fa fa-search"></i></button>
                     </button>
 
-                    <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="login.php">Iniciar Sessão</a>
-                        <a class="dropdown-item" href="sign_up.php">Registar</a>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </button>
+
+                        <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="login.php">Iniciar Sessão</a>
+                            <a class="dropdown-item" href="sign_up.php">Registar</a>
+                        </div>
                     </div>
-                </div>
 
-            </form>
+                </form>
 
-        </nav>
+            </nav>
 
-        <div class="collapse mx-2" id="searchBarInput">
-            <?php popDownSearchBarMobile(); ?>
+            <div class="collapse mx-2" id="searchBarInput">
+                <?php popDownSearchBarMobile(); ?>
+            </div>
         </div>
-    </div>
 
-<?php
+    <?php
 }

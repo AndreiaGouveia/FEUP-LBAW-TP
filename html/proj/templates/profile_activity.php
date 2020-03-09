@@ -33,6 +33,20 @@ function drawHeaderActivity($name, $action, $actionInBold, $date)
 <?php
 }
 
+
+function drawBasicActivity($date, $title, $description)
+{
+?>
+    <div href="#" class="activity py-4 px-4 border-top">
+        <?php drawHeaderActivity("João Pinheiro", "", "", $date); ?>
+        <h5 class="title"><?= $title ?></h5>
+        <p class="text"><?= $description ?></p>
+    </div>
+
+<?php
+
+}
+
 function drawAnswerActivity($date, $title, $response)
 {
 ?>
