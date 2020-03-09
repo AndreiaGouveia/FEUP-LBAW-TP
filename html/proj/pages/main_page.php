@@ -1,6 +1,7 @@
 <?php
 include_once("../templates/header.php");
 include_once("../templates/main_page_questions.php");
+include_once("../templates/topic.php");
 include_once("../templates/footer.php");
 ?>
 
@@ -23,45 +24,27 @@ include_once("../templates/footer.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-    <title>Main Page <(º^º)/</title>
-</head>
-
-
-<script>
-    $(function() {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
+    <title>Main Page <(º^º)/ </title> </head> <script>
+            $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+            })
+            </script>
 
 <body>
-    <?php drawHeaderMember();?>
+    <?php drawHeaderMember(); ?>
 
-    <div class="wellcome">
-        <img src="..\logo.png" class="wellcomeLogo" alt="">
-        <p>Bem-vindo à comunidade!</p>
-        <img src="..\branch.png" class="branch" alt="">
+    <div class="welcome mb-5 d-flex justify-content-between align-items-center">
+        <img src="..\logo.png" class="welcomeLogo d-inline" alt="logoBig">
+        <h1 class="d-inline">Bem-vindo à comunidade!</h1>
+        <img src="..\branch.png" class="branch d-inline" alt="branch">
     </div>
-        <div class="container">
-            <?php 
-                drawMainPageQuestions();
-            ?>
 
-            <div class="related">
-                    <h2>Tópicos Relacionados</h2>
-                    <hr class="section-break">
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Papagaio?</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Gatos</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Tartaruga maluca</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Gaivotas</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Ratos voadores</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Codv-19</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Gato reencarnação de jesus</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Cão vegan</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Hiena vegan</button>
-                    <button class="btn btn-secondary btn-sm px-2 py-0">Traumatismo</button>
-            </div>
+    <div class="container">
+        <div class="row flex-column-reverse flex-lg-row">
+            <div class="col-md-8"> <?php drawMainPageQuestions(); ?></div>
+            <div class="col-md mb-4"> <?php drawRecommendationOfTopics(); ?></div>
         </div>
-
+    </div>
 
 
     <?php drawFooter(); ?>

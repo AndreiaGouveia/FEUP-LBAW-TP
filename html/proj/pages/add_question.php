@@ -28,7 +28,7 @@ include_once("../templates/footer.php");
 <body>
 
     <?php drawHeaderMember();  ?>
-    <div class="container">
+    <div class="container mt-5">
         <div class="col-md-8 mx-auto">
             <?php drawAddQuestion("Adicionar Pergunta"); ?>
         </div>

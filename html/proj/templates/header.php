@@ -19,7 +19,7 @@ function drawHeaderMemberDesktop()
 {
 ?>
 
-    <nav class="navbar navbar-expand sticky-top navbar-light bg-light mb-4">
+    <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
 
         <a class="navbar-brand mr-5" href="#">
             <img src="../logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
@@ -69,7 +69,7 @@ function drawHeaderMemberDesktop()
 function drawHeaderMemberMobile()
 {
 ?>
-    <div class="nav-bar navbar-expand navbar-light bg-light mb-4 pb-2">
+    <div class="nav-bar navbar-expand navbar-light bg-light pb-2">
         <nav class="navbar navbar-expand">
 
             <a class="navbar-brand mr-5" href="#">
@@ -148,7 +148,7 @@ function drawHeaderVisitorDesktop()
 {
 ?>
 
-    <nav class="navbar navbar-expand sticky-top navbar-light bg-light mb-4">
+    <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
 
         <a class="navbar-brand mr-5" href="#">
             <img src="../logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
@@ -180,7 +180,7 @@ function drawHeaderVisitorDesktop()
 function drawHeaderVisitorMobile()
 {
 ?>
-    <div class="nav-bar navbar-expand navbar-light bg-light mb-4 pb-2">
+    <div class="nav-bar navbar-expand navbar-light bg-light pb-2">
         <nav class="navbar navbar-expand">
 
             <a class="navbar-brand mr-5" href="#">

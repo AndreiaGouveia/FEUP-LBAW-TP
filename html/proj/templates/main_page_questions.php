@@ -35,5 +35,4 @@ function drawMainPageQuestion($date, $title, $description)
 
 }
 
-
 ?>

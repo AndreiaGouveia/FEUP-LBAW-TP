@@ -29,7 +29,7 @@ include_once("../templates/user_info.php");
 <body>
     
     <?php drawHeaderMember();  ?>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-md" > <?php drawUserInfo(); ?></div>
             <div class="col-md-8"> <?php drawProfileActivity(); ?></div>

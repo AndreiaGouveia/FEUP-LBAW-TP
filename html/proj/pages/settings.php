@@ -29,7 +29,7 @@ include_once("../templates/footer.php");
 <body>
 
     <?php drawHeaderMember();  ?>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
 
             <div class="col-md pr-5 mr-4 d-none d-xl-block">

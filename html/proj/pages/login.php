@@ -29,7 +29,7 @@ include_once("../templates/header.php");
     <?php drawHeaderVisitor();  ?>
         <h2>Bem Vindo!</h2>
         <h6><br></h6>
-        <form class="login">
+        <form class="login  mt-5">
 
             <div class="content">
                 <label for="inputEmail"><i class="fas fa-at"></i></label>

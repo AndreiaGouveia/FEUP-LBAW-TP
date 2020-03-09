@@ -31,7 +31,7 @@ include_once("../templates/header.php");
      
     <form class="login">
 
-        <div class="content">
+        <div class="content mt-5">
             <label for="inputName"><i class="fas fa-user"></i></label>
             <input type="text" id="inputName" class="form-control" placeholder="Nome" required="" autofocus="">
         </div>

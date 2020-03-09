@@ -1,6 +1,7 @@
 <?php
 
 include_once("../templates/profile_activity.php");
+include_once("../templates/topic.php");
 
 function drawQuestion()
 {
@@ -59,15 +60,6 @@ function drawInfoQuestion($idOfCommentSection)
 
     <button class="btn px-1 py-0 ml-3" data-toggle="tooltip" data-placement="bottom" title="Guardar">
         <i class="far fa-star"></i></button>
-
-<?php
-}
-
-function drawTopic($topic)
-{
-?>
-
-    <button class="btn btn-secondary btn-sm px-2 py-0"><?= $topic ?></button>
 
 <?php
 }
