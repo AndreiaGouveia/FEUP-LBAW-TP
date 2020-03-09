@@ -10,7 +10,7 @@ function drawUserInfo()
         <h6><br></h6>
         <div class="profile_data">
             <h2>João Pinheiro<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></h2>
-            <p><span class="badge badge-light pl-0"> <i class="fas fa-pencil-alt"></i> </span>Veterinário</p>
+            <p><span class="badge badge-light pl-0"> <i class="fas fa-address-book"></i> </span>Veterinário</p>
             <p><span class="badge badge-light pl-0"> <i class="fas fa-map-marker-alt"></i> </span>Porto, Portugal</p>
             <p><span class="badge badge-light pl-0"> <i class="fas fa-gem"></i> </span>1120 Pontos</p>
             <hr class="section-break" />

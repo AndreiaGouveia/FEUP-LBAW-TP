@@ -57,7 +57,6 @@ function drawAnswerActivity($date, $title, $response)
     <div href="#" class="activity py-4 px-4 border-top ">
         <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
         <p class="card-text"><?= $response ?></p>
-        <?php drawTopicsInCard(); ?>
     </div>
 
 <?php
@@ -86,7 +85,6 @@ function drawCommentToAnswerActivity($date, $title, $response)
     <div href="#" class="activity py-4 px-4 border-top">
         <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
         <p class="card-text"><?= $response ?></p>
-        <?php drawTopicsInCard(); ?>
     </div>
 
 <?php
@@ -100,7 +98,6 @@ function drawCommentToQuestionActivity($date, $title, $response)
     <div href="#" class="activity py-4 px-4 border-top">
         <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
         <p class="card-text"><?= $response ?></p>
-        <?php drawTopicsInCard(); ?>
     </div>
 
 <?php
