@@ -62,3 +62,9 @@ a,
 a:hover {
     color: #04CC4A;
 }
+
+.hiperlink-in-activity,
+.hiperlink-in-activity:hover {
+    text-decoration: none;
+    color: inherit;
+}
