@@ -1,5 +1,6 @@
 <?php
-include_once("../templates/topic.php");
+include_once("../templates/popup.php");
+include_once("../templates/question.php");
 
 function drawProfileActivity()
 {
@@ -39,24 +40,62 @@ function drawHeaderActivity($name, $action, $actionInBold, $date)
 function drawBasicActivity($date, $title, $description)
 {
 ?>
-    <div href="#" class="activity py-4 px-4 border-top">
-        <?php drawHeaderActivity("João Pinheiro", "", "", $date); ?>
-        <h5 class="title"><?= $title ?></h5>
-        <p class="text"><?= $description ?></p>
-        <?php drawTopicsInCard(); ?>
+    <div class="activity py-4 px-4 border-top">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "", "", $date); ?>
+            <h5 class="title"><?= $title ?></h5>
+            <p class="text"><?= $description ?></p>
+            <?php drawInfoBasicActivity(); ?>
+        </a>
     </div>
 
 <?php
 
 }
 
+function drawInfoBasicActivity()
+{
+?>
+    <div class="row justify-content-between mt-3 px-0 mx-0">
+        <?php drawTopicsInCard(); ?>
+        <div class="info row justify-content-end mx-0">
+            <?php drawLikeButtons(); ?>
+        </div>
+
+    </div>
+<?php
+}
+
+function drawLikeButtons()
+{
+
+?>
+
+    <button type="radio" class="btn px-1 py-0 ml-4" toggle="" data-placement="bottom" title="Eu gosto disto">
+        <i class="far fa-thumbs-up"></i>
+        <label style="margin-bottom: 0px">17</label>
+    </button>
+
+    <button type="radio" class="btn px-1 py-0 ml-2" toggle="" data-placement="bottom" title="Eu não gosto disto">
+        <i class="far fa-thumbs-down d-inline"></i>
+        <label style="margin-bottom: 0px" class="d-inline">7</label>
+    </button>
+
+<?php
+}
+
 function drawAnswerActivity($date, $title, $response)
 {
 ?>
 
-    <div href="#" class="activity py-4 px-4 border-top ">
-        <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
-        <p class="card-text"><?= $response ?></p>
+    <div class="activity py-4 px-4 border-top ">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
+            <div class="info row justify-content-end align-items-center mx-0">
+                <?php drawLikeButtons(); ?>
+            </div>
+        </a>
     </div>
 
 <?php
@@ -67,11 +106,13 @@ function drawQuestionActivity($date, $title, $description)
 ?>
 
 
-    <div href="#" class="activity py-4 px-4 border-top">
-        <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
-        <h5 class="title"><?= $title ?></h5>
-        <p class="text"><?= $description ?></p>
-        <?php drawTopicsInCard(); ?>
+    <div class="activity py-4 px-4 border-top">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
+            <h5 class="title"><?= $title ?></h5>
+            <p class="text"><?= $description ?></p>
+            <?php drawInfoBasicActivity(); ?>
+        </a>
     </div>
 
 <?php
@@ -82,9 +123,11 @@ function drawCommentToAnswerActivity($date, $title, $response)
 ?>
 
 
-    <div href="#" class="activity py-4 px-4 border-top">
-        <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
-        <p class="card-text"><?= $response ?></p>
+    <div class="activity py-4 px-4 border-top">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
+        </a>
     </div>
 
 <?php
@@ -95,9 +138,11 @@ function drawCommentToQuestionActivity($date, $title, $response)
 ?>
 
 
-    <div href="#" class="activity py-4 px-4 border-top">
-        <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
-        <p class="card-text"><?= $response ?></p>
+    <div href="../pages/question.php" class="activity py-4 px-4 border-top">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
+        </a>
     </div>
 
 <?php

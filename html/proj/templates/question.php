@@ -19,10 +19,7 @@ function drawQuestion()
     <div class="row justify-content-between align-items-center my-3 px-0 mx-0">
         <div class="topics align-items-center">
             <?php
-            drawTopic("Lorem");
-            drawTopic("Consectetur");
-            drawTopic("Elementum");
-            drawTopic("Donec");
+            drawTopicsInCard();
             ?>
         </div>
 
@@ -49,15 +46,7 @@ function drawInfoContent($idOfCommentSection)
         <label style="margin-bottom: 0px" class="pl-1">Comentar</label>
     </button>
 
-    <button type="radio" class="btn px-1 py-0 ml-4" toggle="" data-placement="bottom" title="Eu gosto disto">
-        <i class="far fa-thumbs-up"></i>
-        <label style="margin-bottom: 0px">17</label>
-    </button>
-
-    <button type="radio" class="btn px-1 py-0 ml-2" toggle="" data-placement="bottom" title="Eu não gosto disto">
-        <i class="far fa-thumbs-down d-inline"></i>
-        <label style="margin-bottom: 0px" class="d-inline">7</label>
-    </button>
+    <?php drawLikeButtons(); ?>
 
     <button class="btn px-1 py-0 ml-4" toggle="" data-placement="bottom" title="Guardar">
         <i class="far fa-star"></i>

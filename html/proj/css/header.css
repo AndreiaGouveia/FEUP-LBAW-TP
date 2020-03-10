@@ -57,7 +57,16 @@
     font-size: 0.8rem;
 }
 
-a,
-a:hover {
+footer a,
+footer a:hover {
     color: #04CC4A;
 }
+<<<<<<< HEAD
+=======
+
+.hiperlink-in-activity,
+.hiperlink-in-activity:hover {
+    text-decoration: none;
+    color: #212529;
+}
+>>>>>>> 73c8466c52b33efd474dfe17efc9923c370eebcd
