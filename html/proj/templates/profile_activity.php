@@ -40,12 +40,13 @@ function drawHeaderActivity($name, $action, $actionInBold, $date)
 function drawBasicActivity($date, $title, $description)
 {
 ?>
-    <div href="#" class="activity py-4 px-4 border-top">
-        <?php drawHeaderActivity("João Pinheiro", "", "", $date); ?>
-        <h5 class="title"><?= $title ?></h5>
-        <p class="text"><?= $description ?></p>
-
-        <?php drawInfoBasicActivity(); ?>
+    <div class="activity py-4 px-4 border-top">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "", "", $date); ?>
+            <h5 class="title"><?= $title ?></h5>
+            <p class="text"><?= $description ?></p>
+            <?php drawInfoBasicActivity(); ?>
+        </a>
     </div>
 
 <?php
@@ -55,14 +56,9 @@ function drawBasicActivity($date, $title, $description)
 function drawInfoBasicActivity()
 {
 ?>
-    <div class="row justify-content-between align-items-center mt-3 px-0 mx-0">
-        <div class="topics align-items-center">
-            <?php
-            drawTopicsInCard();
-            ?>
-        </div>
-
-        <div class="info row justify-content-end align-items-center mx-0">
+    <div class="row justify-content-between mt-3 px-0 mx-0">
+        <?php drawTopicsInCard(); ?>
+        <div class="info row justify-content-end mx-0">
             <?php drawLikeButtons(); ?>
         </div>
 
@@ -92,16 +88,15 @@ function drawAnswerActivity($date, $title, $response)
 {
 ?>
 
-    <div href="#" class="activity py-4 px-4 border-top ">
-        <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
-        <p class="card-text"><?= $response ?></p>
-
-        <div class="info row justify-content-end align-items-center mx-0">
-            <?php drawLikeButtons(); ?>
-        </div>
+    <div class="activity py-4 px-4 border-top ">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
+            <div class="info row justify-content-end align-items-center mx-0">
+                <?php drawLikeButtons(); ?>
+            </div>
+        </a>
     </div>
-
-
 
 <?php
 }
@@ -111,12 +106,13 @@ function drawQuestionActivity($date, $title, $description)
 ?>
 
 
-    <div href="#" class="activity py-4 px-4 border-top">
-        <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
-        <h5 class="title"><?= $title ?></h5>
-        <p class="text"><?= $description ?></p>
-
-        <?php drawInfoBasicActivity(); ?>
+    <div class="activity py-4 px-4 border-top">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
+            <h5 class="title"><?= $title ?></h5>
+            <p class="text"><?= $description ?></p>
+            <?php drawInfoBasicActivity(); ?>
+        </a>
     </div>
 
 <?php
@@ -127,9 +123,11 @@ function drawCommentToAnswerActivity($date, $title, $response)
 ?>
 
 
-    <div href="#" class="activity py-4 px-4 border-top">
-        <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
-        <p class="card-text"><?= $response ?></p>
+    <div class="activity py-4 px-4 border-top">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
+        </a>
     </div>
 
 <?php
@@ -140,9 +138,11 @@ function drawCommentToQuestionActivity($date, $title, $response)
 ?>
 
 
-    <div href="#" class="activity py-4 px-4 border-top">
-        <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
-        <p class="card-text"><?= $response ?></p>
+    <div href="../pages/question.php" class="activity py-4 px-4 border-top">
+        <a href="../pages/question.php" class="hiperlink-in-activity">
+            <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
+            <p class="card-text"><?= $response ?></p>
+        </a>
     </div>
 
 <?php

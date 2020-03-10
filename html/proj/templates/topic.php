@@ -49,7 +49,7 @@ function drawTopicsInCard()
 {
 
 ?>
-    <div class="topics align-items-center">
+    <div class="topics">
         <?php
         drawTopic("Lorem");
         drawTopic("Consectetur");

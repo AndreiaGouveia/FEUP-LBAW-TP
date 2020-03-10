@@ -57,7 +57,13 @@
     font-size: 0.8rem;
 }
 
-a,
-a:hover {
+footer a,
+footer a:hover {
     color: #04CC4A;
+}
+
+.hiperlink-in-activity,
+.hiperlink-in-activity:hover {
+    text-decoration: none;
+    color: #212529;
 }
