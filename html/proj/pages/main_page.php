@@ -35,10 +35,10 @@ include_once("../templates/footer.php");
             <h1 class="text-center">Bem-Vindo ao Papagaio!</h1>
             <h2 class="text-center mt-3">Entre no mundo do conhecimento Animal.</h2>
         </div>
-        <img src="..\top_part_logo.png" class="welcomeLogo  pt-5" alt="logoBig">
+        <img src="..\images\top_part_logo.png" class="welcomeLogo  pt-5" alt="logoBig">
     </div>
 
-    <img src="..\bottom_part_logo.png" class="welcomeLogo float-right" alt="logoBig">
+    <img src="..\images\bottom_part_logo.png" class="welcomeLogo float-right" alt="logoBig">
 
     <div class="container main-page-container mt-5">
         <div class="row flex-column-reverse flex-lg-row">

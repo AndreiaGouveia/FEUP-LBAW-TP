@@ -22,7 +22,7 @@ function drawHeaderMemberDesktop()
     <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
 
         <a class="navbar-brand mr-5" href="../pages/main_page.php">
-            <img src="../logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
+            <img src="../images/logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
             Papagaio
         </a>
 
@@ -47,7 +47,7 @@ function drawHeaderMemberDesktop()
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <div class="dropdown-item">
-                        <img src="..\profile_picture.png" class="img-header float-left" alt="">
+                        <img src="..\\images\profile_picture1.png" class="img-header float-left" alt="">
                         <p style="margin-left: 1.7rem">João Pinheiro<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                     </div>
 
@@ -75,7 +75,7 @@ function drawHeaderMemberMobile()
         <nav class="navbar navbar-expand">
 
             <a class="navbar-brand mr-5" href="../pages/main_page.php">
-                <img src="../logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
+                <img src="../images/logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
             </a>
 
 
@@ -94,7 +94,7 @@ function drawHeaderMemberMobile()
 
                     <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <div class="dropdown-item">
-                            <img src="..\profile_picture.png" class="img-header float-left" alt="">
+                            <img src="..\\images\profile_picture1.png" class="img-header float-left" alt="">
                             <p style="margin-left: 1.7rem">João Pinheiro<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                         </div>
 
@@ -154,7 +154,7 @@ function drawHeaderVisitorDesktop()
     <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
 
         <a class="navbar-brand mr-5" href="../pages/main_page.php">
-            <img src="../logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
+            <img src="../images/logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
             Papagaio
         </a>
 
@@ -187,7 +187,7 @@ function drawHeaderVisitorMobile()
             <nav class="navbar navbar-expand">
 
                 <a class="navbar-brand mr-5" href="../pages/main_page.php">
-                    <img src="../logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
+                    <img src="../images/logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
                 </a>
 
 

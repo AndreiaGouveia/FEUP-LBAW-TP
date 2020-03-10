@@ -11,7 +11,7 @@ function drawFooter()
 
                 <div class="col md-2 mb-2">
                     <div class="row justify-content-center">
-                        <img src="../logo.png" width="20" height="25" alt="">
+                        <img src="../images/logo.png" width="20" height="25" alt="">
                         <h6 class="text-uppercase ml-2">PAPAGAIO</h6>
                     </div>
                 </div>
