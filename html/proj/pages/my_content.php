@@ -35,7 +35,7 @@ include_once("../templates/footer.php");
 
     <div class="container mt-5">
         <div class="row flex-column-reverse flex-lg-row">
-            <div class="col-md-12">
+            <div class="col-md-9 m-auto">
                 <div class="mb-3">
                     <h2 class="font-weight-normal d-inline">O meu conteúdo</h2>
                 </div>

@@ -14,10 +14,10 @@ function reportPopUp($idOfPopUp)
                 </div>
                 <div class="px-3 my-2">
                     <?php
-                    popUpCheckBox("Sexual Content");
-                    popUpCheckBox("Violent or repulsive content");
-                    popUpCheckBox("Hateful or abusive content");
-                    popUpCheckBox("Spam or misleading");
+                    popUpCheckBox("Conteúdo de natureza sexual");
+                    popUpCheckBox("Conteúdo violento ou repulsivo");
+                    popUpCheckBox("Conteúdo abusivo/incitação ao òdio");
+                    popUpCheckBox("Spam ou conteúdo enganoso");
 
                     ?>
 
