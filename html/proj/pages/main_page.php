@@ -31,9 +31,9 @@ include_once("../templates/footer.php");
     <?php drawHeaderMember(); ?>
 
     <div class="welcome d-flex justify-content-between align-items-center">
-        <div class="flex-fill">
+        <div class="flex-fill ml-5">
             <h1 class="text-center">Bem-Vindo ao Papagaio!</h1>
-            <h2 class="text-center">Entre no mundo do conhecimento Animal.</h2>
+            <h2 class="text-center mt-3">Entre no mundo do conhecimento Animal.</h2>
         </div>
         <img src="..\top_part_logo.png" class="welcomeLogo  pt-5" alt="logoBig">
     </div>
