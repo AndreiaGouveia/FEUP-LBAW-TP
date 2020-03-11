@@ -21,10 +21,11 @@ function drawProfileActivity()
 
 function drawHeaderActivity($name, $action, $actionInBold, $date)
 {
+    $link = "..\images\profile_picture" .trim(rand(1,5)). ".png";
 ?>
 
     <div id="header-card d-inline">
-        <img src="..\\images\profile_picture1.png" class="img_inside mr-2" alt="">
+        <img src= <?= $link ?> class="img_inside mr-2" alt="">
         <div class="header-text">
             <p class="mb-0 font-weight-bold d-inline"><?= $name ?></p>
             <p class="mb-0 d-inline"><?= $action ?></p>

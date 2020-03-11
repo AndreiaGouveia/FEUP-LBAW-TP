@@ -10,17 +10,13 @@ function drawResponseSection()
     <hr class="section-break" />
     <ul class="list-unstyled">
         <?php
-        drawResponse("Mea sale accusam id. Sed eros corpora at. Justo definitionem sea at, eu unum vidit usu. Saepe voluptatum pro at. Possit pertinax argumentum mei in. An etiam alterum corpora sed, an impetus nominati his. Oratio nullam vidisse in nam.
+        drawResponse("Tal como a nossa alimentação existem certos ingredientes que as comidas processadas têm que não ajudam o nosso metabolismo e que nos podem prejudicar. No entanto, e apesar de mais caras, existem marcas de ração com ingredientes mais saudáveis e sem cereais por exemplo. 
+        A gama Beyond da Purina é espetacular e a minha miúda adora!","Ines","responseCommentSection1");
 
-        No dictas commune delicata eum. Ex feugiat omittam cum, vix ut hinc commune. Ut nec unum mazim tempor, pro eu simul conclusionemque. Dicant vituperata duo ad, ad wisi nullam vim, rebum oratio electram ei usu. Sed suas dicit possim id.", "No Qui Elit", "responseCommentSection1");
+        drawResponse("A ração humida é que faz mal","Mateus","responseCommentSection2");
 
-        drawResponse("Oporteat salutatus ne nec. Tractatos quaerendum ad sed. His praesent elaboraret no, munere singulis partiendo eam ex. Ad mucius ponderum est. Nisl primis concludaturque ne qui, facete assentior vix id. Cu eius instructior sed.
-
-        Tota diceret erroribus et pri. Duo detraxit partiendo cu. Ei est alienum blandit. Mei saepe dicant iuvaret ut.
-        
-        Dicta appareat an eum, per ex alii similique.", "Sea Dicunt Oblique", "responseCommentSection2");
-
-        drawResponse("Mea sale accusam id. Sed eros corpora at. Justo definitionem sea at, eu unum vidit usu. Saepe voluptatum pro at. Possit pertinax argumentum mei in. An etiam alterum corpora sed, an impetus nominati his. Oratio nullam vidisse in nam.", "No Qui Elit", "responseCommentSection3");
+        drawResponse("Não. Os veterinários aconselham a seca. Mas tem de ser de boa qualidade porque, as marcas brancas, as whiskas e as friskies não são recomendadas pelos vets.
+        Tenho 2 gatos, comem Royal Canin e estão mt bem. É melhor gastar mais na ração do que depois, no veterinário...","Luisa","responseCommentSection3");
         ?>
 
     </ul>

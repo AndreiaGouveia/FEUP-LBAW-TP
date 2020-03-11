@@ -8,12 +8,14 @@ function drawQuestion()
 {
     drawHeaderActivity("João Pinheiro", "perguntou:", "", "22/02/2020");
 ?>
-    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed neque arcu. Nunc eu elementum purus. Vestibulum finibus maximus vestibulum. </h2>
+    <h2>É verdade que ração seca faz mal para gatos?</h2>
 
     <div class="description mt-3">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed neque arcu. Nunc eu elementum purus. Vestibulum finibus maximus vestibulum. In hendrerit fermentum purus ut luctus. Aliquam pharetra mollis erat, non euismod felis varius in. Donec gravida cursus dui, sed egestas magna venenatis non. Curabitur in tellus eu diam varius tempus eget sit amet lorem. Nulla non consectetur magna, a tincidunt est. Sed posuere ex vel bibendum vehicula. Morbi egestas dolor magna, ullamcorper convallis nibh consequat eu. Sed ac venenatis odio. Phasellus convallis ipsum laoreet, tempus dui sed, euismod velit. Maecenas euismod nisi orci, ac tempor justo eleifend vel. Sed diam dui, commodo ornare convallis a, facilisis vitae eros.
+        <p>Chegou até a mim um guia de receita para comida de gatos (comida caseira balanceada) - até aí tudo bem, seria uma opção.
 
-            Nam accumsan turpis sit amet sem semper, vel sodales sapien pretium. Integer est felis, mollis sed tempor vitae, imperdiet ac nibh. Sed in cursus ligula, ac molestie velit. Suspendisse quis ultricies dui, eu mattis est. Curabitur sit amet magna ultrices magna consectetur tempor. Pellentesque venenatis ligula ut mollis pellentesque. Duis imperdiet ex vel nibh hendrerit, eu auctor mauris porta. Quisque in consectetur elit. Sed quis faucibus ante. Nullam est turpis, rhoncus non metus quis, dignissim bibendum quam.</p>
+        Mas acontece que eles contam uma porção de coisas que eu não sabia sobre a ração seca (industrializada) e fiquei horrorizada!!
+
+        Alguém tem experiência com nutrição animal (especialmente gatos) e saberia me dizer se a ração seca realmente não é boa para os bichanos??!!</p>
     </div>
 
     <div class="row justify-content-between align-items-center my-3 px-0 mx-0">
