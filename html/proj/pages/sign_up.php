@@ -37,43 +37,45 @@ include_once("../templates/footer.php");
 
     <?php drawHeaderVisitor(); ?>
 
-    <div class="form-center align-items-center pb-5">
-    <form class="login mx-3 pb-2">
+    <div class="form-center align-items-center pb-4">
+        <h2>Junte-se à nossa comunidade!</h2>
+        <h6><br></h6>
+        <form class="login mx-3">
 
-        <div class="content mt-5 flex-fill">
-            <label for="inputName"><i class="fas fa-user"></i></label>
-            <input type="text" id="inputName" class="form-control" placeholder="Nome" required="" autofocus="" toggle="" data-placement="right" title="Introduza o seu nome">
-        </div>
-
-        <div class="content">
-            <label for="inputEmail"><i class="fas fa-at"></i></label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" toggle="" data-placement="right" title="exemplo@email.com">
-        </div>
-
-        <div>
-            <div class="content mb-0">
-                <label for="inputPassword"><i class="fas fa-key"></i></label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
+            <div class="content mt-3 flex-fill">
+                <label for="inputName"><i class="fas fa-user"></i></label>
+                <input type="text" id="inputName" class="form-control" placeholder="Nome" required="" autofocus="" toggle="" data-placement="right" title="Introduza o seu nome">
             </div>
-        </div>
 
-        <div class="checkbox m-3">
-            <label>
-                <input type="checkbox" value="termsconds"> Eu aceito os termos e condições.
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registar</button>
+            <div class="content">
+                <label for="inputEmail"><i class="fas fa-at"></i></label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" toggle="" data-placement="right" title="exemplo@email.com">
+            </div>
+
+            <div>
+                <div class="content mb-0">
+                    <label for="inputPassword"><i class="fas fa-key"></i></label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
+                </div>
+            </div>
+
+            <div class="checkbox m-3">
+                <label>
+                    <input type="checkbox" value="termsconds"> Eu aceito os termos e condições.
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Registar</button>
 
 
-        <hr class="section-break" />
+            <hr class="section-break" />
 
 
-        <a class="btn btn-outline-dark" href="#" role="button" style="text-transform:none">
-            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-            Registar com o Google
-        </a>
+            <a class="btn btn-outline-dark" href="#" role="button" style="text-transform:none">
+                <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                Registar com o Google
+            </a>
 
-    </form>
+        </form>
     </div>
 
     <?php drawFooter(); ?>
