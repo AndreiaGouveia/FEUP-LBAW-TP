@@ -5,7 +5,7 @@ function drawResponseSection()
 {
 
 ?>
-    <h5>3 responses</h5>
+    <h5>3 respostas</h5>
 
     <hr class="section-break" />
     <ul class="list-unstyled">
@@ -25,7 +25,7 @@ function drawResponseSection()
             <label for="exampleInputEmail1">A tua Resposta</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
-        <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Submeter</button></div>
+        <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Responder</button></div>
     </form>
 
 
