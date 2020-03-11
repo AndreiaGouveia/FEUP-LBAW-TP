@@ -33,34 +33,32 @@ include_once("../templates/footer.php");
 <body>
     <?php drawHeaderMember(); ?>
 
-    <div class="container mt-5">
+    <div class="col-md-7 mx-auto mt-5">
         <div class="row flex-column-reverse flex-lg-row">
-            <div class="col-md-9 m-auto">
-                <div class="mb-3">
-                    <h2 class="font-weight-normal d-inline">Os meus favoritos</h2>
-                </div>
-
-                <div class="row container justify-content-between mb-4">
-                    <div class="list-group list-group-horizontal mb-2" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-action active py-2" id="list-questions-list" data-toggle="list" href="#list-questions" role="tab" aria-controls="questions">Perguntas</a>
-                        <a class="list-group-item list-group-item-action py-2" id="list-responses-list" data-toggle="list" href="#list-responses" role="tab" aria-controls="topics">Respostas</a>
-                    </div>
-                    <select class="custom-select">
-                        <option selected>Revelante</option>
-                        <option value="1">Recente</option>
-                        <option value="2">Mais Votados</option>
-                        <option value="3">Menos Votados</option>
-                    </select>
-                </div>
-
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list"><?php drawSearchContentQuestions(); ?></div>
-                    <div class="tab-pane fade" id="list-responses" role="tabpanel" aria-labelledby="list-responses-list"><?php drawSearchContentQuestions(); ?></div>
-                </div>
-                <?php
-
-                ?>
+            <div class="mb-3">
+                <h2 class="font-weight-normal d-inline">Os meus favoritos</h2>
             </div>
+
+            <div class="row container justify-content-between mb-4">
+                <div class="list-group list-group-horizontal mb-2" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active py-2" id="list-questions-list" data-toggle="list" href="#list-questions" role="tab" aria-controls="questions">Perguntas</a>
+                    <a class="list-group-item list-group-item-action py-2" id="list-responses-list" data-toggle="list" href="#list-responses" role="tab" aria-controls="topics">Respostas</a>
+                </div>
+                <select class="custom-select">
+                    <option selected>Revelante</option>
+                    <option value="1">Recente</option>
+                    <option value="2">Mais Votados</option>
+                    <option value="3">Menos Votados</option>
+                </select>
+            </div>
+
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list"><?php drawSearchContentQuestions(); ?></div>
+                <div class="tab-pane fade" id="list-responses" role="tabpanel" aria-labelledby="list-responses-list"><?php drawSearchContentQuestions(); ?></div>
+            </div>
+            <?php
+
+            ?>
         </div>
     </div>
 

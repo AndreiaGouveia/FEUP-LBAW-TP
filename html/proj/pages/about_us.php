@@ -33,15 +33,15 @@ include_once("../templates/footer.php");
 <body>
     <?php drawHeaderMember(); ?>
 
-    <div class="container col-md-8">
-        <div class="container mt-5">
+    <div class="col-md-7 mx-auto">
+        <div class=" mt-5">
             <h1 class="font-weight-normal mb-3">Sobre Nós</h1>
             <hr class="section-break" />
 
         </div>
 
 
-        <div class="container mt-5" id="about-text">
+        <div class=" mt-5" id="about-text">
             <p>
                 O objetivo deste projeto foi desenvolver uma aplicação web de perguntas e respostas sobre animais.
                 Esta aplicação consiste numa plataforma na qual todos os utilizadores podem deixar as suas perguntas e vê-las serem respondidas e/ou comentadas por outros membros da comunidade.
@@ -52,7 +52,7 @@ include_once("../templates/footer.php");
         </div>
 
         <div class="bg-transparent">
-            <div class="container py-5 ">
+            <div class="py-5 ">
                 <div class="row mb-4">
                     <div class="col-lg-5">
                         <h2 class="display-5 font-weight-light" style="font-size: 1.5rem;">A nossa equipa:</h2>
