@@ -22,7 +22,7 @@ function drawFooter()
 
                 <a class="col md-2 mb-2" href="../pages/about_us.php">
                     <h6 class="text-uppercase col md-2 mb-2 font-weight-bold">Sobre Nós</h6>
-                </a >
+                </a>
 
             </div>
         </div>
@@ -31,7 +31,6 @@ function drawFooter()
         <p class="footer text-center mb-0" style="font-size: 0.7rem">© 2020 Papagaio, Inc.</p>
 
     </footer>
-    <!-- Footer -->
 
 <?php
 }

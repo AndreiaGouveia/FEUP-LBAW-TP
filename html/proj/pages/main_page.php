@@ -33,12 +33,10 @@ include_once("../templates/footer.php");
     <div class="welcome d-flex justify-content-between align-items-center">
         <div class="flex-fill ml-5">
             <h1 class="text-center">Bem-Vindo ao Papagaio!</h1>
-            <h2 class="text-center mt-3">Entre no mundo do conhecimento Animal.</h2>
+            <h2 class="text-center mt-3 d-none d-xl-block">Entre no mundo do conhecimento Animal.</h2>
         </div>
-        <img src="..\images\top_part_logo.png" class="welcomeLogo  pt-5" alt="logoBig">
+        <img src="..\images\logo.png" class="welcomeLogo" alt="logoBig">
     </div>
-
-    <img src="..\images\bottom_part_logo.png" class="welcomeLogo float-right" alt="logoBig">
 
     <div class="container main-page-container mt-5">
         <div class="row flex-column-reverse flex-lg-row">

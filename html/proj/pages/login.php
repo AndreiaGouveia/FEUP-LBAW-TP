@@ -1,5 +1,6 @@
 <?php
 include_once("../templates/header.php");
+include_once("../templates/footer.php");
 ?>
 
 <!doctype html>
@@ -15,6 +16,7 @@ include_once("../templates/header.php");
     <link rel="stylesheet" type="text/css" href="../css/login.css">
     <link rel="stylesheet" type="text/css" href="../css/header.css">
     <script src="https://kit.fontawesome.com/4f1925ab80.js" crossorigin="anonymous"></script>
+    <script src="../js/input.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -24,21 +26,31 @@ include_once("../templates/header.php");
 </head>
 
 
+<script>
+    $(function() {
+        $('[toggle]').tooltip()
+    })
+</script>
+
+
 
 <body>
     <?php drawHeaderVisitor();  ?>
+
+    <div class="form-center align-items-center pb-5">
         <h2>Bem Vindo!</h2>
         <h6><br></h6>
-        <form class="login  mt-5">
+
+        <form class="login mt-5">
 
             <div class="content">
                 <label for="inputEmail"><i class="fas fa-at"></i></label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" toggle="" data-placement="bottom" title="exemplo@email.com">
             </div>
 
             <div class="content">
                 <label for="inputPassword"><i class="fas fa-key"></i></label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="bottom" title="Introduza a sua password">
             </div>
 
 
@@ -48,13 +60,16 @@ include_once("../templates/header.php");
 
             <hr class="section-break" />
 
-            <a class="btn btn-outline-dark" href="/users/googleauth" role="button" style="text-transform:none">
+            <a class="btn btn-outline-dark" href="#" role="button" style="text-transform:none">
                 <img width="20px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                 Iniciar sessão com o Google
             </a>
 
         </form>
+    </div>
 
+
+    <?php drawFooter(); ?>
 
 </body>
 

@@ -40,14 +40,15 @@ function drawHeaderActivity($name, $action, $actionInBold, $date)
 function drawBasicActivity($date, $title, $description)
 {
 ?>
-    <div class="activity py-4 px-4 border-top">
-        <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="../pages/question.php" class="hiperlink-in-activity">
+        <div class="activity py-4 px-4 border-top">
+
             <?php drawHeaderActivity("João Pinheiro", "", "", $date); ?>
             <h5 class="title"><?= $title ?></h5>
             <p class="text"><?= $description ?></p>
             <?php drawInfoBasicActivity(); ?>
-        </a>
-    </div>
+        </div>
+    </a>
 
 <?php
 
@@ -90,15 +91,15 @@ function drawAnswerActivity($date, $title, $response)
 {
 ?>
 
-    <div class="activity py-4 px-4 border-top ">
-        <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="../pages/question.php" class="hiperlink-in-activity">
+        <div class="activity py-4 px-4 border-top ">
             <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
             <p class="card-text"><?= $response ?></p>
             <div class="info row justify-content-end align-items-center mx-0">
                 <?php drawLikeButtons(); ?>
             </div>
-        </a>
-    </div>
+        </div>
+    </a>
 
 <?php
 }
@@ -108,14 +109,14 @@ function drawQuestionActivity($date, $title, $description)
 ?>
 
 
-    <div class="activity py-4 px-4 border-top">
-        <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="../pages/question.php" class="hiperlink-in-activity">
+        <div class="activity py-4 px-4 border-top">
             <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
             <h5 class="title"><?= $title ?></h5>
             <p class="text"><?= $description ?></p>
             <?php drawInfoBasicActivity(); ?>
-        </a>
-    </div>
+        </div>
+    </a>
 
 <?php
 }
@@ -125,12 +126,12 @@ function drawCommentToAnswerActivity($date, $title, $response)
 ?>
 
 
-    <div class="activity py-4 px-4 border-top">
-        <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="../pages/question.php" class="hiperlink-in-activity">
+        <div class="activity py-4 px-4 border-top">
             <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
             <p class="card-text"><?= $response ?></p>
-        </a>
-    </div>
+        </div>
+    </a>
 
 <?php
 }
@@ -140,12 +141,12 @@ function drawCommentToQuestionActivity($date, $title, $response)
 ?>
 
 
-    <div href="../pages/question.php" class="activity py-4 px-4 border-top">
-        <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="../pages/question.php" class="hiperlink-in-activity">
+        <div href="../pages/question.php" class="activity py-4 px-4 border-top">
             <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
             <p class="card-text"><?= $response ?></p>
-        </a>
-    </div>
+        </div>
+    </a>
 
 <?php
 }
