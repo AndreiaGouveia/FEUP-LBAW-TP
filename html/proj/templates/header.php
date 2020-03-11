@@ -100,6 +100,8 @@ function drawHeaderMemberMobile()
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="profile.php">O meu Perfil</a>
+                        <a class="dropdown-item" href="my_content.php">O meu Conteúdo</a>
+                        <a class="dropdown-item" href="my_favorites.php">Favoritos</a>
                         <a class="dropdown-item" href="settings.php">Definições</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="../pages/main_page.php">Terminar Sessão</a>

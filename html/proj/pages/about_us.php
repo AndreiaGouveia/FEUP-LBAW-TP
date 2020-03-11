@@ -35,7 +35,7 @@ include_once("../templates/footer.php");
 
     <div class="container col-md-8">
         <div class="container mt-5">
-            <h1 class="font-weight-normal mb-3">About us</h1>
+            <h1 class="font-weight-normal mb-3">Sobre Nós</h1>
             <hr class="section-break" />
 
         </div>
