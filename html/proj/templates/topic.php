@@ -51,10 +51,10 @@ function drawTopicsInCard()
 ?>
     <div class="topics">
         <?php
-        drawTopic("Lorem");
-        drawTopic("Consectetur");
-        drawTopic("Elementum");
-        drawTopic("Donec");
+        drawTopic("Animais");
+        drawTopic("Domesticação");
+        drawTopic("Curiosidades");
+        drawTopic("Ciência");
         ?>
 
     </div>

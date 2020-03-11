@@ -6,9 +6,10 @@ function drawCommentSection()
 
     <div class="comment-block border-top pl-3 pt-2 pb-3">
         <?php
-        drawComment("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.", "Someone famous");
-        drawComment("Eruditi ornatus consectetuer no eam, ei qui ocurreret dissentias, velit laoreet ceteros ne ius. Aperiri nonumes inciderint sea et, simul argumentum an mea.", "His an Maiorum");
-        drawComment("Aperiri nonumes inciderint sea et, simul argumentum an mea!!!", "Velit Laoreet");
+        drawComment("Nunca pensei nisso! Ótima resposta!", "Carl Linnaeus");
+        drawComment("Não sei se concordo com tudo, mas bom esforço!", "Charles Darwin");
+        drawComment("Eu amo isto! Uma informação fantástica. Certamente que vou investigar mais sobre este assunto. Leitura incrível.
+        Fico à espera de o ver mais pelo maravilhoso site 'Papagaio'!", "Alfred Russel Wallace");
         ?>
 
         <form class="form-inline mt-3">
