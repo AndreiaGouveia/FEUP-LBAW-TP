@@ -18,7 +18,7 @@ function drawQuestion()
         Alguém tem experiência com nutrição animal (especialmente gatos) e saberia me dizer se a ração seca realmente não é boa para os bichanos??!!</p>
     </div>
 
-    <div class="row justify-content-between align-items-center my-3 px-0 mx-0">
+    <div class="row justify-content-between align-items-center mt-4 mb-3 px-0 mx-0">
         <div class="topics align-items-center">
             <?php
             drawTopicsInCard();
@@ -80,9 +80,9 @@ function drawRecomendations()
 
     <h6>Recomendações</h6>
     <hr class="section-break" />
-    <div>
+    <div class="recommendations-tab">
         <a href="../pages/question.php">
-            <p class="card-text">Será que o meu cão está demasiado gordo?</p>
+            <p class="card-text" id="ISTO">Será que o meu cão está demasiado gordo?</p>
         </a>
         <a href="../pages/question.php">
             <p class="card-text">Como domisticar um crocodilo?</p>

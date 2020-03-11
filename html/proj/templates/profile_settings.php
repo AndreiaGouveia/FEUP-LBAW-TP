@@ -3,7 +3,7 @@ function drawProfileSettings()
 {
 ?>
 
-    <h3 class="font-weight-normal mb-3">Perfil</h3>
+    <h3 class="font-weight-normal mb-3">Alterar Perfil</h3>
     <hr class="section-break" />
 
     <form>

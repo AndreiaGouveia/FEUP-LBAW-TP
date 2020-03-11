@@ -21,16 +21,16 @@ function drawProfileActivity()
 
 function drawHeaderActivity($name, $action, $actionInBold, $date)
 {
-    $link = "..\images\profile_picture" .trim(rand(1,5)). ".png";
+    $link = "..\images\profile_picture" . trim(rand(1, 5)) . ".png";
 ?>
 
-    <div id="header-card d-inline">
-        <img src= <?= $link ?> class="img_inside mr-2" alt="">
+    <div id="header-card mb-3">
+        <img src=<?= $link ?> class="img_inside mr-2" alt="">
         <div class="header-text">
-            <p class="mb-0 font-weight-bold d-inline"><?= $name ?></p>
-            <p class="mb-0 d-inline"><?= $action ?></p>
-            <p class="mb-0 font-weight-bold d-inline"><?= $actionInBold ?>
-                <p class="mb-3"><?= $date ?></p>
+            <p class="name-and-action font-weight-bold d-inline"><?= $name ?></p>
+            <p class="name-and-action d-inline"><?= $action ?></p>
+            <p class="name-and-action font-weight-bold d-inline"><?= $actionInBold ?></p><br>
+            <p><small><?= $date ?></small></p>
         </div>
     </div>
 
@@ -58,7 +58,7 @@ function drawBasicActivity($date, $title, $description)
 function drawInfoBasicActivity()
 {
 ?>
-    <div class="row mt-3 px-0 mx-0">
+    <div class="row mt-4 px-0 mx-0">
         <div class="info row justify-content-start d-line mx-0">
             <?php drawTopicsInCard(); ?>
         </div>

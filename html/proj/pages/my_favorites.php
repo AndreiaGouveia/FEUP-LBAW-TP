@@ -34,7 +34,7 @@ include_once("../templates/footer.php");
     <?php drawHeaderMember(); ?>
 
     <div class="col-md-7 mx-auto mt-5">
-        <div class="row flex-column-reverse flex-lg-row">
+        <div class="container row flex-lg-row">
             <div class="mb-3">
                 <h2 class="font-weight-normal d-inline">Os meus favoritos</h2>
             </div>

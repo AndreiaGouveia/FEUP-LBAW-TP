@@ -7,13 +7,13 @@
 
 .img_inside {
     object-fit: cover;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     float: left;
 }
 
-.header-text * {
+.name-and-action {
     font-size: 0.9rem
 }
 

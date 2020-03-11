@@ -77,3 +77,22 @@ form input.invalid {
 .form-center {
     margin-top: 4vw;
 }
+
+button:active {
+    background: olive;
+}
+
+.btn:focus {
+    background-color: #343a40!important;
+    color: white;
+}
+
+.dropdown-item:focus {
+    background-color: #343a40!important;
+    color: white;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem #e2e4e6;
+    border-color: #afb5bb;
+}

@@ -19,3 +19,7 @@
 .btn label:hover {
     cursor: pointer;
 }
+
+.recommendations-tab a p {
+    padding-bottom: 1rem;
+}
