@@ -21,7 +21,7 @@ function drawHeaderMemberDesktop()
 
     <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
 
-        <a class="navbar-brand mr-5" href="../pages/main_page.php">
+        <a class="navbar-brand px-2 mr-5" href="../pages/main_page.php">
             <img src="../images/logo.png" width="35" height="42" class="d-inline-block align-center" alt="">
             Papagaio
         </a>

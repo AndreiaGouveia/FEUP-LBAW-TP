@@ -79,8 +79,12 @@ function drawRecomendations()
     <h6>Recomendações</h6>
     <hr class="section-break" />
     <div>
-        <p class="card-text">Será que o meu cão está demasiado gordo?</p>
-        <p class="card-text">Como domisticar um crocodilo?</p>
+        <a href="../pages/question.php">
+            <p class="card-text">Será que o meu cão está demasiado gordo?</p>
+        </a>
+        <a href="../pages/question.php">
+            <p class="card-text">Como domisticar um crocodilo?</p>
+        </a>
     </div>
 
 <?php

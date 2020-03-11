@@ -54,7 +54,6 @@ include_once("../templates/footer.php");
 
             </div>
             <div class="sidebar col-md">
-
                 <?php drawRecomendations(); ?>
             </div>
 

@@ -11,6 +11,7 @@
     border-color: transparent;
 }
 
+.navbar-brand:hover,
 .btn:hover {
     filter: brightness(110%);
     box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
@@ -53,17 +54,13 @@
     margin-top: 0.2rem;
 }
 
-.btn-sm {
-    font-size: 0.8rem;
-}
-
-footer a,
-footer a:hover {
+a,
+a:hover {
     color: #04CC4A;
 }
 
 .hiperlink-in-activity,
 .hiperlink-in-activity:hover {
     text-decoration: none;
-    color: #212529;
+    color: inherit;
 }

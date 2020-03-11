@@ -20,9 +20,9 @@ function drawFooter()
                     <h6 class="text-uppercase col md-2 mb-2 font-weight-bold">Home</h6>
                 </a>
 
-                <div class="col md-2 mb-2">
-                    <h6 class="text-uppercase font-weight-bold" href="#!">Sobre Nós</h6>
-                </div>
+                <a class="col md-2 mb-2" href="../pages/about_us.php">
+                    <h6 class="text-uppercase col md-2 mb-2 font-weight-bold">Sobre Nós</h6>
+                </a >
 
             </div>
         </div>
