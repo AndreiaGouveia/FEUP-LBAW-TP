@@ -6,8 +6,6 @@ function drawProfileSettings()
     <h3 class="font-weight-normal mb-3">Perfil</h3>
     <hr class="section-break" />
 
-    <!-- TODO: Foto de Perfil -->
-
     <form>
         <div class="form-group">
 
@@ -42,7 +40,7 @@ function drawProfileSettings()
             </div>
 
             <div class="content mb-4">
-                <label for="textAreaBio">Bio<small class="font-italic"> - Optional</label>
+                <label for="textAreaBio">Bio<small class="font-italic"> - Optional</small></label>
                 <textarea type="text" id="textAreaBio" class="form-control" placeholder="Bio" autofocus="" rows="3"></textarea>
             </div>
 
