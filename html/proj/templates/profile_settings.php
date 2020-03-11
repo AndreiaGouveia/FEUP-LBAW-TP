@@ -33,7 +33,7 @@ function drawProfileSettings()
                 <div class="col-md">
                     <div class="content mb-4">
                         <label for="profilePic">Foto de Perfil</label><br>
-                        <img src="..\profile_picture.png" id="profilePic" class="img-settings" alt="">
+                        <img src="..\\images\profile_picture1.png" id="profilePic" class="img-settings" alt="">
                     </div>
                 </div>
 
