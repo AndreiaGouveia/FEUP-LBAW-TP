@@ -15,7 +15,7 @@ function drawCommentSection()
         <form class="form-inline mt-3">
             <img src="..\profile_picture.png" class="img-comment mr-2 mt-1" alt="">
             <input class="form-control flex-fill" id="exampleFormControlTextarea1"></input>
-            <button type="submit" class="btn btn-primary ml-1">Submit</button>
+            <button type="submit" class="btn btn-primary ml-1">Comentar</button>
         </form>
     </div>
 
