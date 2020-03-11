@@ -38,7 +38,7 @@ include_once("../templates/footer.php");
     <?php drawHeaderVisitor(); ?>
 
     <div class="form-center align-items-center pb-5">
-    <form class="login mx-3 pb-2">
+    <form class="login mx-3 pb-2" action="../pages/main_page.php">
 
         <div class="content mt-5 flex-fill">
             <label for="inputName"><i class="fas fa-user"></i></label>

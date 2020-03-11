@@ -41,7 +41,7 @@ include_once("../templates/footer.php");
         <h2>Bem Vindo!</h2>
         <h6><br></h6>
 
-        <form class="login mt-5">
+        <form class="login mt-5" action="../pages/main_page.php">
 
             <div class="content">
                 <label for="inputEmail"><i class="fas fa-at"></i></label>
