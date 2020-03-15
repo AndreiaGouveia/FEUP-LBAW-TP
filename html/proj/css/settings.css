@@ -5,6 +5,13 @@
     border-radius: 50%;
 }
 
+@media (max-width: 575.98px) {
+    .img-settings {
+        width: 180px;
+        height: 180px;
+    }
+}
+
 .list-group-item.active {
     background-color: #04CC4A;
     border: transparent;

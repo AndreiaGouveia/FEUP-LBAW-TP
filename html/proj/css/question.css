@@ -10,16 +10,33 @@
     float: left;
 }
 
+.comment-button,
+.comment-button:hover {
+    color: #04CC4A;
+}
+
+.comment-button:hover label {
+    text-decoration: underline;
+}
+
 .comment-section {
     background-color: rgb(248, 248, 248);
     border: transparent;
     font-size: 0.9rem;
 }
 
-.btn label:hover {
+.btn label:hover,
+.comment-button label:hover {
     cursor: pointer;
 }
 
 .recommendations-tab a p {
     padding-bottom: 1rem;
+}
+
+@media (max-width: 575.98px) {
+    .like-buttons,
+    .save-button {
+        margin-left: 0.5rem!important;
+    }
 }

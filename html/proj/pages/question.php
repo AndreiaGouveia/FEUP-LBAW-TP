@@ -31,7 +31,10 @@ include_once("../templates/footer.php");
 
 <script>
     $(function() {
-        $('[toggle]').tooltip()
+        $('[toggle]').tooltip();
+        $('[toggle]').on('click', function() {
+            $(this).tooltip('hide');
+        });
     })
 </script>
 

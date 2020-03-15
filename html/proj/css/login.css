@@ -19,3 +19,8 @@ form.login {
     margin-bottom: 3px;
     margin-right: 5px
 }
+
+.login label {
+    margin-top: auto;
+    margin-bottom: auto;
+}

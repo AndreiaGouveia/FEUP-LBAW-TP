@@ -41,7 +41,8 @@
     color: #04CC4A;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.comment-button:hover {
     border-color: transparent;
     box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
 }
@@ -76,10 +77,6 @@ form input.invalid {
 
 .form-center {
     margin-top: 4vw;
-}
-
-button:active {
-    background: olive;
 }
 
 .btn:focus {

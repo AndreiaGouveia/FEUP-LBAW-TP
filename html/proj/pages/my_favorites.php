@@ -20,6 +20,7 @@ include_once("../templates/footer.php");
     <link rel="stylesheet" type="text/css" href="../css/settings.css">
     <link rel="stylesheet" type="text/css" href="../css/search.css">
     <link rel="stylesheet" type="text/css" href="../css/main_page.css">
+    <link rel="stylesheet" type="text/css" href="../css/content.css">
     <script src="https://kit.fontawesome.com/4f1925ab80.js" crossorigin="anonymous"></script>
     <script src="../js/search.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -34,7 +35,7 @@ include_once("../templates/footer.php");
     <?php drawHeaderMember(); ?>
 
     <div class="col-md-7 mx-auto mt-5">
-        <div class="container row flex-lg-row">
+        <div class="wrap-container container row flex-lg-row">
             <div class="mb-3">
                 <h2 class="font-weight-normal d-inline">Os meus favoritos</h2>
             </div>

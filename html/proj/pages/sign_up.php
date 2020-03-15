@@ -52,14 +52,18 @@ include_once("../templates/footer.php");
                 <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" toggle="" data-placement="right" title="exemplo@email.com">
             </div>
 
-            <div>
-                <div class="content mb-0">
-                    <label for="inputPassword"><i class="fas fa-key"></i></label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
-                </div>
+
+            <div class="content">
+                <label for="inputPassword"><i class="fas fa-key"></i></label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
             </div>
 
-            <div class="checkbox m-3">
+            <div class="content">
+                <label for="inputPassword my-auto"><i class="fas fa-check"></i></label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Confirmar Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
+            </div>
+
+            <div class="checkbox my-3">
                 <label>
                     <input type="checkbox" value="termsconds"> Eu aceito os termos e condições.
                 </label>

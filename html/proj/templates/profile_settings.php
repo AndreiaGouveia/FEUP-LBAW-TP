@@ -9,7 +9,7 @@ function drawProfileSettings()
     <form>
         <div class="form-group">
 
-            <div class="row">
+            <div class="row flex-column-reverse flex-lg-row">
 
                 <div class="col-md-8">
 

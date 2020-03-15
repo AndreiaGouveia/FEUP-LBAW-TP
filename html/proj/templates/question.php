@@ -13,9 +13,9 @@ function drawQuestion()
     <div class="description mt-3">
         <p>Chegou até a mim um guia de receita para comida de gatos (comida caseira balanceada) - até aí tudo bem, seria uma opção.
 
-        Mas acontece que eles contam uma porção de coisas que eu não sabia sobre a ração seca (industrializada) e fiquei horrorizada!!
+            Mas acontece que eles contam uma porção de coisas que eu não sabia sobre a ração seca (industrializada) e fiquei horrorizada!!
 
-        Alguém tem experiência com nutrição animal (especialmente gatos) e saberia me dizer se a ração seca realmente não é boa para os bichanos??!!</p>
+            Alguém tem experiência com nutrição animal (especialmente gatos) e saberia me dizer se a ração seca realmente não é boa para os bichanos??!!</p>
     </div>
 
     <div class="row justify-content-between align-items-center mt-4 mb-3 px-0 mx-0">
@@ -43,16 +43,18 @@ function drawInfoContent($idOfCommentSection)
 {
 ?>
 
-    <button class="btn px-2 py-0" data-toggle="collapse" toggle="" data-placement="bottom" title="Deixe o seu comentário" data-target="#<?= $idOfCommentSection ?>" aria-expanded="false" aria-controls=<?= $idOfCommentSection ?>>
+    <button class="btn px-2 py-0 comment-button" data-toggle="collapse" toggle="" data-placement="bottom" title="Deixe o seu comentário" data-target="#<?= $idOfCommentSection ?>" aria-expanded="false" aria-controls=<?= $idOfCommentSection ?>>
         <i class="far fa-comment"></i>
         <label style="margin-bottom: 0px" class="pl-1">Comentar</label>
     </button>
 
     <?php drawLikeButtons(); ?>
 
-    <button class="btn px-1 py-0 ml-4" toggle="" data-placement="bottom" title="Guardar">
-        <i class="far fa-star"></i>
-    </button>
+    <div class="save-button ml-4">
+        <button class="btn px-1 py-0" toggle="" data-placement="bottom" title="Guardar">
+            <i class="far fa-star"></i>
+        </button>
+    </div>
 
 
     <div class="dropdown">
