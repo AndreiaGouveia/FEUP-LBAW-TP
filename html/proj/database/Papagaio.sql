@@ -55,7 +55,7 @@ CREATE TABLE publication (
 );
 
 CREATE TABLE reported (
-    idMember INTEGER NOT NULL REFERENCES "member" (id) ON UPDATE CASCADE,
+    idMember INTEGER NOT NULL REFERENCES "member" (idPerson) ON UPDATE CASCADE,
     idPublication INTEGER NOT NULL REFERENCES "publication" (id) ON UPDATE CASCADE,
     TYPE reason NOT NULL,
     PRIMARY KEY (idMember, idPublication)
@@ -66,10 +66,9 @@ CREATE TABLE "commentablePublication" (
 );
 
 CREATE TABLE comment (
-    id SERIAL PRIMARY KEY,
-    idPublication INTEGER NOT NULL REFERENCES "publication" (id) ON UPDATE CASCADE,
-    idResponse INTEGER REFERENCES "response" (id) ON UPDATE CASCADE,
-    idQuestion INTEGER REFERENCES "question" (id) ON UPDATE CASCADE CONSTRAINT comment_ck CHECK 
+    idPublication INTEGER PRIMARY KEY NOT NULL REFERENCES "publication" (id) ON UPDATE CASCADE,
+    idResponse INTEGER REFERENCES "response" (idCommentablePublication) ON UPDATE CASCADE,
+    idQuestion INTEGER REFERENCES "question" (idCommentablePublication) ON UPDATE CASCADE CONSTRAINT comment_ck CHECK 
     (((idResponse IS NOT NULL AND idQuestion IS NULL) OR (idQuestion IS NOT NULL AND idResponse IS NULL)) 
     AND (question.idPublication.date < idPublication.date)
     AND (response.idPublication.date < idPublication.date))
@@ -77,14 +76,13 @@ CREATE TABLE comment (
 );
 
 CREATE TABLE "question" (
-    id SERIAL PRIMARY KEY,
-    idCommentablePublication INTEGER REFERENCES "commentablePublication" (id) ON UPDATE CASCADE,
+    idCommentablePublication INTEGER PRIMARY KEY REFERENCES "commentablePublication" (id) ON UPDATE CASCADE,
     title NOT NULL
 );
 
 CREATE TABLE tagQuestion (
     idTag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE,
-    idQuestion INTEGER NOT NULL REFERENCES "question" (id) ON UPDATE CASCADE,
+    idQuestion INTEGER NOT NULL REFERENCES "question" (idCommentablePublication) ON UPDATE CASCADE,
     PRIMARY KEY (idTag, idQuestion)
 );
 
