@@ -51,7 +51,7 @@ CREATE TABLE publication (
     id SERIAL PRIMARY KEY,
     city text NOT NULL,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    idOwner INTEGER  REFERENCES "member" (id) NOT NULL
+    idOwner INTEGER REFERENCES "member" (id) NOT NULL
 );
 
 CREATE TABLE reported (
@@ -61,10 +61,32 @@ CREATE TABLE reported (
     PRIMARY KEY (idMember, idPublication)
 );
 
-CREATE TABLE commentablePublication (
+CREATE TABLE "commentablePublication" (
     idPublication INTEGER PRIMARY KEY REFERENCES "publication" (id) ON UPDATE CASCADE
 );
 
+CREATE TABLE comment (
+    id SERIAL PRIMARY KEY,
+    idPublication INTEGER NOT NULL REFERENCES "publication" (id) ON UPDATE CASCADE,
+    idResponse INTEGER REFERENCES "response" (id) ON UPDATE CASCADE,
+    idQuestion INTEGER REFERENCES "question" (id) ON UPDATE CASCADE CONSTRAINT comment_ck CHECK 
+    (((idResponse IS NOT NULL AND idQuestion IS NULL) OR (idQuestion IS NOT NULL AND idResponse IS NULL)) 
+    AND (question.idPublication.date < idPublication.date)
+    AND (response.idPublication.date < idPublication.date))
+    
+);
+
+CREATE TABLE "question" (
+    id SERIAL PRIMARY KEY,
+    idCommentablePublication INTEGER REFERENCES "commentablePublication" (id) ON UPDATE CASCADE,
+    title NOT NULL
+);
+
+CREATE TABLE tagQuestion (
+    idTag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE,
+    idQuestion INTEGER NOT NULL REFERENCES "question" (id) ON UPDATE CASCADE,
+    PRIMARY KEY (idTag, idQuestion)
+);
 
  
 /* -- Types
