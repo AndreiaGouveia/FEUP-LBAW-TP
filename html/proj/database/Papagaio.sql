@@ -1,3 +1,25 @@
+-- Drop old schema --
+
+DROP TABLE IF EXISTS person CASCADE;
+DROP TABLE IF EXISTS administrator CASCADE;
+DROP TABLE IF EXISTS member CASCADE;
+DROP TABLE IF EXISTS medal CASCADE;
+DROP TABLE IF EXISTS location CASCADE;
+DROP TABLE IF EXISTS photo CASCADE;
+DROP TABLE IF EXISTS publication CASCADE;
+DROP TABLE IF EXISTS reported CASCADE;
+DROP TABLE IF EXISTS commentablePublication CASCADE;
+DROP TABLE IF EXISTS comment CASCADE;
+DROP TABLE IF EXISTS question CASCADE;
+DROP TABLE IF EXISTS response CASCADE;
+DROP TABLE IF EXISTS likes CASCADE;
+DROP TABLE IF EXISTS tag CASCADE;
+DROP TABLE IF EXISTS tag_question CASCADE;
+ 
+DROP TYPE IF EXISTS medal_type;
+DROP TYPE IF EXISTS report;
+
+
 -- Types --
 
 CREATE TYPE medal_type AS ENUM
@@ -10,22 +32,19 @@ CREATE TYPE report AS ENUM
 
 -- Tables --
 
-DROP TABLE person;
 CREATE TABLE person
 (
     id SERIAL PRIMARY KEY,
-    username TEXT NOT NULL CONSTRAINT person_username_ck UNIQUE (username),
-    email TEXT NOT NULL CONSTRAINT person_email_ck UNIQUE (email),
+    username TEXT NOT NULL CONSTRAINT person_username_uk UNIQUE (username),
+    email TEXT NOT NULL CONSTRAINT person_email_uk UNIQUE (email),
     password TEXT NOT NULL,
 );
- 
-DROP TABLE administrator;
+
 CREATE TABLE administrator
 (
     id_person INTEGER PRIMARY KEY REFERENCES person (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
- 
-DROP TABLE member;
+
 CREATE TABLE member
 (
     id_person INTEGER PRIMARY KEY REFERENCES person (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -37,13 +56,11 @@ CREATE TABLE member
     id_photo INTEGER REFERENCES photo (id) ON UPDATE CASCADE ON DELETE CASCADE,    
 );
 
-DROP TABLE medal;
 CREATE TABLE medal
 (   id SERIAL PRIMARY KEY,
     TYPE medal_type NOT NULL
 );
  
-DROP TABLE location;
 CREATE TABLE location
 (
     id INTEGER PRIMARY KEY,
@@ -52,53 +69,45 @@ CREATE TABLE location
     country TEXT
 );
 
-DROP TABLE photo;
 CREATE TABLE photo (
     id SERIAL PRIMARY KEY,
     idPublication INTEGER REFERENCES publicaton (id) ON UPDATE CASCADE ON DELETE CASCADE,
     url TEXT
 );
 
-DROP TABLE publication;
 CREATE TABLE publication
 (
     id SERIAL PRIMARY KEY,
     city TEXT NOT NULL,
     data DATE NOT NULL DEFAULT now(),
-    idOwner INTEGER REFERENCES member (id) NOT NULL ON UPDATE CASCADE ON DELETE CASCADE
+    id_owner INTEGER REFERENCES member (id) NOT NULL ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-DROP TABLE reported;
 CREATE TABLE reported (
-    idMember INTEGER NOT NULL REFERENCES member (idPerson) ON UPDATE CASCADE ON DELETE CASCADE,
-    idPublication INTEGER NOT NULL REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_member INTEGER NOT NULL REFERENCES member (id_person) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_publication INTEGER NOT NULL REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
     TYPE reason NOT NULL,
-    PRIMARY KEY (idMember, idPublication)
+    PRIMARY KEY (id_member, id_publication)
 );
 
-DROP TABLE commentablePublication;
-CREATE TABLE commentablePublication (
+CREATE TABLE commentable_publication (
     idPublication INTEGER PRIMARY KEY REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-DROP TABLE comment;
 CREATE TABLE comment (
-    idPublication INTEGER PRIMARY KEY NOT NULL REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    idPublication INTEGER PRIMARY KEY REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE     
+    id_publication INTEGER PRIMARY KEY NOT NULL REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_publication INTEGER PRIMARY KEY REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE     
 );
 
-DROP TABLE question;
 CREATE TABLE question (
-    idCommentablePublication INTEGER PRIMARY KEY REFERENCES commentablePublication (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_commentable_publication INTEGER PRIMARY KEY REFERENCES commentable_publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
     title NOT NULL
 );
 
-DROP TABLE response;
 CREATE TABLE response (
-    idCommentablePublication INTEGER PRIMARY KEY REFERENCES commentablePublication (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_commentable_publication INTEGER PRIMARY KEY REFERENCES commentable_publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
 );
 
-DROP TABLE likes;
 CREATE TABLE likes
 (
     id_commentable_publication INTEGER ON UPDATE CASCADE ON DELETE CASCADE,
@@ -107,16 +116,15 @@ CREATE TABLE likes
     PRIMARY KEY (id_commentable_publication, id_member)
 );
 
-DROP TABLE tag;
 CREATE TABLE tag
 (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL CONSTRAINT tag_name UNIQUE (name)
+    name TEXT NOT NULL CONSTRAINT tag_name_uk UNIQUE (name)
 );
 
-DROP TABLE tagQuestion;
-CREATE TABLE tagQuestion (
-    idTag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    idQuestion INTEGER NOT NULL REFERENCES question (idCommentablePublication) ON UPDATE CASCADE ON DELETE CASCADE,
-    PRIMARY KEY (idTag, idQuestion)
+DROP TABLE tag_question;
+CREATE TABLE tag_question (
+    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_question INTEGER NOT NULL REFERENCES question (id_commentable_publication) ON UPDATE CASCADE ON DELETE CASCADE,
+    PRIMARY KEY (id_tag, id_question)
 );
