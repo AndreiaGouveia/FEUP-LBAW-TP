@@ -118,3 +118,8 @@ INSERT INTO reported VALUES
 INSERT INTO likes
 VALUES (17,1,true),
 (17,2,false);
+
+INSERT INTO favorite(id_member, id_commentable_publication) VALUES
+(1,12),
+(2,16),
+(1,16);

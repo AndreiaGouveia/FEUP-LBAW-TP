@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS response CASCADE;
 DROP TABLE IF EXISTS likes CASCADE;
 DROP TABLE IF EXISTS tag CASCADE;
 DROP TABLE IF EXISTS tag_question CASCADE;
+DROP TABLE IF EXISTS favorite CASCADE;
  
 DROP TYPE IF EXISTS medal_type;
 DROP TYPE IF EXISTS report;
@@ -122,9 +123,14 @@ CREATE TABLE tag
     name TEXT NOT NULL CONSTRAINT tag_name_uk UNIQUE (name)
 );
 
-DROP TABLE tag_question;
 CREATE TABLE tag_question (
     id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE ON DELETE CASCADE,
     id_question INTEGER NOT NULL REFERENCES question (id_commentable_publication) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_tag, id_question)
+);
+
+CREATE TABLE favorite (
+    id_commentable_publication INTEGER ON UPDATE CASCADE ON DELETE CASCADE,
+    id_member INTEGER ON UPDATE CASCADE ON DELETE CASCADE,
+    PRIMARY KEY (id_commentable_publication, id_member)
 );
