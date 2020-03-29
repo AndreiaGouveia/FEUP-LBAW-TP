@@ -53,7 +53,7 @@ CREATE TABLE member
     biography TEXT,
     points INTEGER DEFAULT 0 CONSTRAINT member_points_ck CHECK (points > 0),
     id_medal INTEGER REFERENCES medal (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_location INTEGER REFERENCES location (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_location INTEGER REFERENCES location (id),
     id_photo INTEGER REFERENCES photo (id) ON UPDATE CASCADE ON DELETE CASCADE,    
 );
 
@@ -124,7 +124,7 @@ CREATE TABLE tag
 );
 
 CREATE TABLE tag_question (
-    id_tag INTEGER NOT NULL REFERENCES tag (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_tag INTEGER NOT NULL REFERENCES tag (id),
     id_question INTEGER NOT NULL REFERENCES question (id_commentable_publication) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_tag, id_question)
 );
