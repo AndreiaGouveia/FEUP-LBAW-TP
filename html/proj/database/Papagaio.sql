@@ -52,7 +52,7 @@ CREATE TABLE member
     name TEXT NOT NULL,
     biography TEXT,
     points INTEGER DEFAULT 0 CONSTRAINT member_points_ck CHECK (points > 0),
-    id_medal INTEGER REFERENCES medal (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_medal INTEGER REFERENCES medal (id),
     id_location INTEGER REFERENCES location (id),
     id_photo INTEGER REFERENCES photo (id) ON UPDATE CASCADE ON DELETE CASCADE,    
 );
