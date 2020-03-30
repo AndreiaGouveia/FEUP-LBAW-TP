@@ -81,7 +81,7 @@ CREATE TABLE publication
     id SERIAL PRIMARY KEY,
     city TEXT NOT NULL,
     data DATE NOT NULL DEFAULT now(),
-    id_owner INTEGER REFERENCES member (id) NOT NULL ON UPDATE CASCADE ON DELETE CASCADE
+    id_owner INTEGER REFERENCES member (id)
 );
 
 CREATE TABLE reported (
@@ -97,7 +97,7 @@ CREATE TABLE commentable_publication (
 
 CREATE TABLE comment (
     id_publication INTEGER PRIMARY KEY NOT NULL REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_publication INTEGER PRIMARY KEY REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE     
+    id_commentable_publication INTEGER PRIMARY KEY REFERENCES commetable_publication (id) ON UPDATE CASCADE ON DELETE CASCADE     
 );
 
 CREATE TABLE question (
