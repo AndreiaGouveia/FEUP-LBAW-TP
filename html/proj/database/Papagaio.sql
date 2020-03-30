@@ -81,7 +81,7 @@ CREATE TABLE publication
     id SERIAL PRIMARY KEY,
     city TEXT NOT NULL,
     data DATE NOT NULL DEFAULT now(),
-    id_owner INTEGER REFERENCES member (id)
+    id_owner INTEGER REFERENCES member (id) ON DELETE SET NULL
 );
 
 CREATE TABLE reported (
