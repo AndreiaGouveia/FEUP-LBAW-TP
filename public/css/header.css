@@ -1,0 +1,95 @@
+.badge-light {
+    background-color: white;
+}
+
+.button.btn:nth-child(2) {
+    padding-left: 0.0em;
+}
+
+.btn-primary {
+    background-color: #04CC4A;
+    border-color: transparent;
+}
+
+.navbar-brand:hover,
+.btn:hover {
+    filter: brightness(110%);
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    border-color: transparent;
+    background-color: #04CC4A
+}
+
+.btn-log-in {
+    background-color: white;
+    border-color: #04CC4A;
+    color: #04CC4A;
+    filter: brightness(105%);
+}
+
+.btn-log-in:hover {
+    background-color: white;
+    border-color: #04CC4A;
+    color: #04CC4A;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: #04CC4A;
+    color: #04CC4A;
+}
+
+.btn-secondary:hover,
+.comment-button:hover {
+    border-color: transparent;
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.img-header {
+    object-fit: cover;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-top: 0.2rem;
+}
+
+a,
+a:hover {
+    color: #04CC4A;
+}
+
+.hiperlink-in-activity,
+.hiperlink-in-activity:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+form input.invalid:focus {
+    border: 1px solid red!important;
+    box-shadow: red 0 0 1px 1px!important;
+}
+
+form input.invalid {
+    border: 1px solid red!important;
+}
+
+.form-center {
+    margin-top: 4vw;
+}
+
+.btn:focus {
+    background-color: #343a40!important;
+    color: white;
+}
+
+.dropdown-item:focus {
+    background-color: #343a40!important;
+    color: white;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem #e2e4e6;
+    border-color: #afb5bb;
+}
