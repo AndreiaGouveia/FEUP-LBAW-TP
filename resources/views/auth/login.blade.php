@@ -1,32 +1,52 @@
 @extends('layouts.app')
 
+
+@section('stylesheets')
+@parent
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+@endsection
+
 @section('content')
-<form method="POST" action="{{ route('login') }}">
-    {{ csrf_field() }}
 
-    <label for="email">E-mail</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
-    @if ($errors->has('email'))
+<div class="form-center align-items-center pb-5">
+    <h2>Bem Vindo!</h2>
+    <h6><br></h6>
+
+    <form class="login mt-5" method="POST" action="{{ route('login') }}">
+
+        <div class="content">
+            <label for="inputEmail"><i class="fas fa-at"></i></label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ old('email') }}" required="" autofocus="" toggle="" data-placement="bottom" title="exemplo@email.com">
+        </div>
+        @if ($errors->has('email'))
         <span class="error">
-          {{ $errors->first('email') }}
+            {{ $errors->first('email') }}
         </span>
-    @endif
+        @endif
 
-    <label for="password" >Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
+        <div class="content">
+            <label for="inputPassword"><i class="fas fa-key"></i></label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="bottom" title="Introduza a sua password">
+        </div>
+        @if ($errors->has('password'))
         <span class="error">
             {{ $errors->first('password') }}
         </span>
-    @endif
+        @endif
 
-    <label>
-        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-    </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sessão</button>
 
-    <button type="submit">
-        Login
-    </button>
-    <a class="button button-outline" href="{{ route('register') }}">Register</a>
-</form>
+        <div class="m-3"><a class="card-text" href="#">Esqueceu-se da sua palavra-passe?</a></div>
+
+        <hr class="section-break" />
+
+        <a class="btn btn-outline-dark" href="#" role="button" style="text-transform:none">
+            <img width="20px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            Iniciar sessão com o Google
+        </a>
+
+    </form>
+</div>
+
 @endsection
