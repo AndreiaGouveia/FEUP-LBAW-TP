@@ -36,7 +36,7 @@ class CardController extends Controller
 
       $this->authorize('list', Card::class);
 
-      $cards = Auth::user()->cards()->orderBy('id')->get();
+      $cards = Auth::user()->cards()->orderBy('id_person')->get();
 
       return view('pages.cards', ['cards' => $cards]);
     }

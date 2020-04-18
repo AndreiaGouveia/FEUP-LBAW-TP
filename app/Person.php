@@ -2,6 +2,8 @@
 
 namespace App;
 
+
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
@@ -17,7 +19,7 @@ class Person extends Model
      * @var array
      */
     protected $fillable = [
-        'id' ,'usename', 'email', 'passwor','visible',
+        'id' ,'username', 'email', 'password','visible',
     ];
 
     protected $table = 'person';

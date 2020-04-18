@@ -6,9 +6,10 @@ DROP TABLE IF EXISTS administrator CASCADE;
 DROP TABLE IF EXISTS member CASCADE;
 DROP TABLE IF EXISTS location CASCADE;
 DROP TABLE IF EXISTS photo CASCADE;
+DROP TABLE IF EXISTS photo_in_publication CASCADE;
 DROP TABLE IF EXISTS publication CASCADE;
 DROP TABLE IF EXISTS reported CASCADE;
-DROP TABLE IF EXISTS commentablePublication CASCADE;
+DROP TABLE IF EXISTS commentable_publication CASCADE;
 DROP TABLE IF EXISTS comment CASCADE;
 DROP TABLE IF EXISTS question CASCADE;
 DROP TABLE IF EXISTS response CASCADE;
@@ -16,10 +17,41 @@ DROP TABLE IF EXISTS likes CASCADE;
 DROP TABLE IF EXISTS tag CASCADE;
 DROP TABLE IF EXISTS tag_question CASCADE;
 DROP TABLE IF EXISTS favorite CASCADE;
- 
-DROP TYPE IF EXISTS medal_type;
-DROP TYPE IF EXISTS report;
 
+DROP TYPE IF EXISTS medal_type CASCADE;
+DROP TYPE IF EXISTS report CASCADE;
+
+DROP TRIGGER IF EXISTS check_own_like ON likes;
+DROP TRIGGER IF EXISTS check_current_user_likes ON likes;
+DROP TRIGGER IF EXISTS check_own_favorite ON favorite;
+DROP TRIGGER IF EXISTS erase_old_photo ON member;
+DROP TRIGGER IF EXISTS erase_unnecessary_tag ON tag_question;
+DROP TRIGGER IF EXISTS delete_person ON person;
+DROP TRIGGER IF EXISTS delete_publication ON publication;
+DROP TRIGGER IF EXISTS check_edit ON publication;
+DROP TRIGGER IF EXISTS update_medal_to_bronze ON member;
+DROP TRIGGER IF EXISTS update_medal_to_silver ON member;
+DROP TRIGGER IF EXISTS update_medal_to_gold ON member;
+DROP TRIGGER IF EXISTS update_points ON likes;
+DROP TRIGGER IF EXISTS update_points_delete ON likes;
+
+DROP FUNCTION IF EXISTS check_own_like() CASCADE;
+DROP FUNCTION IF EXISTS check_current_user_likes() CASCADE;
+DROP FUNCTION IF EXISTS check_own_favorite() CASCADE;
+DROP FUNCTION IF EXISTS erase_old_photo() CASCADE;
+DROP FUNCTION IF EXISTS erase_unnecessary_tag() CASCADE;
+DROP FUNCTION IF EXISTS delete_person() CASCADE;
+DROP FUNCTION IF EXISTS delete_publication() CASCADE;
+DROP FUNCTION IF EXISTS check_edit() CASCADE;
+DROP FUNCTION IF EXISTS update_medal_to_bronze() CASCADE;
+DROP FUNCTION IF EXISTS update_medal_to_silver() CASCADE;
+DROP FUNCTION IF EXISTS update_medal_to_gold() CASCADE;
+DROP FUNCTION IF EXISTS update_points() CASCADE;
+DROP FUNCTION IF EXISTS update_points_delete() CASCADE;
+
+DROP INDEX IF EXISTS search_question;
+DROP INDEX IF EXISTS search_publication;
+DROP INDEX IF EXISTS search_tag;
 
 -- Types --
 
