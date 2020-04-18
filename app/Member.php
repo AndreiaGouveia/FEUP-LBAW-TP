@@ -27,4 +27,6 @@ class Member extends Authenticatable
     public function person(){return $this->belongsTo('App\Person','id_person');}
 
     public function location(){return $this->hasOne('App\Location','id_location');}
+
+    public function photo(){return $this->hasOne('App\Photo','id_photo');}
 }
