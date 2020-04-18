@@ -18,22 +18,13 @@ class Member extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id_person' ,'name', 'biography', 'points','id_location', 'id_photo', 'medal', 'moderator',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password'
-    ];
+    protected $table = 'member';
 
-    /**
-     * The cards this user owns.
-     */
-     public function cards() {
-      return $this->hasMany('App\Card');
-    }
+    //associations
+    public function person(){return $this->belongsTo('App\Person','id_person');}
+
+    public function location(){return $this->hasOne('App\Location','id_location');}
 }

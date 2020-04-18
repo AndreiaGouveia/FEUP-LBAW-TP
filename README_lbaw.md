@@ -216,7 +216,7 @@ This class extends the *Model* class and contains information about the relation
 
     /* A card belongs to one user */
     public function user() {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo('App\Member');
     }
 
     /* A card has many items */

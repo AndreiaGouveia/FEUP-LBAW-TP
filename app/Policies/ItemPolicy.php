@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\User;
+use App\Member;
 use App\Card;
 use App\Item;
 
