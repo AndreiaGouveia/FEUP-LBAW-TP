@@ -15,9 +15,11 @@
 
     <form class="login mt-5" method="POST" action="{{ route('login') }}">
 
+        {{ csrf_field() }}
+
         <div class="content">
             <label for="inputEmail"><i class="fas fa-at"></i></label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ old('email') }}" required="" autofocus="" toggle="" data-placement="bottom" title="exemplo@email.com">
+            <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ old('email') }}" required="" autofocus="" toggle="" data-placement="bottom" title="exemplo@email.com">
         </div>
         @if ($errors->has('email'))
         <span class="error">
@@ -27,7 +29,7 @@
 
         <div class="content">
             <label for="inputPassword"><i class="fas fa-key"></i></label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="bottom" title="Introduza a sua password">
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="bottom" title="Introduza a sua password">
         </div>
         @if ($errors->has('password'))
         <span class="error">

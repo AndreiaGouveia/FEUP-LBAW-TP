@@ -10,12 +10,14 @@
 <div class="form-center align-items-center pb-5">
   <h2>Junte-se à nossa comunidade!</h2>
   <h6><br></h6>
-  
+
   <form class="login" method="POST" action="{{ route('register') }}">
+
+    {{ csrf_field() }}
 
     <div class="content mt-3 flex-fill">
       <label for="inputName"><i class="fas fa-user"></i></label>
-      <input type="text" id="inputName" class="form-control" placeholder="Nome" required="" autofocus="" toggle="" data-placement="right" title="Introduza o seu nome">
+      <input name="name" type="text" id="inputName" class="form-control" placeholder="Nome" required="" autofocus="" toggle="" data-placement="right" title="Introduza o seu nome">
     </div>
     @if ($errors->has('name'))
     <span class="error">
@@ -25,7 +27,7 @@
 
     <div class="content">
       <label for="inputEmail"><i class="fas fa-at"></i></label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" toggle="" data-placement="right" title="exemplo@email.com">
+      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" toggle="" data-placement="right" title="exemplo@email.com">
     </div>
     @if ($errors->has('email'))
     <span class="error">
@@ -35,7 +37,7 @@
 
     <div class="content">
       <label for="inputPassword"><i class="fas fa-key"></i></label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
+      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
     </div>
     @if ($errors->has('password'))
     <span class="error">
@@ -45,7 +47,7 @@
 
     <div class="content">
       <label for="inputPassword my-auto"><i class="fas fa-check"></i></label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Confirmar Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
+      <input name="password_confirmation" type="password" id="inputPassword" class="form-control" placeholder="Confirmar Palavra-passe" required="" toggle="" data-placement="right" title="A password tem de possuir um caracterer maiúsculo, minúsculo, especial, um número e ter pelo menos 8 caracteres.">
     </div>
 
     <div class="checkbox m-3">
