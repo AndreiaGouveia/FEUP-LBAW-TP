@@ -19,7 +19,7 @@ class Question extends Model
         'id_commentable_publication','title'
     ];
 
-    protected $table = 'Question';
+    protected $table = 'question';
     protected $primaryKey = 'id_commentable_publication';
 
     //associations
