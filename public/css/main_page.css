@@ -1,0 +1,21 @@
+.welcome {
+    background-image: linear-gradient(to bottom right, rgb(83, 201, 83), rgb(97, 221, 97), lightgreen, rgb(213, 245, 99), rgb(253, 253, 84));
+}
+
+.welcome h1 {
+    color: white;
+    font-size: 5vw;
+    text-shadow: 0 0.4rem 0.2rem rgba(0, 0, 0, 0.2);
+}
+
+.welcome h2 {
+    color: white;
+    font-size: 2vw;
+}
+
+.welcomeLogo {
+    width: 15%;
+    height: 15%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
