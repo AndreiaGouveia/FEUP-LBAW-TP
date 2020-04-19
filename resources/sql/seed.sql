@@ -125,27 +125,27 @@ CREATE TABLE reported (
 );
 
 CREATE TABLE commentable_publication (
-    idPublication INTEGER PRIMARY KEY REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE
+    id_publication INTEGER PRIMARY KEY REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE comment (
     id_publication INTEGER PRIMARY KEY NOT NULL REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    id_commentable_publication INTEGER REFERENCES commentable_publication (idPublication) ON UPDATE CASCADE ON DELETE CASCADE
+    id_commentable_publication INTEGER REFERENCES commentable_publication (id_publication) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE question (
-    id_commentable_publication INTEGER PRIMARY KEY REFERENCES commentable_publication (idPublication) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_commentable_publication INTEGER PRIMARY KEY REFERENCES commentable_publication (id_publication) ON UPDATE CASCADE ON DELETE CASCADE,
     title TEXT NOT NULL
 );
 
 CREATE TABLE response (
-    id_commentable_publication INTEGER PRIMARY KEY REFERENCES commentable_publication (idPublication) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_commentable_publication INTEGER PRIMARY KEY REFERENCES commentable_publication (id_publication) ON UPDATE CASCADE ON DELETE CASCADE,
     id_question INTEGER REFERENCES question (id_commentable_publication) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE likes
 (
-    id_commentable_publication INTEGER REFERENCES commentable_publication(idPublication) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_commentable_publication INTEGER REFERENCES commentable_publication(id_publication) ON UPDATE CASCADE ON DELETE CASCADE,
     id_member INTEGER REFERENCES member (id_person) ON UPDATE CASCADE ON DELETE CASCADE,
     likes BOOLEAN,
     PRIMARY KEY (id_commentable_publication, id_member)
@@ -164,7 +164,7 @@ CREATE TABLE tag_question (
 );
 
 CREATE TABLE favorite (
-    id_commentable_publication INTEGER REFERENCES commentable_publication(idPublication) ON UPDATE CASCADE ON DELETE CASCADE,
+    id_commentable_publication INTEGER REFERENCES commentable_publication(id_publication) ON UPDATE CASCADE ON DELETE CASCADE,
     id_member INTEGER REFERENCES member (id_person) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (id_commentable_publication, id_member)
 );
@@ -175,8 +175,8 @@ CREATE FUNCTION check_own_like() RETURNS TRIGGER AS
     $BODY$
     BEGIN
 	IF EXISTS (SELECT * FROM commentable_publication, publication
-	    WHERE commentable_publication.idPublication =  NEW.id_commentable_publication
-	    AND publication.id = commentable_publication.idPublication
+	    WHERE commentable_publication.id_publication =  NEW.id_commentable_publication
+	    AND publication.id = commentable_publication.id_publication
       	    AND publication.id_owner = NEW.id_member) 
 	    THEN RAISE EXCEPTION 'A member is not allowed to like/dislike their own question/answer ';
         END IF;
@@ -216,8 +216,8 @@ CREATE FUNCTION check_own_favorite() RETURNS TRIGGER AS
     $BODY$
     BEGIN
 	IF EXISTS (SELECT * FROM commentable_publication, publication
-	    WHERE commentable_publication.idPublication =  NEW.id_commentable_publication
-	    AND publication.id = commentable_publication.idPublication
+	    WHERE commentable_publication.id_publication =  NEW.id_commentable_publication
+	    AND publication.id = commentable_publication.id_publication
       	    AND publication.id_owner = NEW.id_member) 
 	    THEN RAISE EXCEPTION 'A member is not allowed to favorite their own question/answer ';
         END IF;

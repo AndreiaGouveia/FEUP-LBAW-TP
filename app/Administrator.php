@@ -2,6 +2,8 @@
 
 namespace App;
 
+
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Administrator extends Model
@@ -21,6 +23,7 @@ class Administrator extends Model
     ];
 
     protected $table = 'administrator';
+    protected $primaryKey = 'id_person';
 
     //associations
     public function person(){return $this->belongsTo('App\Person','id_person');}

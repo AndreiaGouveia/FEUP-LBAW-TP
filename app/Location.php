@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    use Notifiable;
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;

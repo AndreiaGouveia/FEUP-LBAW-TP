@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cards';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -71,7 +71,7 @@ class RegisterController extends Controller
         ]);
 
         return Member::create([
-            'id_person' => $person['id'],
+            'id_person' => $person->id,
             'name' => $data['name']
         ]);
     }

@@ -22,6 +22,7 @@ class Member extends Authenticatable
     ];
 
     protected $table = 'member';
+    protected $primaryKey = 'id_person'; //because primary key is not id
 
     //associations
     public function person(){return $this->belongsTo('App\Person','id_person');}
@@ -29,4 +30,6 @@ class Member extends Authenticatable
     public function location(){return $this->hasOne('App\Location','id_location');}
 
     public function photo(){return $this->hasOne('App\Photo','id_photo');}
+
+    public function publications() {return $this->hasMany('App\Publication'); }
 }
