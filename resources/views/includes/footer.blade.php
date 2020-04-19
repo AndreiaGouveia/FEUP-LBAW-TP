@@ -11,11 +11,11 @@
                     </div>
                 </div>
 
-                <a class="col md-2 mb-2" href="../pages/main_page.php">
+                <a class="col md-2 mb-2" href="{{ url('home') }}">
                     <h6 class="col md-2 mb-2 font-weight-bold">Home</h6>
                 </a>
 
-                <a class="col md-2 mb-2" href="../pages/about_us.php">
+                <a class="col md-2 mb-2" href="{{ url('about_us') }}">
                     <h6 class="col md-2 mb-2 font-weight-bold">Sobre Nós</h6>
                 </a>
 

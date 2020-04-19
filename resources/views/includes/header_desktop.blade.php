@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
 
-<a class="navbar-brand px-2 mr-5" href="../pages/main_page.php">
+<a class="navbar-brand px-2 mr-5" href="{{ url('home') }}">
     <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="">
     Papagaio
 </a>
@@ -45,8 +45,8 @@
     @endauth
 
     @guest
-        <a type="button" class="btn btn-log-in mr-1" href="login.php">Iniciar sessão</a>
-        <a type="button" class="btn btn-primary" href="sign_up.php">Registar</a>
+        <a type="button" class="btn btn-log-in mr-1" href="{{ url('login') }}">Iniciar sessão</a>
+        <a type="button" class="btn btn-primary" href="{{ url('register') }}">Registar</a>
     @endguest
 
 </div>
