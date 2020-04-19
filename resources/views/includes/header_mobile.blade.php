@@ -12,9 +12,10 @@
                 <i class="fa fa-search"></i></button>
             </button>
 
-            <?php /*@auth('guest')*/ ?>
+            @auth
             <a type="button" class="btn btn-primary btn-sm mr-3" href="add_question.php"><i class="fas fa-plus-circle"></i></a>
-
+            @endauth
+            
             <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i>
@@ -22,8 +23,7 @@
 
 
                 <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <?php /*@auth('guest')*/ ?>
-
+                    @auth
 
                     <div class="dropdown-item">
                         <img src="{{ asset('../images/profile_picture1.png') }}" class="img-header float-left" alt="">
@@ -39,12 +39,12 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="../pages/main_page.php">Terminar Sessão</a>
 
-                    <?php /* @else */ ?>
+                    @endauth
+                    @guest
 
-                    <!--    
-                        <a class="dropdown-item" href="login.php">Iniciar Sessão</a>
-                        <a class="dropdown-item" href="sign_up.php">Registar</a>-->
-                    <?php /*@endauth*/ ?>
+                    <a class="dropdown-item" href="login.php">Iniciar Sessão</a>
+                    <a class="dropdown-item" href="sign_up.php">Registar</a>
+                    @endguest
                 </div>
 
             </div>

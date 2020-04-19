@@ -17,10 +17,10 @@
         </div>
     </form>
 
-    <?php /*@auth('guest')*/ ?>
+    @auth
     <a type="button" class="btn btn-primary mr-4" href="add_question.php"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
+    
 
-    <?php /*@auth('guest')*/ ?>
     <div class="btn-group">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user"></i>
@@ -42,11 +42,12 @@
     
         </div>
     </div>
+    @endauth
 
-    <?php /* @else */ ?>
-        <!--<a type="button" class="btn btn-log-in mr-1" href="login.php">Iniciar sessão</a>
-        <a type="button" class="btn btn-primary" href="sign_up.php">Registar</a> -->
-    <?php /* @endauth*/ ?>
+    @guest
+        <a type="button" class="btn btn-log-in mr-1" href="login.php">Iniciar sessão</a>
+        <a type="button" class="btn btn-primary" href="sign_up.php">Registar</a>
+    @endguest
 
 </div>
 </nav>
