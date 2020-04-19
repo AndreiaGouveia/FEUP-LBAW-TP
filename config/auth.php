@@ -70,10 +70,10 @@ return [
             'model' => App\Person::class,
         ],
 
-        'users' => [
-            'driver' => 'database',
-            'table' => 'person',
-         ],
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
     ],
 
     /*
