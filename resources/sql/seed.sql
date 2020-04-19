@@ -106,7 +106,7 @@ CREATE TABLE publication
 (
     id SERIAL PRIMARY KEY,
     description TEXT NOT NULL,
-    data DATE NOT NULL DEFAULT now(),
+    date DATE NOT NULL DEFAULT now(),
     id_owner INTEGER REFERENCES member (id_person) ON UPDATE CASCADE ON DELETE CASCADE,
     visible BOOLEAN DEFAULT TRUE
 );
@@ -335,7 +335,7 @@ CREATE FUNCTION update_medal_to_bronze() RETURNS TRIGGER AS
 	IF(NEW.points > 2020 AND NEW.points < 4000)
 	THEN
 		UPDATE member
-			SET medal = 'Bronze' AND moderator='true'
+			SET medal = 'Bronze', moderator=true
 		WHERE NEW.id_person = member.id_person;
 	END IF;
 	
@@ -356,7 +356,7 @@ CREATE FUNCTION update_medal_to_silver() RETURNS TRIGGER AS
 	IF(NEW.points >= 4000 AND NEW.points < 6000)
 	THEN
 		UPDATE member
-			SET medal = 'Silver' AND moderator='true'
+			SET medal = 'Silver', moderator=true
 		WHERE NEW.id_person = member.id_person;
 	END IF;
 	
@@ -377,7 +377,7 @@ CREATE FUNCTION update_medal_to_gold() RETURNS TRIGGER AS
 	IF(NEW.points >= 6000)
 	THEN
 		UPDATE member
-			SET medal = 'Gold' AND moderator='true'
+			SET medal = 'Gold', moderator=true
 		WHERE NEW.id_person = member.id_person;
 	END IF;
 	
@@ -448,3 +448,138 @@ FOR EACH ROW EXECUTE PROCEDURE update_points_delete();
 CREATE INDEX search_question ON question USING GIST (to_tsvector('english' , title || ' '));
 CREATE INDEX search_publication ON publication USING GIST (to_tsvector('english' , description || ' '));
 CREATE INDEX search_tag ON tag USING GIST (to_tsvector('english' , name));
+
+
+
+
+INSERT INTO person(username,email,password) 
+VALUES ('gustavo_Mendes','gustavinho@gmail.com','gustavinhoDaSilva'),
+('mariaJoana1','mariajoana99@hotmail.com','binoculos123'),
+('PedroGustus','pedro2Augusto@yahoo.com','12345'),
+('Maria','maria@gmail.com','maria'),
+('Henrique2004','henrique_2004_santos@gmail.com','vivaOraBolas'),
+('Fernando_Mendez','precoCerto@gmail.com','rodaDaSOrte'),
+('GuidaEmanuela','emanuelazita1234@gmail.com','FloresAmarelas'),
+('AnabelaDeMalhadas','epico2010anabela@yahoo.com','4650<4500'),
+('PapagaioLover','dancingParrotLover@outlook.com','dancingParrots'),
+('RicardoPereira','faltaDeCha@gmail.com','VamosTodosFalecer'),
+('MarianaSousa','marianaSousa25@gmail.com','passarinhoMaluco'),
+('JoseAlves','queInformacaoDramatica@yahoo.com','iaLaVerEEstavaTranquilo'),
+('QuimOvelha','quimquimquim@hotmail.com','BemAlimentado'),
+('CoelhoPassos','coelhoJose123@outlook.com','207895abc');
+
+INSERT INTO administrator VALUES (4);
+
+INSERT INTO location(country) VALUES ('Portugal'),
+('France'),
+('USA'),
+('Afghanistan'),
+('Brazil'),
+('Fiji'),
+('Germany'),
+('Mexico'),
+('Mozambique'),
+('Russia'),
+('Slovenia'),
+('South Korea'),
+('United States of America');
+
+INSERT INTO photo(url) VALUES ('https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
+('https://statig1.akamaized.net/bancodeimagens/5i/6x/4l/5i6x4ly396q2ioenmxznv4zd3.jpg'),
+('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
+('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
+('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSWFL6RbANo3ZyKyv1lHNH3P0DQfHaFkD9U-poSa77AHpJKm7rT'),
+('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLd7v7uPEqbURs_qnqQ29GuKYvj2kg8308IX0Z_7iCEyDR0dl3'),
+('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRuOX_1JWUYSZL7QDfFUuaht2qDVW-e1JZ4oOmFLSs_j2hruE-i'),
+('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRCxxjozfjyFiOUdS8N5lIt_CnuBG7yOZB2gdp-LOXpiLkn-vRF'),
+('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuQst6y8kRBEx7GQ7QG5GQiXXLGnoQGBgHVTELRhHAIHPfB_oz'),
+('https://i.insider.com/5a9f1d915cc41020008b45f3?width=889&format=jpeg'),
+('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSlsNTSmsrjZDUY2-YcfkBf-sWFDaNTOF3KRELqqn_oYGV8SaQ'),
+('https://www.themckenziefirm.com/wp-content/uploads/2019/03/AdobeStock_250034790-e1553990171364.jpeg'), ('https://images.pexels.com/photos/3273851/pexels-photo-3273851.jpeg?cs=srgb&dl=cidade-meio-urbano-cama-leito-3273851.jpg&fm=jpg'),
+('https://images.pexels.com/photos/3786128/pexels-photo-3786128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+
+INSERT INTO member(id_person, name, biography, points, id_location, id_photo, medal, moderator) VALUES 
+(1,'Gustavo Mendes','Sou amante da natureza. Não passo um dia sem os meus gatos que só comem a ração de melhor qualidade.',3000,1,1,'Gold', true),
+(2,'Maria Joana Da Silva','Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.',1,2,2, 'Gold', true),
+(3,'Pedro Augusto','Olá! Sou o Pedro e adoro papagaios.',4001,3,3,'Silver', true),
+(4,'Henrique Sousa','Produzo ração para animais.',120000,4,4, 'Bronze', true),
+(5,'Fernando Mendes','Olá! Sai-me sempre a sorte grande naquelas rodas marotas.',1,5,5, 'Bronze', true),
+(6,'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.',1,6,6, 'Silver', true);
+
+INSERT INTO member(id_person, name, biography, id_location, id_photo) VALUES 
+(7,'Anabela De Malhadas','Bom dia! Adoro animais, mas prefiro gatos.',7,7),
+(8,'Guilherme Fernandes','Não dou descrição pois sei que é o governo a espiar em mim.',8,8),
+(9,'Ricardo Pereira','Falta-vos chá.',9,9),
+(10,'Mariana Sousa','Boas! Desde os meus 8 anos sempre amei os bichinhos de 4 patas. Tenho 4 cães.',10,10),
+(11,'Jose Alves','Adiciona-me no Facebook :)',11,11),
+(12,'Joaquim Ovelha','Adoro ler e ouvir musica.',12,12),
+(13,'Passos Coelho','Gosto de ler livros de economia.',13,13);
+
+INSERT INTO tag (name) VALUES ('Papagaio'),
+('Cão'),
+('Gato'),
+('Ração'),
+('Ferida'),
+('Ouriço'),
+('Peixe'),
+('Coelho'),
+('Comportamento'),
+('Urgente'),
+('Treinar'),
+('Hamster'),
+('Chinchila'),
+('Pássaro'),
+('Gaivota');
+
+INSERT INTO publication(id_owner, description) VALUES (1, ''),
+(2, ''),
+(3, ''),
+(5, ''),
+(6, ''),
+(7, ''),
+(8, ''),
+(9, ''),
+(10, ''),
+(11, '');
+
+INSERT INTO photo_in_publication VALUES(14, 1);
+INSERT INTO photo_in_publication VALUES(15, 2);
+
+INSERT INTO commentable_publication
+VALUES (2),(3),(4),(5),(6),(7),(8);
+
+INSERT INTO comment VALUES (9, 2),(10, 3),(8, 4);
+
+INSERT INTO question VALUES (2,'Porque é que o meu gato é tão gordo? Ele só come 2kgs de comida por dia. Porfavor, ajudem!'),
+(3,'Se eu um dia comer comida de cão, torno-me num cão? Porque somos o que comemos!');
+
+INSERT INTO response VALUES (4,2),
+(5,2),
+(6,2), 
+(7,2),
+(8,2);
+
+INSERT INTO tag_question VALUES
+(1,2),
+(2,2),
+(5,2),
+(3,3),
+(4,3),
+(10,3);
+
+INSERT INTO reported VALUES
+(11,2,'Spam'),
+(12,3,'Hate speach'),
+(13,4,'Violence');
+
+INSERT INTO likes
+VALUES (4,1,true),
+(5,1,false),
+(4,2,true),
+(5,2,false);
+
+INSERT INTO favorite(id_member, id_commentable_publication) VALUES
+(5,2),
+(2,4),
+(1,3); 
