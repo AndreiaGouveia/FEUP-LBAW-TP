@@ -1,5 +1,5 @@
 <?php
-$link = (isset($link_profile)) ? $link_profile : "#";
+$link = (isset($link_profile)) ? $link_profile : "https://i.stack.imgur.com/l60Hf.png";
 ?>
 
     <div id="header-card mb-3">
