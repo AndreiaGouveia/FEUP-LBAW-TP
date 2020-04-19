@@ -10,7 +10,7 @@
                 @each('partials.tag', json_decode($question->tags), 'tag')
             </div>
             <div class="info flex-fill d-flex justify-content-end mx-0">
-            @include('partials.like_buttons', ['likes' => $question->likes, 'dislikes' => $question->dislikes])
+                @include('partials.like_buttons', ['likes' => $question->likes, 'dislikes' => $question->dislikes])
             </div>
 
         </div>

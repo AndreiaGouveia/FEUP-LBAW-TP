@@ -29,7 +29,18 @@
             </div>
 
         </div>
-        <div class="col-md mb-4"> <?php /* Draw topics */ ?></div>
+        <div class="col-md mb-4">
+
+            <h6>Tópicos Relacionados</h6>
+            <hr class="section-break" />
+            <div>
+                @foreach ($popular_tags as $tag)
+                @include('partials.tag', ["tag" => $tag->name])
+                @endforeach
+            </div>
+
+
+        </div>
     </div>
 </div>
 
