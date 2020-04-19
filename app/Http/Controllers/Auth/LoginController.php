@@ -41,8 +41,5 @@ class LoginController extends Controller
         return $request->person();
     }
 
-    public function home() {
-        return redirect('login');
-    }
 
 }

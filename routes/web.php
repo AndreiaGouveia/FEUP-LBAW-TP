@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'Auth\LoginController@home');
+Route::get('/', function () {
+    return redirect('home');
+});
 
 // Authentication
 
@@ -20,3 +22,6 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+
+Route::get('home', 'HomeController@show')->name('home');
