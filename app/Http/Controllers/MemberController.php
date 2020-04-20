@@ -132,7 +132,7 @@ class MemberController extends Controller
         $member = Member::find($id);
         $person = Person::find($id);
 
-        $this->authorize('update', $member);
+        $this->authorize('delete', $member);
 
         $person->visible = false;
 
