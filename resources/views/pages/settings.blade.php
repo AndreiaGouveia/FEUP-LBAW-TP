@@ -13,7 +13,7 @@
 $accountIsActive = "active";
 $profileIsActive = "";
 
-if($errors->has('password')){
+if($errors->has('password') || $errors->has('old_password')){
     $accountIsActive = "";
     $profileIsActive = "active";
 }

@@ -23,6 +23,9 @@ class QuestionController extends Controller
 
     public function create()
     {
+        if(!Auth::check())
+            return redirect()->route('login');
+
         return view('pages.add_question');
     }
 

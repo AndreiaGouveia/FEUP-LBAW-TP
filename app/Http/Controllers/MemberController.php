@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Member;
 use App\Person;
+use App\Rules\OldPasswordRule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class MemberController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -39,13 +43,15 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::check())
+            return redirect()->route('login');
+
         $member = Member::find($id);
         $person = Person::find($id);
 
-        //$this->authorize('update', $person, $member);
+        $this->authorize('update', $member);
 
         return view('pages.settings', ['member' => $member, 'person' => $person]);
-
     }
 
     /**
@@ -57,16 +63,19 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::check())
+            return redirect()->route('login');
+
         $member = Member::find($id);
         $person = Person::find($id);
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255', 
+            'email' => 'required|string|email|max:255',
             Rule::unique('person')->ignore($id, 'id')
         ]);
 
-        //$this->authorize('update', $person, $member);
+        $this->authorize('update', $member);
 
         $inputs = $request->all();
         $member->name = $inputs['name'];
@@ -77,7 +86,7 @@ class MemberController extends Controller
         $person->save();
 
         return redirect()->route('members', $id);
-    
+
         //TODO: location and profile image
     }
 
@@ -94,34 +103,40 @@ class MemberController extends Controller
         $person = Person::find($id);
 
         $validatedData = $request->validate([
+            'old_password' => [function ($attribute, $value, $fail) {
+                if (!Hash::check($value, Auth::user()->password)) {
+                    $fail('A palavra-passe está errada!');
+                }
+            }],
             'password' => 'required|string|min:6|confirmed'
         ]);
 
         $inputs = $request->all();
 
-        //$this->authorize('update', $person, $member);
-        $this->authorize('updatePassword', $person, $member, $inputs['old_password']);
+        $this->authorize('delete', $member);
 
-        $member->name = $inputs['name'];
-        $member->biography = $inputs['biography'];
-        $person->email = $inputs['email'];
+        $person->password =  Hash::make($inputs['password']);
 
-        $member->save();
         $person->save();
 
         return redirect()->route('members', $id);
-    
-        //TODO: location and profile image
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deactivate the specified resource from storage.
      *
-     * @param  \App\Member  $member
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member)
+    public function deactivate($id)
     {
-        //
+        $member = Member::find($id);
+        $person = Person::find($id);
+
+        $this->authorize('delete', $member);
+
+        $person->visible = false;
+
+        return redirect()->route('logout');
     }
 }

@@ -1,3 +1,8 @@
+<?php
+    $member = App\Member::find(Auth::user()->id);
+    $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+?>
+
 <div class="nav-bar navbar-expand navbar-light bg-light pb-2">
     <nav class="navbar navbar-expand">
 
@@ -13,7 +18,7 @@
             </button>
 
             @auth
-            <a type="button" class="btn btn-primary btn-sm mr-3" href="{{ url('questions/add') }}"><i class="fas fa-plus-circle"></i></a>
+            <a type="button" class="btn btn-primary btn-sm mr-3" href="{{ route('questions.add') }}"><i class="fas fa-plus-circle"></i></a>
             @endauth
             
             <div class="btn-group">
@@ -26,8 +31,8 @@
                     @auth
 
                     <div class="dropdown-item">
-                        <img src="{{ asset('../images/profile_picture1.png') }}" class="img-header float-left" alt="">
-                        <p style="margin-left: 1.7rem">João Pinheiro<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                        <img src=<?=$link?> class="img-header float-left" alt="">
+                        <p style="margin-left: 1.7rem"><?=$member->name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                     </div>
 
 
@@ -35,15 +40,15 @@
                     <a class="dropdown-item" href="profile.php">O meu Perfil</a>
                     <a class="dropdown-item" href="my_content.php">O meu Conteúdo</a>
                     <a class="dropdown-item" href="my_favorites.php">Favoritos</a>
-                    <a class="dropdown-item" href="settings.php">Definições</a>
+                    <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout">Terminar Sessão</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
 
                     @endauth
                     @guest
 
-                    <a class="dropdown-item" href="login">Iniciar Sessão</a>
-                    <a class="dropdown-item" href="sign_up">Registar</a>
+                    <a class="dropdown-item" href="{{ route('login') }}">Iniciar Sessão</a>
+                    <a class="dropdown-item" href="{{ route('login') }}">Registar</a>
                     @endguest
                 </div>
 
