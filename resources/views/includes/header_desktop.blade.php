@@ -18,7 +18,7 @@
     </form>
 
     @auth
-    <a type="button" class="btn btn-primary mr-4" href="add_question.php"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
+    <a type="button" class="btn btn-primary mr-4" href="{{ url('questions/add') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
     
 
     <div class="btn-group">
@@ -38,7 +38,7 @@
             <a class="dropdown-item" href="my_favorites.php">Favoritos</a>
             <a class="dropdown-item" href="settings.php">Definições</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../pages/main_page.php">Terminar Sessão</a>
+            <a class="dropdown-item" href="logout">Terminar Sessão</a>
     
         </div>
     </div>

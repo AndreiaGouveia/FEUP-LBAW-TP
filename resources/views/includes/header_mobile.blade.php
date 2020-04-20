@@ -1,7 +1,7 @@
 <div class="nav-bar navbar-expand navbar-light bg-light pb-2">
     <nav class="navbar navbar-expand">
 
-        <a class="navbar-brand mr-5" href="../pages/main_page.php">
+        <a class="navbar-brand mr-5" href="home">
             <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="">
         </a>
 
@@ -13,7 +13,7 @@
             </button>
 
             @auth
-            <a type="button" class="btn btn-primary btn-sm mr-3" href="add_question.php"><i class="fas fa-plus-circle"></i></a>
+            <a type="button" class="btn btn-primary btn-sm mr-3" href="{{ url('questions/add') }}"><i class="fas fa-plus-circle"></i></a>
             @endauth
             
             <div class="btn-group">
@@ -37,13 +37,13 @@
                     <a class="dropdown-item" href="my_favorites.php">Favoritos</a>
                     <a class="dropdown-item" href="settings.php">Definições</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="../pages/main_page.php">Terminar Sessão</a>
+                    <a class="dropdown-item" href="logout">Terminar Sessão</a>
 
                     @endauth
                     @guest
 
-                    <a class="dropdown-item" href="login.php">Iniciar Sessão</a>
-                    <a class="dropdown-item" href="sign_up.php">Registar</a>
+                    <a class="dropdown-item" href="login">Iniciar Sessão</a>
+                    <a class="dropdown-item" href="sign_up">Registar</a>
                     @endguest
                 </div>
 
