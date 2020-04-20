@@ -64,16 +64,25 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+        DB::beginTransaction();
+
         $person = Person::create([
             'username' => $data['email'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
+        if($person == null){
+            DB::rollBack();
+            return abort(404);
+        }
+
         Member::create([
             'id_person' => $person->id,
             'name' => $data['name']
         ]);
+
+        DB::commit();
 
         return $person;
     }
