@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {return redirect('home');});
+Route::get('/', 'HomeController@home' );
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

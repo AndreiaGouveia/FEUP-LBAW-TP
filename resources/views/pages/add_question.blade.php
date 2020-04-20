@@ -13,7 +13,7 @@
     <h3 class="font-weight-normal mb-3">Adicionar Questão</h3>
     <hr class="section-break" />
 
-    <form method="POST" action="{{ route('store.question') }}">
+    <form id="add_question" method="POST" action="{{ route('store.question') }}">
         <div class="form-group">
             @csrf
             <!--SUPER DUPER IMPORTANTE-->
@@ -25,7 +25,7 @@
 
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
-                <textarea id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"></textarea>
+                <textarea form="add_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"></textarea>
             </div>
 
             <div class="content mb-4">
