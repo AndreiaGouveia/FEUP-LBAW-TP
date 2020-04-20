@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Person;
 use App\Member;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Hash;
 
 class MemberPolicy
 {
@@ -53,13 +54,7 @@ class MemberPolicy
      */
     public function update(Person $user, Member $member)
     {
-        return $user->id == $member->id_person && auth()->user()->id == $member->id_person;
-    }
-
-    public function updatePassowrd(Person $user, Member $member, $value)
-    {
-        
-        return $user->id == $member->id_person && Hash::check($value, auth()->user()->password);
+        return $user->id == $member->id_person;
     }
 
     /**
@@ -71,7 +66,7 @@ class MemberPolicy
      */
     public function delete(Person $user, Member $member)
     {
-        //
+        return $user->id == $member->id_person;
     }
 
     /**

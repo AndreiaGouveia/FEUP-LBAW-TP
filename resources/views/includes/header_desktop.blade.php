@@ -18,7 +18,7 @@
     </form>
 
     @auth
-    <a type="button" class="btn btn-primary mr-4" href="{{ url('questions/add') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
+    <a type="button" class="btn btn-primary mr-4" href="{{ route('questions.add') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
     
 
     <div class="btn-group">
@@ -36,17 +36,17 @@
             <a class="dropdown-item" href="profile.php">O meu Perfil</a>
             <a class="dropdown-item" href="my_content.php">O meu Conteúdo</a>
             <a class="dropdown-item" href="my_favorites.php">Favoritos</a>
-            <a class="dropdown-item" href="settings.php">Definições</a>
+            <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="logout">Terminar Sessão</a>
+            <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
     
         </div>
     </div>
     @endauth
 
     @guest
-        <a type="button" class="btn btn-log-in mr-1" href="{{ url('login') }}">Iniciar sessão</a>
-        <a type="button" class="btn btn-primary" href="{{ url('register') }}">Registar</a>
+        <a type="button" class="btn btn-log-in mr-1" href="{{ route('login') }}">Iniciar sessão</a>
+        <a type="button" class="btn btn-primary" href="{{ route('register') }}">Registar</a>
     @endguest
 
 </div>

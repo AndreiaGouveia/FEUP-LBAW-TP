@@ -11,6 +11,11 @@
             <label for="inputPreviousPassword">Palavra-Passe Antiga</label>
             <input type="password" name="old_password" id="inputPreviousPassword" class="form-control" placeholder="Palavra-Passe Antiga" required="" autofocus="">
         </div>
+        @if ($errors->has('old_password'))
+        <span class="error">
+            {{ $errors->first('old_password') }}
+        </span>
+        @endif
 
         <div class="content mb-4">
             <label for="inputNewPassword">Nova Palavra-Passe</label>
@@ -31,3 +36,41 @@
 
     </div>
 </form>
+
+<h3 class="font-weight-normal text-danger mb-3">Eliminar Conta</h3>
+<hr class="section-break" />
+
+
+<div class="form-group">
+
+    <label for="deleteAccount">Uma vez eliminada a conta, não há como voltar a trás. Por favor, tenha a certeza.</label><br>
+    <div class="d-flex justify-content-end">
+        <button id="deleteAccount" class="btn btn-danger" data-toggle="modal" data-target="#deletingAccountPopUp">Eliminar Conta</button>
+    </div>
+
+
+    <form role="form" method="POST" action="{{ route('members.deactivate', ['id' => $member->id_person] )}}">
+        @csrf
+        <!--SUPER DUPER IMPORTANTE-->
+
+        <div class="modal fade" id="deletingAccountPopUp" tabindex="-1" role="dialog" aria-labelledby="#deletingAccountPopUpLabel" aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletingAccountPopUpLabel">Eliminar Conta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <p class="px-3 my-2">Tem a certeza que quer eliminar a sua conta?</p>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Sim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
