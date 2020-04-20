@@ -28,9 +28,10 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $member)
+    public function show($id)
     {
-        //
+        $member = Member::find($id);
+        return view('pages.profile',  ['member' => $member]);
     }
 
     /**
