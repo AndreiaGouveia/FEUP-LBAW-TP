@@ -25,4 +25,9 @@ Route::get('home', 'HomeController@show')->name('home');
 Route::view('about_us', 'pages.about_us');
 Route::get('members/{id}', 'MemberController@show')->name('members'); //TODO: change the controller function
 Route::get('members/{id}/settings', 'MemberController@edit');
-Route::post('members/{id}', 'MemberController@update')->name('membersUpdate');
+Route::post('members/{id}', 'MemberController@update')->name('members.update');
+Route::post('members/{id}/password', 'MemberController@updatePassword')->name('members.update.password');
+
+
+Route::get('questions/add', 'QuestionController@create');
+Route::post('questions/add', 'QuestionController@store')->name("store.question");

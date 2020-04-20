@@ -53,7 +53,13 @@ class MemberPolicy
      */
     public function update(Person $user, Member $member)
     {
-        return $user->id == $member->id_person;
+        return $user->id == $member->id_person && auth()->user()->id == $member->id_person;
+    }
+
+    public function updatePassowrd(Person $user, Member $member, $value)
+    {
+        
+        return $user->id == $member->id_person && Hash::check($value, auth()->user()->password);
     }
 
     /**

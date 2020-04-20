@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use App\Person;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class MemberController extends Controller
 {
@@ -40,6 +41,8 @@ class MemberController extends Controller
         $member = Member::find($id);
         $person = Person::find($id);
 
+        //$this->authorize('update', $person, $member);
+
         return view('pages.settings', ['member' => $member, 'person' => $person]);
 
     }
@@ -56,9 +59,48 @@ class MemberController extends Controller
         $member = Member::find($id);
         $person = Person::find($id);
 
-        //$this->authorize('update', $member);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255', 
+            Rule::unique('person')->ignore($id, 'id')
+        ]);
+
+        //$this->authorize('update', $person, $member);
 
         $inputs = $request->all();
+        $member->name = $inputs['name'];
+        $member->biography = $inputs['biography'];
+        $person->email = $inputs['email'];
+
+        $member->save();
+        $person->save();
+
+        return redirect()->route('members', $id);
+    
+        //TODO: location and profile image
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePassword(Request $request, $id)
+    {
+        $member = Member::find($id);
+        $person = Person::find($id);
+
+        $validatedData = $request->validate([
+            'password' => 'required|string|min:6|confirmed'
+        ]);
+
+        $inputs = $request->all();
+
+        //$this->authorize('update', $person, $member);
+        $this->authorize('updatePassword', $person, $member, $inputs['old_password']);
+
         $member->name = $inputs['name'];
         $member->biography = $inputs['biography'];
         $person->email = $inputs['email'];

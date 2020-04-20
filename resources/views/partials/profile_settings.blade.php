@@ -24,14 +24,15 @@ $location = implode(",", $location_array);
 <h3 class="font-weight-normal mb-3">Alterar Perfil</h3>
 <hr class="section-break" />
 
-<form role="form" method="POST" action="{{ route('membersUpdate', $member->id_person) }}">
+<form role="form" method="POST" action="{{ route('members.update', $member->id_person) }}">
     <div class="form-group">
 
         <div class="row flex-column-reverse flex-lg-row">
 
             <div class="col-md-8">
 
-                @csrf <!--SUPER DUPER IMPORTANTE-->
+                @csrf
+                <!--SUPER DUPER IMPORTANTE-->
                 <div class="content mb-4">
                     <label for="inputName">Name</label><br>
                     <input type="text" id="inputName" name="name" class="form-control" placeholder="Name" value="{{ $member->name }}" required="" autofocus="">
@@ -41,6 +42,11 @@ $location = implode(",", $location_array);
                     <label for="inputEmail">Email</label>
                     <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email" value="{{ $person->email }}" required="" autofocus="">
                 </div>
+                @if ($errors->has('email'))
+                <span class="error">
+                    {{ $errors->first('email') }}
+                </span>
+                @endif
 
                 <div class="content mb-4">
                     <label for="inputLocalização">Localização<small class="font-italic"> - Optional</small></label>

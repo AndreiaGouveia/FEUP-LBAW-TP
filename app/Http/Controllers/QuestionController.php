@@ -2,24 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Commentable_publication;
+use App\Publication;
+use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
-   
-    protected function create(array $data)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-
-        $commentable_publication = app('App\Http\Controllers\CommentablePublicationController')->create();
-
-        $question = Question::create([
-            'id_commentable_publication' => $commentable_publication->id,
-            'title' => $data['title']
-        ]);
-
-        return $person;
+        //
     }
 
+    public function create()
+    {
+        return view('pages.add_question');
+    }
 
+    public function store(Request $request)
+    {
+        if(!Auth::check())
+            return redirect()->route('login');
+
+        $user = Auth::user();
+
+        $inputs = $request->all();
+        $publication = Publication::create([
+            'description' => $inputs['description'],
+            'id_owner' => $user->id
+        ]);
+
+        $commentable_publication = Commentable_publication::create([
+            'id_publication' => $publication->id
+        ]);
+
+        $question = Question::create([
+            'id_commentable_publication' => $commentable_publication->id_publication,
+            'title' => $inputs['title']
+        ]);
+
+        return redirect()->route('home');;
+    }
 }

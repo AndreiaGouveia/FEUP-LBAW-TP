@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Member;
 use App\Card;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
