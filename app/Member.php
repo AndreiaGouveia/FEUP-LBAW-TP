@@ -24,6 +24,8 @@ class Member extends Authenticatable
     protected $table = 'member';
     protected $primaryKey = 'id_person'; //because primary key is not id
 
+    protected $hidden = ['password'];
+
     //associations
     public function person(){return $this->belongsTo('App\Person','id_person');}
 
