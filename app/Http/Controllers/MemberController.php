@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Member;
 use App\Person;
-use App\Rules\OldPasswordRule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;

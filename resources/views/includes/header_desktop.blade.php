@@ -1,6 +1,12 @@
 <?php
+
+
+use Illuminate\Support\Facades\Auth;
+
+if (Auth::check()) {
     $member = App\Member::find(Auth::user()->id);
     $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+}
 ?>
 
 <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
