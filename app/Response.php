@@ -22,8 +22,8 @@ class Response extends Model
     protected $primaryKey = 'id_commentable_publication';
 
     //associations
-    public function owner(){return $this->belongsTo('App\Commentable_publication', 'id_commentable_publication');}
+    public function owner(){return $this->belongsTo('App\Commentable_publication', 'id_commentable_publication', 'id_commentable_publication');}
 
-    public function anwersPublication(){return $this->hasOne('App\Question', 'id_commentable_publication');}
+    public function anwersPublication(){return $this->hasOne('App\Question', 'id_commentable_publication', 'id_question');}
 
 }

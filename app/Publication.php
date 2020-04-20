@@ -22,7 +22,7 @@ class Publication extends Model
     protected $table = 'publication';
 
     //associations
-    public function owner(){return $this->belongsTo('App\Member', 'id_owner');}
+    public function owner(){return $this->belongsTo('App\Member', 'id_person', 'id_owner');}
 
     public function commentable_publications(){return $this->hasMany('App\Commentable_publication');}
 

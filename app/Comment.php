@@ -22,8 +22,8 @@ class Comment extends Model
     protected $primaryKey = 'id_publication';
 
     //associations
-    public function owner(){return $this->belongsTo('App\Publication', 'id_publication');}
+    public function owner(){return $this->belongsTo('App\Publication', 'id', 'id_publication');}
 
-    public function commentsPublication(){return $this->hasOne('App\Commentable_publication', 'id_commentable_publication');}
+    public function commentsPublication(){return $this->hasOne('App\Commentable_publication', 'id_commentable_publication', 'id_commentable_publication');}
 
 }

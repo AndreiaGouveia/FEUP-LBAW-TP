@@ -27,11 +27,11 @@ class Member extends Authenticatable
     protected $hidden = ['password'];
 
     //associations
-    public function person(){return $this->belongsTo('App\Person','id_person');}
+    public function person(){return $this->belongsTo('App\Person','id', 'id_person');}
 
-    public function location(){return $this->hasOne('App\Location','id_location');}
+    public function location(){return $this->hasOne('App\Location','id', 'id_location');}
 
-    public function photo(){return $this->hasOne('App\Photo','id_photo');}
+    public function photo(){return $this->hasOne('App\Photo','id', 'id_photo');}
 
     public function publications() {return $this->hasMany('App\Publication'); }
 }

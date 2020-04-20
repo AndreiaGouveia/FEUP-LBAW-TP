@@ -23,3 +23,4 @@ Route::post('register', 'Auth\RegisterController@register');
 
 Route::get('home', 'HomeController@show')->name('home');
 Route::view('about_us', 'pages.about_us');
+Route::get('/members/{id}/settings', 'MemberController@edit');
