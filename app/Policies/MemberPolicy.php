@@ -54,8 +54,6 @@ class MemberPolicy
     public function update(Person $user, Member $member)
     {
         return $user->id == $member->id_person;
-        
-        return view('edit_')
     }
 
     /**

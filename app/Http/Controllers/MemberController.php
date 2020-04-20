@@ -70,12 +70,27 @@ class MemberController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Member  $member
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, $id)
     {
-        //
+        $member = Member::find($id);
+        $person = Person::find($id);
+
+        //$this->authorize('update', $member);
+
+        $inputs = request()->all();
+        $member->name = $inputs['name'];
+        $member->biography = $inputs['biography'];
+        $person->email = $inputs['email'];
+
+        $member->save();
+        $person->save();
+
+        return redirect()->route('members', $id);
+    
+        //TODO: location and profile image
     }
 
     /**
