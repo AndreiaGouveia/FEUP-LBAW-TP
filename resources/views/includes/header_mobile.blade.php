@@ -1,3 +1,8 @@
+<?php
+    $member = App\Member::find(Auth::user()->id);
+    $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+?>
+
 <div class="nav-bar navbar-expand navbar-light bg-light pb-2">
     <nav class="navbar navbar-expand">
 
@@ -26,8 +31,8 @@
                     @auth
 
                     <div class="dropdown-item">
-                        <img src="{{ asset('../images/profile_picture1.png') }}" class="img-header float-left" alt="">
-                        <p style="margin-left: 1.7rem">João Pinheiro<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                        <img src=<?=$link?> class="img-header float-left" alt="">
+                        <p style="margin-left: 1.7rem"><?=$member->name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                     </div>
 
 
