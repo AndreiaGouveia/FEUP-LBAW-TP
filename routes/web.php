@@ -37,3 +37,6 @@ Route::post('questions', 'QuestionController@store')->name("store.question");
 
 // API
 Route::post('api/answers', 'ResponseController@create');
+
+
+Route::post('api/comments', 'CommentController@create');

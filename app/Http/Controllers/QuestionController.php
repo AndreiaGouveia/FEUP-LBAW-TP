@@ -22,27 +22,22 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $publication = Publication::find($id);
 
-        if ($question == null)
-            return redirect()->route('home');
-
-        //$this->authorize('view', $question);
+        $this->authorize('view', $question);
 
         return view('pages.question',  ['question' => $question, 'publication' => $publication]);
     }
 
     public function create()
     {
-        if (!Auth::check())
-            return redirect()->route('login');
-
+        $this->authorize('create', Question::class);
 
         return view('pages.add_question');
     }
 
     public function store(Request $request)
     {
-        if (!Auth::check())
-            return redirect()->route('login');
+        
+        $this->authorize('create', Question::class);
 
         $user = Auth::user();
 

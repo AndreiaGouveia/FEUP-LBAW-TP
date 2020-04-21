@@ -3,16 +3,16 @@
 namespace App\Policies;
 
 use App\Person;
-use App\Response;
+use App\Comment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
-class ResponsePolicy
+class CommentPolicy
 {
     use HandlesAuthorization;
     
     /**
-     * Determine whether the user can view any responses.
+     * Determine whether the user can view any comments.
      *
      * @param  \App\Person  $user
      * @return mixed
@@ -23,19 +23,19 @@ class ResponsePolicy
     }
 
     /**
-     * Determine whether the user can view the response.
+     * Determine whether the user can view the comment.
      *
      * @param  \App\Person  $user
-     * @param  \App\Response  $response
+     * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function view(Person $user, Response $response)
+    public function view(Person $user, Comment $comment)
     {
         //
     }
 
     /**
-     * Determine whether the user can create responses.
+     * Determine whether the user can create comments.
      *
      * @param  \App\Person  $user
      * @return mixed
@@ -46,49 +46,49 @@ class ResponsePolicy
     }
 
     /**
-     * Determine whether the user can update the response.
+     * Determine whether the user can update the comment.
      *
      * @param  \App\Person  $user
-     * @param  \App\Response  $response
+     * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function update(Person $user, Response $response)
+    public function update(Person $user, Comment $comment)
     {
         //
     }
 
     /**
-     * Determine whether the user can delete the response.
+     * Determine whether the user can delete the comment.
      *
      * @param  \App\Person  $user
-     * @param  \App\Response  $response
+     * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function delete(Person $user, Response $response)
+    public function delete(Person $user, Comment $comment)
     {
         //
     }
 
     /**
-     * Determine whether the user can restore the response.
+     * Determine whether the user can restore the comment.
      *
      * @param  \App\Person  $user
-     * @param  \App\Response  $response
+     * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function restore(Person $user, Response $response)
+    public function restore(Person $user, Comment $comment)
     {
         //
     }
 
     /**
-     * Determine whether the user can permanently delete the response.
+     * Determine whether the user can permanently delete the comment.
      *
      * @param  \App\Person  $user
-     * @param  \App\Response  $response
+     * @param  \App\Comment  $comment
      * @return mixed
      */
-    public function forceDelete(Person $user, Response $response)
+    public function forceDelete(Person $user, Comment $comment)
     {
         //
     }

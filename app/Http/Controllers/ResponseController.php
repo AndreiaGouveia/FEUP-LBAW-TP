@@ -23,14 +23,15 @@ class ResponseController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
+        $this->authorize('create', Response::class);
 
-        
         DB::beginTransaction();
 
         $publication = Publication::create([
@@ -75,19 +76,8 @@ class ResponseController extends Controller
         
 
         DB::commit();
-        return response()->json($publication);
+        return response()->json($answer);
         
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

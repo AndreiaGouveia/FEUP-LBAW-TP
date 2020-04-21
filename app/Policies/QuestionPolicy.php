@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Person;
 use App\Question;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionPolicy
 {
@@ -41,7 +42,7 @@ class QuestionPolicy
      */
     public function create(Person $user)
     {
-        //
+        return Auth::check();
     }
 
     /**

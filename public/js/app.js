@@ -3,6 +3,10 @@ function addEventListeners() {
   let responseCreator = document.querySelector('#response_form');
   if (responseCreator != null)
     responseCreator.addEventListener('submit', sendCreateResponseRequest);
+
+  let commentCreator = document.querySelector('form.comment-box');
+  if (commentCreator != null)
+    commentCreator.addEventListener('submit', sendCreateCommentRequest);
 }
 
 function encodeForAjax(data) {
@@ -30,7 +34,18 @@ function sendCreateResponseRequest(event) {
     sendAjaxRequest('POST', '/api/answers', { id_question: id_question, response_text: response_text }, responseAddedHandler);
 
   event.preventDefault();
-  document.querySelector('#response_form').reset();
+  event.target.reset();
+}
+
+function sendCreateCommentRequest(event) {
+  let id_publication = this.querySelector('input[name=id_publication]').value;
+  let comment_text = this.querySelector('input[name=comment_text]').value;
+
+  if (comment_text != '')
+    sendAjaxRequest('POST', '/api/comments', { id_publication: id_publication, comment_text: comment_text }, responseAddedHandler);
+
+  event.preventDefault();
+  event.target.reset();
 }
 
 function responseAddedHandler() {
