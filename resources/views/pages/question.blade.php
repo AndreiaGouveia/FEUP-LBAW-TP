@@ -11,7 +11,6 @@
 @section('content')
 
 <div class="container mt-5">
-
     <div class="row">
         <div class="col-md-8">
 
@@ -47,13 +46,12 @@
                 <hr class="section-break" />
                 <ul class="list-unstyled">
                     @foreach ($question->answers as $answer)
-                    @include('partials.answer', ["answer" => $answer->publication, "owner" => $answer->publication->owner])
+                    @include('partials.answer', ["answer"=> $answer, "publication" => $answer->publication, "owner" => $answer->publication->owner])
                     @endforeach
 
                 </ul>
                 <form id="response_form">
                     <div class="form-group">
-                        @csrf
                         <input type="hidden" id="id_question" name="id_question" value="{{ $question->id_commentable_publication }}">
                         <label for="exampleInputEmail1">A tua Resposta</label>
                         <textarea form="response_form" id="response_text" name="response_text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>

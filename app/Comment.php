@@ -18,11 +18,12 @@ class Comment extends Model
         'id_publication' , 'id_commentable_publication',
     ];
 
-    protected $table = 'Comment';
+    protected $table = 'comment';
     protected $primaryKey = 'id_publication';
 
     //associations
-    public function owner(){return $this->belongsTo('App\Publication', 'id', 'id_publication');}
+
+    public function publication(){return $this->belongsTo('App\Publication', 'id_publication', 'id');}
 
     public function commentsPublication(){return $this->hasOne('App\Commentable_publication', 'id_commentable_publication', 'id_commentable_publication');}
 
