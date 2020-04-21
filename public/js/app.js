@@ -4,9 +4,10 @@ function addEventListeners() {
   if (responseCreator != null)
     responseCreator.addEventListener('submit', sendCreateResponseRequest);
 
-  let commentCreator = document.querySelector('form.comment-box');
-  if (commentCreator != null)
+  let commentCreatorArray = document.querySelectorAll('form.comment-box');
+  for (commentCreator of commentCreatorArray) {
     commentCreator.addEventListener('submit', sendCreateCommentRequest);
+  }
 }
 
 function encodeForAjax(data) {
