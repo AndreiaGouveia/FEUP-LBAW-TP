@@ -24,7 +24,7 @@ if (Auth::check()) {
             </button>
 
             @auth
-            <a type="button" class="btn btn-primary btn-sm mr-3" href="{{ route('questions.add') }}"><i class="fas fa-plus-circle"></i></a>
+            <a type="button" class="btn btn-primary btn-sm mr-3" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle"></i></a>
             @endauth
 
             <div class="btn-group">

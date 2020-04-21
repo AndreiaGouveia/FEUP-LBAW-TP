@@ -29,7 +29,7 @@ if (Auth::check()) {
         </form>
 
         @auth
-        <a type="button" class="btn btn-primary mr-4" href="{{ route('questions.add') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
+        <a type="button" class="btn btn-primary mr-4" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
 
 
         <div class="btn-group">

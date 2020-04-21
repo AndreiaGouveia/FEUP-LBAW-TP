@@ -19,13 +19,22 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        $question = Question::find($id);
+        $publication = Publication::find($id);
+
+        if ($question == null)
+            return redirect()->route('home');
+
+        //$this->authorize('view', $question);
+
+        return view('pages.question',  ['question' => $question, 'publication' => $publication]);
     }
 
     public function create()
     {
         if (!Auth::check())
             return redirect()->route('login');
+
 
         return view('pages.add_question');
     }

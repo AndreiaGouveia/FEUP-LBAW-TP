@@ -25,7 +25,7 @@ class Question extends Model
     //associations
     public function owner(){return $this->belongsTo('App\Commentable_publication', 'id_commentable_publication', 'id_commentable_publication');}
 
-    public function answers(){return $this->hasMany('App\Response');}
+    public function answers(){return $this->hasMany('App\Response', 'id_question', 'id_commentable_publication');}
 
 
 }

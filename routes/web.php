@@ -30,5 +30,10 @@ Route::post('members/{id}/password', 'MemberController@updatePassword')->name('m
 Route::post('members/{id}/delete', 'MemberController@deactivate')->name('members.deactivate');
 
 
-Route::get('questions/add', 'QuestionController@create')->name('questions.add');
-Route::post('questions/add', 'QuestionController@store')->name("store.question");
+Route::get('questions/{id}', 'QuestionController@show');
+Route::get('questions', 'QuestionController@create')->name('add.questions');
+Route::post('questions', 'QuestionController@store')->name("store.question");
+
+
+// API
+Route::post('api/answers', 'ResponseController@create');
