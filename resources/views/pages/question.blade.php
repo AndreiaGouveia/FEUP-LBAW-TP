@@ -44,7 +44,7 @@
                 <h5>{{ $question->answers->count() }} responses</h5>
 
                 <hr class="section-break" />
-                <ul class="list-unstyled">
+                <ul class="list-unstyled" id="response_section">
                     @foreach ($question->answers as $answer)
                     @include('partials.answer', ["answer"=> $answer, "publication" => $answer->publication, "owner" => $answer->publication->owner])
                     @endforeach

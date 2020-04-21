@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Publication;
+use App\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,7 @@ class CommentController extends Controller
     public function create(Request $request)
     {
 
-        $this->authorize('create', Response::class);
+        $this->authorize('create', Comment::class);
 
         DB::beginTransaction();
 
@@ -57,7 +58,10 @@ class CommentController extends Controller
         
 
         DB::commit();
-        return response()->json($comment);
+
+        $member = Member::find(Auth::user()->id);
+
+        return response()->json(['comment' => $comment, 'publication' => $publication, 'person' => $member, 'photo' => $member->photo]);
         
     }
 
