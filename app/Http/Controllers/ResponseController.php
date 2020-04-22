@@ -6,6 +6,7 @@ use App\Commentable_publication;
 use App\Publication;
 use App\Response;
 use App\Question;
+use App\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -76,7 +77,10 @@ class ResponseController extends Controller
         
 
         DB::commit();
-        return response()->json($answer);
+
+        $member = Member::find(Auth::user()->id);
+        $full_publication = Publication::find($publication->id);
+        return response()->json(['answer' => $answer, 'publication' => $full_publication, 'person' => $member, 'photo' => $member->photo]);
         
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Commentable_publication;
 use App\Publication;
 use App\Question;
+use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $publication = Publication::find($id);
 
-        $this->authorize('view', $question);
+        //$this->authorize('view', Person::class, $question);
 
         return view('pages.question',  ['question' => $question, 'publication' => $publication]);
     }
