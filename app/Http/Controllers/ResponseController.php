@@ -31,7 +31,6 @@ class ResponseController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Response::class);
 
         DB::beginTransaction();
 

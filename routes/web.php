@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@home' );
+Route::get('/', 'HomeController@home');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -31,12 +31,13 @@ Route::post('members/{id}/delete', 'MemberController@deactivate')->name('members
 
 
 Route::get('questions/{id}', 'QuestionController@show');
-Route::get('questions', 'QuestionController@create')->name('add.questions');
-Route::post('questions', 'QuestionController@store')->name("store.question");
+
+Route::get('questions', 'QuestionController@create')->name('add.questions')->middleware('auth');
+
+Route::post('questions', 'QuestionController@store')->name("store.question")->middleware('auth');
 
 
 // API
 Route::post('api/answers', 'ResponseController@store');
 
-
-Route::post('api/comments', 'CommentController@create');
+Route::post('api/comments', 'CommentController@store');

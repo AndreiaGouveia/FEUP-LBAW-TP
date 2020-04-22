@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Commentable_publication;
 use App\Publication;
 use App\Question;
-use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,8 +29,6 @@ class QuestionController extends Controller
 
     public function create()
     {
-        $this->authorize('create', Question::class);
-
         return view('pages.add_question');
     }
 

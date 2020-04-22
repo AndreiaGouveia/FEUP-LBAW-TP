@@ -35,7 +35,6 @@ function sendCreateResponseRequest(event) {
     sendAjaxRequest('POST', '/api/answers', { id_question: id_question, response_text: response_text }, responseAddedHandler);
 
   event.preventDefault();
-  event.target.reset();
 }
 
 function sendCreateCommentRequest(event) {
@@ -47,9 +46,20 @@ function sendCreateCommentRequest(event) {
 
   event.preventDefault();
   event.target.reset();
+
 }
 
 function responseAddedHandler() {
+
+  if (this.status == 403) {
+
+    let response_text = document.querySelector('#response_text').value;
+
+    if (response_text)
+      window.localStorage.setItem("response_text", response_text);
+
+    window.location.href = '../login';
+  }
 
   if (this.status != 200) {
     //TODO: show error message to user
@@ -57,18 +67,30 @@ function responseAddedHandler() {
     return;
   }
 
+  window.localStorage.removeItem("response_text");
   let info = JSON.parse(this.response);
-  console.log(info);
 
   let new_response = createResponse(info.publication, info.person, info.photo);
 
   let response_section = document.querySelector('#response_section');
+  let textarea = document.querySelector('#response_text');
+  textarea.value = "";
+
   response_section.appendChild(new_response);
+
+  //Add event listener to response comment section form
+  let commentCreator = document.querySelector('#commentSection' + info.publication.id);
+  commentCreator.addEventListener('submit', sendCreateCommentRequest);
 
 
 }
 
 function commentAddedHandler() {
+
+  if (this.status == 403) {
+
+    window.location.href = '../login';
+  }
 
   if (this.status != 200) {
     //TODO: show error message to user
@@ -81,6 +103,7 @@ function commentAddedHandler() {
   let new_comment = createComment(info.publication, info.person, info.photo);
 
   let form = document.querySelector('form[name=comment-box' + info.comment.id_commentable_publication + ']');
+  form.value = "";
 
   let comment_section = form.parentElement;
   comment_section.insertBefore(new_comment, form);
@@ -119,8 +142,8 @@ function createResponse(publication, person, photo) {
     </div>
   </div>`;
 
-  let like_buttons = 
-  `<div class="like-buttons ml-4">
+  let like_buttons =
+    `<div class="like-buttons ml-4">
     <button type="radio" class="btn px-1 py-0" toggle="" data-placement="bottom" title="Eu gosto disto">
         <i class="far fa-thumbs-up"></i>
         <label style="margin-bottom: 0px">0</label>
@@ -134,14 +157,14 @@ function createResponse(publication, person, photo) {
 
 
   let info_content = `
-  <button class="btn px-2 py-0 comment-button" type="button" data-toggle="collapse" data-target="#commentSection`+ publication.id + `" aria-controls="commentSection`+ publication.id + `" aria-expanded="false" toggle="" data-placement="bottom" title="Deixe o seu comentário" aria-expanded="false" >
+  <button class="btn px-2 py-0 comment-button" type="button" data-toggle="collapse" data-target="#commentSection`+ publication.id + `" aria-controls="commentSection` + publication.id + `" aria-expanded="false" toggle="" data-placement="bottom" title="Deixe o seu comentário" aria-expanded="false" >
     <i class="far fa-comment"></i>
     <label style="margin-bottom: 0px" class="pl-1">Comentar</label>
   </button>`
 
-  + like_buttons +
+    + like_buttons +
 
-  `<div class="save-button ml-4">
+    `<div class="save-button ml-4">
     <button class="btn px-1 py-0" toggle="" data-placement="bottom" title="Guardar">
         <i class="far fa-star"></i>
     </button>
@@ -155,7 +178,7 @@ function createResponse(publication, person, photo) {
         <a class="dropdown-item" href="#">Editar</a>
         <a class="dropdown-item" href="#">Eliminar</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport`+ publication.id +`">Reportar</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport`+ publication.id + `">Reportar</a>
     </div>
   </div>`;
 
@@ -166,15 +189,15 @@ function createResponse(publication, person, photo) {
     ` + header_ativity +
     `<p class="card-text">` + publication.description + `</p>
     <div class="info row justify-content-end mx-0">`
-    + info_content + 
+    + info_content +
     `</div>  
   </div>
 
-  <div class="commentSection collapse" id="commentSection`+ publication.id +`">
+  <div class="commentSection collapse" id="commentSection`+ publication.id + `">
     <div class="comment-block border-top pl-3 pt-2 pb-3">
   
-    <form class="form-inline comment-box mt-3" name="comment-box`+ publication.id +`">
-      <input type="hidden" name="id_publication" value="`+ publication.id +`">
+    <form class="form-inline comment-box mt-3" name="comment-box`+ publication.id + `">
+      <input type="hidden" name="id_publication" value="`+ publication.id + `">
       <img src="`+ link_image + `" class="img-comment mr-2 mt-1" alt="">
       <input class="form-control flex-fill" name="comment_text" required="" type="text"></input>
       <button type="submit" class="btn btn-primary ml-1">Comentar</button>
@@ -189,3 +212,9 @@ function createResponse(publication, person, photo) {
 
 
 addEventListeners();
+
+let response_text = document.querySelector('#response_text');
+
+if (response_text) {
+  response_text.value = window.localStorage.getItem("response_text");
+}
