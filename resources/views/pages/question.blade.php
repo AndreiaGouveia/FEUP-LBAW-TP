@@ -26,12 +26,13 @@
 
                 <div class="row justify-content-between align-items-center mt-4 mb-3 px-0 mx-0">
                     <div class="topics align-items-center">
-                        <?php
-                        ?>
+                        @foreach ($question->tags as $tag_question)
+                        @include('partials.tag', ['tag' => $tag_question->main_tag->name])
+                        @endforeach
                     </div>
 
                     <div class="info row justify-content-end align-items-center mx-0">
-                        <?php  ?>
+                        @include('partials.like_buttons', ['likes' => $question->commentable_publication->likes->count(), 'dislikes' => $question->commentable_publication->dislikes->count()])
                     </div>
 
                 </div>
