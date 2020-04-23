@@ -10,6 +10,9 @@
 @section('content')
 
 <div class="col-md-7 mx-auto my-5">
+
+    @include('flash::message')
+
     <h3 class="font-weight-normal mb-3">Adicionar Questão</h3>
     <hr class="section-break" />
 
@@ -20,12 +23,12 @@
 
             <div class="content mb-4">
                 <label for="inputTitle">Titulo</label>
-                <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" required="" autofocus="">
+                <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" value="{{ old('inputTitle') }}" required="" autofocus="">
             </div>
 
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
-                <textarea form="add_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"></textarea>
+                <textarea form="add_question" id="textAreaDescription" name="description" value="{{ old('description') }}" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"></textarea>
             </div>
 
             <div class="content mb-4">

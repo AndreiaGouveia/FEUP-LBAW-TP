@@ -30,7 +30,7 @@ Route::post('members/{id}/password', 'MemberController@updatePassword')->name('m
 Route::post('members/{id}/delete', 'MemberController@deactivate')->name('members.deactivate');
 
 
-Route::get('questions/{id}', 'QuestionController@show');
+Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
 
 Route::get('questions', 'QuestionController@create')->name('add.questions')->middleware('auth');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
 use App\Commentable_publication;
 use App\Publication;
 use App\Question;
@@ -34,9 +35,6 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        
-        $this->authorize('create', Question::class);
-
         $user = Auth::user();
 
         $inputs = $request->all();
@@ -49,8 +47,9 @@ class QuestionController extends Controller
         ]);
 
         if ($publication == null) {
+            Flash::error('Error adding question!');
             DB::rollBack();
-            return abort(404);
+            return redirect()->route('add.questions');
         }
 
         $commentable_publication = Commentable_publication::create([
@@ -58,8 +57,9 @@ class QuestionController extends Controller
         ]);
 
         if ($commentable_publication == null) {
+            Flash::error('Error adding question!');
             DB::rollBack();
-            return abort(404);
+            return redirect()->route('add.questions');
         }
 
         $question = Question::create([
@@ -68,12 +68,14 @@ class QuestionController extends Controller
         ]);
 
         if ($question == null) {
+            Flash::error('Error adding question!');
             DB::rollBack();
-            return abort(404);
+            return redirect()->route('add.questions');
         }
 
         DB::commit();
+        Flash::success('Question added successfully.');
 
-        return redirect()->route('home');
+        return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
     }
 }
