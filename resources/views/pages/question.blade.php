@@ -12,7 +12,7 @@
 
 <div class="container mt-5">
 
-@include('flash::message')
+    @include('flash::message')
 
     <div class="row">
         <div class="col-md-8">
@@ -44,7 +44,7 @@
 
             <div class="responseSection mt-4">
 
-                <h5>{{ $question->answers->count() }} responses</h5>
+                <h5><span id="number_answers">{{ $question->answers->count() }}</span> responses</h5>
 
                 <hr class="section-break" />
                 <ul class="list-unstyled" id="response_section">

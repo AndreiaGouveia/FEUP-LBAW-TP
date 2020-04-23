@@ -53,7 +53,6 @@ function responseAddedHandler() {
 
   console.log(this);
 
-
   if (this.status == 403) {
 
     createErrorMessage("You need to login before you answer!", this.extraInfo);
@@ -81,6 +80,9 @@ function responseAddedHandler() {
   //Add event listener to response comment section form
   let commentCreator = document.querySelector('#commentSection' + info.publication.id);
   commentCreator.addEventListener('submit', sendCreateCommentRequest);
+
+  let number_anwers = document.querySelector('#number_answers');
+  number_anwers.innerHTML = parseInt(number_anwers.innerHTML)  + 1;
 
 
 }
