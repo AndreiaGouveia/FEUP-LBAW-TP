@@ -11,7 +11,7 @@ class HomeController extends Controller
 
 
                 $data_question = DB::table('question')
-                        ->select('member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                        ->select('publication.id', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
                         ->join('person', 'publication.id_owner', '=', 'person.id')
                         ->join('member', 'person.id', '=', 'member.id_person')

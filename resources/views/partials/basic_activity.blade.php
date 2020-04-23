@@ -1,4 +1,4 @@
-<a href="../pages/question.php" class="hiperlink-in-activity">
+<a href="{{ route('show.question', $question->id) }}" class="hiperlink-in-activity">
     <div class="activity py-4 px-4 border-top">
 
         @include('partials.header_activity', ['name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date])
