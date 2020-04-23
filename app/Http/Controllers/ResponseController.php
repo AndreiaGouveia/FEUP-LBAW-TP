@@ -7,6 +7,7 @@ use App\Publication;
 use App\Response;
 use App\Question;
 use App\Member;
+use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,9 @@ class ResponseController extends Controller
     public function store(Request $request)
     {
 
+        if (!Auth::check())
+            return response()->json(['error' => 'User not authenticated!'], 403);
+
         DB::beginTransaction();
 
         $publication = Publication::create([
@@ -46,15 +50,15 @@ class ResponseController extends Controller
         }
 
         $commentable_publication = Commentable_publication::create(["id_publication" => $publication->id]);
-        
-       
+
+
         if ($commentable_publication == null) {
             DB::rollBack();
 
             return response()->json(['error' => 'Error in creating commentable publication!'], 400);
         }
 
-        
+
         $question = Question::find($request->input('id_question'));
         if ($question == null) {
             DB::rollBack();
@@ -67,20 +71,19 @@ class ResponseController extends Controller
             "id_question" => $request->input('id_question')
         ]);
 
-       
+
         if ($answer == null) {
             DB::rollBack();
 
             return response()->json(['error' => 'Error in creating answer!'], 400);
         }
-        
+
 
         DB::commit();
 
         $member = Member::find(Auth::user()->id);
         $full_publication = Publication::find($publication->id);
         return response()->json(['answer' => $answer, 'publication' => $full_publication, 'person' => $member, 'photo' => $member->photo]);
-        
     }
 
     /**

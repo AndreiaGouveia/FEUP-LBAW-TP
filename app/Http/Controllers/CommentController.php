@@ -21,13 +21,17 @@ class CommentController extends Controller
         //
     }
 
-        /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+
+        if (!Auth::check())
+            return response()->json(['error' => 'User not authenticated!'], 403);
+
 
         DB::beginTransaction();
 
@@ -47,20 +51,19 @@ class CommentController extends Controller
             "id_commentable_publication" => $request->input('id_publication')
         ]);
 
-       
+
         if ($comment == null) {
             DB::rollBack();
 
             return response()->json(['error' => 'Error in creating comment!'], 400);
         }
-        
+
 
         DB::commit();
 
         $member = Member::find(Auth::user()->id);
 
         return response()->json(['comment' => $comment, 'publication' => $publication, 'person' => $member, 'photo' => $member->photo]);
-        
     }
 
     /**

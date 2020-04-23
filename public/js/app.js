@@ -17,12 +17,13 @@ function encodeForAjax(data) {
   }).join('&');
 }
 
-function sendAjaxRequest(method, url, data, handler) {
+function sendAjaxRequest(method, url, data, handler, extraInfo) {
   let request = new XMLHttpRequest();
 
   request.open(method, url, true);
   request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.extraInfo = extraInfo;
   request.addEventListener('load', handler);
   request.send(encodeForAjax(data));
 }
@@ -32,7 +33,7 @@ function sendCreateResponseRequest(event) {
   let response_text = this.querySelector('#response_text').value;
 
   if (response_text != '')
-    sendAjaxRequest('POST', '/api/answers', { id_question: id_question, response_text: response_text }, responseAddedHandler);
+    sendAjaxRequest('POST', '/api/answers', { id_question: id_question, response_text: response_text }, responseAddedHandler, event.target);
 
   event.preventDefault();
 }
@@ -42,32 +43,31 @@ function sendCreateCommentRequest(event) {
   let comment_text = this.querySelector('input[name=comment_text]').value;
 
   if (comment_text != '')
-    sendAjaxRequest('POST', '/api/comments', { id_publication: id_publication, comment_text: comment_text }, commentAddedHandler);
+    sendAjaxRequest('POST', '/api/comments', { id_publication: id_publication, comment_text: comment_text }, commentAddedHandler, event.target);
 
   event.preventDefault();
-  event.target.reset();
 
 }
 
 function responseAddedHandler() {
 
+  console.log(this);
+
+
   if (this.status == 403) {
 
-    let response_text = document.querySelector('#response_text').value;
+    createErrorMessage("You need to login before you answer!", this.extraInfo);
 
-    if (response_text)
-      window.localStorage.setItem("response_text", response_text);
-
-    window.location.href = '../login';
-  }
-
-  if (this.status != 200) {
-    //TODO: show error message to user
-    console.log(this);
     return;
   }
 
-  window.localStorage.removeItem("response_text");
+  if (this.status != 200) {
+
+    createErrorMessage("Not able to create a answer!", this.extraInfo);
+    return;
+  }
+
+  deletingPreviousErrorMessage(this.extraInfo);
   let info = JSON.parse(this.response);
 
   let new_response = createResponse(info.publication, info.person, info.photo);
@@ -87,17 +87,25 @@ function responseAddedHandler() {
 
 function commentAddedHandler() {
 
+ 
+  console.log(this);
+
+
   if (this.status == 403) {
 
-    window.location.href = '../login';
-  }
+    createErrorMessage("You need to login before you comment!", this.extraInfo);
 
-  if (this.status != 200) {
-    //TODO: show error message to user
-    console.log(this);
     return;
   }
 
+  if (this.status != 200) {
+
+    createErrorMessage("Not able to create a comment!", this.extraInfo);
+    return;
+  }
+
+
+  deletingPreviousErrorMessage(this.extraInfo);
   let info = JSON.parse(this.response);
 
   let new_comment = createComment(info.publication, info.person, info.photo);
@@ -208,6 +216,29 @@ function createResponse(publication, person, photo) {
   <hr class="section-break" />`;
 
   return new_response;
+}
+
+function deletingPreviousErrorMessage(parent) {
+  var paras = parent.querySelector('.alert.alert-danger');
+
+  if (paras)
+    paras.remove();
+
+}
+
+function createErrorMessage(message, parent, prepend) {
+
+  deletingPreviousErrorMessage(parent);
+
+  let error_message = document.createElement('div');
+  error_message.className = "alert alert-danger mt-2 py-1";
+  error_message.role = "alert";
+  error_message.innerHTML = message;
+
+  if(prepend)
+    parent.prepend(error_message);
+  else
+    parent.parentElement.insertBefore(error_message, parent);
 }
 
 

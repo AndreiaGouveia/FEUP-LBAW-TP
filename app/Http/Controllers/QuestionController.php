@@ -47,8 +47,9 @@ class QuestionController extends Controller
         ]);
 
         if ($publication == null) {
-            Flash::error('Error adding question!');
             DB::rollBack();
+
+            Flash::error('Error adding question!');
             return redirect()->route('add.questions');
         }
 
@@ -57,8 +58,9 @@ class QuestionController extends Controller
         ]);
 
         if ($commentable_publication == null) {
-            Flash::error('Error adding question!');
             DB::rollBack();
+
+            Flash::error('Error adding question!');
             return redirect()->route('add.questions');
         }
 
@@ -68,8 +70,9 @@ class QuestionController extends Controller
         ]);
 
         if ($question == null) {
-            Flash::error('Error adding question!');
             DB::rollBack();
+
+            Flash::error('Error adding question!');
             return redirect()->route('add.questions');
         }
 
