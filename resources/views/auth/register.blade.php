@@ -17,7 +17,7 @@
 
     <div class="content mt-3 flex-fill">
       <label for="inputName"><i class="fas fa-user"></i></label>
-      <input name="name" type="text" id="inputName" class="form-control" placeholder="Nome" required="" autofocus="" toggle="" data-placement="right" title="Introduza o seu nome">
+      <input name="name" type="text" id="inputName" class="form-control" placeholder="Nome" value="{{ old('name') }}" required="" autofocus="" toggle="" data-placement="right" title="Introduza o seu nome">
     </div>
     @if ($errors->has('name'))
     <span class="error">
@@ -27,7 +27,7 @@
 
     <div class="content">
       <label for="inputEmail"><i class="fas fa-at"></i></label>
-      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" toggle="" data-placement="right" title="exemplo@email.com">
+      <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email" value="{{ old('email') }}" required="" autofocus="" toggle="" data-placement="right" title="exemplo@email.com">
     </div>
     @if ($errors->has('email'))
     <span class="error">
