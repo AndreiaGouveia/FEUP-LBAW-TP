@@ -1,6 +1,6 @@
 <div class="activity py-4 px-4 border-top">
 
-    @include('partials.header_activity', ['idMember' => $question->memberId, 'name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date])
+    @include('partials.header_activity', ['memberId' => $question->memberId, 'name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date])
 
     <a href="{{ route('show.question', $question->id) }}">
         <h5 class="title"><?= $question->title  ?></h5>
@@ -13,7 +13,7 @@
             @each('partials.tag', json_decode($question->tags), 'tag')
         </div>
         <div class="info flex-fill d-flex justify-content-end mx-0">
-            @include('partials.like_buttons', ['likes' => $question->likes, 'dislikes' => $question->dislikes])
+            @include('partials.like_buttons', ['id_publication' => $question->id, 'likes' => $question->likes, 'dislikes' => $question->dislikes])
         </div>
 
     </div>
