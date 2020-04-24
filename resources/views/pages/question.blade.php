@@ -1,3 +1,8 @@
+<?php
+
+$link_image = ($publication->owner->photo != null) ? $publication->owner->photo->url : null;
+?>
+
 @extends('layouts.app')
 
 @section('stylesheets')
@@ -16,7 +21,7 @@
 
     <div class="row">
         <div class="col-md-8">
-
+            @include('partials.header_activity', ['idMember' => $publication->owner, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date])
             <div class="pb-3 mb-1 border-bottom">
                 <h2>{{ $question->title }}</h2>
 
@@ -32,14 +37,18 @@
                     </div>
 
                     <div class="info row justify-content-end align-items-center mx-0">
-                        @include('partials.like_buttons', ['likes' => $question->commentable_publication->likes->count(), 'dislikes' => $question->commentable_publication->dislikes->count()])
+                        @include('partials.info_content', ['commentable_publication' => $question->commentable_publication ])
                     </div>
 
                 </div>
 
+                <div class="commentSection collapse" id=<?= "commentSection" . $question->id_commentable_publication ?>>
+                    @include('partials.comment_section', ['comments' => $question->commentable_publication->comments, 'id_publication' => $question->id_commentable_publication])
+                </div>
+
 
                 <div class="commentSection collapse" id="commentSectionQuestion">
-                    <?php  ?>
+                    @include('partials.comment_section', ['comments' => $question->commentable_publication->comments, 'id_publication' => $question->id_commentable_publication])
                 </div>
             </div>
 
