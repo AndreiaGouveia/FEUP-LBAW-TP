@@ -1,12 +1,12 @@
-<div class="like-buttons ml-4 btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary px-1 py-0">
-        <input type="radio" name="options" id="like" autocomplete="off">
+<div class="like-buttons ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="{{ $id_publication }}">
+    <label class="btn btn-secondary px-1 py-0 like">
+        <input type="radio" name="options" autocomplete="off">
         <i class="far fa-thumbs-up"></i>
         {{ $likes }}
     </label>
-    <label class="btn btn-secondary px-1 py-0 ml-2">
-        <input type="radio" name="options" id="dislike" autocomplete="off">
-        <i class="far fa-thumbs-down d-inline"></i>
+    <label class="btn btn-secondary px-1 py-0 ml-2 dislike" tabIndex="-1">
+        <input type="radio" name="options" autocomplete="off" tabIndex="-1">
+        <i class="far fa-thumbs-down"></i>
         {{ $dislikes }}
     </label>
 </div>

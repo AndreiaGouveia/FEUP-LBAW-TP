@@ -3,7 +3,7 @@
     <label style="margin-bottom: 0px" class="pl-1">Comentar</label>
 </button>
 
-@include('partials.like_buttons', ['likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
+@include('partials.like_buttons', ['id_publication' => $commentable_publication->id_publication, 'likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
 
 <div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-secondary px-1 py-0" toggle="" data-placement="bottom" title="Guardar">

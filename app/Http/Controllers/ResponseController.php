@@ -7,7 +7,6 @@ use App\Publication;
 use App\Response;
 use App\Question;
 use App\Member;
-use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

@@ -41,3 +41,6 @@ Route::post('questions', 'QuestionController@store')->name("store.question")->mi
 Route::post('api/answers', 'ResponseController@store');
 
 Route::post('api/comments', 'CommentController@store');
+
+Route::post('api/likes', 'LikesController@store');
+Route::post('api/likes/delete', 'LikesController@destroy');

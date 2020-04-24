@@ -15,16 +15,6 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
 @section('content')
 
-<script>
-    $('body').on('click', '.btn.active', function(e) {
-        e.stopImmediatePropagation();
-        e.preventDefault();
-        console.log(this, $('input:radio[name="options"]', this));
-        $(this).removeClass('active');
-        $('input:radio[name="options"]', this).prop('checked', false);
-    })
-</script>
-
 <div class="container mt-5">
 
     @include('flash::message')
@@ -46,7 +36,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
                         @endforeach
                     </div>
 
-                    <div class="info row justify-content-end align-items-center mx-0">
+                    <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $question->id_commentable_publication }}" >
                         @include('partials.info_content', ['commentable_publication' => $question->commentable_publication ])
                     </div>
 
@@ -56,10 +46,6 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
                     @include('partials.comment_section', ['comments' => $question->commentable_publication->comments, 'id_publication' => $question->id_commentable_publication])
                 </div>
 
-
-                <div class="commentSection collapse" id="commentSectionQuestion">
-                    @include('partials.comment_section', ['comments' => $question->commentable_publication->comments, 'id_publication' => $question->id_commentable_publication])
-                </div>
             </div>
 
             <div class="responseSection mt-4">
