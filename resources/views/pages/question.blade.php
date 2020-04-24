@@ -15,6 +15,16 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
 @section('content')
 
+<script>
+    $('body').on('click', '.btn.active', function(e) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        console.log(this, $('input:radio[name="options"]', this));
+        $(this).removeClass('active');
+        $('input:radio[name="options"]', this).prop('checked', false);
+    })
+</script>
+
 <div class="container mt-5">
 
     @include('flash::message')
@@ -67,7 +77,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
                     <div class="form-group">
                         <input type="hidden" id="id_question" name="id_question" value="{{ $question->id_commentable_publication }}">
                         <label for="exampleInputEmail1">A tua Resposta</label>
-                        <textarea form="response_form" id="response_text" name="response_text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea form="response_form" id="response_text" name="response_text" class="form-control" id="exampleFormControlTextarea1" rows="3" required=""></textarea>
                     </div>
                     <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Responder</button></div>
                 </form>

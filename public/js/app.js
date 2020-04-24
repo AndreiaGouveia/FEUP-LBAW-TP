@@ -247,7 +247,3 @@ function createErrorMessage(message, parent, prepend) {
 addEventListeners();
 
 let response_text = document.querySelector('#response_text');
-
-if (response_text) {
-  response_text.value = window.localStorage.getItem("response_text");
-}
