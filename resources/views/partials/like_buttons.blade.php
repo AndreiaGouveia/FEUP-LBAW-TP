@@ -4,8 +4,8 @@
         <i class="far fa-thumbs-up"></i>
         {{ $likes }}
     </label>
-    <label class="btn btn-secondary px-1 py-0 ml-2 dislike" tabIndex="-1">
-        <input type="radio" name="options" autocomplete="off" tabIndex="-1">
+    <label class="btn btn-secondary px-1 py-0 ml-2 dislike">
+        <input type="radio" name="options" autocomplete="off">
         <i class="far fa-thumbs-down"></i>
         {{ $dislikes }}
     </label>

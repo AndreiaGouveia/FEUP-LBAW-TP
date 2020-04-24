@@ -227,6 +227,12 @@ function responseAddedHandler() {
   let number_anwers = document.querySelector('#number_answers');
   number_anwers.innerHTML = parseInt(number_anwers.innerHTML) + 1;
 
+  let likeButton = document.querySelector("#like" + info.publication.id);
+  likeButton.addEventListener('click', sendLikeRequest);
+
+  let dislikeButton = document.querySelector("#dislike" + info.publication.id);
+  dislikeButton.addEventListener('click', sendDislikeRequest);
+
 
 }
 
@@ -296,14 +302,14 @@ function createResponse(publication, person, photo) {
   </div>`;
 
   let like_buttons =
-    `<div class="like-buttons ml-4 btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary px-1 py-0">
-        <input type="radio" name="options" id="like" autocomplete="off">
+    `<div class="like-buttons ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="` + publication.id + `">
+    <label class="btn btn-secondary px-1 py-0 like" id="like` + publication.id + `">
+        <input type="radio" name="options" autocomplete="off">
         <i class="far fa-thumbs-up"></i>
         0
     </label>
-    <label class="btn btn-secondary px-1 py-0 ml-2">
-        <input type="radio" name="options" id="dislike" autocomplete="off">
+    <label class="btn btn-secondary px-1 py-0 ml-2 dislike" id="dislike` + publication.id + `">
+        <input type="radio" name="options" autocomplete="off">
         <i class="far fa-thumbs-down d-inline"></i>
         0
     </label>
@@ -343,9 +349,9 @@ function createResponse(publication, person, photo) {
   <div class="py-2">
           ` + header_ativity +
     `<p class="card-text">` + publication.description + `</p>
-          <div class="info row justify-content-end mx-0 data-publication-id="` + publication.id + `">`
+          <div class="info row justify-content-end mx-0">`
     + info_content +
-    `</div>
+    `     </div>
         </div>
 
         <div class="commentSection collapse" id="commentSection`+ publication.id + `">

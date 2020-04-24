@@ -87,15 +87,6 @@ a:hover {
     color: inherit;
 }
 
-form input.invalid:focus {
-    border: 1px solid red!important;
-    box-shadow: red 0 0 1px 1px!important;
-}
-
-form input.invalid {
-    border: 1px solid red!important;
-}
-
 .form-center {
     margin-top: 4vw;
 }
