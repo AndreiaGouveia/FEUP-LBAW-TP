@@ -44,3 +44,7 @@ Route::post('api/comments', 'CommentController@store');
 
 Route::post('api/likes', 'LikesController@store');
 Route::post('api/likes/delete', 'LikesController@destroy');
+
+
+Route::post('api/favorite', 'FavoriteController@store');
+Route::post('api/favorite/delete', 'FavoriteController@destroy');

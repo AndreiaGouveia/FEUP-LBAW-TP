@@ -18,6 +18,11 @@ function addEventListeners() {
   for (dislikeButton of dislikeButtonArray) {
     dislikeButton.addEventListener('click', sendDislikeRequest);
   }
+
+  let favoriteButtonArray = document.querySelectorAll('.btn.favorite');
+  for (favoriteButtonArray of favoriteButtonArray) {
+    favoriteButtonArray.addEventListener('click', sendFavoriteRequest);
+  }
 }
 
 function encodeForAjax(data) {
@@ -76,7 +81,6 @@ function sendLikeRequest(event) {
     let parentDiv = this.parentElement;
     let id_publication = parentDiv.dataset.publicationId;
 
-    //TODO send destroy message
     if (id_publication)
       sendAjaxRequest('POST', '/api/likes/delete', { id_publication: id_publication, like: true }, likeRemovedHandler, this);
 
@@ -89,7 +93,6 @@ function sendLikeRequest(event) {
   if (id_publication)
     sendAjaxRequest('POST', '/api/likes', { id_publication: id_publication, like: true }, likeAddedHandler, this);
 
-  console.log(id_publication);
 }
 
 function sendDislikeRequest(event) {
@@ -103,8 +106,6 @@ function sendDislikeRequest(event) {
 
     let parentDiv = this.parentElement;
     let id_publication = parentDiv.dataset.publicationId;
-
-    //TODO send destroy message
     if (id_publication)
       sendAjaxRequest('POST', '/api/likes/delete', { id_publication: id_publication, like: false }, likeRemovedHandler, this);
 
@@ -117,8 +118,49 @@ function sendDislikeRequest(event) {
   if (id_publication)
     sendAjaxRequest('POST', '/api/likes', { id_publication: id_publication, like: false }, likeAddedHandler, this);
 
-  console.log(id_publication);
+}
 
+function sendFavoriteRequest(event) {
+
+  event.stopImmediatePropagation();
+  event.preventDefault();
+
+  //When button is already selected
+  if (this.classList.contains('active')) {
+
+    let parentDiv = this.parentElement;
+    let id_publication = parentDiv.dataset.publicationId;
+
+    if (id_publication)
+      sendAjaxRequest('POST', '/api/favorite/delete', { id_publication: id_publication}, favoriteRemovedHandler, this);
+
+    return;
+  }
+
+  let parentDiv = this.parentElement;
+  let id_publication = parentDiv.dataset.publicationId;
+
+  if (id_publication)
+    sendAjaxRequest('POST', '/api/favorite', { id_publication: id_publication}, favoriteAddedHandler, this);
+
+
+}
+
+function favoriteAddedHandler() {
+
+  console.log(this);
+
+  if (this.status == 403) {
+
+    return;
+  }
+
+  if (this.status != 200) {
+
+    return;
+  }
+
+  this.extraInfo.classList.add('active');
 }
 
 function likeAddedHandler() {
@@ -135,12 +177,30 @@ function likeAddedHandler() {
     return;
   }
 
-  let info = JSON.parse(this.response);
   let input = this.extraInfo;
   updateCounters(input);
 
-  console.log(input)
+  console.log(input);
 
+
+}
+
+function favoriteRemovedHandler() {
+
+  if (this.status == 403) {
+
+    console.log(this);
+    return;
+  }
+
+  if (this.status != 200) {
+
+    console.log(this);
+
+    return;
+  }
+
+  this.extraInfo.classList.remove('active');
 
 }
 

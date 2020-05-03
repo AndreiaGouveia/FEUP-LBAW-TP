@@ -30,11 +30,13 @@ class Commentable_publication extends Model
     
     public function dislikes(){return $this->hasMany('App\Likes', 'id_commentable_publication', 'id_publication')->where('likes.likes', '=', 'false');}
 
+    public function favorites(){return $this->hasMany('App\Favorite', 'id_commentable_publication', 'id_publication');}
+    
     //checks If User Likes 
 
     public function likesPub($idUser) {
 
-        return empty($this->hasMany('App\Likes', 'id_commentable_publication', 'id_publication')->where(['likes.id_member', '=', $idUser, 'likes.likes', '=', 'true']));
+        return count($this->likes->where('id_member', '=', $idUser)) > 0;
 
     }
 
@@ -42,8 +44,14 @@ class Commentable_publication extends Model
 
     public function dislikesPub($idUser) {
 
-        return empty($this->hasMany('App\Likes', 'id_commentable_publication', 'id_publication')->where(['likes.id_member', '=', $idUser, 'likes.likes', '=', 'false']));
+        return count($this->dislikes->where('id_member', '=', $idUser)) > 0;
+    }
 
+    //checks If User Favorites 
+
+    public function favoritePub($idUser) {
+
+        return count($this->favorites->where('id_member', '=', $idUser)) > 0;
     }
 
 }

@@ -1,3 +1,15 @@
+<?php 
+
+use Illuminate\Support\Facades\Auth;
+
+$favorite = false;
+
+if(Auth::check()){
+
+    $favorite = $commentable_publication->favoritePub(Auth::user()->id);
+}
+?>
+
 <button class="btn px-2 py-0 comment-button" type="button" data-toggle="collapse" data-target="#commentSection{{ $commentable_publication->id_publication }}" aria-controls="commentSection{{ $commentable_publication->id_publication }}" aria-expanded="false" toggle="" data-placement="bottom" title="Deixe o seu comentário" aria-expanded="false">
     <i class="far fa-comment"></i>
     <label style="margin-bottom: 0px" class="pl-1">Comentar</label>
@@ -5,8 +17,8 @@
 
 @include('partials.like_buttons', ['commentable_publication' => $commentable_publication, 'likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
 
-<div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary px-1 py-0" toggle="" data-placement="bottom" title="Guardar">
+<div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="{{ $commentable_publication->id_publication }}">
+    <label class="btn btn-secondary px-1 py-0 favorite <?= $favorite ? "active" : "" ?>" toggle="" data-placement="bottom" title="Guardar" >
         <i class="far fa-star"></i>
         <input type="checkbox" name="save" id="save" autocomplete="off" >
     </label>

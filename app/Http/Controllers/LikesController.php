@@ -3,11 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Likes;
-use App\Commentable_publication;
-use App\Publication;
-use App\Response;
-use App\Question;
-use App\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -64,9 +59,7 @@ class LikesController extends Controller
 
             DB::commit();
 
-
-            $type = ($request->input('like')) ? "like" : "dislike";
-            return response()->json(['id_publication' => $request->input('id_publication'), 'like' => $type]);
+            return response()->json(200);
         }
 
         $likes_input = DB::insert('insert into likes  values (?, ?, ?)', [$request->input('id_publication'), Auth::user()->id, $request->input('like')]);
@@ -81,8 +74,7 @@ class LikesController extends Controller
 
         DB::commit();
 
-        $type = ($request->input('like')) ? "like" : "dislike";
-        return response()->json(['id_publication' => $request->input('id_publication'), 'like' => $type]);
+        return response()->json(200);
     }
 
     /**
@@ -134,15 +126,14 @@ class LikesController extends Controller
 
         $delete_likes = DB::delete('delete from likes where (id_commentable_publication = ? AND id_member = ? AND likes = ?)', [$request->input('id_publication'), Auth::user()->id, $request->input('like')]);
 
-        /*if ($delete_likes == 0) {
+        if ($delete_likes == null) {
             DB::rollBack();
 
-            return response()->json(['error' => 'Error in deliting like!'], 400);
-        }*/
+            return response()->json(['error' => 'Error in deleting like!'], 400);
+        }
 
         DB::commit();
 
-        $type = ($request->input('like')) ? "like" : "dislike";
-        return response()->json(['id_publication' => $request->input('id_publication'), 'like' => $type]);
+        return response()->json(200);
     }
 }

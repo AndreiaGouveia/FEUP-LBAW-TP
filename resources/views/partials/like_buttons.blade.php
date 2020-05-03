@@ -7,14 +7,14 @@ $dislikesPublication = false;
 
 if(Auth::check()){
 
-    $likesPublication = count($commentable_publication->likes->where('id_member', '=', Auth::user()->id)) > 0;
-    $dislikesPublication = count($commentable_publication->dislikes->where('id_member', '=', Auth::user()->id)) > 0;
+    $likesPublication = $commentable_publication->likesPub(Auth::user()->id);
+    $dislikesPublication = $commentable_publication->dislikesPub(Auth::user()->id);
 
 }
 ?>
 
 <div class="like-buttons ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="{{ $commentable_publication->id_publication }}">
-    <label class="btn btn-secondary px-1 py-0 like <?= $likesPublication ? "active" : "" ?>" <?= $likesPublication ? "checked=\"true\"" : "" ?>>
+    <label class="btn btn-secondary px-1 py-0 like <?= $likesPublication ? "active" : "" ?>">
         <input type="radio" name="options" autocomplete="off">
         <i class="far fa-thumbs-up"></i>
         {{ $likes }}
