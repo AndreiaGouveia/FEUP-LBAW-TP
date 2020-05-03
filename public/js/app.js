@@ -41,7 +41,6 @@ function sendAjaxRequest(method, url, data, handler, extraInfo) {
 function updateCounters(input) {
 
   input.classList.add('active');
-  input.checked = true;
   input.lastChild.nodeValue = parseInt(input.lastChild.nodeValue) + 1;
   input.lastChild.nodeValue = "\n" + input.lastChild.nodeValue + "\n";
 
@@ -50,7 +49,6 @@ function updateCounters(input) {
     if (input.nextElementSibling.classList.contains('active')) {
 
       input.nextElementSibling.classList.remove('active');
-      input.nextElementSibling.checked = false;
       input.nextElementSibling.lastChild.nodeValue = parseInt(input.nextElementSibling.lastChild.nodeValue) - 1;
       input.nextElementSibling.lastChild.nodeValue = "\n" + input.nextElementSibling.lastChild.nodeValue + "\n";
     }
@@ -60,7 +58,6 @@ function updateCounters(input) {
 
 
       input.previousElementSibling.classList.remove('active');
-      input.previousElementSibling.checked = false;
       input.previousElementSibling.lastChild.nodeValue = parseInt(input.previousElementSibling.lastChild.nodeValue) - 1;
       input.previousElementSibling.lastChild.nodeValue = "\n" + input.previousElementSibling.lastChild.nodeValue + "\n";
     }
@@ -74,7 +71,7 @@ function sendLikeRequest(event) {
   event.preventDefault();
 
   //When button is already selected
-  if (this.checked) {
+  if (this.classList.contains('active')) {
 
     let parentDiv = this.parentElement;
     let id_publication = parentDiv.dataset.publicationId;
@@ -102,7 +99,7 @@ function sendDislikeRequest(event) {
   event.preventDefault();
 
   //When button is already selected
-  if (this.checked) {
+  if (this.classList.contains('active')) {
 
     let parentDiv = this.parentElement;
     let id_publication = parentDiv.dataset.publicationId;
@@ -165,7 +162,6 @@ function likeRemovedHandler() {
 
   let input = this.extraInfo;
   input.classList.remove('active');
-  input.checked = false;
   input.lastChild.nodeValue = parseInt(input.lastChild.nodeValue) - 1;
   input.lastChild.nodeValue = "\n" + input.lastChild.nodeValue + "\n";
 }

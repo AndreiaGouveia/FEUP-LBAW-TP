@@ -30,4 +30,20 @@ class Commentable_publication extends Model
     
     public function dislikes(){return $this->hasMany('App\Likes', 'id_commentable_publication', 'id_publication')->where('likes.likes', '=', 'false');}
 
+    //checks If User Likes 
+
+    public function likesPub($idUser) {
+
+        return empty($this->hasMany('App\Likes', 'id_commentable_publication', 'id_publication')->where(['likes.id_member', '=', $idUser, 'likes.likes', '=', 'true']));
+
+    }
+
+    //checks If User Dislikes 
+
+    public function dislikesPub($idUser) {
+
+        return empty($this->hasMany('App\Likes', 'id_commentable_publication', 'id_publication')->where(['likes.id_member', '=', $idUser, 'likes.likes', '=', 'false']));
+
+    }
+
 }

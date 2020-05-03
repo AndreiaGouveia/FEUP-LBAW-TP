@@ -31,5 +31,4 @@ class Question extends Model
 
     public function tags(){return $this->hasMany('App\TagQuestion', 'id_question', 'id_commentable_publication');}
 
-
 }
