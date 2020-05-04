@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -31,6 +32,31 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = Member::find($id);
+
+        $info = array();//info to be sent
+
+        $questions = DB::table('question')
+                    ->join('commentable_publication','commentable_publication.id_publication','=','question.id_commentable_publication')
+                    ->join('publication','publication.id','=','commentable_publication.id_publication')
+                    ->where('publication.id_owner','=',$id)
+                    ->orderBy('publication.date')
+                    ->get(array('publication.date','publication.description','question.title'));
+                 
+                    var_dump($questions[0]->date);
+        $comments = DB::table('comment')
+                    ->join('commentable_publication','commentable_publication.id_publication','=','comment.id_commentable_publication')
+                    ->join('publication','publication.id','=','commentable_publication.id_publication')
+                    ->get(array('publication.date','publication.description','comment.id_publication'));
+                    var_dump($comments);
+
+        $temp = array();
+        /*foreach($comments as $comment){
+                $temp = DB::table('response')
+                ->where($comment->)
+                ->get();
+        }        */
+                             
+        
         return view('pages.profile',  ['member' => $member]);
     }
 
