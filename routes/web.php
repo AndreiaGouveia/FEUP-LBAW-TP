@@ -47,4 +47,4 @@ Route::post('api/likes/delete', 'LikesController@destroy');
 
 
 Route::post('api/favorite', 'FavoriteController@store');
-Route::post('api/favorite/delete', 'FavoriteController@destroy');
+Route::post('api/favorite/deactivate', 'FavoriteController@destroy');

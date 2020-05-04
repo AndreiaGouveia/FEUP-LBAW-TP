@@ -38,7 +38,7 @@ class ResponseController extends Controller
         DB::beginTransaction();
 
         $publication = Publication::create([
-            "description" => $request->input('response_text'),
+            "description" => $request->input('description'),
             "id_owner" => Auth::user()->id
         ]);
 

@@ -231,7 +231,7 @@ function sendCreateResponseRequest(event) {
   let response_text = this.querySelector('#response_text').value;
 
   if (response_text != '')
-    sendAjaxRequest('POST', '/api/answers', { id_question: id_question, response_text: response_text }, responseAddedHandler, event.target);
+    sendAjaxRequest('POST', '/api/answers', { id_question: id_question, description: response_text }, responseAddedHandler, event.target);
 
   event.preventDefault();
 }
@@ -242,7 +242,7 @@ function sendCreateCommentRequest(event) {
   let comment_text = this.querySelector('input[name=comment_text]').value;
 
   if (comment_text != '')
-    sendAjaxRequest('POST', '/api/comments', { id_publication: id_publication, comment_text: comment_text }, commentAddedHandler, event.target);
+    sendAjaxRequest('POST', '/api/comments', { id_publication: id_publication, description: comment_text }, commentAddedHandler, event.target);
 
   event.preventDefault();
 
