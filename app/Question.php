@@ -23,9 +23,12 @@ class Question extends Model
     protected $primaryKey = 'id_commentable_publication';
 
     //associations
-    public function owner(){return $this->belongsTo('App\Commentable_publication', 'id_commentable_publication', 'id_commentable_publication');}
+    public function commentable_publication(){return $this->belongsTo('App\Commentable_publication', 'id_commentable_publication', 'id_publication');}
+    
+    public function publication(){return $this->belongsTo('App\Publication', 'id_commentable_publication', 'id');}
 
     public function answers(){return $this->hasMany('App\Response', 'id_question', 'id_commentable_publication');}
 
+    public function tags(){return $this->hasMany('App\TagQuestion', 'id_question', 'id_commentable_publication');}
 
 }

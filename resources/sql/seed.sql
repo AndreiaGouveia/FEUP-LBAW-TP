@@ -421,7 +421,7 @@ CREATE FUNCTION update_points_delete() RETURNS TRIGGER AS
     $BODY$
     BEGIN
 	
-	IF(NEW.likes)
+	IF(OLD.likes)
 	THEN
 		UPDATE member
 			SET points = points - 1
@@ -435,7 +435,7 @@ CREATE FUNCTION update_points_delete() RETURNS TRIGGER AS
 		
 	END IF;
 	
-        RETURN NEW;
+        RETURN OLD;
     END;
 	$BODY$
 	LANGUAGE plpgsql;

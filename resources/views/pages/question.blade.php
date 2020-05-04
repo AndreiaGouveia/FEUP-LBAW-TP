@@ -1,3 +1,8 @@
+<?php
+
+$link_image = ($publication->owner->photo != null) ? $publication->owner->photo->url : null;
+?>
+
 @extends('layouts.app')
 
 @section('stylesheets')
@@ -16,7 +21,7 @@
 
     <div class="row">
         <div class="col-md-8">
-
+            @include('partials.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date])
             <div class="pb-3 mb-1 border-bottom">
                 <h2>{{ $question->title }}</h2>
 
@@ -26,20 +31,21 @@
 
                 <div class="row justify-content-between align-items-center mt-4 mb-3 px-0 mx-0">
                     <div class="topics align-items-center">
-                        <?php
-                        ?>
+                        @foreach ($question->tags as $tag_question)
+                        @include('partials.tag', ['tag' => $tag_question->main_tag->name])
+                        @endforeach
                     </div>
 
-                    <div class="info row justify-content-end align-items-center mx-0">
-                        <?php  ?>
+                    <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $question->id_commentable_publication }}" >
+                        @include('partials.info_content', ['commentable_publication' => $question->commentable_publication ])
                     </div>
 
                 </div>
 
-
-                <div class="commentSection collapse" id="commentSectionQuestion">
-                    <?php  ?>
+                <div class="commentSection collapse" id=<?= "commentSection" . $question->id_commentable_publication ?>>
+                    @include('partials.comment_section', ['comments' => $question->commentable_publication->comments, 'id_publication' => $question->id_commentable_publication])
                 </div>
+
             </div>
 
             <div class="responseSection mt-4">
@@ -57,7 +63,7 @@
                     <div class="form-group">
                         <input type="hidden" id="id_question" name="id_question" value="{{ $question->id_commentable_publication }}">
                         <label for="exampleInputEmail1">A tua Resposta</label>
-                        <textarea form="response_form" id="response_text" name="response_text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea form="response_form" id="response_text" name="response_text" class="form-control" id="exampleFormControlTextarea1" rows="3" required=""></textarea>
                     </div>
                     <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Responder</button></div>
                 </form>

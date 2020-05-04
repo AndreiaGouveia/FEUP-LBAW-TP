@@ -30,6 +30,6 @@ class Person extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password'
+        'password', 'visible'
     ];
 }

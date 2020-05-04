@@ -27,7 +27,7 @@ Route::get('members/{id}', 'MemberController@show')->name('members'); //TODO: ch
 Route::get('members/{id}/settings', 'MemberController@edit')->name('settings');
 Route::post('members/{id}', 'MemberController@update')->name('members.update');
 Route::post('members/{id}/password', 'MemberController@updatePassword')->name('members.update.password');
-Route::post('members/{id}/delete', 'MemberController@deactivate')->name('members.deactivate');
+Route::post('members/{id}/deactivate', 'MemberController@deactivate')->name('members.deactivate');
 
 
 Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
@@ -38,6 +38,13 @@ Route::post('questions', 'QuestionController@store')->name("store.question")->mi
 
 
 // API
-Route::post('api/answers', 'ResponseController@store');
+Route::post('api/questions/{id}/answers', 'ResponseController@store');
 
-Route::post('api/comments', 'CommentController@store');
+Route::post('api/publications/{id}/comments', 'CommentController@store');
+
+Route::post('api/publications/{id}/likes', 'LikesController@store');
+Route::post('api/publications/{id}/likes/delete', 'LikesController@destroy');
+
+
+Route::post('api/publications/{id}/favorites', 'FavoriteController@store');
+Route::post('api/publications/{id}/favorites/delete', 'FavoriteController@destroy');

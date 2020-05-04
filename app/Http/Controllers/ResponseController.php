@@ -7,7 +7,6 @@ use App\Publication;
 use App\Response;
 use App\Question;
 use App\Member;
-use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +29,7 @@ class ResponseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
 
         if (!Auth::check())
@@ -39,7 +38,7 @@ class ResponseController extends Controller
         DB::beginTransaction();
 
         $publication = Publication::create([
-            "description" => $request->input('response_text'),
+            "description" => $request->input('description'),
             "id_owner" => Auth::user()->id
         ]);
 
@@ -59,7 +58,7 @@ class ResponseController extends Controller
         }
 
 
-        $question = Question::find($request->input('id_question'));
+        $question = Question::find($id);
         if ($question == null) {
             DB::rollBack();
 
@@ -68,7 +67,7 @@ class ResponseController extends Controller
 
         $answer = Response::create([
             "id_commentable_publication" => $commentable_publication->id_publication,
-            "id_question" => $request->input('id_question')
+            "id_question" => $id
         ]);
 
 

@@ -1,11 +1,27 @@
-<div class="like-buttons ml-4">
-    <button type="radio" class="btn px-1 py-0" toggle="" data-placement="bottom" title="Eu gosto disto">
-        <i class="far fa-thumbs-up"></i>
-        <label style="margin-bottom: 0px">{{ $likes }} </label>
-    </button>
+<?php 
 
-    <button type="radio" class="btn px-1 py-0 ml-2" toggle="" data-placement="bottom" title="Eu não gosto disto">
-        <i class="far fa-thumbs-down d-inline"></i>
-        <label style="margin-bottom: 0px" class="d-inline">{{ $dislikes }}</label>
-    </button>
+use Illuminate\Support\Facades\Auth;
+
+$likesPublication = false;
+$dislikesPublication = false;
+
+if(Auth::check()){
+
+    $likesPublication = $commentable_publication->likesPub(Auth::user()->id);
+    $dislikesPublication = $commentable_publication->dislikesPub(Auth::user()->id);
+
+}
+?>
+
+<div class="like-buttons ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="{{ $commentable_publication->id_publication }}">
+    <label class="btn btn-secondary px-1 py-0 like <?= $likesPublication ? "active" : "" ?>">
+        <input type="radio" name="options" autocomplete="off">
+        <i class="far fa-thumbs-up"></i>
+        {{ $likes }}
+    </label>
+    <label class="btn btn-secondary px-1 py-0 ml-2 dislike <?= $dislikesPublication ? "active" : "" ?>">
+        <input type="radio" name="options" autocomplete="off">
+        <i class="far fa-thumbs-down"></i>
+        {{ $dislikes }}
+    </label>
 </div>

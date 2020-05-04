@@ -11,7 +11,7 @@ class HomeController extends Controller
 
 
                 $data_question = DB::table('question')
-                        ->select('member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                        ->select('person.id as memberId', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
                         ->join('person', 'publication.id_owner', '=', 'person.id')
                         ->join('member', 'person.id', '=', 'member.id_person')
@@ -19,7 +19,7 @@ class HomeController extends Controller
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                        ->groupBy('member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                        ->groupBy('person.id', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                         ->orderBy('publication.date')
                         ->get();
 
