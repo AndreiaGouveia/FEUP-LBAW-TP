@@ -82,7 +82,7 @@ function sendLikeRequest(event) {
     let id_publication = parentDiv.dataset.publicationId;
 
     if (id_publication)
-      sendAjaxRequest('POST', '/api/likes/delete', { id_publication: id_publication, like: true }, likeRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', {like: true }, likeRemovedHandler, this);
 
     return;
   }
@@ -91,7 +91,7 @@ function sendLikeRequest(event) {
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
-    sendAjaxRequest('POST', '/api/likes', { id_publication: id_publication, like: true }, likeAddedHandler, this);
+    sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes', { like: true }, likeAddedHandler, this);
 
 }
 
@@ -107,7 +107,7 @@ function sendDislikeRequest(event) {
     let parentDiv = this.parentElement;
     let id_publication = parentDiv.dataset.publicationId;
     if (id_publication)
-      sendAjaxRequest('POST', '/api/likes/delete', { id_publication: id_publication, like: false }, likeRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes/delete', {like: false }, likeRemovedHandler, this);
 
     return;
   }
@@ -116,7 +116,7 @@ function sendDislikeRequest(event) {
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
-    sendAjaxRequest('POST', '/api/likes', { id_publication: id_publication, like: false }, likeAddedHandler, this);
+    sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes', {like: false }, likeAddedHandler, this);
 
 }
 
@@ -132,7 +132,7 @@ function sendFavoriteRequest(event) {
     let id_publication = parentDiv.dataset.publicationId;
 
     if (id_publication)
-      sendAjaxRequest('POST', '/api/favorite/delete', { id_publication: id_publication}, favoriteRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/' + id_publication +'/favorites/delete', {}, favoriteRemovedHandler, this);
 
     return;
   }
@@ -141,7 +141,7 @@ function sendFavoriteRequest(event) {
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
-    sendAjaxRequest('POST', '/api/favorite', { id_publication: id_publication}, favoriteAddedHandler, this);
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/favorites', {}, favoriteAddedHandler, this);
 
 
 }
@@ -231,7 +231,7 @@ function sendCreateResponseRequest(event) {
   let response_text = this.querySelector('#response_text').value;
 
   if (response_text != '')
-    sendAjaxRequest('POST', '/api/answers', { id_question: id_question, description: response_text }, responseAddedHandler, event.target);
+    sendAjaxRequest('POST', '/api/questions/' + id_question +'/answers', {description: response_text }, responseAddedHandler, event.target);
 
   event.preventDefault();
 }
@@ -241,8 +241,10 @@ function sendCreateCommentRequest(event) {
   let id_publication = this.dataset.publicationId;
   let comment_text = this.querySelector('input[name=comment_text]').value;
 
+  console.log(id_publication)
+
   if (comment_text != '')
-    sendAjaxRequest('POST', '/api/comments', { id_publication: id_publication, description: comment_text }, commentAddedHandler, event.target);
+    sendAjaxRequest('POST', '/api/publications/' + id_publication +'/comments', { description: comment_text }, commentAddedHandler, event.target);
 
   event.preventDefault();
 
@@ -277,7 +279,8 @@ function responseAddedHandler() {
   response_section.appendChild(new_response);
 
   //Add event listener to response comment section form
-  let commentCreator = document.querySelector('#commentSection' + info.publication.id);
+  let commentCreator = document.querySelector('#commentSection' + info.publication.id + " form");
+  console.log(commentCreator)
   commentCreator.addEventListener('submit', sendCreateCommentRequest);
 
   let number_anwers = document.querySelector('#number_answers');
@@ -344,7 +347,6 @@ function createComment(publication, person, photo) {
 }
 
 function createResponse(publication, person, photo) {
-
 
   let link_image = (photo != null) ? photo.url : "https://i.stack.imgur.com/l60Hf.png";
 
@@ -413,7 +415,7 @@ function createResponse(publication, person, photo) {
         <div class="commentSection collapse" id="commentSection`+ publication.id + `">
           <div class="comment-block border-top pl-3 pt-2 pb-3">
 
-            <form class="form-inline comment-box mt-3" name="comment-box`+ publication.id + `">
+            <form class="form-inline comment-box mt-3" name="comment-box`+ publication.id + `" data-publication-id="` + publication.id + `">
               <input type="hidden" name="id_publication" value="`+ publication.id + `">
                 <img src="`+ link_image + `" class="img-comment mr-2 mt-1" alt="">
                   <input class="form-control flex-fill" name="comment_text" required="" type="text"></input>

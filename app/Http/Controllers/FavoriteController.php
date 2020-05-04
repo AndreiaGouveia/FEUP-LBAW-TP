@@ -18,7 +18,7 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
         
         if (!Auth::check())
@@ -27,7 +27,7 @@ class FavoriteController extends Controller
         DB::beginTransaction();
 
         $favotires_input = Favorite::where([
-            "id_commentable_publication" => $request->input('id_publication'),
+            "id_commentable_publication" => $id,
             "id_member" => Auth::user()->id
         ])->first();
 
@@ -36,7 +36,7 @@ class FavoriteController extends Controller
             return;
         }
 
-        $favotires_input = DB::insert('insert into favorite(id_commentable_publication, id_member) values (?, ?)', [$request->input('id_publication'), Auth::user()->id]);
+        $favotires_input = DB::insert('insert into favorite(id_commentable_publication, id_member) values (?, ?)', [$id, Auth::user()->id]);
 
         if (!$favotires_input) {
             DB::rollBack();
@@ -57,14 +57,14 @@ class FavoriteController extends Controller
      * @param  \App\Favorite  $favorite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
         DB::beginTransaction();
 
-        $delete_favorite = DB::delete('delete from favorite where (id_commentable_publication = ? AND id_member = ?)', [$request->input('id_publication'), Auth::user()->id]);
+        $delete_favorite = DB::delete('delete from favorite where (id_commentable_publication = ? AND id_member = ?)', [$id, Auth::user()->id]);
 
         if ($delete_favorite == null) {
             DB::rollBack();

@@ -26,7 +26,7 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
 
         if (!Auth::check())
@@ -48,7 +48,7 @@ class CommentController extends Controller
 
         $comment = Comment::create([
             "id_publication" => $publication->id,
-            "id_commentable_publication" => $request->input('id_publication')
+            "id_commentable_publication" => $id
         ]);
 
 

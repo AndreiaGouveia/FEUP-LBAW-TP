@@ -29,7 +29,7 @@ class ResponseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
 
         if (!Auth::check())
@@ -58,7 +58,7 @@ class ResponseController extends Controller
         }
 
 
-        $question = Question::find($request->input('id_question'));
+        $question = Question::find($id);
         if ($question == null) {
             DB::rollBack();
 
@@ -67,7 +67,7 @@ class ResponseController extends Controller
 
         $answer = Response::create([
             "id_commentable_publication" => $commentable_publication->id_publication,
-            "id_question" => $request->input('id_question')
+            "id_question" => $id
         ]);
 
 

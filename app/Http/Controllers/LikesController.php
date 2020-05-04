@@ -35,7 +35,7 @@ class LikesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
@@ -43,13 +43,13 @@ class LikesController extends Controller
         DB::beginTransaction();
 
         $likes_input = Likes::where([
-            "id_commentable_publication" => $request->input('id_publication'),
+            "id_commentable_publication" => $id,
             "id_member" => Auth::user()->id
         ])->first();
 
         if ($likes_input != null) {
 
-            $likes_input = DB::update('update likes set likes = ? where id_commentable_publication = ? AND id_member = ?', [$request->input('like'), $request->input('id_publication'), Auth::user()->id]);
+            $likes_input = DB::update('update likes set likes = ? where id_commentable_publication = ? AND id_member = ?', [$request->input('like'), $id, Auth::user()->id]);
 
             if (!$likes_input) {
                 DB::rollBack();
@@ -62,15 +62,14 @@ class LikesController extends Controller
             return response()->json(200);
         }
 
-        $likes_input = DB::insert('insert into likes  values (?, ?, ?)', [$request->input('id_publication'), Auth::user()->id, $request->input('like')]);
+       
+        $likes_input = DB::insert('insert into likes  values (?, ?, ?)', [$id, Auth::user()->id, $request->input('like')]);
 
         if (!$likes_input) {
             DB::rollBack();
 
             return response()->json(['error' => 'Error in creating publication!'], 400);
         }
-
-
 
         DB::commit();
 
@@ -117,14 +116,14 @@ class LikesController extends Controller
      * @param  \App\Likes  $likes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
         DB::beginTransaction();
 
-        $delete_likes = DB::delete('delete from likes where (id_commentable_publication = ? AND id_member = ? AND likes = ?)', [$request->input('id_publication'), Auth::user()->id, $request->input('like')]);
+        $delete_likes = DB::delete('delete from likes where (id_commentable_publication = ? AND id_member = ? AND likes = ?)', [ $id, Auth::user()->id, $request->input('like')]);
 
         if ($delete_likes == null) {
             DB::rollBack();
