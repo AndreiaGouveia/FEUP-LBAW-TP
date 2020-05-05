@@ -66,15 +66,17 @@ foreach ($temp as &$value) {
 
                 <div class="content mb-4">
                     <label for="inputLocalização">Localização<small class="font-italic"> - Optional</small></label>
-                    <select id="inputLocalização" class="js-example-basic-single" name="location">
-                        <script>
-                            var myArray = <?php echo json_encode($locations); ?>;
-                            for (i = 0; i < myArray.length; i++) {
-                                document.write('<option value="' + i + '">' + myArray[i] + '</option>');
-                            }
-                            document.getElementById("inputLocalização").selectedIndex = <?php echo json_encode($curr_location); ?>;
-                        </script>
-                    </select>
+                    <br>
+                        <select id="inputLocalização" class="js-example-basic-single" name="location">
+                            <script>
+                                var myArray = <?php echo json_encode($locations); ?>;
+                                for (i = 0; i < myArray.length; i++) {
+                                    document.write('<option value="' + i + '">' + myArray[i] + '</option>');
+                                }
+                                document.getElementById("inputLocalização").selectedIndex = <?php echo json_encode($curr_location); ?>;
+                            </script>
+                        </select>
+                    
                 </div>
 
             </div>
