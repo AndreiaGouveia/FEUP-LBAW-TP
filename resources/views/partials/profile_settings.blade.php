@@ -1,3 +1,6 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
 <?php
 
 use App\Location;
@@ -63,13 +66,13 @@ foreach ($temp as &$value) {
 
                 <div class="content mb-4">
                     <label for="inputLocalização">Localização<small class="font-italic"> - Optional</small></label>
-                    <select id="inputLocalização" name="location">
+                    <select id="inputLocalização" class="js-example-basic-single" name="location">
                         <script>
-                            var myArray =  <?php echo json_encode($locations); ?>;
+                            var myArray = <?php echo json_encode($locations); ?>;
                             for (i = 0; i < myArray.length; i++) {
                                 document.write('<option value="' + i + '">' + myArray[i] + '</option>');
                             }
-                            document.getElementById("inputLocalização").selectedIndex = <?php echo json_encode($curr_location); ?>; 
+                            document.getElementById("inputLocalização").selectedIndex = <?php echo json_encode($curr_location); ?>;
                         </script>
                     </select>
                 </div>
@@ -94,3 +97,10 @@ foreach ($temp as &$value) {
 
     </div>
 </form>
+
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>
