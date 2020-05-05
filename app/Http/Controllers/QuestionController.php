@@ -6,6 +6,7 @@ use Flash;
 use App\Commentable_publication;
 use App\Publication;
 use App\Question;
+use App\TagQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -74,6 +75,23 @@ class QuestionController extends Controller
 
             Flash::error('Error adding question!');
             return redirect()->route('add.questions');
+        }
+
+
+        foreach ($inputs['tags'] as &$value) {
+
+            $tag_question = TagQuestion::create([
+                'id_tag' => $value,
+                'id_question' => $commentable_publication->id_publication
+            ]);
+
+
+            if ($tag_question == null) {
+                DB::rollBack();
+
+                Flash::error('Error adding question!');
+                return redirect()->route('add.questions');
+            }
         }
 
         DB::commit();
