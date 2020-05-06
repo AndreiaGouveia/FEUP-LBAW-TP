@@ -1,20 +1,34 @@
-
-
     <div>
         <h3 class="font-weight-normal mb-3">Atividade recente </h3>
         <?php
-        drawAnswerActivity("04/03/2020", "O meu gato anda muito triste, o que se passa?", "Se o gato apenas parece triste, preste atenção se houve fatores recentes que possam ter desencadeado um quadro depressivo: você tem tido tempo para brincar com ele? A sua família tem dado atenção a ele? Há algum animal ou membro novo na família (ele pode estar com ciúmes)?");
-        drawQuestionActivity("02/03/2020", "Qual o melhor sítio para passear o meu cão?", "Se o gato apenas parece triste, preste atenção se houve fatores recentes que possam ter desencadeado um quadro depressivo: você tem tido tempo para brincar com ele? A sua família tem dado atenção a ele? Há algum animal ou membro novo na família (ele pode estar com ciúmes)?");
-        drawCommentToQuestionActivity("01/03/2020", "Porque é que o meu gato não anda a comer?", "O seu gato tem andando triste? Poderá ser um motivo...");
-        drawCommentToAnswerActivity("01/03/2020", "Porque é que o meu gato não anda a comer?", "Não concordo com esta resposta! Cuidado!");
+        $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+        var_dump(count($info));
 
+        foreach($info as $element){
+            switch($element->type){
+                case "question":
+                    drawQuestionActivity($element->date , $element->title , $element->description , $link);
+                    break;
+
+                case "comment":
+                    drawCommentToQuestionActivity($element->date , $element->id_commentable_publication , $element->description , $link);
+                    break;
+
+                case "commentreply":
+                    drawCommentToAnswerActivity($element->date , $element->id_commentable_publication , $element->description , $link);
+                    break;
+
+                case "reply":
+                    drawAnswerActivity($element->date , $element->title , $element->description , $link);
+                    break;
+            }
+        }
         ?>
     </div>
 
 <?php
-function drawHeaderActivity($name, $action, $actionInBold, $date)
+function drawHeaderActivity($name, $action, $actionInBold, $date , $link)
 {
-    $link = "..\images\profile_picture" . trim(rand(1, 5)) . ".png";
 ?>
 
     <div id="header-card mb-3">
@@ -31,13 +45,13 @@ function drawHeaderActivity($name, $action, $actionInBold, $date)
 }
 
 
-function drawBasicActivity($date, $title, $description)
+function drawBasicActivity($date, $title, $description , $link)
 {
 ?>
     <a href="../pages/question.php" class="hiperlink-in-activity">
         <div class="activity py-4 px-4 border-top">
 
-            <?php drawHeaderActivity("João Pinheiro", "", "", $date); ?>
+            <?php drawHeaderActivity("João Pinheiro", "", "", $date , $link); ?>
             <h5 class="title"><?= $title ?></h5>
             <p class="text"><?= $description ?></p>
             <?php drawInfoBasicActivity(); ?>
@@ -53,7 +67,7 @@ function drawInfoBasicActivity()
 ?>
     <div class="row mt-4 px-0 mx-0">
         <div class="info row justify-content-start d-line mx-0">
-            <?php drawTopicsInCard(); ?>
+            <?php //drawTopicsInCard(); ?>
         </div>
         <div class="info flex-fill d-flex justify-content-end mx-0">
             <?php drawLikeButtons(); ?>
@@ -83,13 +97,13 @@ function drawLikeButtons()
 <?php
 }
 
-function drawAnswerActivity($date, $title, $response)
+function drawAnswerActivity($date, $title, $response , $link)
 {
 ?>
 
     <a href="../pages/question.php" class="hiperlink-in-activity">
         <div class="activity py-4 px-4 border-top ">
-            <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date); ?>
+            <?php drawHeaderActivity("João Pinheiro", "respondeu a", $title, $date , $link); ?>
             <p class="card-text"><?= $response ?></p>
             <div class="info row justify-content-end align-items-center mx-0">
                 <?php drawLikeButtons(); ?>
@@ -100,14 +114,14 @@ function drawAnswerActivity($date, $title, $response)
 <?php
 }
 
-function drawQuestionActivity($date, $title, $description)
+function drawQuestionActivity($date, $title, $description , $link)
 {
 ?>
 
 
     <a href="../pages/question.php" class="hiperlink-in-activity">
         <div class="activity py-4 px-4 border-top">
-            <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date); ?>
+            <?php drawHeaderActivity("João Pinheiro", "perguntou:", "", $date , $link); ?>
             <h5 class="title"><?= $title ?></h5>
             <p class="text"><?= $description ?></p>
             <?php drawInfoBasicActivity(); ?>
@@ -117,14 +131,14 @@ function drawQuestionActivity($date, $title, $description)
 <?php
 }
 
-function drawCommentToAnswerActivity($date, $title, $response)
+function drawCommentToAnswerActivity($date, $title, $response , $link)
 {
 ?>
 
 
     <a href="../pages/question.php" class="hiperlink-in-activity">
         <div class="activity py-4 px-4 border-top">
-            <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date); ?>
+            <?php drawHeaderActivity("João Pinheiro", "comentou uma resposta a", $title, $date , $link); ?>
             <p class="card-text"><?= $response ?></p>
         </div>
     </a>
@@ -132,14 +146,14 @@ function drawCommentToAnswerActivity($date, $title, $response)
 <?php
 }
 
-function drawCommentToQuestionActivity($date, $title, $response)
+function drawCommentToQuestionActivity($date, $title, $response , $link)
 {
 ?>
 
 
     <a href="../pages/question.php" class="hiperlink-in-activity">
         <div href="../pages/question.php" class="activity py-4 px-4 border-top">
-            <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date); ?>
+            <?php drawHeaderActivity("João Pinheiro", "comentou", $title, $date , $link); ?>
             <p class="card-text"><?= $response ?></p>
         </div>
     </a>

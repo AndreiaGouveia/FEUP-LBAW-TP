@@ -29,6 +29,7 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         $member = Member::find($id);
@@ -38,26 +39,55 @@ class MemberController extends Controller
         $questions = DB::table('question')
                     ->join('commentable_publication','commentable_publication.id_publication','=','question.id_commentable_publication')
                     ->join('publication','publication.id','=','commentable_publication.id_publication')
-                    ->where('publication.id_owner','=',$id)
                     ->orderBy('publication.date')
                     ->get(array('publication.date','publication.description','question.title'));
-                 
-                    var_dump($questions[0]->date);
+        foreach($questions as $question){
+            $question->type='question';
+        }
+
         $comments = DB::table('comment')
                     ->join('commentable_publication','commentable_publication.id_publication','=','comment.id_commentable_publication')
-                    ->join('publication','publication.id','=','commentable_publication.id_publication')
-                    ->get(array('publication.date','publication.description','comment.id_publication'));
-                    var_dump($comments);
+                    ->join('publication','publication.id','=','comment.id_publication')
+                    ->orderBy('publication.date')
+                    ->get(array('publication.date','publication.description','comment.id_commentable_publication'));
 
-        $temp = array();
-        /*foreach($comments as $comment){
+
+        foreach($comments as $comment){
+                $temp = array();
                 $temp = DB::table('response')
-                ->where($comment->)
+                ->select('question.title')
+                ->join('question','question.id_commentable_publication','=','response.id_question')
+                ->where('response.id_commentable_publication' , '=' , $comment->id_commentable_publication)
                 ->get();
-        }        */
-                             
-        
-        return view('pages.profile',  ['member' => $member]);
+                $comment->type ='comment';
+
+                if(empty($temp[0])){
+                    $temp = DB::table('question')
+                    ->where('question.id_commentable_publication' , '=' , $comment->id_commentable_publication)
+                    ->get('question.title');
+                    $comment->type ='commentreply';
+                }
+
+                $comment->id_commentable_publication = $temp->toArray()[0]->title;
+
+        }
+
+        $reply = DB::table('response')
+                    ->join('question','question.id_commentable_publication','=','response.id_question')
+                    ->join('commentable_publication','commentable_publication.id_publication','=','response.id_commentable_publication')
+                    ->join('publication','publication.id','=','commentable_publication.id_publication')
+                    ->orderBy('publication.date')
+                    ->get(array('publication.date','publication.description','question.title'));
+
+        foreach($reply as $rep){
+            $rep->type='reply';
+        }
+
+        $info = array_merge($comments->toArray() , $questions->toArray() , $reply->toArray());
+
+         usort($info, array($this , 'date'));
+
+        return view('pages.profile',  ['member' => $member , 'info' => $info]);
     }
 
     /**
@@ -163,5 +193,10 @@ class MemberController extends Controller
         $person->visible = false;
 
         return redirect()->route('logout');
+    }
+
+    public function date($a,$b)
+    {
+        return ($a->date > $b->date) ? -1 : 1;
     }
 }
