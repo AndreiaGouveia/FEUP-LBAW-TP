@@ -18,6 +18,9 @@ class TagQuestion extends Model
         'id_tag','id_question'
     ];
 
+    protected $primaryKey = ['id_tag','id_question'];
+    public $incrementing = false;
+
     protected $table = 'tag_question';
 
     public function main_tag(){return $this->hasOne('App\Tag', 'id', 'id_tag');}
