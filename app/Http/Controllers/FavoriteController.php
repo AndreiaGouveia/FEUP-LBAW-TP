@@ -41,7 +41,7 @@ class FavoriteController extends Controller
                 return response()->json(200);
             }
 
-            $favotires_input = DB::insert('insert into favorite(id_commentable_publication, id_member) values (?, ?)', [$id, Auth::user()->id]);
+            DB::insert('insert into favorite(id_commentable_publication, id_member) values (?, ?)', [$id, Auth::user()->id]);
 
             DB::commit();
 

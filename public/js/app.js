@@ -300,17 +300,19 @@ function responseAddedHandler() {
 
   //Add event listener to response comment section form
   let commentCreator = document.querySelector('#commentSection' + info.publication.id + " form");
-  console.log(commentCreator)
   commentCreator.addEventListener('submit', sendCreateCommentRequest);
 
   let number_anwers = document.querySelector('#number_answers');
   number_anwers.innerHTML = parseInt(number_anwers.innerHTML) + 1;
 
-  let likeButton = document.querySelector("#like" + info.publication.id);
+  let likeButton = response_section.querySelector("#like" + info.publication.id);
   likeButton.addEventListener('click', sendLikeRequest);
 
-  let dislikeButton = document.querySelector("#dislike" + info.publication.id);
+  let dislikeButton = response_section.querySelector("#dislike" + info.publication.id);
   dislikeButton.addEventListener('click', sendDislikeRequest);
+
+  let favoriteButton = response_section.querySelector("#favorite" + info.publication.id);
+  favoriteButton.addEventListener('click', sendFavoriteRequest);
 
 
 }
@@ -425,8 +427,8 @@ function createResponse(publication, person, photo) {
 
     + like_buttons +
 
-    `<div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary px-1 py-0" toggle="" data-placement="bottom" title="Guardar">
+    `<div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="` +  publication.id + ` ">
+    <label class="btn btn-secondary px-1 py-0 favorite" id="favorite` + publication.id + `" toggle="" data-placement="bottom" title="Guardar" >
         <i class="far fa-star"></i>
         <input type="checkbox" name="save" id="save" autocomplete="off" >
     </label>
