@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Commentable_publication;
 use App\Likes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,11 @@ class LikesController extends Controller
         try {
 
             DB::beginTransaction();
+
+
+            if (!Commentable_publication::find($id)) {
+                return response()->json(['error' => "No answer or question was found with id equal to " . $id], 404);
+            }
 
             $likes_input = Likes::where([
                 "id_commentable_publication" => $id,

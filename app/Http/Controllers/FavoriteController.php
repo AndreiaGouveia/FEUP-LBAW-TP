@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Commentable_publication;
 use App\Favorite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,11 @@ class FavoriteController extends Controller
         try {
             DB::beginTransaction();
 
+
+            if (!Commentable_publication::find($id)) {
+                return response()->json(['error' => "No answer or question was found with id equal to " . $id], 404);
+            }
+
             $favotires_input = Favorite::where([
                 "id_commentable_publication" => $id,
                 "id_member" => Auth::user()->id
@@ -40,7 +46,6 @@ class FavoriteController extends Controller
             DB::commit();
 
             return response()->json(200);
-            
         } catch (\Exception $e) {
 
             DB::rollBack();

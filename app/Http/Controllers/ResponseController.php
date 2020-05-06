@@ -39,6 +39,11 @@ class ResponseController extends Controller
         try {
             DB::beginTransaction();
 
+
+            if (!Question::find($id)) {
+                return response()->json(['error' => "No question was found with id equal to " . $id], 404);
+            }
+
             $publication = Publication::create([
                 "description" => $request->input('description'),
                 "id_owner" => Auth::user()->id
@@ -63,7 +68,6 @@ class ResponseController extends Controller
             $member = Member::find(Auth::user()->id);
             $full_publication = Publication::find($publication->id);
             return response()->json(['answer' => $answer, 'publication' => $full_publication, 'person' => $member, 'photo' => $member->photo]);
-       
         } catch (\Exception $e) {
 
             DB::rollBack();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Commentable_publication;
 use App\Publication;
 use App\Member;
 use Illuminate\Http\Request;
@@ -32,9 +33,13 @@ class CommentController extends Controller
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
-
         try {
             DB::beginTransaction();
+
+
+            if (!Commentable_publication::find($id)) {
+                return response()->json(['error' => "No answer or question was found with id equal to " . $id], 404);
+            }
 
             $publication = Publication::create([
                 "description" => $request->input('description'),
@@ -51,7 +56,6 @@ class CommentController extends Controller
             $member = Member::find(Auth::user()->id);
 
             return response()->json(['comment' => $comment, 'publication' => $publication, 'person' => $member, 'photo' => $member->photo]);
-        
         } catch (\Exception $e) {
 
             DB::rollBack();

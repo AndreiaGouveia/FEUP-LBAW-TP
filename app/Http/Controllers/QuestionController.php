@@ -68,7 +68,7 @@ class QuestionController extends Controller
             Flash::success('Question added successfully.');
 
             return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
-            
+
         } catch (\Exception $e) {
 
             DB::rollBack();
