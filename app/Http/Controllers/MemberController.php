@@ -98,10 +98,11 @@ class MemberController extends Controller
             $rep->type='reply';
         }
 
+
         $member->reply = count($reply);
         $info = array_merge($comments->toArray() , $questions->toArray() , $reply->toArray());
 
-         usort($info, array($this , 'date'));
+        usort($info, array($this , 'date'));
 
         return view('pages.profile',  ['member' => $member , 'info' => $info]);
     }

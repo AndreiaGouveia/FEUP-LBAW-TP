@@ -32,7 +32,7 @@ $location = implode(",", $location_array);
             <hr class="section-break" />
             <h5>Contribuições </h5>
             <p><span class="badge badge-light pl-0"> <i class="fas fa-question"></i> </span><?=$member->questions?> Perguntas</p>
-            <p><span class="badge badge-light pl-0"> <i class="far fa-check-square"></i> </span><?=$member->comments?> Respotas</p>
-            <p><span class="badge badge-light pl-0"> <i class="far fa-comment"></i></span><?=$member->reply?> Comentários</p>
+            <p><span class="badge badge-light pl-0"> <i class="far fa-check-square"></i> </span><?=$member->reply?> Respotas</p>
+            <p><span class="badge badge-light pl-0"> <i class="far fa-comment"></i></span><?=$member->comments?> Comentários</p>
         </div>
     </div>
