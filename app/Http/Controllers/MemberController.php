@@ -35,6 +35,9 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
+        if($member == null)
+        return;
+
         $info = array();//info to be sent
 
         $questions = DB::table('question')
