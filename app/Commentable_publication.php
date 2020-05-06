@@ -22,7 +22,8 @@ class Commentable_publication extends Model
     protected $primaryKey = 'id_publication';
 
     //associations
-    public function owner(){return $this->belongsTo('App\Publication', 'id', 'id_publication');}
+    
+    public function publication(){return $this->belongsTo('App\Publication', 'id_publication', 'id');}
 
     public function comments(){return $this->hasMany('App\Comment', "id_commentable_publication", "id_publication");}
 

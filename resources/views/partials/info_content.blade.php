@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 
 $favorite = false;
+$owner = false;
 
 if(Auth::check()){
 
     $favorite = $commentable_publication->favoritePub(Auth::user()->id);
+    $owner = $commentable_publication->publication->id_owner == Auth::user()->id;
 }
 ?>
 
@@ -29,9 +31,11 @@ if(Auth::check()){
         <i class="fas fa-ellipsis-h"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+    @if($owner)
         <a class="dropdown-item" href="#">Editar</a>
         <a class="dropdown-item" href="#">Eliminar</a>
         <div class="dropdown-divider"></div>
+    @endif
         <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport{{ $commentable_publication->id_publication }}">Reportar</a>
     </div>
 </div>
