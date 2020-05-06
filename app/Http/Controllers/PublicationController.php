@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Publication;
 use App\Reported;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,8 +23,15 @@ class PublicationController extends Controller
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
+
+        DB::beginTransaction();
+        
+
+        if (!Publication::find($id)){
+            return response()->json(['error' => "No publication was found with id equal to ".$id], 404);
+        }
+
         try {
-            DB::beginTransaction();
 
             $reported = Reported::where([
                 "id_publication" => $id,

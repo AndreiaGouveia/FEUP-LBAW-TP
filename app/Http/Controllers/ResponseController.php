@@ -35,54 +35,41 @@ class ResponseController extends Controller
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
-        DB::beginTransaction();
 
-        $publication = Publication::create([
-            "description" => $request->input('description'),
-            "id_owner" => Auth::user()->id
-        ]);
+        try {
+            DB::beginTransaction();
 
-        if ($publication == null) {
+            $publication = Publication::create([
+                "description" => $request->input('description'),
+                "id_owner" => Auth::user()->id
+            ]);
+
+            $commentable_publication = Commentable_publication::create(["id_publication" => $publication->id]);
+
+            $question = Question::find($id);
+            if ($question == null) {
+                DB::rollBack();
+
+                return response()->json(['error' => 'Question not found!'], 404);
+            }
+
+            $answer = Response::create([
+                "id_commentable_publication" => $commentable_publication->id_publication,
+                "id_question" => $id
+            ]);
+
+            DB::commit();
+
+            $member = Member::find(Auth::user()->id);
+            $full_publication = Publication::find($publication->id);
+            return response()->json(['answer' => $answer, 'publication' => $full_publication, 'person' => $member, 'photo' => $member->photo]);
+       
+        } catch (\Exception $e) {
+
             DB::rollBack();
 
-            return response()->json(['error' => 'Error in creating publication!'], 400);
+            return response()->json(['error' => $e->getMessage()], 400);
         }
-
-        $commentable_publication = Commentable_publication::create(["id_publication" => $publication->id]);
-
-
-        if ($commentable_publication == null) {
-            DB::rollBack();
-
-            return response()->json(['error' => 'Error in creating commentable publication!'], 400);
-        }
-
-
-        $question = Question::find($id);
-        if ($question == null) {
-            DB::rollBack();
-
-            return response()->json(['error' => 'Question not found!'], 404);
-        }
-
-        $answer = Response::create([
-            "id_commentable_publication" => $commentable_publication->id_publication,
-            "id_question" => $id
-        ]);
-
-
-        if ($answer == null) {
-            DB::rollBack();
-
-            return response()->json(['error' => 'Error in creating answer!'], 400);
-        }
-
-
-        DB::commit();
-
-        $member = Member::find(Auth::user()->id);
-        $full_publication = Publication::find($publication->id);
-        return response()->json(['answer' => $answer, 'publication' => $full_publication, 'person' => $member, 'photo' => $member->photo]);
     }
 
     /**

@@ -33,37 +33,31 @@ class CommentController extends Controller
             return response()->json(['error' => 'User not authenticated!'], 403);
 
 
-        DB::beginTransaction();
+        try {
+            DB::beginTransaction();
 
-        $publication = Publication::create([
-            "description" => $request->input('description'),
-            "id_owner" => Auth::user()->id
-        ]);
+            $publication = Publication::create([
+                "description" => $request->input('description'),
+                "id_owner" => Auth::user()->id
+            ]);
 
-        if ($publication == null) {
+            $comment = Comment::create([
+                "id_publication" => $publication->id,
+                "id_commentable_publication" => $id
+            ]);
+
+            DB::commit();
+
+            $member = Member::find(Auth::user()->id);
+
+            return response()->json(['comment' => $comment, 'publication' => $publication, 'person' => $member, 'photo' => $member->photo]);
+        
+        } catch (\Exception $e) {
+
             DB::rollBack();
 
-            return response()->json(['error' => 'Error in creating publication!'], 400);
+            return response()->json(['error' => $e->getMessage()], 400);
         }
-
-        $comment = Comment::create([
-            "id_publication" => $publication->id,
-            "id_commentable_publication" => $id
-        ]);
-
-
-        if ($comment == null) {
-            DB::rollBack();
-
-            return response()->json(['error' => 'Error in creating comment!'], 400);
-        }
-
-
-        DB::commit();
-
-        $member = Member::find(Auth::user()->id);
-
-        return response()->json(['comment' => $comment, 'publication' => $publication, 'person' => $member, 'photo' => $member->photo]);
     }
 
     /**

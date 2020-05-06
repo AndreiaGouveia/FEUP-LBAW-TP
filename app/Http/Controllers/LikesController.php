@@ -40,40 +40,36 @@ class LikesController extends Controller
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
-        DB::beginTransaction();
+        try {
 
-        $likes_input = Likes::where([
-            "id_commentable_publication" => $id,
-            "id_member" => Auth::user()->id
-        ])->first();
+            DB::beginTransaction();
 
-        if ($likes_input != null) {
+            $likes_input = Likes::where([
+                "id_commentable_publication" => $id,
+                "id_member" => Auth::user()->id
+            ])->first();
 
-            $likes_input = DB::update('update likes set likes = ? where id_commentable_publication = ? AND id_member = ?', [$request->input('like'), $id, Auth::user()->id]);
+            if ($likes_input != null) {
 
-            if (!$likes_input) {
-                DB::rollBack();
+                $likes_input = DB::update('update likes set likes = ? where id_commentable_publication = ? AND id_member = ?', [$request->input('like'), $id, Auth::user()->id]);
 
-                return response()->json(['error' => 'Error in creating publication!'], 400);
+                DB::commit();
+
+                return response()->json(200);
             }
+
+
+            $likes_input = DB::insert('insert into likes  values (?, ?, ?)', [$id, Auth::user()->id, $request->input('like')]);
 
             DB::commit();
 
             return response()->json(200);
-        }
+        } catch (\Exception $e) {
 
-       
-        $likes_input = DB::insert('insert into likes  values (?, ?, ?)', [$id, Auth::user()->id, $request->input('like')]);
-
-        if (!$likes_input) {
             DB::rollBack();
 
-            return response()->json(['error' => 'Error in creating publication!'], 400);
+            return response()->json(['error' => $e->getMessage()], 400);
         }
-
-        DB::commit();
-
-        return response()->json(200);
     }
 
     /**
@@ -123,7 +119,7 @@ class LikesController extends Controller
 
         DB::beginTransaction();
 
-        $delete_likes = DB::delete('delete from likes where (id_commentable_publication = ? AND id_member = ? AND likes = ?)', [ $id, Auth::user()->id, $request->input('like')]);
+        $delete_likes = DB::delete('delete from likes where (id_commentable_publication = ? AND id_member = ? AND likes = ?)', [$id, Auth::user()->id, $request->input('like')]);
 
         if ($delete_likes == null) {
             DB::rollBack();

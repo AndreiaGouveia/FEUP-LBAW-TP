@@ -87,7 +87,7 @@ function sendLikeRequest(event) {
     let id_publication = parentDiv.dataset.publicationId;
 
     if (id_publication)
-      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', {like: true }, likeRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: true }, likeRemovedHandler, this);
 
     return;
   }
@@ -96,7 +96,7 @@ function sendLikeRequest(event) {
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
-    sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes', { like: true }, likeAddedHandler, this);
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes', { like: true }, likeAddedHandler, this);
 
 }
 
@@ -112,7 +112,7 @@ function sendDislikeRequest(event) {
     let parentDiv = this.parentElement;
     let id_publication = parentDiv.dataset.publicationId;
     if (id_publication)
-      sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes/delete', {like: false }, likeRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: false }, likeRemovedHandler, this);
 
     return;
   }
@@ -121,7 +121,7 @@ function sendDislikeRequest(event) {
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
-    sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes', {like: false }, likeAddedHandler, this);
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes', { like: false }, likeAddedHandler, this);
 
 }
 
@@ -137,7 +137,7 @@ function sendFavoriteRequest(event) {
     let id_publication = parentDiv.dataset.publicationId;
 
     if (id_publication)
-      sendAjaxRequest('POST', '/api/publications/' + id_publication +'/favorites/delete', {}, favoriteRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/favorites/delete', {}, favoriteRemovedHandler, this);
 
     return;
   }
@@ -236,12 +236,12 @@ function sendCreateResponseRequest(event) {
   let response_text = this.querySelector('#response_text').value;
 
   if (response_text != '')
-    sendAjaxRequest('POST', '/api/questions/' + id_question +'/answers', {description: response_text }, responseAddedHandler, event.target);
+    sendAjaxRequest('POST', '/api/questions/' + id_question + '/answers', { description: response_text }, responseAddedHandler, event.target);
 
   event.preventDefault();
 }
 
-function sendReport(event){
+function sendReport(event) {
 
   console.log("AQUI");
 
@@ -251,7 +251,7 @@ function sendReport(event){
   console.log(motive);
   console.log("AQUI");
 
-  sendAjaxRequest('POST', '/api/publications/' + id_publication +'/report', { motive: motive }, reportAddedHandler, event.target);
+  sendAjaxRequest('POST', '/api/publications/' + id_publication + '/report', { motive: motive }, reportAddedHandler, event.target);
 
   event.preventDefault();
 }
@@ -264,7 +264,7 @@ function sendCreateCommentRequest(event) {
   console.log(id_publication)
 
   if (comment_text != '')
-    sendAjaxRequest('POST', '/api/publications/' + id_publication +'/comments', { description: comment_text }, commentAddedHandler, event.target);
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/comments', { description: comment_text }, commentAddedHandler, event.target);
 
   event.preventDefault();
 
@@ -333,9 +333,9 @@ function reportAddedHandler() {
     return;
   }
 
+  createSucessMessage("Publication was reported with sucess", document.querySelector('#content div div'));
+  this.extraInfo.reset();
 
-  this.extraInfo.submit();
-  
 }
 
 function commentAddedHandler() {
@@ -480,7 +480,7 @@ function deletingPreviousErrorMessage(parent) {
 
 }
 
-function createErrorMessage(message, parent, prepend) {
+function createErrorMessage(message, parent) {
 
   console.log(parent);
   deletingPreviousErrorMessage(parent);
@@ -490,10 +490,19 @@ function createErrorMessage(message, parent, prepend) {
   error_message.role = "alert";
   error_message.innerHTML = message;
 
-  if (prepend)
-    parent.prepend(error_message);
-  else
-    parent.parentElement.insertBefore(error_message, parent);
+  parent.parentElement.insertBefore(error_message, parent);
+}
+
+function createSucessMessage(message, parent) {
+
+  console.log(parent);
+
+  let sucess_message = document.createElement('div');
+  sucess_message.className = "alert alert-success mt-2 py-1";
+  sucess_message.role = "alert";
+  sucess_message.innerHTML = message;
+
+  parent.parentElement.insertBefore(sucess_message, parent);
 }
 
 
