@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
 use App\Member;
 use App\Person;
 use Illuminate\Http\Request;
@@ -123,7 +124,7 @@ class MemberController extends Controller
 
         $member = Member::find($id);
         $person = Person::find($id);
-
+        
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
@@ -137,8 +138,14 @@ class MemberController extends Controller
         $member->biography = $inputs['biography'];
         $person->email = $inputs['email'];
 
+        if($inputs['location'] > 0)
+            $member->id_location = $inputs['location'];
+        else
+            $member->id_location = null;
+
         $member->save();
         $person->save();
+        
 
         return redirect()->route('members', $id);
 

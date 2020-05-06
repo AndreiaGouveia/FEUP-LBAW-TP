@@ -1,26 +1,42 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
 <?php
+
+use App\Location;
+use App\Member;
+
 $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
 
-$location_array = array();
-if ($member->location()->first() != null) {
+$curr_location = $member->id_location;
 
-    if (isset($member->location()->first()->city))
-        array_push($location_array, $member->location()->first()->city);
+$temp = Location::get();
 
-    if (isset($member->location()->first()->district)) {
-        array_push($location_array, $member->location()->first()->district);
+$locations = array();
+array_push($locations, ' ');
+
+foreach ($temp as &$value) {
+    $new_location_array = array();
+
+    if (isset($value->city))
+        array_push($new_location_array, $value->city);
+
+    if (isset($value->district)) {
+        array_push($new_location_array, $value->district);
     }
 
-    if (isset($member->location()->first()->country)) {
-        array_push($location_array, $member->location()->first()->country);
+    if (isset($value->country)) {
+        array_push($new_location_array, $value->country);
     }
+
+    $new_location = implode(",", $new_location_array);
+
+    array_push($locations, $new_location);
 }
 
-$location = implode(",", $location_array);
-
-
-
 ?>
+
+
 <h3 class="font-weight-normal mb-3">Alterar Perfil</h3>
 <hr class="section-break" />
 
@@ -50,7 +66,17 @@ $location = implode(",", $location_array);
 
                 <div class="content mb-4">
                     <label for="inputLocalização">Localização<small class="font-italic"> - Optional</small></label>
-                    <input type="text" id="inputLocalização" name="location" class="form-control" placeholder="Localização" value="<?= $location ?>" autofocus="">
+                    <br>
+                    <select id="inputLocalização" class="js-example-basic-single" name="location">
+                        <script>
+                            var myArray = <?php echo json_encode($locations); ?>;
+                            for (i = 0; i < myArray.length; i++) {
+                                document.write('<option value="' + i + '">' + myArray[i] + '</option>');
+                            }
+                            document.getElementById("inputLocalização").selectedIndex = <?php echo json_encode($curr_location); ?>;
+                        </script>
+                    </select>
+
                 </div>
 
             </div>
@@ -73,3 +99,10 @@ $location = implode(",", $location_array);
 
     </div>
 </form>
+
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>

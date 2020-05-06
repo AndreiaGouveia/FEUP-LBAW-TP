@@ -1,3 +1,23 @@
+<?php
+
+use App\Tag;
+
+$temp = Tag::get();
+
+$locations = array();
+array_push($locations, ' ');
+
+foreach ($temp as &$value) {
+    $new_location_array = array();
+
+    if (isset($value->name))
+        array_push($new_location_array, $value->city);
+
+    array_push($locations, $value->name);
+}
+
+?>
+
 @extends('layouts.app')
 
 @section('stylesheets')
@@ -5,6 +25,10 @@
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/add_question.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
 @endsection
 
 @section('content')
@@ -33,7 +57,17 @@
 
             <div class="content mb-4">
                 <label for="inputTopics">Tópicos</label>
-                <input id="inputTopics" class="form-control" placeholder="Tópicos" autofocus="">
+                <br>
+
+                <select id="inputTopics" class="js-example-basic-multiple" name="tags[]" multiple="multiple">
+                    <script>
+                        var myArray = <?php echo json_encode($locations); ?>;
+                        for (i = 0; i < myArray.length; i++) {
+                            document.write('<option value="' + i + '">' + myArray[i] + '</option>');
+                        }
+                    </script>
+                </select>
+
             </div>
 
             <div class="d-flex justify-content-end d-inline">
@@ -44,5 +78,12 @@
         </div>
     </form>
 </div>
+
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>
 
 @endsection
