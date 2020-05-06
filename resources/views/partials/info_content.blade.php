@@ -40,4 +40,4 @@ if(Auth::check()){
     </div>
 </div>
 
-<?php /* report pop up missing */ ?>
+@include('partials.report_pop_up', ['idOfPopUp' => 'popUpReport' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])

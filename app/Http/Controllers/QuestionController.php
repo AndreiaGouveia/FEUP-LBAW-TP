@@ -24,8 +24,6 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $publication = Publication::find($id);
 
-        //$this->authorize('view', Person::class, $question);
-
         return view('pages.question',  ['question' => $question, 'publication' => $publication]);
     }
 

@@ -9,6 +9,11 @@ function addEventListeners() {
     commentCreator.addEventListener('submit', sendCreateCommentRequest);
   }
 
+  let reportArray = document.querySelectorAll('form.report');
+  for (report of reportArray) {
+    report.addEventListener('submit', sendReport);
+  }
+
   let likeButtonArray = document.querySelectorAll('.btn.like');
   for (likeButton of likeButtonArray) {
     likeButton.addEventListener('click', sendLikeRequest);
@@ -236,6 +241,21 @@ function sendCreateResponseRequest(event) {
   event.preventDefault();
 }
 
+function sendReport(event){
+
+  console.log("AQUI");
+
+  let id_publication = this.dataset.publicationId;
+  let motive = event.target.querySelector('input:checked').value;
+
+  console.log(motive);
+  console.log("AQUI");
+
+  sendAjaxRequest('POST', '/api/publications/' + id_publication +'/report', { motive: motive }, reportAddedHandler, event.target);
+
+  event.preventDefault();
+}
+
 function sendCreateCommentRequest(event) {
 
   let id_publication = this.dataset.publicationId;
@@ -293,6 +313,29 @@ function responseAddedHandler() {
   dislikeButton.addEventListener('click', sendDislikeRequest);
 
 
+}
+
+function reportAddedHandler() {
+
+  console.log(this);
+
+
+  if (this.status == 403) {
+
+    createErrorMessage("You need to login before you report a publication!", this.extraInfo.querySelector('.content'));
+
+    return;
+  }
+
+  if (this.status != 200) {
+
+    createErrorMessage("Not able to create the report!", this.extraInfo.querySelector('.content'));
+    return;
+  }
+
+
+  this.extraInfo.submit();
+  
 }
 
 function commentAddedHandler() {
@@ -439,6 +482,7 @@ function deletingPreviousErrorMessage(parent) {
 
 function createErrorMessage(message, parent, prepend) {
 
+  console.log(parent);
   deletingPreviousErrorMessage(parent);
 
   let error_message = document.createElement('div');

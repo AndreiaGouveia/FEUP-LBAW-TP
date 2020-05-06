@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Favorite;
-use App\Likes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
-use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
@@ -33,7 +30,8 @@ class FavoriteController extends Controller
 
         if ($favotires_input != null) {
 
-            return;
+            DB::rollBack();
+            return response()->json(200);
         }
 
         $favotires_input = DB::insert('insert into favorite(id_commentable_publication, id_member) values (?, ?)', [$id, Auth::user()->id]);
