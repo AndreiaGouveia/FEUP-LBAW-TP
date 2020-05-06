@@ -13,15 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class ResponseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -75,41 +66,7 @@ class ResponseController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Response $response)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Response $response)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Response $response)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      *

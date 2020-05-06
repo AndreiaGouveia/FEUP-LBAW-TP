@@ -11,26 +11,6 @@ use Illuminate\Support\Facades\DB;
 class LikesController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -76,40 +56,6 @@ class LikesController extends Controller
 
             return response()->json(['error' => $e->getMessage()], 400);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Likes  $likes
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Likes $likes)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Likes  $likes
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Likes $likes)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Likes  $likes
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Likes $likes)
-    {
-        //
     }
 
     /**
