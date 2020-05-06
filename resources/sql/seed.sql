@@ -119,9 +119,9 @@ CREATE TABLE photo_in_publication (
 CREATE TABLE reported (
     id_member INTEGER NOT NULL REFERENCES member (id_person) ON UPDATE CASCADE ON DELETE CASCADE,
     id_publication INTEGER NOT NULL REFERENCES publication (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    TYPE report NOT NULL,
+    motive report NOT NULL,
     resolved boolean NOT NULL DEFAULT false,
-    PRIMARY KEY (id_member, id_publication)
+    PRIMARY KEY (id_member, id_publication, motive)
 );
 
 CREATE TABLE commentable_publication (

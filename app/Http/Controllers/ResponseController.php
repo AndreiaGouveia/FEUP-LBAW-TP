@@ -13,15 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class ResponseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,90 +26,47 @@ class ResponseController extends Controller
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
-        DB::beginTransaction();
 
-        $publication = Publication::create([
-            "description" => $request->input('description'),
-            "id_owner" => Auth::user()->id
-        ]);
+        try {
+            DB::beginTransaction();
 
-        if ($publication == null) {
+
+            if (!Question::find($id)) {
+                return response()->json(['error' => "No question was found with id equal to " . $id], 404);
+            }
+
+            $publication = Publication::create([
+                "description" => $request->input('description'),
+                "id_owner" => Auth::user()->id
+            ]);
+
+            $commentable_publication = Commentable_publication::create(["id_publication" => $publication->id]);
+
+            $question = Question::find($id);
+            if ($question == null) {
+                DB::rollBack();
+
+                return response()->json(['error' => 'Question not found!'], 404);
+            }
+
+            $answer = Response::create([
+                "id_commentable_publication" => $commentable_publication->id_publication,
+                "id_question" => $id
+            ]);
+
+            DB::commit();
+
+            $member = Member::find(Auth::user()->id);
+            $full_publication = Publication::find($publication->id);
+            return response()->json(['answer' => $answer, 'publication' => $full_publication, 'person' => $member, 'photo' => $member->photo]);
+        } catch (\Exception $e) {
+
             DB::rollBack();
 
-            return response()->json(['error' => 'Error in creating publication!'], 400);
+            return response()->json(['error' => $e->getMessage()], 400);
         }
-
-        $commentable_publication = Commentable_publication::create(["id_publication" => $publication->id]);
-
-
-        if ($commentable_publication == null) {
-            DB::rollBack();
-
-            return response()->json(['error' => 'Error in creating commentable publication!'], 400);
-        }
-
-
-        $question = Question::find($id);
-        if ($question == null) {
-            DB::rollBack();
-
-            return response()->json(['error' => 'Question not found!'], 404);
-        }
-
-        $answer = Response::create([
-            "id_commentable_publication" => $commentable_publication->id_publication,
-            "id_question" => $id
-        ]);
-
-
-        if ($answer == null) {
-            DB::rollBack();
-
-            return response()->json(['error' => 'Error in creating answer!'], 400);
-        }
-
-
-        DB::commit();
-
-        $member = Member::find(Auth::user()->id);
-        $full_publication = Publication::find($publication->id);
-        return response()->json(['answer' => $answer, 'publication' => $full_publication, 'person' => $member, 'photo' => $member->photo]);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Response $response)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Response $response)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Response $response)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      *

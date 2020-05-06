@@ -88,10 +88,7 @@ main > header span {
   max-width: 20em;
   border: 1px solid #d2afe7;
 }
-#content > form .error {
-  font-weight: bold;
-  color: #ff3333;
-}
+
 #content > form input {
   background-color: white;
 }

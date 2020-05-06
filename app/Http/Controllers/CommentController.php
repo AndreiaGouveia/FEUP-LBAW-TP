@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Commentable_publication;
 use App\Publication;
 use App\Member;
 use Illuminate\Http\Request;
@@ -11,15 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,81 +24,44 @@ class CommentController extends Controller
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
+        try {
+            DB::beginTransaction();
 
-        DB::beginTransaction();
 
-        $publication = Publication::create([
-            "description" => $request->input('description'),
-            "id_owner" => Auth::user()->id
-        ]);
+            if (!Commentable_publication::find($id)) {
+                return response()->json(['error' => "No answer or question was found with id equal to " . $id], 404);
+            }
 
-        if ($publication == null) {
+            $publication = Publication::create([
+                "description" => $request->input('description'),
+                "id_owner" => Auth::user()->id
+            ]);
+
+            $comment = Comment::create([
+                "id_publication" => $publication->id,
+                "id_commentable_publication" => $id
+            ]);
+
+            DB::commit();
+
+            $member = Member::find(Auth::user()->id);
+
+            return response()->json(['comment' => $comment, 'publication' => $publication, 'person' => $member, 'photo' => $member->photo]);
+        } catch (\Exception $e) {
+
             DB::rollBack();
 
-            return response()->json(['error' => 'Error in creating publication!'], 400);
+            return response()->json(['error' => $e->getMessage()], 400);
         }
-
-        $comment = Comment::create([
-            "id_publication" => $publication->id,
-            "id_commentable_publication" => $id
-        ]);
-
-
-        if ($comment == null) {
-            DB::rollBack();
-
-            return response()->json(['error' => 'Error in creating comment!'], 400);
-        }
-
-
-        DB::commit();
-
-        $member = Member::find(Auth::user()->id);
-
-        return response()->json(['comment' => $comment, 'publication' => $publication, 'person' => $member, 'photo' => $member->photo]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Comment $comment)
-    {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Response $response)
     {
         //
     }

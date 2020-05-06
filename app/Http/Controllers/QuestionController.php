@@ -24,8 +24,6 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $publication = Publication::find($id);
 
-        //$this->authorize('view', Person::class, $question);
-
         return view('pages.question',  ['question' => $question, 'publication' => $publication]);
     }
 
@@ -40,63 +38,43 @@ class QuestionController extends Controller
 
         $inputs = $request->all();
 
-        DB::beginTransaction();
-
-        $publication = Publication::create([
-            'description' => $inputs['description'],
-            'id_owner' => $user->id
-        ]);
-
-        if ($publication == null) {
-            DB::rollBack();
-
-            Flash::error('Error adding question!');
-            return redirect()->route('add.questions');
-        }
-
-        $commentable_publication = Commentable_publication::create([
-            'id_publication' => $publication->id
-        ]);
-
-        if ($commentable_publication == null) {
-            DB::rollBack();
-
-            Flash::error('Error adding question!');
-            return redirect()->route('add.questions');
-        }
-
-        $question = Question::create([
-            'id_commentable_publication' => $commentable_publication->id_publication,
-            'title' => $inputs['title']
-        ]);
-
-        if ($question == null) {
-            DB::rollBack();
-
-            Flash::error('Error adding question!');
-            return redirect()->route('add.questions');
-        }
+        try {
+            DB::beginTransaction();
 
 
-        foreach ($inputs['tags'] as &$value) {
-
-            $tag_question = TagQuestion::create([
-                'id_tag' => $value,
-                'id_question' => $commentable_publication->id_publication
+            $publication = Publication::create([
+                'description' => $inputs['description'],
+                'id_owner' => $user->id
             ]);
 
+            $commentable_publication = Commentable_publication::create([
+                'id_publication' => $publication->id
+            ]);
 
-            if ($tag_question == null) {
-                DB::rollBack();
+            $question = Question::create([
+                'id_commentable_publication' => $commentable_publication->id_publication,
+                'title' => $inputs['title']
+            ]);
 
-                Flash::error('Error adding question!');
-                return redirect()->route('add.questions');
+            foreach ($inputs['tags'] as &$value) {
+
+                $tag_question = TagQuestion::create([
+                    'id_tag' => $value,
+                    'id_question' => $commentable_publication->id_publication
+                ]);
             }
+
+            DB::commit();
+            Flash::success('Question added successfully.');
+
+            return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
+
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            Flash::error('Error adding question!');
+            return redirect()->route('add.questions');
         }
-
-        DB::commit();
-        Flash::success('Question added successfully.');
-
-        return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
     }
 }
