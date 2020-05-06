@@ -23,6 +23,9 @@ class Reported extends Model
 
     protected $table = 'reported';
 
+    protected $primaryKey = ['id_member','id_publication', 'motive'];
+    public $incrementing = false;
+
     //associations
     public function owner(){return $this->belongsTo('App\Member', 'id_member', 'id_person');}
 
