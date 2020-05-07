@@ -44,7 +44,7 @@ if (Auth::check()) {
                 </div>
 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="profile.php">O meu Perfil</a>
+                <a class="dropdown-item" href="{{ route('members', Auth::user()->id) }}">O meu Perfil</a>
                 <a class="dropdown-item" href="my_content.php">O meu Conteúdo</a>
                 <a class="dropdown-item" href="my_favorites.php">Favoritos</a>
                 <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
