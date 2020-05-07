@@ -40,14 +40,15 @@
                 <div class="tab-pane fade" id="list-topics" role="tabpanel" aria-labelledby="list-topics-list">
                     <div class="container mt-5">
                         <div class="row flex-column-reverse flex-lg-row">
-                            <div class="col-md-8">
-                                <div>
-                                    @foreach ($topics as $tag)
-                                    @include('partials.tag', ["tag" => $tag->name])
-                                    @endforeach
+                            <div class="col">
+
+                                @foreach ($topics as $tag)
+                                <div class="py-3 px-4 border-top">
+                                    <a class="btn btn-secondary" href="{{ route('search.topic', ['tag' => $tag->name]) }}">{{ $tag->name }}</a>
                                 </div>
+                                @endforeach
+
                             </div>
-                            <div class="col-md mb-4"> </div>
                         </div>
                     </div>
                 </div>
