@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
         public function show()
         {
-
-
                 $data_question = DB::table('question')
                         ->select('person.id as memberId', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
@@ -31,6 +30,16 @@ class HomeController extends Controller
 
                 return view('pages.home', ['questions' => $data_question, 'popular_tags' => $popular_tags]);
         }
+
+        public function ola(Request $request)
+        {
+                $inputs = $request->all();
+                $search = $inputs['search'];
+
+                return view('pages.search',  ['search' => $search]);
+        }
+
+
 
         public function home()
         {

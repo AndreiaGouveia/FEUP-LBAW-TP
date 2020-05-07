@@ -19,7 +19,7 @@ if (Auth::check()) {
 
     <div class="navbar-nav form-inline flex-fill ml-3">
 
-        <form class="input-group flex-fill mr-3" action="../pages/search.php">
+        <form class="input-group flex-fill mr-3" action="{{ route('search') }}">
             <input name="search" type="text" class="form-control flex-fill" placeholder="Pesquisa">
             <div class="input-group-append">
                 <button class="btn btn-secondary" type="submit">
