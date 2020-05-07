@@ -29,7 +29,7 @@ Route::post('members/{id}', 'MemberController@update')->name('members.update');
 Route::post('members/{id}/password', 'MemberController@updatePassword')->name('members.update.password');
 Route::post('members/{id}/deactivate', 'MemberController@deactivate')->name('members.deactivate');
 
-Route::get('search', 'HomeController@ola')->name("search");
+Route::get('search', 'HomeController@search')->name("search");
 
 
 Route::get('questions/{id}', 'QuestionController@show')->name("show.question");

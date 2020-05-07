@@ -4,7 +4,6 @@
 <?php
 
 use App\Location;
-use App\Member;
 
 $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
 
