@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +28,11 @@ Route::post('members/{id}', 'MemberController@update')->name('members.update');
 Route::post('members/{id}/password', 'MemberController@updatePassword')->name('members.update.password');
 Route::post('members/{id}/deactivate', 'MemberController@deactivate')->name('members.deactivate');
 
-Route::get('search', 'HomeController@search')->name("search");
+Route::get('search/{query}', 'HomeController@search')->name("search");
 
-Route::get('search_topic/{tag}', 'HomeController@search_topic')->name("search.topic");
+Route::post('search_post', 'HomeController@postSearch' )->name("search.post");
+
+Route::get('search/{tag}/tags', 'HomeController@search_topic')->name("search.topic");
 
 Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
 

@@ -31,20 +31,17 @@ class HomeController extends Controller
                 return view('pages.home', ['questions' => $data_question, 'popular_tags' => $popular_tags]);
         }
 
-        public function search(Request $request)
-        {
-                $inputs = $request->all();
-                $search = $inputs['search'];
+        public function search($query){
 
                 $topics = DB::table('tag')
                         ->select('tag.name')
-                        ->where('tag.name', 'ilike', '%' . $search . '%')
+                        ->where('tag.name', 'ilike', '%' . $query . '%')
                         ->get();
 
                 $questions = DB::table('question')
                         ->select('person.id as memberId', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
-                        ->where('question.title', 'ilike', '%' . $search . '%')
-                        ->orWhere('publication.description', 'ilike', '%' . $search . '%')
+                        ->where('question.title', 'ilike', '%' . $query . '%')
+                        ->orWhere('publication.description', 'ilike', '%' . $query . '%')
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
                         ->join('person', 'publication.id_owner', '=', 'person.id')
                         ->join('member', 'person.id', '=', 'member.id_person')
@@ -62,7 +59,7 @@ class HomeController extends Controller
                         ->take(10)
                         ->get();
 
-                return view('pages.search',  ['search' => $search, 'questions' => $questions, 'topics' => $topics, 'popular_tags' => $popular_tags]);
+                return view('pages.search',  ['search' => $query, 'questions' => $questions, 'topics' => $topics, 'popular_tags' => $popular_tags]);
         }
 
         public function search_topic($input)
@@ -100,5 +97,13 @@ class HomeController extends Controller
         public function home()
         {
                 return redirect('home');
+        }
+
+        public function postSearch(Request $request){
+
+                $query = $request->input('search');   
+                
+                return redirect()->route('search', [$query]);
+             
         }
 }

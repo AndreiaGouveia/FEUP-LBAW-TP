@@ -19,8 +19,9 @@ if (Auth::check()) {
 
     <div class="navbar-nav form-inline flex-fill ml-3">
 
-        <form class="input-group flex-fill mr-3" action="{{ route('search') }}">
-            <input name="search" type="text" class="form-control flex-fill" placeholder="Pesquisa">
+        <form class="input-group flex-fill mr-3" method="POST" action="{{ route('search.post') }}">
+            @csrf
+            <input name="search" type="text" class="form-control flex-fill" placeholder="Pesquisa" required value="<?= (isset($search)) ? $search : "" ?>">
             <div class="input-group-append">
                 <button class="btn btn-secondary" type="submit">
                     <i class="fa fa-search"></i>
@@ -39,8 +40,8 @@ if (Auth::check()) {
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="dropdown-item">
-                    <img src=<?=$link?> class="img-header float-left" alt="">
-                    <p style="margin-left: 1.7rem"><?=$member->name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                    <img src=<?= $link ?> class="img-header float-left" alt="">
+                    <p style="margin-left: 1.7rem"><?= $member->name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                 </div>
 
                 <div class="dropdown-divider"></div>

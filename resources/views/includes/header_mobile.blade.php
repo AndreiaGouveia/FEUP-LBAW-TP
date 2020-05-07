@@ -64,9 +64,10 @@ if (Auth::check()) {
 
     </nav>
 
-    <div class="collapse mx-2" id="searchBarInput">
-        <form class="input-group form-inline flex-fill mr-3" action="../pages/search.php">
-            <input name="search" type="text" class="form-control" placeholder="Pesquisa">
+    <div class="collapse mx-2 <?= (isset($search)) ? "show" : "" ?>" id="searchBarInput">
+        <form class="input-group form-inline flex-fill mr-3" method="POST" action="{{ route('search.post') }}">
+            @csrf
+            <input name="search" type="text" class="form-control" placeholder="Pesquisa" required value="<?= (isset($search)) ? $search : "" ?>">
             <div class="input-group-append">
                 <button class="btn btn-secondary" type="submit">
                     <i class="fa fa-search"></i>

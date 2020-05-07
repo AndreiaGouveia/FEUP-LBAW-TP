@@ -509,5 +509,3 @@ function createSucessMessage(message, parent) {
 
 
 addEventListeners();
-
-let response_text = document.querySelector('#response_text');
