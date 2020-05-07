@@ -32,7 +32,7 @@ Route::get('search/{query}', 'HomeController@search')->name("search");
 
 Route::post('search', 'HomeController@postSearch' )->name("search.post");
 
-Route::get('search/tag/{tag}', 'HomeController@search_topic')->name("search.topic");
+Route::get('search/taggs/{tag}', 'HomeController@search_topic')->name("search.topic");
 
 Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
 
