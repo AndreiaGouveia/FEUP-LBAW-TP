@@ -30,7 +30,7 @@ Route::post('members/{id}/deactivate', 'MemberController@deactivate')->name('mem
 
 Route::get('search/{query}', 'HomeController@search')->name("search");
 
-Route::post('search_post', 'HomeController@postSearch' )->name("search.post");
+Route::post('search', 'HomeController@postSearch' )->name("search.post");
 
 Route::get('search/{tag}/tags', 'HomeController@search_topic')->name("search.topic");
 
