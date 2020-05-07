@@ -35,23 +35,32 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
+        if($member == null)
+        return;
+
         $info = array();//info to be sent
 
         $questions = DB::table('question')
                     ->join('commentable_publication','commentable_publication.id_publication','=','question.id_commentable_publication')
                     ->join('publication','publication.id','=','commentable_publication.id_publication')
+                    ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
+                    ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
+                    ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
+                    ->where('publication.id_owner' , '=' , $id)
+                    ->groupBy('publication.date', 'publication.description', 'question.title')
                     ->orderBy('publication.date')
-                    ->get(array('publication.date','publication.description','question.title'));
+                    ->get(array('publication.date','publication.description','question.title', DB::raw('array_to_json(array_agg(tag.name)) tags') , DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
         foreach($questions as $question){
             $question->type='question';
         }
+        $member->questions = count($questions);
 
         $comments = DB::table('comment')
                     ->join('commentable_publication','commentable_publication.id_publication','=','comment.id_commentable_publication')
                     ->join('publication','publication.id','=','comment.id_publication')
+                    ->where('publication.id_owner' , '=' , $id)
                     ->orderBy('publication.date')
                     ->get(array('publication.date','publication.description','comment.id_commentable_publication'));
-
 
         foreach($comments as $comment){
                 $temp = array();
@@ -73,20 +82,27 @@ class MemberController extends Controller
 
         }
 
+         $member->comments = count($comments);
+
         $reply = DB::table('response')
                     ->join('question','question.id_commentable_publication','=','response.id_question')
                     ->join('commentable_publication','commentable_publication.id_publication','=','response.id_commentable_publication')
                     ->join('publication','publication.id','=','commentable_publication.id_publication')
+                    ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'response.id_commentable_publication')
+                    ->where('publication.id_owner' , '=' , $id)
+                    ->groupBy('publication.date','publication.description','question.title')
                     ->orderBy('publication.date')
-                    ->get(array('publication.date','publication.description','question.title'));
+                    ->get(array('publication.date','publication.description','question.title', DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
 
         foreach($reply as $rep){
             $rep->type='reply';
         }
 
+
+        $member->reply = count($reply);
         $info = array_merge($comments->toArray() , $questions->toArray() , $reply->toArray());
 
-         usort($info, array($this , 'date'));
+        usort($info, array($this , 'date'));
 
         return view('pages.profile',  ['member' => $member , 'info' => $info]);
     }

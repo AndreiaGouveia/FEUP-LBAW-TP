@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Commentable_publication;
 use App\Favorite;
-use App\Likes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
-use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
@@ -20,35 +18,40 @@ class FavoriteController extends Controller
      */
     public function store($id)
     {
-        
+
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
-        DB::beginTransaction();
+        try {
+            DB::beginTransaction();
 
-        $favotires_input = Favorite::where([
-            "id_commentable_publication" => $id,
-            "id_member" => Auth::user()->id
-        ])->first();
 
-        if ($favotires_input != null) {
+            if (!Commentable_publication::find($id)) {
+                return response()->json(['error' => "No answer or question was found with id equal to " . $id], 404);
+            }
 
-            return;
-        }
+            $favotires_input = Favorite::where([
+                "id_commentable_publication" => $id,
+                "id_member" => Auth::user()->id
+            ])->first();
 
-        $favotires_input = DB::insert('insert into favorite(id_commentable_publication, id_member) values (?, ?)', [$id, Auth::user()->id]);
+            if ($favotires_input != null) {
 
-        if (!$favotires_input) {
+                DB::rollBack();
+                return response()->json(200);
+            }
+
+            DB::insert('insert into favorite(id_commentable_publication, id_member) values (?, ?)', [$id, Auth::user()->id]);
+
+            DB::commit();
+
+            return response()->json(200);
+        } catch (\Exception $e) {
+
             DB::rollBack();
 
-            return response()->json(['error' => 'Error in creating favorite!'], 400);
+            return response()->json(['error' => $e->getMessage()], 400);
         }
-
-
-        DB::commit();
-
-        return response()->json(200);
-    
     }
 
     /**
@@ -76,5 +79,4 @@ class FavoriteController extends Controller
 
         return response()->json(200);
     }
-    
 }

@@ -9,6 +9,11 @@ function addEventListeners() {
     commentCreator.addEventListener('submit', sendCreateCommentRequest);
   }
 
+  let reportArray = document.querySelectorAll('form.report');
+  for (report of reportArray) {
+    report.addEventListener('submit', sendReport);
+  }
+
   let likeButtonArray = document.querySelectorAll('.btn.like');
   for (likeButton of likeButtonArray) {
     likeButton.addEventListener('click', sendLikeRequest);
@@ -82,7 +87,7 @@ function sendLikeRequest(event) {
     let id_publication = parentDiv.dataset.publicationId;
 
     if (id_publication)
-      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', {like: true }, likeRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: true }, likeRemovedHandler, this);
 
     return;
   }
@@ -91,7 +96,7 @@ function sendLikeRequest(event) {
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
-    sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes', { like: true }, likeAddedHandler, this);
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes', { like: true }, likeAddedHandler, this);
 
 }
 
@@ -107,7 +112,7 @@ function sendDislikeRequest(event) {
     let parentDiv = this.parentElement;
     let id_publication = parentDiv.dataset.publicationId;
     if (id_publication)
-      sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes/delete', {like: false }, likeRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: false }, likeRemovedHandler, this);
 
     return;
   }
@@ -116,7 +121,7 @@ function sendDislikeRequest(event) {
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
-    sendAjaxRequest('POST', '/api/publications/'+ id_publication + '/likes', {like: false }, likeAddedHandler, this);
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes', { like: false }, likeAddedHandler, this);
 
 }
 
@@ -132,7 +137,7 @@ function sendFavoriteRequest(event) {
     let id_publication = parentDiv.dataset.publicationId;
 
     if (id_publication)
-      sendAjaxRequest('POST', '/api/publications/' + id_publication +'/favorites/delete', {}, favoriteRemovedHandler, this);
+      sendAjaxRequest('POST', '/api/publications/' + id_publication + '/favorites/delete', {}, favoriteRemovedHandler, this);
 
     return;
   }
@@ -231,7 +236,22 @@ function sendCreateResponseRequest(event) {
   let response_text = this.querySelector('#response_text').value;
 
   if (response_text != '')
-    sendAjaxRequest('POST', '/api/questions/' + id_question +'/answers', {description: response_text }, responseAddedHandler, event.target);
+    sendAjaxRequest('POST', '/api/questions/' + id_question + '/answers', { description: response_text }, responseAddedHandler, event.target);
+
+  event.preventDefault();
+}
+
+function sendReport(event) {
+
+  console.log("AQUI");
+
+  let id_publication = this.dataset.publicationId;
+  let motive = event.target.querySelector('input:checked').value;
+
+  console.log(motive);
+  console.log("AQUI");
+
+  sendAjaxRequest('POST', '/api/publications/' + id_publication + '/report', { motive: motive }, reportAddedHandler, event.target);
 
   event.preventDefault();
 }
@@ -244,7 +264,7 @@ function sendCreateCommentRequest(event) {
   console.log(id_publication)
 
   if (comment_text != '')
-    sendAjaxRequest('POST', '/api/publications/' + id_publication +'/comments', { description: comment_text }, commentAddedHandler, event.target);
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/comments', { description: comment_text }, commentAddedHandler, event.target);
 
   event.preventDefault();
 
@@ -280,18 +300,43 @@ function responseAddedHandler() {
 
   //Add event listener to response comment section form
   let commentCreator = document.querySelector('#commentSection' + info.publication.id + " form");
-  console.log(commentCreator)
   commentCreator.addEventListener('submit', sendCreateCommentRequest);
 
   let number_anwers = document.querySelector('#number_answers');
   number_anwers.innerHTML = parseInt(number_anwers.innerHTML) + 1;
 
-  let likeButton = document.querySelector("#like" + info.publication.id);
+  let likeButton = response_section.querySelector("#like" + info.publication.id);
   likeButton.addEventListener('click', sendLikeRequest);
 
-  let dislikeButton = document.querySelector("#dislike" + info.publication.id);
+  let dislikeButton = response_section.querySelector("#dislike" + info.publication.id);
   dislikeButton.addEventListener('click', sendDislikeRequest);
 
+  let favoriteButton = response_section.querySelector("#favorite" + info.publication.id);
+  favoriteButton.addEventListener('click', sendFavoriteRequest);
+
+
+}
+
+function reportAddedHandler() {
+
+  console.log(this);
+
+
+  if (this.status == 403) {
+
+    createErrorMessage("You need to login before you report a publication!", this.extraInfo.querySelector('.content'));
+
+    return;
+  }
+
+  if (this.status != 200) {
+
+    createErrorMessage("Not able to create the report!", this.extraInfo.querySelector('.content'));
+    return;
+  }
+
+  createSucessMessage("Publication was reported with sucess", document.querySelector('#content div div'));
+  this.extraInfo.reset();
 
 }
 
@@ -382,8 +427,8 @@ function createResponse(publication, person, photo) {
 
     + like_buttons +
 
-    `<div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary px-1 py-0" toggle="" data-placement="bottom" title="Guardar">
+    `<div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="` +  publication.id + ` ">
+    <label class="btn btn-secondary px-1 py-0 favorite" id="favorite` + publication.id + `" toggle="" data-placement="bottom" title="Guardar" >
         <i class="far fa-star"></i>
         <input type="checkbox" name="save" id="save" autocomplete="off" >
     </label>
@@ -437,8 +482,9 @@ function deletingPreviousErrorMessage(parent) {
 
 }
 
-function createErrorMessage(message, parent, prepend) {
+function createErrorMessage(message, parent) {
 
+  console.log(parent);
   deletingPreviousErrorMessage(parent);
 
   let error_message = document.createElement('div');
@@ -446,10 +492,19 @@ function createErrorMessage(message, parent, prepend) {
   error_message.role = "alert";
   error_message.innerHTML = message;
 
-  if (prepend)
-    parent.prepend(error_message);
-  else
-    parent.parentElement.insertBefore(error_message, parent);
+  parent.parentElement.insertBefore(error_message, parent);
+}
+
+function createSucessMessage(message, parent) {
+
+  console.log(parent);
+
+  let sucess_message = document.createElement('div');
+  sucess_message.className = "alert alert-success mt-2 py-1";
+  sucess_message.role = "alert";
+  sucess_message.innerHTML = message;
+
+  parent.parentElement.insertBefore(sucess_message, parent);
 }
 
 

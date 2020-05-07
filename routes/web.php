@@ -50,3 +50,5 @@ Route::post('api/publications/{id}/likes/delete', 'LikesController@destroy');
 
 Route::post('api/publications/{id}/favorites', 'FavoriteController@store');
 Route::post('api/publications/{id}/favorites/delete', 'FavoriteController@destroy');
+
+Route::post('api/publications/{id}/report', 'PublicationController@report');

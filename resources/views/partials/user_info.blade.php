@@ -31,8 +31,8 @@ $location = implode(",", $location_array);
             <p><span class="badge badge-light pl-0"> <i class="fas fa-gem"></i> </span><?=$member->points?></p>
             <hr class="section-break" />
             <h5>Contribuições </h5>
-            <p><span class="badge badge-light pl-0"> <i class="fas fa-question"></i> </span>120 Perguntas</p>
-            <p><span class="badge badge-light pl-0"> <i class="far fa-check-square"></i> </span>345 Respotas</p>
-            <p><span class="badge badge-light pl-0"> <i class="far fa-comment"></i></span>10 Comentários</p>
+            <p><span class="badge badge-light pl-0"> <i class="fas fa-question"></i> </span><?=$member->questions?> Perguntas</p>
+            <p><span class="badge badge-light pl-0"> <i class="far fa-check-square"></i> </span><?=$member->reply?> Respotas</p>
+            <p><span class="badge badge-light pl-0"> <i class="far fa-comment"></i></span><?=$member->comments?> Comentários</p>
         </div>
     </div>
