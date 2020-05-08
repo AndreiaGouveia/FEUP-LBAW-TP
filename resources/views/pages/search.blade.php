@@ -26,7 +26,7 @@
                     <a class="list-group-item list-group-item-action py-2" id="list-topics-list" data-toggle="list" href="#list-topics" role="tab" aria-controls="topics">Tópicos</a>
                 </div>
                 <select class="custom-select">
-                    <option selected>Revelante</option>
+                    <option selected>Relevante</option>
                     <option value="1">Recente</option>
                     <option value="2">Mais Votados</option>
                     <option value="3">Menos Votados</option>
