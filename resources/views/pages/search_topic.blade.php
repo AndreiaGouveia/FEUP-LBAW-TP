@@ -14,9 +14,26 @@
 <div class="container mt-5">
     <div class="row flex-column-reverse flex-lg-row">
         <div class="col-md-8">
-            
-                @each('partials.basic_activity', $questions, 'question')
-            
+            <div class="mb-3">
+                <h2 class="font-weight-normal text-secondary d-inline">Perguntas com o tópico </h2>
+                <h2 class="d-inline"><?= $search ?></h2>
+            </div>
+
+            <div class="row container justify-content-between mb-4">
+                <div class="list-group list-group-horizontal mb-2" id="list-tab" role="tablist"></div>
+                <select id="filter" class="custom-select" onchange="filter(this.value)">
+                    <option value="{{ route('filtered.search.topic', ['tag' => $search, 'filter' => 'relevant']) }}">Relevante</option>
+                    <option value="{{ route('filtered.search.topic', ['tag' => $search, 'filter' => 'recent']) }}">Recente</option>
+                    <option value="{{ route('filtered.search.topic', ['tag' => $search, 'filter' => 'mostLiked']) }}">Mais Votados</option>
+                    <option value="{{ route('filtered.search.topic', ['tag' => $search, 'filter' => 'leastLiked']) }}">Menos Votados</option>
+                    
+                    <script>
+                        document.getElementById("filter").selectedIndex = <?php echo json_encode($filter); ?>;
+                    </script>
+                </select>
+            </div>
+
+            @each('partials.basic_activity', $questions, 'question')
         </div>
         <div class="col-md mb-4">
             <h6>Tópicos Populares</h6>
@@ -27,5 +44,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    function filter(value) {
+        window.location.href = value;
+    }
+</script>
 
 @endsection
