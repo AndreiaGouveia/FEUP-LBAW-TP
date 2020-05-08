@@ -29,10 +29,9 @@ Route::post('members/{id}/password', 'MemberController@updatePassword')->name('m
 Route::post('members/{id}/deactivate', 'MemberController@deactivate')->name('members.deactivate');
 
 Route::get('search/{query}', 'HomeController@search')->name("search");
-
 Route::post('search', 'HomeController@postSearch' )->name("search.post");
-
 Route::get('search/tags/{tag}', 'HomeController@search_topic')->name("search.topic");
+Route::get('{search}/{filter}', 'HomeController@filteredSearch')->name('filtered.search');
 
 Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
 

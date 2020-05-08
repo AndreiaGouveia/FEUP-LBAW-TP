@@ -25,11 +25,15 @@
                     <a class="list-group-item list-group-item-action active py-2" id="list-questions-list" data-toggle="list" href="#list-questions" role="tab" aria-controls="questions">Perguntas</a>
                     <a class="list-group-item list-group-item-action py-2" id="list-topics-list" data-toggle="list" href="#list-topics" role="tab" aria-controls="topics">Tópicos</a>
                 </div>
-                <select class="custom-select">
-                    <option selected>Relevante</option>
-                    <option value="1">Recente</option>
-                    <option value="2">Mais Votados</option>
-                    <option value="3">Menos Votados</option>
+                <select id="filter" class="custom-select" onchange="filter(this.value)">
+                    <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'relevant']) }}">Relevante</option>
+                    <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'recent']) }}">Recente</option>
+                    <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'mostLiked']) }}">Mais Votados</option>
+                    <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'leastLiked']) }}">Menos Votados</option>
+                    
+                    <script>
+                        document.getElementById("filter").selectedIndex = <?php echo json_encode($filter); ?>;
+                    </script>
                 </select>
             </div>
 
@@ -65,5 +69,10 @@
     </div>
 </div>
 
+<script>
+    function filter(value) {
+        window.location.href = value;
+    }
+</script>
 
 @endsection
