@@ -28,8 +28,8 @@
                 <select id="filter" class="custom-select" onchange="filter(this.value)">
                     <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'relevant']) }}">Relevante</option>
                     <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'recent']) }}">Recente</option>
-                    <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'mostLiked']) }}">Mais Votados</option>
-                    <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'leastLiked']) }}">Menos Votados</option>
+                    <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'mostLiked']) }}">Mais Gostados</option>
+                    <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'leastLiked']) }}">Menos Gostados</option>
                     
                     <script>
                         document.getElementById("filter").selectedIndex = <?php echo json_encode($filter); ?>;

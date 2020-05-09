@@ -50,7 +50,8 @@ class HomeController extends Controller
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
                         ->groupBy('person.id', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
-                        ->orderBy('publication.date')
+                        ->orderBy('likes', 'desc')
+                        ->orderBy('dislikes', 'desc')
                         ->get();
 
                 $popular_tags = DB::table('tag_question')
