@@ -453,20 +453,20 @@ CREATE INDEX search_tag ON tag USING GIST (to_tsvector('english' , name));
 
 
 INSERT INTO person(username,email,password) 
-VALUES ('gustavo_Mendes','gustavinho@gmail.com','gustavinhoDaSilva'),
-('mariaJoana1','mariajoana99@hotmail.com','binoculos123'),
-('PedroGustus','pedro2Augusto@yahoo.com','12345'),
-('Maria','maria@gmail.com','maria'),
-('Henrique2004','henrique_2004_santos@gmail.com','vivaOraBolas'),
-('Fernando_Mendez','precoCerto@gmail.com','rodaDaSOrte'),
-('GuidaEmanuela','emanuelazita1234@gmail.com','FloresAmarelas'),
-('AnabelaDeMalhadas','epico2010anabela@yahoo.com','4650<4500'),
-('PapagaioLover','dancingParrotLover@outlook.com','dancingParrots'),
-('RicardoPereira','faltaDeCha@gmail.com','VamosTodosFalecer'),
-('MarianaSousa','marianaSousa25@gmail.com','passarinhoMaluco'),
-('JoseAlves','queInformacaoDramatica@yahoo.com','iaLaVerEEstavaTranquilo'),
-('QuimOvelha','quimquimquim@hotmail.com','BemAlimentado'),
-('CoelhoPassos','coelhoJose123@outlook.com','207895abc');
+VALUES ('gustavo_Mendes','gustavinho@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('mariaJoana1','mariajoana99@hotmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('PedroGustus','pedro2Augusto@yahoo.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('Maria','maria@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('Henrique2004','henrique_2004_santos@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('Fernando_Mendez','precoCerto@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('GuidaEmanuela','emanuelazita1234@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('AnabelaDeMalhadas','epico2010anabela@yahoo.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('PapagaioLover','dancingParrotLover@outlook.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('RicardoPereira','faltaDeCha@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('MarianaSousa','marianaSousa25@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('JoseAlves','queInformacaoDramatica@yahoo.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('QuimOvelha','quimquimquim@hotmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('CoelhoPassos','coelhoJose123@outlook.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq');
 
 INSERT INTO administrator VALUES (4);
 
