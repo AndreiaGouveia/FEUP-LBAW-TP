@@ -60,7 +60,7 @@ if (Auth::check()) {
                 @else
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('members', Auth::user()->id) }}">O meu Perfil</a>
-                <a class="dropdown-item" href="my_content.php">O meu Conteúdo</a>
+                <a class="dropdown-item" href="{{ route('member.content', Auth::user()->id) }}">O meu Conteúdo</a>
                 <a class="dropdown-item" href="my_favorites.php">Favoritos</a>
                 <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
                 <div class="dropdown-divider"></div>

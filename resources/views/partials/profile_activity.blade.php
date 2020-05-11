@@ -26,6 +26,7 @@
     </div>
 
 <?php
+
 function drawHeaderActivity($name, $action, $actionInBold, $date , $link)
 {
 ?>
