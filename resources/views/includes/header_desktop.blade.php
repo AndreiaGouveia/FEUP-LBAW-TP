@@ -61,7 +61,7 @@ if (Auth::check()) {
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('members', Auth::user()->id) }}">O meu Perfil</a>
                 <a class="dropdown-item" href="{{ route('member.content', Auth::user()->id) }}">O meu Conteúdo</a>
-                <a class="dropdown-item" href="my_favorites.php">Favoritos</a>
+                <a class="dropdown-item" href="{{ route('member.favorites', Auth::user()->id) }}">Favoritos</a>
                 <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>

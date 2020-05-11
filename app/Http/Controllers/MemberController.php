@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Favorite;
 use App\Location;
 use App\Member;
 use App\Person;
@@ -57,7 +58,7 @@ class MemberController extends Controller
             ->orderBy('publication.id')
             ->get(array('publication.date', 'publication.description', 'comment.id_commentable_publication'));
 
-       foreach ($comments as $comment) {
+        foreach ($comments as $comment) {
             $temp = array();
             $temp = DB::table('response')
                 ->join('question', 'question.id_commentable_publication', '=', 'response.id_question')
@@ -74,7 +75,6 @@ class MemberController extends Controller
 
             $comment->commentable_publication = $temp->toArray()[0]->title;
             $comment->id_commentable_publication = $temp->toArray()[0]->id_commentable_publication;
-
         }
 
         $member->comments = count($comments);
@@ -86,7 +86,7 @@ class MemberController extends Controller
             ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'response.id_commentable_publication')
             ->where('publication.id_owner', '=', $id)
             ->groupBy('publication.id', 'response.id_question', 'publication.date', 'publication.description', 'question.title')
-            ->orderBy('publication.id' )
+            ->orderBy('publication.id')
             ->get(array('publication.id', 'publication.date', 'publication.description', 'response.id_question', 'question.title', DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
 
         foreach ($replies as $rep) {
@@ -101,6 +101,52 @@ class MemberController extends Controller
         usort($info, array($this, 'date'));
         return $info;
     }
+
+    public function favorites($id)
+    {
+        $favorites = DB::table('favorite')
+            ->where('favorite.id_member', '=', $id)
+            ->get();
+
+            
+        $member = Member::find($id);
+
+        if ($member == null)
+            return;
+
+        foreach ($favorites as $favorite) {
+
+            $temp = DB::table('question')
+                ->join('commentable_publication', 'commentable_publication.id_publication', '=', 'question.id_commentable_publication')
+                ->join('publication', 'publication.id', '=', 'commentable_publication.id_publication')
+                ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
+                ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
+                ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
+                ->where('publication.id', '=', $favorite->id_commentable_publication)
+                ->groupBy('publication.id', 'publication.date', 'publication.description', 'question.title')
+                ->orderBy('publication.id')
+                ->get(array('publication.id', 'publication.date', 'publication.description', 'question.title', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
+
+            if (!empty($temp[0])) {
+                $favorite->tags = $temp->toArray()[0]->tags;
+                $favorite->likes = $temp->toArray()[0]->likes;
+                $favorite->dislikes = $temp->toArray()[0]->dislikes;
+                $favorite->date = $temp->toArray()[0]->date;
+                $favorite->title = $temp->toArray()[0]->title;
+                $favorite->type = 'question';
+                $favorite->description = $temp->toArray()[0]->description;
+                $favorite->commentable_publication = $temp->toArray()[0]->title;
+                $favorite->id = $temp->toArray()[0]->id;
+
+                $favorite->type = 'question';
+            } else {
+                $favorite->type = 'reply';
+            }
+        }
+
+        return view('pages.favorites',  ['member' => $member, 'favorites' => $favorites]);
+    }
+
 
     public function content($id)
     {
