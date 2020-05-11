@@ -4,8 +4,16 @@
 use Illuminate\Support\Facades\Auth;
 
 if (Auth::check()) {
-    $member = App\Member::find(Auth::user()->id);
-    $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+    if (Auth::user()->id == 1) {
+        $admin = 1;
+        $link = "https://pngimage.net/wp-content/uploads/2018/06/logo-admin-png-4.png";
+        $name = "Administrator";
+    } else {
+        $admin = 0;
+        $member = App\Member::find(Auth::user()->id);
+        $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+        $name = $member->name;
+    }
 }
 ?>
 
@@ -38,10 +46,16 @@ if (Auth::check()) {
 
                     <div class="dropdown-item">
                         <img src=<?= $link ?> class="img-header float-left" alt="">
-                        <p style="margin-left: 1.7rem"><?= $member->name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                        <p style="margin-left: 1.7rem"><?= $name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                     </div>
 
-
+                    @if($admin)
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item">Editar página 'Sobre Nós'</a>
+                    <a class="dropdown-item">Conteúdo sinalizado</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
+                    @else
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('members', Auth::user()->id) }}">O meu Perfil</a>
                     <a class="dropdown-item" href="my_content.php">O meu Conteúdo</a>
@@ -49,10 +63,10 @@ if (Auth::check()) {
                     <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
-
+                    @endif
                     @endauth
-                    @guest
 
+                    @guest
                     <a class="dropdown-item" href="{{ route('login') }}">Iniciar Sessão</a>
                     <a class="dropdown-item" href="{{ route('login') }}">Registar</a>
                     @endguest

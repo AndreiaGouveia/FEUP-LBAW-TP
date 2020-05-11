@@ -453,7 +453,8 @@ CREATE INDEX search_tag ON tag USING GIST (to_tsvector('english' , name));
 
 
 INSERT INTO person(username,email,password) 
-VALUES ('gustavo_Mendes','gustavinho@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+VALUES ('admin','admin@papagaio.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+('gustavo_Mendes','gustavinho@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
 ('mariaJoana1','mariajoana99@hotmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
 ('PedroGustus','pedro2Augusto@yahoo.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
 ('Maria','maria@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
@@ -468,7 +469,7 @@ VALUES ('gustavo_Mendes','gustavinho@gmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJV
 ('QuimOvelha','quimquimquim@hotmail.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
 ('CoelhoPassos','coelhoJose123@outlook.com','$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq');
 
-INSERT INTO administrator VALUES (4);
+INSERT INTO administrator VALUES (1);
 
 INSERT INTO location(country) VALUES ('Portugal'),
 ('France'),
@@ -500,21 +501,21 @@ INSERT INTO photo(url) VALUES ('https://images.pexels.com/photos/774909/pexels-p
 ('https://images.pexels.com/photos/3786128/pexels-photo-3786128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
 
 INSERT INTO member(id_person, name, biography, points, id_location, id_photo, medal, moderator) VALUES 
-(1,'Gustavo Mendes','Sou amante da natureza. Não passo um dia sem os meus gatos que só comem a ração de melhor qualidade.',3000,1,1,'Gold', true),
-(2,'Maria Joana Da Silva','Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.',1,2,2, 'Gold', true),
-(3,'Pedro Augusto','Olá! Sou o Pedro e adoro papagaios.',4001,3,3,'Silver', true),
-(4,'Henrique Sousa','Produzo ração para animais.',120000,4,4, 'Bronze', true),
-(5,'Fernando Mendes','Olá! Sai-me sempre a sorte grande naquelas rodas marotas.',1,5,5, 'Bronze', true),
-(6,'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.',1,6,6, 'Silver', true);
+(2,'Gustavo Mendes','Sou amante da natureza. Não passo um dia sem os meus gatos que só comem a ração de melhor qualidade.',3000,1,1,'Gold', true),
+(3,'Maria Joana Da Silva','Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.',1,2,2, 'Gold', true),
+(4,'Pedro Augusto','Olá! Sou o Pedro e adoro papagaios.',4001,3,3,'Silver', true),
+(5,'Henrique Sousa','Produzo ração para animais.',120000,4,4, 'Bronze', true),
+(6,'Fernando Mendes','Olá! Sai-me sempre a sorte grande naquelas rodas marotas.',1,5,5, 'Bronze', true),
+(7,'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.',1,6,6, 'Silver', true);
 
 INSERT INTO member(id_person, name, biography, id_location, id_photo) VALUES 
-(7,'Anabela De Malhadas','Bom dia! Adoro animais, mas prefiro gatos.',7,7),
-(8,'Guilherme Fernandes','Não dou descrição pois sei que é o governo a espiar em mim.',8,8),
-(9,'Ricardo Pereira','Falta-vos chá.',9,9),
-(10,'Mariana Sousa','Boas! Desde os meus 8 anos sempre amei os bichinhos de 4 patas. Tenho 4 cães.',10,10),
-(11,'Jose Alves','Adiciona-me no Facebook :)',11,11),
-(12,'Joaquim Ovelha','Adoro ler e ouvir musica.',12,12),
-(13,'Passos Coelho','Gosto de ler livros de economia.',13,13);
+(8,'Anabela De Malhadas','Bom dia! Adoro animais, mas prefiro gatos.',7,7),
+(9,'Guilherme Fernandes','Não dou descrição pois sei que é o governo a espiar em mim.',8,8),
+(10,'Ricardo Pereira','Falta-vos chá.',9,9),
+(11,'Mariana Sousa','Boas! Desde os meus 8 anos sempre amei os bichinhos de 4 patas. Tenho 4 cães.',10,10),
+(12,'Jose Alves','Adiciona-me no Facebook :)',11,11),
+(13,'Joaquim Ovelha','Adoro ler e ouvir musica.',12,12),
+(14,'Passos Coelho','Gosto de ler livros de economia.',13,13);
 
 INSERT INTO tag (name) VALUES ('Papagaio'),
 ('Cão'),
@@ -532,16 +533,16 @@ INSERT INTO tag (name) VALUES ('Papagaio'),
 ('Pássaro'),
 ('Gaivota');
 
-INSERT INTO publication(id_owner, description) VALUES (1, ''),
-(2, ''),
+INSERT INTO publication(id_owner, description) VALUES (2, ''),
 (3, ''),
-(5, ''),
+(4, ''),
 (6, ''),
 (7, ''),
 (8, ''),
 (9, ''),
 (10, ''),
-(11, '');
+(11, ''),
+(12, '');
 
 INSERT INTO photo_in_publication VALUES(14, 1);
 INSERT INTO photo_in_publication VALUES(15, 2);
@@ -574,12 +575,12 @@ INSERT INTO reported VALUES
 (13,4,'Violence');
 
 INSERT INTO likes
-VALUES (4,1,true),
-(5,1,false),
-(4,2,true),
-(5,2,false);
+VALUES (4,2,true),
+(5,2,false),
+(4,3,true),
+(5,3,false);
 
 INSERT INTO favorite(id_member, id_commentable_publication) VALUES
-(5,2),
-(2,4),
-(1,3); 
+(6,2),
+(3,4),
+(2,3); 
