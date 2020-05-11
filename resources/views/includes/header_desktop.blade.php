@@ -9,6 +9,7 @@ if (Auth::check()) {
         $link = "https://pngimage.net/wp-content/uploads/2018/06/logo-admin-png-4.png";
         $name = "Administrator";
     } else {
+        $admin = 0;
         $member = App\Member::find(Auth::user()->id);
         $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
         $name = $member->name;
