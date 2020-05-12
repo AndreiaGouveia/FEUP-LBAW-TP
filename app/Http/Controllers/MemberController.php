@@ -106,45 +106,32 @@ class MemberController extends Controller
     {
         $favorites = DB::table('favorite')
             ->where('favorite.id_member', '=', $id)
-            ->get();
+            ->get('favorite.id_commentable_publication');
 
-            
-        $member = Member::find($id);
 
-        if ($member == null)
-            return;
+        $info = array();
 
         foreach ($favorites as $favorite) {
-
-            $temp = DB::table('question')
-                ->join('commentable_publication', 'commentable_publication.id_publication', '=', 'question.id_commentable_publication')
-                ->join('publication', 'publication.id', '=', 'commentable_publication.id_publication')
-                ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
-                ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
-                ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                ->where('publication.id', '=', $favorite->id_commentable_publication)
-                ->groupBy('publication.id', 'publication.date', 'publication.description', 'question.title')
-                ->orderBy('publication.id')
-                ->get(array('publication.id', 'publication.date', 'publication.description', 'question.title', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
-
-            if (!empty($temp[0])) {
-                $favorite->tags = $temp->toArray()[0]->tags;
-                $favorite->likes = $temp->toArray()[0]->likes;
-                $favorite->dislikes = $temp->toArray()[0]->dislikes;
-                $favorite->date = $temp->toArray()[0]->date;
-                $favorite->title = $temp->toArray()[0]->title;
-                $favorite->type = 'question';
-                $favorite->description = $temp->toArray()[0]->description;
-                $favorite->commentable_publication = $temp->toArray()[0]->title;
-                $favorite->id = $temp->toArray()[0]->id;
-
-                $favorite->type = 'question';
-            } else {
-                $favorite->type = 'reply';
-            }
+            array_push($info, $favorite->id_commentable_publication);
         }
 
-        return view('pages.favorites',  ['member' => $member, 'favorites' => $favorites]);
+        $questions = DB::table('question')
+            ->select('person.id as memberId', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+            ->whereIn('publication.id', $info)
+            ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
+            ->join('person', 'publication.id_owner', '=', 'person.id')
+            ->join('member', 'person.id', '=', 'member.id_person')
+            ->leftJoin('photo', 'photo.id', '=', 'member.id_photo')
+            ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
+            ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
+            ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
+            ->groupBy('person.id', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+            ->orderBy('likes', 'desc')
+            ->orderBy('dislikes', 'desc')
+            ->get();
+
+
+        return view('pages.favorites',  ['questions' => $questions, 'favorites' => $info]);
     }
 
 

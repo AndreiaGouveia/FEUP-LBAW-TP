@@ -28,10 +28,10 @@
 
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list">
-                    @include('partials.question_activity' , ["info" => $favorites , "member" => $member])
+                    @each('partials.basic_activity', $questions, 'question')
                 </div>
                 <div class="tab-pane fade" id="list-responses" role="tabpanel" aria-labelledby="list-responses-list">
-              </div>
+                </div>
             </div>
 
         </div>
