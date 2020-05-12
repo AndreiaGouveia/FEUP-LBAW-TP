@@ -31,6 +31,7 @@
                     @each('partials.basic_activity', $questions, 'question')
                 </div>
                 <div class="tab-pane fade" id="list-responses" role="tabpanel" aria-labelledby="list-responses-list">
+                    @each('partials.basic_activity_answer', $responses, 'reply')
                 </div>
             </div>
 

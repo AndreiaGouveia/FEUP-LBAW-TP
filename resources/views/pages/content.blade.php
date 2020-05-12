@@ -30,13 +30,13 @@
 
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list">
-                    @include('partials.question_activity' , ["info" => $info , "member" => $member, "type" => "question"])
+                    @include('partials.question_activity' , ["info" => $info , "member" => $member])
                 </div>
                 <div class="tab-pane fade" id="list-responses" role="tabpanel" aria-labelledby="list-responses-list">
-                    @include('partials.answer_activity' , ["info" => $info , "member" => $member, "type" => "reply"])
+                    @include('partials.answer_activity' , ["info" => $info , "member" => $member])
                 </div>
                 <div class="tab-pane fade" id="list-comments" role="tabpanel" aria-labelledby="list-comments-list">
-                    @include('partials.comment_activity' , ["info" => $info , "member" => $member, "type" => "comment"])
+                    @include('partials.comment_activity' , ["info" => $info , "member" => $member])
                 </div>
             </div>
 

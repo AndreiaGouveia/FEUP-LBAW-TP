@@ -130,8 +130,30 @@ class MemberController extends Controller
             ->orderBy('dislikes', 'desc')
             ->get();
 
+        $replies = DB::table('response')
+            ->select('response.id_commentable_publication', 'response.id_question', 'person.id as memberId', 'photo.url', 'member.name', 'photo.url', 'publication.date', 'publication.description', DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+            ->whereIn('publication.id', $info)
+            ->join('publication', 'publication.id', '=', 'response.id_commentable_publication')
+            ->join('person', 'publication.id_owner', '=', 'person.id')
+            ->join('member', 'person.id', '=', 'member.id_person')
+            ->leftJoin('photo', 'photo.id', '=', 'member.id_photo')
+            ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'response.id_commentable_publication')
+            ->groupBy('response.id_commentable_publication', 'response.id_question', 'person.id', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'publication.description')
+            ->orderBy('likes', 'desc')
+            ->orderBy('dislikes', 'desc')
+            ->get();
 
-        return view('pages.favorites',  ['questions' => $questions, 'favorites' => $info]);
+        foreach ($replies as $reply) {
+            $temp = array();
+            $temp = DB::table('question')
+                ->select('question.title')
+                ->where('question.id_commentable_publication', '=', $reply->id_question)
+                ->get();
+
+                $reply->title = $temp->toArray()[0]->title;
+        }
+
+        return view('pages.favorites',  ['responses' => $replies, 'questions' => $questions, 'favorites' => $info]);
     }
 
 
