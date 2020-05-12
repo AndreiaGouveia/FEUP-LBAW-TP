@@ -6,19 +6,19 @@
         foreach($info as $element){
             switch($element->type){
                 case "question":
-                    drawQuestionActivity($member->name , json_decode($element->tags), $element->likes , $element->dislikes ,  $element->date , $element->title , $element->description , $link);
+                    drawQuestionActivity($element->id_commentable_publication , $member->name , json_decode($element->tags), $element->likes , $element->dislikes ,  $element->date , $element->title , $element->description , $link);
                     break;
 
                 case "comment":
-                    drawCommentToQuestionActivity($member->name , $element->date , $element->id_commentable_publication , $element->description , $link);
+                    drawCommentToQuestionActivity($element->id_commentable_publication , $member->name , $element->date , $element->id_commentable_publication , $element->description , $link);
                     break;
 
                 case "commentreply":
-                    drawCommentToAnswerActivity($member->name , $element->date , $element->id_commentable_publication , $element->description , $link);
+                    drawCommentToAnswerActivity($element->id_commentable_publication, $member->name , $element->date , $element->id_commentable_publication , $element->description , $link);
                     break;
 
                 case "reply":
-                    drawAnswerActivity($member->name , $element->likes , $element->dislikes , $element->date , $element->title , $element->description , $link);
+                    drawAnswerActivity($element->id_commentable_publication , $member->name , $element->likes , $element->dislikes , $element->date , $element->title , $element->description , $link);
                     break;
             }
         }
@@ -42,24 +42,6 @@ function drawHeaderActivity($name, $action, $actionInBold, $date , $link)
     </div>
 
 <?php
-}
-
-
-function drawBasicActivity($name , $tags , $date, $title, $description , $link)
-{
-?>
-    <a href="../pages/question.php" class="hiperlink-in-activity">
-        <div class="activity py-4 px-4 border-top">
-
-            <?php drawHeaderActivity($name, "", "", $date , $link); ?>
-            <h5 class="title"><?= $title ?></h5>
-            <p class="text"><?= $description ?></p>
-            <?php drawInfoBasicActivity($tags , $likes , $dislikes); ?>
-        </div>
-    </a>
-
-<?php
-
 }
 
 function drawTag($tag){
@@ -109,11 +91,11 @@ function drawLikeButtons($likes , $dislikes)
 <?php
 }
 
-function drawAnswerActivity($name , $likes , $dislikes , $date, $title, $response , $link)
+function drawAnswerActivity($id , $name , $likes , $dislikes , $date, $title, $response , $link)
 {
 ?>
 
-    <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="{{ route('show.question', $id) }}" class="hiperlink-in-activity">
         <div class="activity py-4 px-4 border-top ">
             <?php drawHeaderActivity($name, "respondeu a", $title, $date , $link); ?>
             <p class="card-text"><?= $response ?></p>
@@ -126,12 +108,11 @@ function drawAnswerActivity($name , $likes , $dislikes , $date, $title, $respons
 <?php
 }
 
-function drawQuestionActivity($name , $tags , $likes , $dislikes , $date, $title, $description , $link)
+function drawQuestionActivity($id , $name , $tags , $likes , $dislikes , $date, $title, $description , $link)
 {
 ?>
 
-
-    <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="{{ route('show.question', $id) }}" class="hiperlink-in-activity">
         <div class="activity py-4 px-4 border-top">
             <?php drawHeaderActivity($name , "perguntou:", "", $date , $link); ?>
             <h5 class="title"><?= $title ?></h5>
@@ -143,12 +124,11 @@ function drawQuestionActivity($name , $tags , $likes , $dislikes , $date, $title
 <?php
 }
 
-function drawCommentToAnswerActivity($name , $date, $title, $response , $link)
+function drawCommentToAnswerActivity($id , $name , $date, $title, $response , $link)
 {
 ?>
 
-
-    <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="{{ route('show.question', $id) }}" class="hiperlink-in-activity">
         <div class="activity py-4 px-4 border-top">
             <?php drawHeaderActivity($name, "comentou uma resposta a", $title, $date , $link); ?>
             <p class="card-text"><?= $response ?></p>
@@ -158,12 +138,11 @@ function drawCommentToAnswerActivity($name , $date, $title, $response , $link)
 <?php
 }
 
-function drawCommentToQuestionActivity($name , $date, $title, $response , $link)
+function drawCommentToQuestionActivity($id , $name , $date, $title, $response , $link)
 {
 ?>
 
-
-    <a href="../pages/question.php" class="hiperlink-in-activity">
+    <a href="{{ route('show.question', $id) }}" class="hiperlink-in-activity">
         <div href="../pages/question.php" class="activity py-4 px-4 border-top">
             <?php drawHeaderActivity($name , "comentou", $title, $date , $link); ?>
             <p class="card-text"><?= $response ?></p>

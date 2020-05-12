@@ -41,9 +41,9 @@ class MemberController extends Controller
             ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
             ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
             ->where('publication.id_owner', '=', $id)
-            ->groupBy('publication.id', 'publication.date', 'publication.description', 'question.title')
+            ->groupBy('question.id_commentable_publication', 'publication.id', 'publication.date', 'publication.description', 'question.title')
             ->orderBy('publication.id')
-            ->get(array('publication.id', 'publication.date', 'publication.description', 'question.title', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
+            ->get(array('question.id_commentable_publication','publication.id', 'publication.date', 'publication.description', 'question.title', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
 
         foreach ($questions as $question) {
             $question->type = 'question';
@@ -85,9 +85,9 @@ class MemberController extends Controller
             ->join('publication', 'publication.id', '=', 'commentable_publication.id_publication')
             ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'response.id_commentable_publication')
             ->where('publication.id_owner', '=', $id)
-            ->groupBy('publication.id', 'response.id_question', 'publication.date', 'publication.description', 'question.title')
+            ->groupBy('publication.id', 'response.id_question', 'question.id_commentable_publication', 'publication.date', 'publication.description', 'question.title')
             ->orderBy('publication.id')
-            ->get(array('publication.id', 'publication.date', 'publication.description', 'response.id_question', 'question.title', DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
+            ->get(array('publication.id', 'publication.date', 'publication.description', 'response.id_question','question.id_commentable_publication', 'question.title', DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
 
         foreach ($replies as $rep) {
             $rep->type = 'reply';
