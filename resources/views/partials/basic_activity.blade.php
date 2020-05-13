@@ -20,7 +20,7 @@ $commentable_publication = Question::find($question->id)->commentable_publicatio
             @each('partials.tag', json_decode($question->tags), 'tag')
         </div>
         <div class="info flex-fill d-flex justify-content-end mx-0">
-            @include('partials.like_buttons', ['commentable_publication' => $commentable_publication, 'likes' => $question->likes, 'dislikes' => $question->dislikes])
+            @include('partials.like_buttons', ['commentable_publication' => $commentable_publication, 'likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
         </div>
 
     </div>
