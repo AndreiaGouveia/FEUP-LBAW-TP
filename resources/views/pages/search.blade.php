@@ -39,7 +39,7 @@
 
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list">
-                    @each('partials.basic_activity', $questions, 'question')
+                    @each('activities.basic_activity', $questions, 'question')
                 </div>
                 <div class="tab-pane fade" id="list-topics" role="tabpanel" aria-labelledby="list-topics-list">
                     <div class="container mt-5">

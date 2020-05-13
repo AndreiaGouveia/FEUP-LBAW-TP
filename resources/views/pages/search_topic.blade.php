@@ -33,7 +33,7 @@
                 </select>
             </div>
 
-            @each('partials.basic_activity', $questions, 'question')
+            @each('activities.basic_activity', $questions, 'question')
         </div>
         <div class="col-md mb-4">
             <h6>Tópicos Populares</h6>

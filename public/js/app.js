@@ -16,7 +16,6 @@ function addEventListeners() {
 
   let likeButtonArray = document.querySelectorAll('.btn.like');
   for (likeButton of likeButtonArray) {
-    Console.log("AQUI")
     likeButton.addEventListener('click', sendLikeRequest);
   }
 
