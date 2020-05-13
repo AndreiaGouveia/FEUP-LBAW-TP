@@ -33,5 +33,23 @@ class Member extends Authenticatable
 
     public function photo(){return $this->hasOne('App\Photo','id', 'id_photo');}
 
-    public function publications() {return $this->hasMany('App\Publication'); }
+    public function publications() {return $this->hasMany('App\Publication', 'id_owner', 'id_person'); }
+
+    public function questions() {
+        
+        return $this->hasManyThrough('App\Question', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id'); 
+    
+    }
+
+    public function answers() {
+        
+        return $this->hasManyThrough('App\Response', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id'); 
+    
+    }
+
+    public function comments() {
+        
+        return $this->hasManyThrough('App\Comment', 'App\Publication', 'id_owner', 'id_publication', 'id_person', 'id'); 
+    
+    }
 }

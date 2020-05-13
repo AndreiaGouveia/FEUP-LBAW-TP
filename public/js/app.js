@@ -16,6 +16,7 @@ function addEventListeners() {
 
   let likeButtonArray = document.querySelectorAll('.btn.like');
   for (likeButton of likeButtonArray) {
+    Console.log("AQUI")
     likeButton.addEventListener('click', sendLikeRequest);
   }
 
@@ -247,9 +248,6 @@ function sendReport(event) {
 
   let id_publication = this.dataset.publicationId;
   let motive = event.target.querySelector('input:checked').value;
-
-  console.log(motive);
-  console.log("AQUI");
 
   sendAjaxRequest('POST', '/api/publications/' + id_publication + '/report', { motive: motive }, reportAddedHandler, event.target);
 

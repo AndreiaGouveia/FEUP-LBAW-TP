@@ -27,10 +27,12 @@ class MemberController extends Controller
 
     public function getActivity($id)
     {
+        if (!Auth::check())
+            return redirect()->route('login');
+
         $member = Member::find($id);
 
-        if ($member == null)
-            return;
+        $this->authorize('update', $member);
 
         $info = array(); //info to be sent
 
@@ -166,7 +168,7 @@ class MemberController extends Controller
 
         $info = MemberController::getActivity($id);
 
-        return view('pages.content',  ['member' => $member, 'info' => $info]);
+        return view('pages.content',  ['member' => $member, 'info' => $info, 'questions' => $member->questions, 'answers' => $member->answers, 'comments' => $member->comments]);
     }
 
     /**
