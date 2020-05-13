@@ -26,6 +26,6 @@ class Response extends Model
     
     public function publication(){return $this->belongsTo('App\Publication', 'id_commentable_publication', 'id');}
 
-    public function anwersPublication(){return $this->hasOne('App\Question', 'id_commentable_publication', 'id_question');}
+    public function question(){return $this->hasOne('App\Question', 'id_commentable_publication', 'id_question');}
 
 }

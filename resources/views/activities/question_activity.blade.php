@@ -1,0 +1,26 @@
+<?php 
+
+$link_profile = ($question->publication->owner) ? $question->publication->owner->url : null;
+
+?>
+
+<div class="activity py-4 px-4 border-top">
+
+    @include('partials.header_activity', ['memberId' => $question->publication->id_owner, 'name' => $question->publication->owner->name, "link_profile" => $link_profile, 'action' => "perguntou", 'actionInBold' => "", "date" => $question->publication->date])
+
+    <a href="{{ route('show.question', $question->id_commentable_publication) }}">
+        <h5 class="title">{{ $question->title }}</h5>
+    </a>
+    <p class="text">{{ $question->publication->description }}</p>
+    <div class="row mt-4 px-0 mx-0">
+        <div class="topics align-items-center">
+            @foreach ($question->tags as $tag_question)
+            @include('partials.tag', ['tag' => $tag_question->main_tag->name])
+            @endforeach
+        </div>
+        <div class="info flex-fill d-flex justify-content-end mx-0">
+            @include('partials.like_buttons', ['commentable_publication' => $question->commentable_publication, 'likes' => $question->commentable_publication->likes->count(), 'dislikes' => $question->commentable_publication->dislikes->count()])
+        </div>
+
+    </div>
+</div>
