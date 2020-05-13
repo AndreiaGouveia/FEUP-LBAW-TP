@@ -394,7 +394,7 @@ function createResponse(publication, person, photo) {
   let link_image = (photo != null) ? photo.url : "https://i.stack.imgur.com/l60Hf.png";
 
   let header_ativity = `
-  <div id="header-card mb-3">
+  <div class="header-card mb-3">
   <img src="`+ link_image + `" class="img_inside mr-2" alt="">
     <div class="header-text">
       <p class="name-and-action font-weight-bold d-inline">`+ person.name + `</p><br>

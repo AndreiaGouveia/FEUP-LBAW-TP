@@ -4,7 +4,7 @@ $link_profile = ($answer->publication->owner) ? $answer->publication->owner->url
 
 ?>
 <div class="activity py-4 px-4 border-top ">
-    @include('partials.header_activity', ['memberId' => $answer->publication->id_owner, 'name' => $answer->publication->owner->name, "link_profile" => $link_profile, 'action' => "respondeu a ", 'actionInBold' => $answer->question->title, "date" => $answer->publication->date])
+    @include('activities.header_activity', ['memberId' => $answer->publication->id_owner, 'name' => $answer->publication->owner->name, "link_profile" => $link_profile, 'action' => "respondeu a ", 'actionInBold' => $answer->question->title, "date" => $answer->publication->date])
 
     <p class="card-text">{{ $answer->publication->description }}</p>
 

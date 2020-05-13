@@ -31,7 +31,7 @@ function drawHeaderActivity($name, $action, $actionInBold, $date , $link)
 {
 ?>
 
-    <div id="header-card mb-3">
+    <div class="header-card mb-3">
         <img src=<?= $link ?> class="img_inside mr-2" alt="">
         <div class="header-text">
             <p class="name-and-action font-weight-bold d-inline"><?= $name ?></p>

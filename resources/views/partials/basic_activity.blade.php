@@ -7,7 +7,7 @@ $commentable_publication = Question::find($question->id)->commentable_publicatio
 
 <div class="activity py-4 px-4 border-top">
 
-    @include('partials.header_activity', ['memberId' => $question->memberId, 'name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date])
+    @include('activities.header_activity', ['memberId' => $question->memberId, 'name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date])
 
     <a href="{{ route('show.question', $question->id) }}">
         <h5 class="title"><?= $question->title  ?></h5>

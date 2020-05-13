@@ -106,56 +106,13 @@ class MemberController extends Controller
 
     public function favorites($id)
     {
-        $favorites = DB::table('favorite')
-            ->where('favorite.id_member', '=', $id)
-            ->get('favorite.id_commentable_publication');
+        $member = Member::find($id);
 
+        //TODO: change this to a proper error
+        if ($member == null)
+            return;
 
-        $info = array();
-
-        foreach ($favorites as $favorite) {
-            array_push($info, $favorite->id_commentable_publication);
-        }
-
-        $questions = DB::table('question')
-            ->select('person.id as memberId', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
-            ->whereIn('publication.id', $info)
-            ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
-            ->join('person', 'publication.id_owner', '=', 'person.id')
-            ->join('member', 'person.id', '=', 'member.id_person')
-            ->leftJoin('photo', 'photo.id', '=', 'member.id_photo')
-            ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
-            ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
-            ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-            ->groupBy('person.id', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
-            ->orderBy('likes', 'desc')
-            ->orderBy('dislikes', 'desc')
-            ->get();
-
-        $replies = DB::table('response')
-            ->select('response.id_commentable_publication', 'response.id_question', 'person.id as memberId', 'photo.url', 'member.name', 'photo.url', 'publication.date', 'publication.description', DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
-            ->whereIn('publication.id', $info)
-            ->join('publication', 'publication.id', '=', 'response.id_commentable_publication')
-            ->join('person', 'publication.id_owner', '=', 'person.id')
-            ->join('member', 'person.id', '=', 'member.id_person')
-            ->leftJoin('photo', 'photo.id', '=', 'member.id_photo')
-            ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'response.id_commentable_publication')
-            ->groupBy('response.id_commentable_publication', 'response.id_question', 'person.id', 'member.name', 'photo.url', 'publication.id', 'publication.date', 'publication.description')
-            ->orderBy('likes', 'desc')
-            ->orderBy('dislikes', 'desc')
-            ->get();
-
-        foreach ($replies as $reply) {
-            $temp = array();
-            $temp = DB::table('question')
-                ->select('question.title')
-                ->where('question.id_commentable_publication', '=', $reply->id_question)
-                ->get();
-
-                $reply->title = $temp->toArray()[0]->title;
-        }
-
-        return view('pages.favorites',  ['responses' => $replies, 'questions' => $questions, 'favorites' => $info]);
+        return view('pages.favorites',  ['answers' => $member->favoriteAnswers, 'questions' => $member->favoriteQuestions]);
     }
 
 
@@ -163,12 +120,11 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
+        //TODO: change this to a proper error
         if ($member == null)
             return;
 
-        $info = MemberController::getActivity($id);
-
-        return view('pages.content',  ['member' => $member, 'info' => $info, 'questions' => $member->questions, 'answers' => $member->answers, 'comments' => $member->comments]);
+        return view('pages.content',  ['questions' => $member->questions, 'answers' => $member->answers, 'comments' => $member->comments]);
     }
 
     /**
@@ -181,6 +137,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
+        //TODO: change this to a proper error
         if ($member == null)
             return;
 

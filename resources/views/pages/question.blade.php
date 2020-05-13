@@ -21,7 +21,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
     <div class="row">
         <div class="col-md-8">
-            @include('partials.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date])
+            @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date])
             <div class="pb-3 mb-1 border-bottom">
                 <h2>{{ $question->title }}</h2>
 

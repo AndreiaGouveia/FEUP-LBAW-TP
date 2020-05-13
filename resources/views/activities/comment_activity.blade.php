@@ -16,7 +16,7 @@ if ($comment->commentsResponse->count() > 0) {
 ?>
 
 <div class="activity py-4 px-4 border-top">
-    @include('partials.header_activity', ['memberId' => $comment->publication->id_owner, 'name' => $comment->publication->owner->name, "link_profile" => $link_profile, 'action' => "comentou " . $optionForCommentForAnswer . "em ", 'actionInBold' => $questionTitle, "date" => $comment->publication->date])
+    @include('activities.header_activity', ['memberId' => $comment->publication->id_owner, 'name' => $comment->publication->owner->name, "link_profile" => $link_profile, 'action' => "comentou " . $optionForCommentForAnswer . "em ", 'actionInBold' => $questionTitle, "date" => $comment->publication->date])
 
     <p class="card-text">{{ $comment->publication->description }}</p>
 </div>

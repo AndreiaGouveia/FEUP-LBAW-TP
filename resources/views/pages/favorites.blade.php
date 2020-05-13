@@ -28,10 +28,10 @@
 
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list">
-                    @each('partials.basic_activity', $questions, 'question')
+                    @each('activities.question_activity', $questions, 'question')
                 </div>
                 <div class="tab-pane fade" id="list-responses" role="tabpanel" aria-labelledby="list-responses-list">
-                    @each('partials.basic_activity_answer', $responses, 'answer')
+                    @each('activities.answer_activity', $answers, 'answer')
                 </div>
             </div>
 

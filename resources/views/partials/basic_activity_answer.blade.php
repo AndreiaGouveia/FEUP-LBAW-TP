@@ -6,7 +6,7 @@ $commentable_publication = Response::find($answer->id_commentable_publication)->
 ?>
 
 <div class="activity py-4 px-4 border-top">
-    @include('partials.header_activity', ['memberId' => $answer->memberId, 'name' => $answer->name, "link_profile" => $answer->url, 'action' => "respondeu a ", 'actionInBold' => $answer->title, "date" => $answer->date])
+    @include('activities.header_activity', ['memberId' => $answer->memberId, 'name' => $answer->name, "link_profile" => $answer->url, 'action' => "respondeu a ", 'actionInBold' => $answer->title, "date" => $answer->date])
     <p class="text"><?= $answer->description ?></p>
 
     <div class="row mt-4 px-0 mx-0">
