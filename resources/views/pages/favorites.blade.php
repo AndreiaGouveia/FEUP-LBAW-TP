@@ -1,0 +1,42 @@
+@extends('layouts.app')
+
+@section('stylesheets')
+@parent
+<link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/search.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.css') }}">
+@endsection
+
+
+@section('content')
+
+<div class="container mt-5">
+    <div class="row flex-column-reverse flex-lg-row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="mb-3">
+                <h2 class="font-weight-normal d-inline">Os meus favoritos</h2>
+            </div>
+            <div class="row container justify-content-between mb-4">
+                <div class="list-group list-group-horizontal mb-2" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active py-2" id="list-questions-list" data-toggle="list" href="#list-questions" role="tab" aria-controls="questions">Perguntas</a>
+                    <a class="list-group-item list-group-item-action py-2" id="list-responses-list" data-toggle="list" href="#list-responses" role="tab" aria-controls="responses">Respostas</a>
+                </div>
+            </div>
+
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list">
+                    @each('partials.basic_activity', $questions, 'question')
+                </div>
+                <div class="tab-pane fade" id="list-responses" role="tabpanel" aria-labelledby="list-responses-list">
+                    @each('partials.basic_activity_answer', $responses, 'reply')
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@endsection

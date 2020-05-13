@@ -19,6 +19,9 @@ class Favorite extends Model
         'id_commentable_publication', 'id_member'
     ];
 
+    protected $primaryKey = ['id_commentable_publication', 'id_member'];
+    public $incrementing = false;
+
     protected $table = 'favorite';
 
     //associations
