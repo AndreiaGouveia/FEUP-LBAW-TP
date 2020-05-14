@@ -11,7 +11,7 @@ if (Auth::check()) {
     } else {
         $admin = 0;
         $member = App\Member::find(Auth::user()->id);
-        $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+        $link = ($member->photo != null) ? $member->photo->url : "https://i.stack.imgur.com/l60Hf.png";
         $name = $member->name;
     }
 }

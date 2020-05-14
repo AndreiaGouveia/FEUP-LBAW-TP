@@ -27,12 +27,8 @@ class MemberController extends Controller
 
     public function getActivity($id)
     {
-        if (!Auth::check())
-            return redirect()->route('login');
 
         $member = Member::find($id);
-
-        $this->authorize('update', $member);
 
         $info = array(); //info to be sent
 

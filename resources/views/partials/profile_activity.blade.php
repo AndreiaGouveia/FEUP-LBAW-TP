@@ -1,7 +1,7 @@
     <div>
         <h3 class="font-weight-normal mb-3">Atividade recente </h3>
         <?php
-        $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+        $link = ($member->photo != null) ? $member->photo->url : "https://i.stack.imgur.com/l60Hf.png";
 
         foreach($info as $element){
             switch($element->type){

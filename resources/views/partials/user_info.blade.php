@@ -1,18 +1,18 @@
 <?php
-$link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+$link = ($member->photolink != null) ? $member->photolink->url : "https://i.stack.imgur.com/l60Hf.png";
 
 $location_array = array();
-if ($member->location()->first() != null) {
+if ($member->location != null) {
 
-    if (isset($member->location()->first()->city))
-        array_push($location_array, $member->location()->first()->city);
+    if (isset($member->location->city))
+        array_push($location_array, $member->location->city);
 
-    if (isset($member->location()->first()->district)) {
-        array_push($location_array, $member->location()->first()->district);
+    if (isset($member->location->district)) {
+        array_push($location_array, $member->location->district);
     }
 
-    if (isset($member->location()->first()->country)) {
-        array_push($location_array, $member->location()->first()->country);
+    if (isset($member->location->country)) {
+        array_push($location_array, $member->location->country);
     }
 }
 

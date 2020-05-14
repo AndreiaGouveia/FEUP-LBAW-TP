@@ -5,7 +5,7 @@
 
 use App\Location;
 
-$link = ($member->photo()->first() != null) ? $member->photo()->first()->url : "https://i.stack.imgur.com/l60Hf.png";
+$link = ($member->photo != null) ? $member->photo->url : "https://i.stack.imgur.com/l60Hf.png";
 
 $curr_location = $member->id_location;
 
