@@ -1,13 +1,14 @@
 <?php
 
-
 use Illuminate\Support\Facades\Auth;
 
 $link =  "https://i.stack.imgur.com/l60Hf.png";
 
-/*if (Auth::check()) {
+if (Auth::check()) {
+    $member = App\Member::find(Auth::user()->id);
     $link = ($member->photo()->first() != null) ? $member->photo()->first()->url : $link;
-}*/
+}
+
 ?>
 
 <div class="comment-block border-top pl-3 pt-2 pb-3">
