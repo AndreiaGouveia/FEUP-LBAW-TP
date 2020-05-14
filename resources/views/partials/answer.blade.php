@@ -8,7 +8,7 @@ $link_image = ($owner->photo != null) ? $owner->photo->url : null;
     <p class="card-text"> {{ $publication->description }}</p>
 
     <div class="info row justify-content-end mx-0">
-        @include('partials.info_content', ['commentable_publication' => $answer->commentable_publication ])
+        @include('interation.info_content', ['commentable_publication' => $answer->commentable_publication ])
     </div>
 
     

@@ -34,7 +34,7 @@
             <hr class="section-break" />
             <div>
                 @foreach ($popular_tags as $tag)
-                @include('partials.tag', ["tag" => $tag->name])
+                @include('interation.tag', ["tag" => $tag->name])
                 @endforeach
             </div>
 

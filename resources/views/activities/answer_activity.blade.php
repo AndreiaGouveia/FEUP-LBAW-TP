@@ -9,7 +9,7 @@ $link_profile = ($answer->publication->owner) ? $answer->publication->owner->url
     <p class="card-text">{{ $answer->publication->description }}</p>
 
     <div class="info row justify-content-end align-items-center mx-0">
-        @include('partials.like_buttons', ['commentable_publication' => $answer->commentable_publication, 'likes' => $answer->commentable_publication->likes->count(), 'dislikes' => $answer->commentable_publication->dislikes->count()])
+        @include('interation.like_buttons', ['commentable_publication' => $answer->commentable_publication, 'likes' => $answer->commentable_publication->likes->count(), 'dislikes' => $answer->commentable_publication->dislikes->count()])
     </div>
 
 </div>

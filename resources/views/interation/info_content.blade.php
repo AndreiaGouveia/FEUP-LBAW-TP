@@ -17,7 +17,7 @@ if(Auth::check()){
     <label style="margin-bottom: 0px" class="pl-1">Comentar</label>
 </button>
 
-@include('partials.like_buttons', ['commentable_publication' => $commentable_publication, 'likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
+@include('interation.like_buttons', ['commentable_publication' => $commentable_publication, 'likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
 
 <div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="{{ $commentable_publication->id_publication }}">
     <label class="btn btn-secondary px-1 py-0 favorite <?= $favorite ? "active" : "" ?>" toggle="" data-placement="bottom" title="Guardar" >
@@ -40,4 +40,4 @@ if(Auth::check()){
     </div>
 </div>
 
-@include('partials.report_pop_up', ['idOfPopUp' => 'popUpReport' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
+@include('interation.report_pop_up', ['idOfPopUp' => 'popUpReport' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])

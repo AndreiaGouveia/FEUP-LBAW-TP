@@ -32,12 +32,12 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
                 <div class="row justify-content-between align-items-center mt-4 mb-3 px-0 mx-0">
                     <div class="topics align-items-center">
                         @foreach ($question->tags as $tag_question)
-                        @include('partials.tag', ['tag' => $tag_question->main_tag->name])
+                        @include('interation.tag', ['tag' => $tag_question->main_tag->name])
                         @endforeach
                     </div>
 
                     <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $question->id_commentable_publication }}" >
-                        @include('partials.info_content', ['commentable_publication' => $question->commentable_publication ])
+                        @include('interation.info_content', ['commentable_publication' => $question->commentable_publication ])
                     </div>
 
                 </div>

@@ -15,11 +15,11 @@ $link_profile = ($question->publication->owner) ? $question->publication->owner-
     <div class="row mt-4 px-0 mx-0">
         <div class="topics align-items-center">
             @foreach ($question->tags as $tag_question)
-            @include('partials.tag', ['tag' => $tag_question->main_tag->name])
+            @include('interation.tag', ['tag' => $tag_question->main_tag->name])
             @endforeach
         </div>
         <div class="info flex-fill d-flex justify-content-end mx-0">
-            @include('partials.like_buttons', ['commentable_publication' => $question->commentable_publication, 'likes' => $question->commentable_publication->likes->count(), 'dislikes' => $question->commentable_publication->dislikes->count()])
+            @include('interation.like_buttons', ['commentable_publication' => $question->commentable_publication, 'likes' => $question->commentable_publication->likes->count(), 'dislikes' => $question->commentable_publication->dislikes->count()])
         </div>
 
     </div>

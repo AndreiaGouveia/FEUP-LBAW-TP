@@ -39,7 +39,7 @@
             <h6>Tópicos Populares</h6>
             <hr class="section-break" />
             @foreach ($popular_tags as $tag)
-            @include('partials.tag', ["tag" => $tag->name])
+            @include('interation.tag', ["tag" => $tag->name])
             @endforeach
         </div>
     </div>
