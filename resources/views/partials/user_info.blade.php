@@ -32,7 +32,7 @@ $location = implode(",", $location_array);
             @endif
 
             @if (isset($location) && (trim($location) !== '') && ($location != null))
-            <p><span class="badge badge-light pl-0"> <i class="fas fa-map-marker-alt"></i> </span>{{ "|". $location . "|" }}</p>
+            <p><span class="badge badge-light pl-0"> <i class="fas fa-map-marker-alt"></i> </span>{{ $location }}</p>
             @endif
 
             @if (isset($member->points) && trim($member->points) != '' && $member->points != null )
