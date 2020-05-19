@@ -59,7 +59,7 @@ foreach ($temp as &$value) {
                 <label for="inputTopics">Tópicos</label>
                 <br>
 
-                <select id="inputTopics" class="js-example-basic-multiple" name="tags[]" multiple="multiple">
+                <select id="inputTopics" class="input-topics" name="tags[]" multiple="multiple">
                     <script>
                         var myArray = <?php echo json_encode($locations); ?>;
                         for (i = 0; i < myArray.length; i++) {
@@ -82,7 +82,7 @@ foreach ($temp as &$value) {
 <script>
     // In your Javascript (external .js resource or <script> tag)
     $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
+        $('.input-topics').select2();
     });
 </script>
 
