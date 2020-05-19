@@ -14,8 +14,8 @@
 
 <div class="container mt-5">
     <div class="row flex-column-reverse flex-lg-row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+       
+        <div class="main-content col-md-8">
             <div class="mb-3">
                 <h2 class="font-weight-normal d-inline">O meu conteúdo </h2>
             </div>
@@ -41,6 +41,8 @@
             </div>
 
         </div>
+
+        <aside class="col-md mb-4"><!-- TODO: side bar !--></aside>
     </div>
 </div>
 

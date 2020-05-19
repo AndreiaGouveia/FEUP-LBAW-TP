@@ -13,7 +13,8 @@
 
 <div class="container mt-5">
     <div class="row flex-column-reverse flex-lg-row">
-        <div class="col-md-8">
+
+        <div class="main-content col-md-8">
             <div class="mb-3">
                 <h2 class="font-weight-normal text-secondary d-inline">Perguntas com o tópico </h2>
                 <h2 class="d-inline"><?= $search ?></h2>
@@ -35,13 +36,14 @@
 
             @each('activities.basic_activity', $questions, 'question')
         </div>
-        <div class="col-md mb-4">
+        
+        <aside class="col-md mb-4">
             <h6>Tópicos Populares</h6>
             <hr class="section-break" />
             @foreach ($popular_tags as $tag)
             @include('interation.tag', ["tag" => $tag->name])
             @endforeach
-        </div>
+        </aside>
     </div>
 </div>
 

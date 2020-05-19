@@ -1,8 +1,8 @@
-<div class="sticky-top d-none d-xl-block">
+<header class="sticky-top d-none d-xl-block">
     @include('includes.header_desktop')
-</div>
-<div class="sticky-top d-xl-none">
+</header>
+<header class="sticky-top d-xl-none">
     @include('includes.header_mobile')
-</div>
+</header>
 
 <!-- TODO: Change Links -->

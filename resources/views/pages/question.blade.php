@@ -20,7 +20,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
     @include('flash::message')
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="main-content col-md-8">
             @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date])
             <div class="pb-3 mb-1 border-bottom">
                 <h2>{{ $question->title }}</h2>
@@ -70,9 +70,8 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
             </div>
 
         </div>
-        <div class="sidebar col-md">
-
-        </div>
+        
+        <aside class="col-md mb-4"><!-- TODO: side bar !--></aside>
 
     </div>
 </div>
