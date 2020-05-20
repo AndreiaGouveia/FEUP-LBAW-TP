@@ -51,6 +51,8 @@ class CommentController extends Controller
 
             DB::rollBack();
 
+            ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
+
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
