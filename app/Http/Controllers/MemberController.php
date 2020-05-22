@@ -246,11 +246,46 @@ class MemberController extends Controller
         $member = Member::find($id);
         $person = Person::find($id);
 
-        $this->authorize('delete', $member);
+        $this->authorize('activate', $member);
 
         $person->visible = false;
+        $person->save();
 
         return redirect()->route('logout');
+    }
+
+    /**
+     * Activate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_activate($id)
+    {
+        
+        $member = Member::find($id);
+        $this->authorize('activate', $member);
+
+        return view('pages.activate_account', ['id' => $id]);
+    }
+
+    /**
+     * Activate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function activate($id)
+    {
+        $member = Member::find($id);
+        $person = Person::find($id);
+
+        $this->authorize('delete', $member);
+
+        $person->visible = true;
+        $person->save();
+
+        return redirect()->route('home');
     }
 
     public function date($a, $b)

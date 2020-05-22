@@ -70,6 +70,18 @@ class MemberPolicy
     }
 
     /**
+     * Determine whether the user can activate the member.
+     *
+     * @param  \App\Person  $user
+     * @param  \App\Member  $member
+     * @return mixed
+     */
+    public function activate(Person $user, Member $member)
+    {
+        return $user->id == $member->id_person;
+    }
+
+    /**
      * Determine whether the user can restore the member.
      *
      * @param  \App\Person  $user
