@@ -29,7 +29,8 @@
 
   <!-- Styles -->
   @section('stylesheets')
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/header.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/header.css') }}">  
+  <link rel="stylesheet" type="text/css" media="print" href="{{ asset('css/print.css') }}" />
   @show
 
 

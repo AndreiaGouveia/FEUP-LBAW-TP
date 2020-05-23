@@ -73,6 +73,8 @@ class QuestionController extends Controller
 
             DB::rollBack();
 
+            ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
+
             Flash::error('Error adding question!');
             return redirect()->route('add.questions');
         }
