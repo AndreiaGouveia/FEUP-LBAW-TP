@@ -21,7 +21,7 @@ Route::post('register', 'Auth\RegisterController@register');
 
 
 Route::get('home', 'HomeController@show')->name('home');
-Route::view('about_us', 'pages.about_us');
+Route::view('about_us', 'pages.about_us')->name('about_us');
 Route::get('members/{id}', 'MemberController@show')->name('members');
 Route::get('members/{id}/content', 'MemberController@content')->name('member.content');
 Route::get('members/{id}/favorites', 'MemberController@favorites')->name('member.favorites');
@@ -37,6 +37,7 @@ Route::get('search/tags/{tag}/{filter}', 'HomeController@filteredSearchTopic')->
 Route::get('search/{search}/{filter}', 'HomeController@filteredSearch')->name('filtered.search');
 
 Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
+Route::post('questions/{id}/delete', 'PublicationController@destroy')->name('publication.destroy');
 
 Route::get('questions', 'QuestionController@create')->name('add.questions')->middleware('auth');
 
