@@ -81,6 +81,18 @@ class MemberPolicy
         return $user->id == $member->id_person;
     }
 
+    public function favorites(Person $user, Member $member) {
+
+        return $user->id == $member->id_person;
+
+    }
+
+    public function content(Person $user, Member $member) {
+
+        return $user->id == $member->id_person;
+
+    }
+
     /**
      * Determine whether the user can restore the member.
      *

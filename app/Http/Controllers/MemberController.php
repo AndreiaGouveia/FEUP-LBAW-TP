@@ -104,9 +104,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-        //TODO: change this to a proper error
-        if ($member == null)
-            return;
+        $this->authorize('favorites', $member);
 
         return view('pages.favorites',  ['answers' => $member->favoriteAnswers, 'questions' => $member->favoriteQuestions]);
     }
@@ -116,9 +114,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-        //TODO: change this to a proper error
-        if ($member == null)
-            return;
+        $this->authorize('content', $member);
 
         return view('pages.content',  ['questions' => $member->questions, 'answers' => $member->answers, 'comments' => $member->comments]);
     }
