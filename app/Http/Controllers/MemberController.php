@@ -30,73 +30,12 @@ class MemberController extends Controller
 
         $member = Member::find($id);
 
-        $info = array(); //info to be sent
+        $info = array();
 
-        $questions = DB::table('question')
-            ->join('commentable_publication', 'commentable_publication.id_publication', '=', 'question.id_commentable_publication')
-            ->join('publication', 'publication.id', '=', 'commentable_publication.id_publication')
-            ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
-            ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
-            ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-            ->where('publication.id_owner', '=', $id)
-            ->groupBy('question.id_commentable_publication', 'publication.id', 'publication.date', 'publication.description', 'question.title')
-            ->orderBy('publication.id')
-            ->get(array('question.id_commentable_publication','publication.id', 'publication.date', 'publication.description', 'question.title', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
+        $info = array_merge($member->questions->toArray(),$member->answers->toArray(), $member->comments->toArray());
+        var_dump($member);
 
-        foreach ($questions as $question) {
-            $question->type = 'question';
-        }
-
-        $member->questions = count($questions);
-
-        $comments = DB::table('comment')
-            ->join('publication', 'publication.id', '=', 'comment.id_publication')
-            ->where('publication.id_owner', '=', $id)
-            ->groupBy('publication.id', 'publication.date', 'comment.id_publication')
-            ->orderBy('publication.id')
-            ->get(array('publication.date', 'publication.description', 'comment.id_commentable_publication'));
-
-        foreach ($comments as $comment) {
-            $temp = array();
-            $temp = DB::table('response')
-                ->join('question', 'question.id_commentable_publication', '=', 'response.id_question')
-                ->where('response.id_commentable_publication', '=', $comment->id_commentable_publication)
-                ->get(array('question.title', 'question.id_commentable_publication'));
-            $comment->type = 'commentreply';
-
-            if (empty($temp[0])) {
-                $temp = DB::table('question')
-                    ->where('question.id_commentable_publication', '=', $comment->id_commentable_publication)
-                    ->get(array('question.title', 'question.id_commentable_publication'));
-                $comment->type = 'comment';
-            }
-
-            $comment->commentable_publication = $temp->toArray()[0]->title;
-            $comment->id_commentable_publication = $temp->toArray()[0]->id_commentable_publication;
-        }
-
-        $member->comments = count($comments);
-
-        $replies = DB::table('response')
-            ->join('question', 'question.id_commentable_publication', '=', 'response.id_question')
-            ->join('commentable_publication', 'commentable_publication.id_publication', '=', 'response.id_commentable_publication')
-            ->join('publication', 'publication.id', '=', 'commentable_publication.id_publication')
-            ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'response.id_commentable_publication')
-            ->where('publication.id_owner', '=', $id)
-            ->groupBy('publication.id', 'response.id_question', 'question.id_commentable_publication', 'publication.date', 'publication.description', 'question.title')
-            ->orderBy('publication.id')
-            ->get(array('publication.id', 'publication.date', 'publication.description', 'response.id_question','question.id_commentable_publication', 'question.title', DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
-
-        foreach ($replies as $rep) {
-            $rep->type = 'reply';
-        }
-
-
-        $member->reply = count($replies);
-
-        $info = array_merge($comments->toArray(), $questions->toArray(), $replies->toArray());
-
-        usort($info, array($this, 'date'));
+        //usort($info, array($this, 'date'));
         return $info;
     }
 
@@ -138,6 +77,8 @@ class MemberController extends Controller
             return;
 
         $info = MemberController::getActivity($id);
+
+        //var_dump($info);
 
         return view('pages.profile',  ['member' => $member, 'info' => $info]);
     }
@@ -255,6 +196,6 @@ class MemberController extends Controller
 
     public function date($a, $b)
     {
-        return ($a->date > $b->date) ? -1 : 1;
+        return ($a->publication->date > $b->publication->date) ? -1 : 1;
     }
 }

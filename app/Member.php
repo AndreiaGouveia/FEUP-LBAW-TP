@@ -64,4 +64,8 @@ class Member extends Authenticatable
         return $this->hasManyThrough('App\Response', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication'); 
 
     }
+
+    public function info() {
+        return $this->hasManyThrough();
+    }
 }
