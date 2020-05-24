@@ -134,7 +134,7 @@ class MemberController extends Controller
         $member = Member::find($id);
 
         //TODO: change this to a proper error
-        if ($member == null)
+        if ($member == null || !$member->person->visible)
             return;
 
         $info = MemberController::getActivity($id);

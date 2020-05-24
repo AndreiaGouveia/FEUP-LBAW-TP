@@ -33,7 +33,6 @@
                     </script>
                 </select>
             </div>
-
             @each('activities.basic_activity', $questions, 'question')
         </div>
         
