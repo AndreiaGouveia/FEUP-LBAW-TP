@@ -31,7 +31,7 @@ class MemberPolicy
      */
     public function view(Person $user, Member $member)
     {
-        //
+        return;
     }
 
     /**
