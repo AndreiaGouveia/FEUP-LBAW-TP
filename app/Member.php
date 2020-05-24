@@ -37,35 +37,31 @@ class Member extends Authenticatable
 
     public function questions() {
         
-        return $this->hasManyThrough('App\Question', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id'); 
+        return $this->hasManyThrough('App\Question', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id')->orderBy('publication.date', 'desc');
     
     }
 
     public function answers() {
         
-        return $this->hasManyThrough('App\Response', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id'); 
+        return $this->hasManyThrough('App\Response', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id')->orderBy('publication.date', 'desc');
     
     }
 
     public function comments() {
         
-        return $this->hasManyThrough('App\Comment', 'App\Publication', 'id_owner', 'id_publication', 'id_person', 'id'); 
+        return $this->hasManyThrough('App\Comment', 'App\Publication', 'id_owner', 'id_publication', 'id_person', 'id')->orderBy('publication.date', 'desc');
     
     }
 
     public function favoriteQuestions() {
 
-        return $this->hasManyThrough('App\Question', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication'); 
+        return $this->hasManyThrough('App\Question', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication')->orderBy('publication.date', 'desc');
 
     }
 
     public function favoriteAnswers() {
 
-        return $this->hasManyThrough('App\Response', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication'); 
+        return $this->hasManyThrough('App\Response', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication')->orderBy('publication.date', 'desc');
 
-    }
-
-    public function info() {
-        return $this->hasManyThrough();
     }
 }

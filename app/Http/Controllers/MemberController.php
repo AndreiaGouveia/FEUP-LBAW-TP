@@ -31,12 +31,20 @@ class MemberController extends Controller
         $member = Member::find($id);
 
         $info = array();
+        $questions = $member->questions;
+        $answers = $member->answers;
+        $comments = $member->comments;
 
-        $info = array_merge($member->questions->toArray(),$member->answers->toArray(), $member->comments->toArray());
-        var_dump($member);
+        /*var_dump(count($questions->toArray()));
+        var_dump(count($answers->toArray()));
+        var_dump(count($comments->toArray()));*/
 
-        //usort($info, array($this, 'date'));
-        return $info;
+        $merge = $questions->merge($answers);
+        $final_merge = $comments->merge($merge);
+        $info = $final_merge->all();
+
+        usort($info, array($this, 'date'));
+        return $final_merge;
     }
 
     public function favorites($id)
@@ -73,7 +81,8 @@ class MemberController extends Controller
 
         $info = MemberController::getActivity($id);
 
-        //var_dump($info);
+
+        echo(get_class($info[0]));
 
         return view('pages.profile',  ['member' => $member, 'info' => $info]);
     }
