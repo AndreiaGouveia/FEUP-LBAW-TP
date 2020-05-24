@@ -292,7 +292,7 @@ CREATE FUNCTION delete_publication() RETURNS TRIGGER AS
 	LANGUAGE plpgsql;
 	
 CREATE TRIGGER delete_publication
-    BEFORE DELETE ON publication
+    AFTER DELETE ON publication
     FOR EACH ROW
     EXECUTE PROCEDURE delete_publication(); 
 

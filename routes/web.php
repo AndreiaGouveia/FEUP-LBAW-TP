@@ -42,6 +42,8 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::get('questions', 'QuestionController@create')->name('add.questions')->middleware('auth');
     Route::post('questions', 'QuestionController@store')->name("store.question")->middleware('auth');
 
+    Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
+    Route::post('questions/{id}/delete', 'PublicationController@destroy')->name('publication.destroy');
 
     // API
     Route::post('api/questions/{id}/answers', 'ResponseController@store');
