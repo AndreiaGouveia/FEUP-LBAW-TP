@@ -27,7 +27,7 @@ class Member extends Authenticatable
     protected $hidden = ['password'];
 
     //associations
-    public function person(){return $this->belongsTo('App\Person','id', 'id_person');}
+    public function person(){return $this->belongsTo('App\Person','id_person', 'id');}
 
     public function location(){return $this->hasOne('App\Location','id', 'id_location');}
 

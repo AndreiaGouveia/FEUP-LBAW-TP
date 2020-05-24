@@ -35,7 +35,7 @@ class Comment extends Model
 
     public function commentsQuestion()
     {
-        return $this->hasOne('App\Question', 'id_commentable_publication', 'id_question');
+        return $this->hasOne('App\Question', 'id_commentable_publication', 'id_commentable_publication');
     }
 
     public function commentsResponse()

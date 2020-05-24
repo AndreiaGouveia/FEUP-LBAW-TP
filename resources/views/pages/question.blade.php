@@ -21,7 +21,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
     <div class="row">
         <div class="main-content col-md-8">
-            @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date])
+            @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$publication->owner->person->visible])
             <div class="pb-3 mb-1 border-bottom">
                 <h2>{{ $question->title }}</h2>
 
@@ -50,7 +50,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
             <div class="responseSection mt-4">
 
-                <h5><span id="number_answers">{{ $question->answers->count() }}</span> responses</h5>
+                <h5><span id="number_answers">{{ $question->answers->count() }}</span> respostas</h5>
 
                 <hr class="section-break" />
                 <ul class="list-unstyled" id="response_section">

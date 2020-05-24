@@ -56,12 +56,14 @@ class QuestionController extends Controller
                 'title' => $inputs['title']
             ]);
 
-            foreach ($inputs['tags'] as &$value) {
+            if(array_key_exists('tags', $inputs)) {
+                foreach ($inputs['tags'] as &$value) {
 
-                $tag_question = TagQuestion::create([
-                    'id_tag' => $value,
-                    'id_question' => $commentable_publication->id_publication
-                ]);
+                    TagQuestion::create([
+                        'id_tag' => $value,
+                        'id_question' => $commentable_publication->id_publication
+                    ]);
+                }
             }
 
             DB::commit();

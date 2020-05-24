@@ -67,5 +67,23 @@ class PublicationController extends Controller
 
         }
     }
+
+    public function destroy($id)
+    {
+        if (!Auth::check())
+            return response()->json(['error' => 'User not authenticated!'], 403);
+
+        DB::beginTransaction();
+
+        $delete_publication = DB::delete('delete from publication where (id = ?)', [$id]);
+
+        if ($delete_publication == null) {
+            DB::rollBack();
+            return response()->json(['error' => 'Error in deleting publication!'], 400);
+        }
+
+        DB::commit();
+        return redirect()->route('home');
+    }
     
 }

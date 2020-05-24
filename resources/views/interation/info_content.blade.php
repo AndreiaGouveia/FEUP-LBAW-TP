@@ -33,7 +33,7 @@ if(Auth::check()){
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     @if($owner)
         <a class="dropdown-item" href="#">Editar</a>
-        <a class="dropdown-item" href="#">Eliminar</a>
+        <button class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp">Eliminar</button>
         <div class="dropdown-divider"></div>
     @endif
         <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport{{ $commentable_publication->id_publication }}">Reportar</a>
@@ -41,3 +41,5 @@ if(Auth::check()){
 </div>
 
 @include('interation.report_pop_up', ['idOfPopUp' => 'popUpReport' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
+@include('interation.delete_pub_pop_up', ['idOfPopUp' => 'deletingPublicationPopUp' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
+

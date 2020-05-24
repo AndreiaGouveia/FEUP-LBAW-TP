@@ -3,11 +3,12 @@
 use App\Question;
 
 $commentable_publication = Question::find($question->id)->commentable_publication;
+
 ?>
 
 <div class="activity py-4 px-4 border-top">
 
-    @include('activities.header_activity', ['memberId' => $question->memberId, 'name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date])
+    @include('activities.header_activity', ['memberId' => $question->memberId, 'name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date, "anonymous" => !$question->visible])
 
     <a href="{{ route('show.question', $question->id) }}">
         <h5 class="title"><?= $question->title  ?></h5>
