@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Favorite;
-use App\Location;
 use App\Member;
 use App\Person;
 use Illuminate\Http\Request;
@@ -142,10 +139,14 @@ class MemberController extends Controller
         $member->save();
         $person->save();
 
+        if ($request->hasFile('photo')) {
+            
+            //TODO: save image
+
+        }
+
 
         return redirect()->route('members', $id);
-
-        //TODO: location and profile image
     }
 
     /**
@@ -207,7 +208,7 @@ class MemberController extends Controller
      */
     public function show_activate($id)
     {
-        
+
         $member = Member::find($id);
         $this->authorize('activate', $member);
 
