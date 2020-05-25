@@ -78,9 +78,6 @@ class MemberController extends Controller
 
         $info = MemberController::getActivity($id);
 
-
-        echo(get_class($info[0]));
-
         return view('pages.profile',  ['member' => $member, 'info' => $info]);
     }
 
