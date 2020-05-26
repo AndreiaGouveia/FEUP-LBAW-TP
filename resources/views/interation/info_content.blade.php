@@ -14,17 +14,19 @@ if(Auth::check()){
 
 <button class="btn px-2 py-0 comment-button" type="button" data-toggle="collapse" data-target="#commentSection{{ $commentable_publication->id_publication }}" aria-controls="commentSection{{ $commentable_publication->id_publication }}" aria-expanded="false" toggle="" data-placement="bottom" title="Deixe o seu comentário" aria-expanded="false">
     <i class="far fa-comment"></i>
-    <label style="margin-bottom: 0px" class="pl-1">Comentar</label>
+    <label style="margin-bottom: 0px" class="pl-1">Comentários</label>
 </button>
 
 @include('interation.like_buttons', ['commentable_publication' => $commentable_publication, 'likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
 
+@auth
 <div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="{{ $commentable_publication->id_publication }}">
     <label class="btn btn-secondary px-1 py-0 favorite <?= $favorite ? "active" : "" ?>" toggle="" data-placement="bottom" title="Guardar" >
         <i class="far fa-star"></i>
         <input type="checkbox" name="save" id="save" autocomplete="off" >
     </label>
 </div>
+
 
 <div class="dropdown">
     <button class="btn px-1 py-0 ml-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,6 +41,7 @@ if(Auth::check()){
         <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport{{ $commentable_publication->id_publication }}">Reportar</a>
     </div>
 </div>
+@endauth
 
 @include('interation.report_pop_up', ['idOfPopUp' => 'popUpReport' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
 @include('interation.delete_pub_pop_up', ['idOfPopUp' => 'deletingPublicationPopUp' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
