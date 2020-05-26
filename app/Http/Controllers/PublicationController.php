@@ -68,14 +68,15 @@ class PublicationController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
         DB::beginTransaction();
 
-        $delete_publication = DB::delete('delete from publication where (id = ?)', [$id]);
+
+        $delete_publication = DB::table('publication')->where('id', $id)->update(['visible' => false]);
 
         if ($delete_publication == null) {
             DB::rollBack();

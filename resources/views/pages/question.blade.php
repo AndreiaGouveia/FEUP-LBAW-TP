@@ -1,6 +1,7 @@
 <?php
 
 $link_image = ($publication->owner->photo != null) ? $publication->owner->photo->url : null;
+$visible = $publication->visible;
 ?>
 
 @extends('layouts.app')
@@ -14,6 +15,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 @endsection
 
 @section('content')
+@if($visible)
 
 <div class="container mt-5">
 
@@ -75,5 +77,6 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
     </div>
 </div>
+@endif
 
 @endsection

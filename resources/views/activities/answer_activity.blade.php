@@ -1,8 +1,11 @@
 <?php
 
 $link_profile = ($answer->publication->owner) ? $answer->publication->owner->url : null;
+$visible =$comment->publication->visible ;
 
 ?>
+
+@if($visible)
 <div class="activity py-4 px-4 border-top ">
     @include('activities.header_activity', ['memberId' => $answer->publication->id_owner, 'name' => $answer->publication->owner->name, "link_profile" => $link_profile, 'action' => "respondeu a ", 'actionInBold' => $answer->question->title, "date" => $answer->publication->date])
 
@@ -13,3 +16,4 @@ $link_profile = ($answer->publication->owner) ? $answer->publication->owner->url
     </div>
 
 </div>
+@endif

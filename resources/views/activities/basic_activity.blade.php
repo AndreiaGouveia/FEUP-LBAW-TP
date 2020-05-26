@@ -3,7 +3,11 @@
 use App\Question;
 
 $commentable_publication = Question::find($question->id)->commentable_publication;
+$publication = Question::find($question->id)->publication;
+$visible = $publication->visible ;
+
 ?>
+@if($visible)
 
 <div class="activity py-4 px-4 border-top">
 
@@ -25,3 +29,4 @@ $commentable_publication = Question::find($question->id)->commentable_publicatio
 
     </div>
 </div>
+@endif

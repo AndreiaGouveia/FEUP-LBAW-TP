@@ -27,4 +27,5 @@ class Publication extends Model
     public function commentable_publications(){return $this->hasMany('App\Commentable_publication');}
 
     public function comments(){return $this->hasMany('App\Comments');}
+
 }

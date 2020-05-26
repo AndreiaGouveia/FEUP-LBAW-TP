@@ -37,7 +37,7 @@ Route::get('search/tags/{tag}/{filter}', 'HomeController@filteredSearchTopic')->
 Route::get('search/{search}/{filter}', 'HomeController@filteredSearch')->name('filtered.search');
 
 Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
-Route::post('questions/{id}/delete', 'PublicationController@destroy')->name('publication.destroy');
+Route::post('questions/{id}/delete', 'PublicationController@delete')->name('publication.delete');
 
 Route::get('questions', 'QuestionController@create')->name('add.questions')->middleware('auth');
 
