@@ -23,7 +23,7 @@ class Response extends Model
 
     //associations
     public function commentable_publication(){return $this->belongsTo('App\Commentable_publication', 'id_commentable_publication', 'id_publication');}
-    
+
     public function publication(){return $this->belongsTo('App\Publication', 'id_commentable_publication', 'id');}
 
     public function question(){return $this->hasOne('App\Question', 'id_commentable_publication', 'id_question');}

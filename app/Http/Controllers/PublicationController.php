@@ -75,7 +75,6 @@ class PublicationController extends Controller
 
         DB::beginTransaction();
 
-
         $delete_publication = DB::table('publication')->where('id', $id)->update(['visible' => false]);
 
         if ($delete_publication == null) {

@@ -1,1 +1,2 @@
 2020-05-24 23:31:46 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (12, 16, true))
+2020-05-26 01:45:56 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (12, 16, true))

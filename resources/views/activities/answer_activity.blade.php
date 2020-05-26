@@ -1,7 +1,7 @@
 <?php
 
 $link_profile = ($answer->publication->owner) ? $answer->publication->owner->url : null;
-$visible =$comment->publication->visible ;
+$visible =$answer->publication->visible ;
 
 ?>
 
