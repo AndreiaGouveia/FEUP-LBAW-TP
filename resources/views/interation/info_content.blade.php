@@ -43,5 +43,5 @@ if(Auth::check()){
 @endauth
 
 @include('interation.report_pop_up', ['idOfPopUp' => 'popUpReport' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
-@include('interation.delete_pub_pop_up', ['idOfPopUp' => 'deletingPublicationPopUp' . $commentable_publication->id_publication, 'id_pub' => $commentable_publication->id_publication])
+@include('interation.delete_pub_pop_up', ['idOfPopUp' => 'deletingPublicationPopUp' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
 
