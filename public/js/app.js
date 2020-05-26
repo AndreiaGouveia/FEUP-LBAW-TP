@@ -14,6 +14,12 @@ function addEventListeners() {
     report.addEventListener('submit', sendReport);
   }
 
+  let deletePublicationArray = document.querySelectorAll('form.deletePub');
+  for (deletePub of deletePublicationArray) {
+    deletePub.addEventListener('submit', sendDeletePublication);
+  }
+
+
   let likeButtonArray = document.querySelectorAll('.btn.like');
   for (likeButton of likeButtonArray) {
     likeButton.addEventListener('click', sendLikeRequest);
@@ -243,12 +249,24 @@ function sendCreateResponseRequest(event) {
 
 function sendReport(event) {
 
-  console.log("AQUI");
+  console.log("AQUIreport");
+
 
   let id_publication = this.dataset.publicationId;
   let motive = event.target.querySelector('input:checked').value;
 
   sendAjaxRequest('POST', '/api/publications/' + id_publication + '/report', { motive: motive }, reportAddedHandler, event.target);
+
+  event.preventDefault();
+}
+
+function sendDeletePublication(event) {
+
+  console.log("AQUI");
+
+  let id_publication = this.dataset.publicationId;
+
+  sendAjaxRequest('POST', '/api/publications/' + id_publication + '/delete',{}, publicationDeletedHandler, event.target);
 
   event.preventDefault();
 }
@@ -312,6 +330,21 @@ function responseAddedHandler() {
   favoriteButton.addEventListener('click', sendFavoriteRequest);
 
 
+}
+
+function publicationDeletedHandler() {
+
+  console.log(this);
+
+  if (this.status != 200) {
+
+    createErrorMessage("Not able to delete the publication!", this.extraInfo.querySelector('.content'));
+    return;
+  }
+
+
+  createSucessMessage("Publication was deleted with sucess", document.querySelector('#content div div'));
+  this.extraInfo.reset();
 }
 
 function reportAddedHandler() {
@@ -437,7 +470,7 @@ function createResponse(publication, person, photo) {
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Editar</a>
-            <a class="dropdown-item" href="#">Eliminar</a>
+            <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp`+ publication.id + `">Eliminar</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport`+ publication.id + `">Reportar</a>
           </div>

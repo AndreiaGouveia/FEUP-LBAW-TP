@@ -19,7 +19,6 @@ if(Auth::check()){
 
 @include('interation.like_buttons', ['commentable_publication' => $commentable_publication, 'likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
 
-@auth
 <div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="{{ $commentable_publication->id_publication }}">
     <label class="btn btn-secondary px-1 py-0 favorite <?= $favorite ? "active" : "" ?>" toggle="" data-placement="bottom" title="Guardar" >
         <i class="far fa-star"></i>
@@ -34,13 +33,12 @@ if(Auth::check()){
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     @if($owner)
         <a class="dropdown-item" href="#">Editar</a>
-        <button class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp">Eliminar</button>
+        <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp{{ $commentable_publication->id_publication }}">Eliminar</a>
         <div class="dropdown-divider"></div>
     @endif
         <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport{{ $commentable_publication->id_publication }}">Reportar</a>
     </div>
 </div>
-@endauth
 
 @include('interation.report_pop_up', ['idOfPopUp' => 'popUpReport' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
 @include('interation.delete_pub_pop_up', ['idOfPopUp' => 'deletingPublicationPopUp' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])

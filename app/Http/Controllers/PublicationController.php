@@ -73,17 +73,24 @@ class PublicationController extends Controller
         if (!Auth::check())
             return response()->json(['error' => 'User not authenticated!'], 403);
 
+
         DB::beginTransaction();
-
-        $delete_publication = DB::table('publication')->where('id', $id)->update(['visible' => false]);
-
-        if ($delete_publication == null) {
-            DB::rollBack();
-            return response()->json(['error' => 'Error in deleting publication!'], 400);
+        
+        if (!Publication::find($id)){
+            return response()->json(['error' => "No publication was found with id equal to ".$id], 404);
         }
 
-        DB::commit();
-        return redirect()->route('home');
+        try {
+            $delete_publication = DB::table('publication')->where('id', $id)->update(['visible' => false]);
+            DB::commit();
+            return response()->json(200);
+
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
     
 }

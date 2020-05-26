@@ -42,8 +42,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::get('questions', 'QuestionController@create')->name('add.questions')->middleware('auth');
     Route::post('questions', 'QuestionController@store')->name("store.question")->middleware('auth');
 
-Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
-Route::post('questions/{id}/delete', 'PublicationController@delete')->name('publication.delete');
+    Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
 
     // API
     Route::post('api/questions/{id}/answers', 'ResponseController@store');
@@ -57,6 +56,8 @@ Route::post('questions/{id}/delete', 'PublicationController@delete')->name('publ
     Route::post('api/publications/{id}/favorites/delete', 'FavoriteController@destroy');
 
     Route::post('api/publications/{id}/report', 'PublicationController@report');
+    Route::post('api/publications/{id}/delete', 'PublicationController@delete');
+
 
 });
 

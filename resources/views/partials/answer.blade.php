@@ -1,7 +1,10 @@
 <?php
 
 $link_image = ($owner->photo != null) ? $owner->photo->url : null;
+$visible = $publication->visible;
+
 ?>
+@if($visible)
 
 <div class="py-2">
     @include('activities.header_activity', ['memberId' => $owner->id_person, 'name' => $owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$owner->person->visible])    
@@ -21,3 +24,4 @@ $link_image = ($owner->photo != null) ? $owner->photo->url : null;
 </div>
 
 <hr class="section-break" />
+@endif
