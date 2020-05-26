@@ -1,6 +1,6 @@
 <div class="form-group" >
 
-    <form role="form" method="POST" action="{{ route('publication.destroy', ['id' => $id_publication ])}}">
+    <form role="form" method="POST" action="{{ route('publication.delete', ['id' => $id_publication ])}}">
         @csrf
         <!--SUPER DUPER IMPORTANTE-->
 
