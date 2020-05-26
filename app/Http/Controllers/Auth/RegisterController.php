@@ -87,4 +87,6 @@ class RegisterController extends Controller
 
         return $person;
     }
+
+    
 }

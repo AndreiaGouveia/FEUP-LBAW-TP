@@ -40,7 +40,6 @@
 <h3 class="font-weight-normal text-danger mb-3">Desativar Conta</h3>
 <hr class="section-break" />
 
-
 <div class="form-group">
 
     <label for="deleteAccount">Uma vez desativada a conta, o seu conteúdo vai deixar de estar disponivel. Por favor, tenha a certeza.</label><br>

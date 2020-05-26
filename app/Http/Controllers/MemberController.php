@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Favorite;
-use App\Location;
 use App\Member;
 use App\Person;
 use Illuminate\Http\Request;
@@ -30,83 +27,28 @@ class MemberController extends Controller
 
         $member = Member::find($id);
 
-        $info = array(); //info to be sent
+        $info = array();
+        $questions = $member->questions;
+        $answers = $member->answers;
+        $comments = $member->comments;
 
-        $questions = DB::table('question')
-            ->join('commentable_publication', 'commentable_publication.id_publication', '=', 'question.id_commentable_publication')
-            ->join('publication', 'publication.id', '=', 'commentable_publication.id_publication')
-            ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
-            ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
-            ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-            ->where('publication.id_owner', '=', $id)
-            ->groupBy('question.id_commentable_publication', 'publication.id', 'publication.date', 'publication.description', 'question.title')
-            ->orderBy('publication.id')
-            ->get(array('question.id_commentable_publication','publication.id', 'publication.date', 'publication.description', 'question.title', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
+        /*var_dump(count($questions->toArray()));
+        var_dump(count($answers->toArray()));
+        var_dump(count($comments->toArray()));*/
 
-        foreach ($questions as $question) {
-            $question->type = 'question';
-        }
-
-        $member->questions = count($questions);
-
-        $comments = DB::table('comment')
-            ->join('publication', 'publication.id', '=', 'comment.id_publication')
-            ->where('publication.id_owner', '=', $id)
-            ->groupBy('publication.id', 'publication.date', 'comment.id_publication')
-            ->orderBy('publication.id')
-            ->get(array('publication.date', 'publication.description', 'comment.id_commentable_publication'));
-
-        foreach ($comments as $comment) {
-            $temp = array();
-            $temp = DB::table('response')
-                ->join('question', 'question.id_commentable_publication', '=', 'response.id_question')
-                ->where('response.id_commentable_publication', '=', $comment->id_commentable_publication)
-                ->get(array('question.title', 'question.id_commentable_publication'));
-            $comment->type = 'commentreply';
-
-            if (empty($temp[0])) {
-                $temp = DB::table('question')
-                    ->where('question.id_commentable_publication', '=', $comment->id_commentable_publication)
-                    ->get(array('question.title', 'question.id_commentable_publication'));
-                $comment->type = 'comment';
-            }
-
-            $comment->commentable_publication = $temp->toArray()[0]->title;
-            $comment->id_commentable_publication = $temp->toArray()[0]->id_commentable_publication;
-        }
-
-        $member->comments = count($comments);
-
-        $replies = DB::table('response')
-            ->join('question', 'question.id_commentable_publication', '=', 'response.id_question')
-            ->join('commentable_publication', 'commentable_publication.id_publication', '=', 'response.id_commentable_publication')
-            ->join('publication', 'publication.id', '=', 'commentable_publication.id_publication')
-            ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'response.id_commentable_publication')
-            ->where('publication.id_owner', '=', $id)
-            ->groupBy('publication.id', 'response.id_question', 'question.id_commentable_publication', 'publication.date', 'publication.description', 'question.title')
-            ->orderBy('publication.id')
-            ->get(array('publication.id', 'publication.date', 'publication.description', 'response.id_question','question.id_commentable_publication', 'question.title', DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes')));
-
-        foreach ($replies as $rep) {
-            $rep->type = 'reply';
-        }
-
-
-        $member->reply = count($replies);
-
-        $info = array_merge($comments->toArray(), $questions->toArray(), $replies->toArray());
+        $merge = $questions->merge($answers);
+        $final_merge = $comments->merge($merge);
+        $info = $final_merge->all();
 
         usort($info, array($this, 'date'));
-        return $info;
+        return $final_merge;
     }
 
     public function favorites($id)
     {
         $member = Member::find($id);
 
-        //TODO: change this to a proper error
-        if ($member == null)
-            return;
+        $this->authorize('favorites', $member);
 
         return view('pages.favorites',  ['answers' => $member->favoriteAnswers, 'questions' => $member->favoriteQuestions]);
     }
@@ -116,9 +58,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-        //TODO: change this to a proper error
-        if ($member == null)
-            return;
+        $this->authorize('content', $member);
 
         return view('pages.content',  ['questions' => $member->questions, 'answers' => $member->answers, 'comments' => $member->comments]);
     }
@@ -133,9 +73,8 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-        //TODO: change this to a proper error
-        if ($member == null)
-            return;
+        if ($member == null || !$member->person->visible)
+            abort(403, 'Access denied');
 
         $info = MemberController::getActivity($id);
 
@@ -197,10 +136,14 @@ class MemberController extends Controller
         $member->save();
         $person->save();
 
+        if ($request->hasFile('photo')) {
+            
+            //TODO: save image
+
+        }
+
 
         return redirect()->route('members', $id);
-
-        //TODO: location and profile image
     }
 
     /**
@@ -246,15 +189,50 @@ class MemberController extends Controller
         $member = Member::find($id);
         $person = Person::find($id);
 
-        $this->authorize('delete', $member);
+        $this->authorize('activate', $member);
 
         $person->visible = false;
+        $person->save();
 
         return redirect()->route('logout');
     }
 
+    /**
+     * Activate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_activate($id)
+    {
+
+        $member = Member::find($id);
+        $this->authorize('activate', $member);
+
+        return view('pages.activate_account', ['id' => $id]);
+    }
+
+    /**
+     * Activate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function activate($id)
+    {
+        $member = Member::find($id);
+        $person = Person::find($id);
+
+        $this->authorize('delete', $member);
+
+        $person->visible = true;
+        $person->save();
+
+        return redirect()->route('home');
+    }
+
     public function date($a, $b)
     {
-        return ($a->date > $b->date) ? -1 : 1;
+        return ($a->publication->date > $b->publication->date) ? -1 : 1;
     }
 }

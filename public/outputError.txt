@@ -1,14 +1,1 @@
-2020-05-20 10:37:56 - OLA
-2020-05-20 10:38:39 - OLA
-2020-05-25 22:28:37 - SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "tag_question" violates foreign key constraint "tag_question_id_tag_fkey"
-DETAIL:  Key (id_tag)=(5) is not present in table "tag". (SQL: insert into "tag_question" ("id_tag", "id_question") values (5, 21))
-2020-05-25 23:34:27 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to favorite their own question/answer  (SQL: insert into favorite(id_commentable_publication, id_member) values (12, 16))
-2020-05-26 00:18:52 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (12, 16, true))
-2020-05-26 00:18:52 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (12, 16, true))
-2020-05-26 00:18:53 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (12, 16, false))
-2020-05-26 00:18:54 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (12, 16, true))
-2020-05-26 00:18:55 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (12, 16, false))
-2020-05-26 00:42:08 - Invalid argument supplied for foreach()
-2020-05-26 00:42:13 - Invalid argument supplied for foreach()
-2020-05-26 00:42:19 - Invalid argument supplied for foreach()
-2020-05-26 00:42:35 - Invalid argument supplied for foreach()
+2020-05-24 23:31:46 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (12, 16, true))

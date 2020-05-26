@@ -1,5 +1,5 @@
 <?php
-$link = ($member->photolink != null) ? $member->photolink->url : "https://i.stack.imgur.com/l60Hf.png";
+$link = ($member->photo != null) ? $member->photo->url : "https://i.stack.imgur.com/l60Hf.png";
 
 $location_array = array();
 if ($member->location != null) {

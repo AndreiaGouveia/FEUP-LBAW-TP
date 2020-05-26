@@ -11,7 +11,8 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md" >@include('partials.user_info', ["member" => $member])</div>
-            <div class="col-md-8">@include('partials.profile_activity' , ["info" => $info , "member" => $member])</div>
+            <div class="col-md-8" >@include('partials.profile_activity', ["info" => $info])
+            </div>
         </div>
     </div>
 

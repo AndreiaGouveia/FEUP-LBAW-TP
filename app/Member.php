@@ -27,7 +27,7 @@ class Member extends Authenticatable
     protected $hidden = ['password'];
 
     //associations
-    public function person(){return $this->belongsTo('App\Person','id', 'id_person');}
+    public function person(){return $this->belongsTo('App\Person','id_person', 'id');}
 
     public function location(){return $this->hasOne('App\Location','id', 'id_location');}
 
@@ -37,31 +37,31 @@ class Member extends Authenticatable
 
     public function questions() {
         
-        return $this->hasManyThrough('App\Question', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id'); 
+        return $this->hasManyThrough('App\Question', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id')->orderBy('publication.date', 'desc');
     
     }
 
     public function answers() {
         
-        return $this->hasManyThrough('App\Response', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id'); 
+        return $this->hasManyThrough('App\Response', 'App\Publication', 'id_owner', 'id_commentable_publication', 'id_person', 'id')->orderBy('publication.date', 'desc');
     
     }
 
     public function comments() {
         
-        return $this->hasManyThrough('App\Comment', 'App\Publication', 'id_owner', 'id_publication', 'id_person', 'id'); 
+        return $this->hasManyThrough('App\Comment', 'App\Publication', 'id_owner', 'id_publication', 'id_person', 'id')->orderBy('publication.date', 'desc');
     
     }
 
     public function favoriteQuestions() {
 
-        return $this->hasManyThrough('App\Question', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication'); 
+        return $this->hasManyThrough('App\Question', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication')->orderBy('publication.date', 'desc');
 
     }
 
     public function favoriteAnswers() {
 
-        return $this->hasManyThrough('App\Response', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication'); 
+        return $this->hasManyThrough('App\Response', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication')->orderBy('publication.date', 'desc');
 
     }
 }

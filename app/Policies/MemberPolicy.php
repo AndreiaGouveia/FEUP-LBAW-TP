@@ -31,7 +31,7 @@ class MemberPolicy
      */
     public function view(Person $user, Member $member)
     {
-        //
+        return;
     }
 
     /**
@@ -67,6 +67,30 @@ class MemberPolicy
     public function delete(Person $user, Member $member)
     {
         return $user->id == $member->id_person;
+    }
+
+    /**
+     * Determine whether the user can activate the member.
+     *
+     * @param  \App\Person  $user
+     * @param  \App\Member  $member
+     * @return mixed
+     */
+    public function activate(Person $user, Member $member)
+    {
+        return $user->id == $member->id_person;
+    }
+
+    public function favorites(Person $user, Member $member) {
+
+        return $user->id == $member->id_person;
+
+    }
+
+    public function content(Person $user, Member $member) {
+
+        return $user->id == $member->id_person;
+
     }
 
     /**

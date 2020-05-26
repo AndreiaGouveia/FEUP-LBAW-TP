@@ -39,7 +39,7 @@ foreach ($temp as &$value) {
 <h3 class="font-weight-normal mb-3">Alterar Perfil</h3>
 <hr class="section-break" />
 
-<form role="form" method="POST" action="{{ route('members.update', $member->id_person) }}">
+<form role="form" method="POST" action="{{ route('members.update', $member->id_person) }}" enctype="multipart/form-data">
     <div class="form-group">
 
         <div class="row flex-column-reverse flex-lg-row">
@@ -82,9 +82,17 @@ foreach ($temp as &$value) {
 
             <div class="col-md">
                 <div class="content mb-4">
-                    <label for="profilePic">Foto de Perfil</label><br>
-                    <img src=<?= $link ?> id="profilePic" class="img-settings" alt="">
+
+                    <div class="avatar-zone">
+                        <label for="profilePic">Foto de Perfil</label><br>
+                        <img src=<?= $link ?> id="profilePic" class="img-settings" alt="">
+                    </div>
+
+                    <input type="file" class="upload_btn" name="photo" />
+                    <div class="overlay-layer">Upload photo</div>
+
                 </div>
+
             </div>
 
         </div>

@@ -4,7 +4,7 @@ $link_image = ($owner->photo != null) ? $owner->photo->url : null;
 ?>
 
 <div class="py-2">
-    @include('activities.header_activity', ['memberId' => $owner->id_person, 'name' => $owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date])    
+    @include('activities.header_activity', ['memberId' => $owner->id_person, 'name' => $owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$owner->person->visible])    
     <p class="card-text"> {{ $publication->description }}</p>
 
     <div class="info row justify-content-end mx-0">
