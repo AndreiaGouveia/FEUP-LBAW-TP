@@ -4,13 +4,11 @@
 use Illuminate\Support\Facades\Auth;
 
 if (Auth::check()) {
-    if (Auth::user()->id == 1) {
-        $admin = 1;
-        $link = "https://pngimage.net/wp-content/uploads/2018/06/logo-admin-png-4.png";
+    if (Auth::user()->isAdmin()) {
+        $link = "images/admin.png";
         $name = "Administrator";
     } else {
-        $admin = 0;
-        $member = App\Member::find(Auth::user()->id);
+        $member = Auth::user()->member;
         $link = ($member->photo != null) ? $member->photo->url : "images/default.png";
         $name = $member->name;
     }
@@ -49,7 +47,7 @@ if (Auth::check()) {
                         <p style="margin-left: 1.7rem"><?= $name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                     </div>
 
-                    @if($admin)
+                    @if(auth()->user()->isAdmin())
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item">Editar página 'Sobre Nós'</a>
                     <a class="dropdown-item">Conteúdo sinalizado</a>

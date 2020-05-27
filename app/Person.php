@@ -32,4 +32,8 @@ class Person extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    public function isAdmin(){return $this->hasOne('App\Administrator', 'id_person', 'id')->exists(); }
+
+    public function member(){return $this->hasOne('App\Member', 'id_person', 'id'); }
 }
