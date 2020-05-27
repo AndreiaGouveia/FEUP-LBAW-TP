@@ -57,11 +57,6 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 
     Route::post('api/publications/{id}/report', 'PublicationController@report');
     Route::post('api/publications/{id}/delete', 'PublicationController@delete');
-
-
-    Route::get('storage/{filename}', function ($filename) {
-        return Storage::get($filename);
-    });
 });
 
 
