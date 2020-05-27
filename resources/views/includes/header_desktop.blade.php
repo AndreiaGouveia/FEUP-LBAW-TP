@@ -11,7 +11,7 @@ if (Auth::check()) {
     } else {
         $admin = 0;
         $member = App\Member::find(Auth::user()->id);
-        $link = ($member->photo != null) ? $member->photo->url : "https://i.stack.imgur.com/l60Hf.png";
+        $link = ($member->photo != null) ? $member->photo->url : "images/default.png";
         $name = $member->name;
     }
 }
@@ -47,7 +47,7 @@ if (Auth::check()) {
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="dropdown-item">
-                    <img src=<?= $link ?> class="img-header float-left" alt="">
+                    <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="">
                     <p style="margin-left: 1.7rem"><?= $name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                 </div>
 

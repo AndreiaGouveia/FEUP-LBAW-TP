@@ -405,7 +405,7 @@ function commentAddedHandler() {
 
 function createComment(publication, person, photo) {
 
-  let link_image = (photo != null) ? photo.url : "https://i.stack.imgur.com/l60Hf.png";
+  let link_image = (photo != null) ? 'storage/app/' + photo.url : "https://i.stack.imgur.com/l60Hf.png";
 
   let new_comment = document.createElement('div');
   new_comment.className = "p-2"
@@ -423,7 +423,7 @@ function createComment(publication, person, photo) {
 
 function createResponse(publication, person, photo) {
 
-  let link_image = (photo != null) ? photo.url : "https://i.stack.imgur.com/l60Hf.png";
+  let link_image = (photo != null) ? 'storage/app/' + photo.url : "https://i.stack.imgur.com/l60Hf.png";
 
   let header_ativity = `
   <div class="header-card mb-3">

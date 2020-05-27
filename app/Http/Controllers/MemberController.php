@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Member;
 use App\Person;
+use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -133,15 +134,19 @@ class MemberController extends Controller
         else
             $member->id_location = null;
 
-        $member->save();
-        $person->save();
-
         if ($request->hasFile('photo')) {
             
-            //TODO: save image
+            $path = $request->file('photo')->storeAs(
+                'public/images', $id . "." . $request->file('photo')->extension()
+            );
 
+            $photo = Photo::create(['url' => "images/" . $id . ".". $request->file('photo')->extension()]);
+
+            $member->id_photo = $photo->id;
         }
 
+        $member->save();
+        $person->save();
 
         return redirect()->route('members', $id);
     }

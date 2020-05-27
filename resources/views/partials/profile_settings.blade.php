@@ -5,7 +5,7 @@
 
 use App\Location;
 
-$link = ($member->photo != null) ? $member->photo->url : "https://i.stack.imgur.com/l60Hf.png";
+$link = ($member->photo != null) ? $member->photo->url : "images/default.png";
 
 $curr_location = $member->id_location;
 
@@ -85,7 +85,7 @@ foreach ($temp as &$value) {
 
                     <div class="avatar-zone">
                         <label for="profilePic">Foto de Perfil</label><br>
-                        <img src=<?= $link ?> id="profilePic" class="img-settings" alt="">
+                        <img src='{{asset("storage/$link")}}' id="profilePic" class="img-settings" alt="">
                     </div>
 
                     <input type="file" class="upload_btn" name="photo" />

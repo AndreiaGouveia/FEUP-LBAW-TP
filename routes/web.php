@@ -11,8 +11,8 @@
 */
 
 // IF USER IS LOGGED IN AND IS ACCOUNT IS NOT ACTIVE/VISIBLE WE REDIRECT TO ACTIVE
-Route::group(['middleware' => ['unactiveUser']], function () { 
-    
+Route::group(['middleware' => ['unactiveUser']], function () {
+
     //Default page
     Route::get('/', 'HomeController@home');
 
@@ -32,7 +32,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 
     //Search
     Route::get('search/{query}', 'HomeController@search')->name("search");
-    Route::post('search', 'HomeController@postSearch' )->name("search.post");
+    Route::post('search', 'HomeController@postSearch')->name("search.post");
     Route::get('search/tags/{tag}', 'HomeController@searchTopic')->name("search.topic");
     Route::get('search/tags/{tag}/{filter}', 'HomeController@filteredSearchTopic')->name("filtered.search.topic");
     Route::get('search/{search}/{filter}', 'HomeController@filteredSearch')->name('filtered.search');
@@ -59,6 +59,9 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::post('api/publications/{id}/delete', 'PublicationController@delete');
 
 
+    Route::get('storage/{filename}', function ($filename) {
+        return Storage::get($filename);
+    });
 });
 
 

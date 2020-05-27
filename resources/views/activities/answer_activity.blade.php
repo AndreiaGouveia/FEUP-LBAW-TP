@@ -1,6 +1,6 @@
 <?php
 
-$link_profile = ($answer->publication->owner) ? $answer->publication->owner->url : null;
+$link_profile = ($answer->publication->owner->photo) ? $answer->publication->owner->photo->url : null;
 $visible =$answer->publication->visible ;
 
 ?>

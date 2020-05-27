@@ -97,7 +97,7 @@ CREATE TABLE member
     biography TEXT,
     points INTEGER DEFAULT 0,
     id_location INTEGER REFERENCES location (id),
-    id_photo INTEGER REFERENCES photo (id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    id_photo INTEGER REFERENCES photo (id) ON UPDATE CASCADE ON DELETE SET NULL,
     medal medal_type,
     moderator boolean NOT NULL DEFAULT false
 );
@@ -241,7 +241,7 @@ CREATE FUNCTION erase_old_photo() RETURNS TRIGGER AS
 	LANGUAGE plpgsql;
 
 CREATE TRIGGER erase_old_photo
-    BEFORE UPDATE OF id_photo ON member
+    AFTER UPDATE OF id_photo ON member
     FOR EACH ROW
     EXECUTE PROCEDURE erase_old_photo(); 
 

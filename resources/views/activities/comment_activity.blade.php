@@ -1,6 +1,6 @@
 <?php
 
-$link_profile = ($comment->publication->owner) ? $comment->publication->owner->url : null;
+$link_profile = ($comment->publication->owner->photo) ? $comment->publication->owner->photo->url : null;
 
 $optionForCommentForAnswer = "";
 $questionTitle = "";

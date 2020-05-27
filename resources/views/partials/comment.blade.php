@@ -1,6 +1,6 @@
 <?php
 
-$link_image = ($comment->publication->owner->photo != null && $comment->publication->owner->person->visible ) ? $comment->publication->owner->photo->url : "https://i.stack.imgur.com/l60Hf.png";
+$link_image = ($comment->publication->owner->photo != null && $comment->publication->owner->person->visible ) ?  $comment->publication->owner->photo->url : "images/default.png";
 ?>
 
 <div class="p-2">

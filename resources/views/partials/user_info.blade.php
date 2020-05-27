@@ -1,5 +1,5 @@
 <?php
-$link = ($member->photo != null) ? $member->photo->url : "https://i.stack.imgur.com/l60Hf.png";
+$link = ($member->photo != null) ? $member->photo->url : "images/default.png";
 
 $location_array = array();
 if ($member->location != null) {
@@ -18,11 +18,11 @@ if ($member->location != null) {
 
 $location = implode(",", $location_array);
 
-?>    
+?> 
     
     <div class="profile_info">
 
-        <img src=<?=$link?> class="img d-inline-block align-center" alt="">
+        <img src='{{asset("storage/$link")}}' class="img d-inline-block align-center" alt="">
         <h6><br></h6>
         <div class="profile_data">
             <h2><?=$member->name?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></h2>
