@@ -28,4 +28,7 @@ class Response extends Model
 
     public function question(){return $this->hasOne('App\Question', 'id_commentable_publication', 'id_question');}
 
+    public function reported() {
+        return $this->hasMany('App\Reported', 'id_publication', 'id_commentable_publication')->where('resolved', false);
+    }
 }

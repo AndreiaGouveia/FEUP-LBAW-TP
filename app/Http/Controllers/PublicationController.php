@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Publication;
 use App\Reported;
+use App\Question;
+use App\Comment;
+use App\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -91,6 +94,16 @@ class PublicationController extends Controller
             ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+
+    function view_reports() {
+
+        $reportedQuestions = Question::whereHas('reported')->get();
+        $reportedResponses = Response::whereHas('reported')->get();
+        $reportedComments = Comment::whereHas('reported')->get();
+
+        return view('pages.reports', ['questions' => $reportedQuestions, 'answers' => $reportedResponses, 'comments' => $reportedComments]);
+
     }
     
 }

@@ -57,6 +57,8 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 
     Route::post('api/publications/{id}/report', 'PublicationController@report');
     Route::post('api/publications/{id}/delete', 'PublicationController@delete');
+
+    Route::get('publications/reports', 'PublicationController@view_reports')->name('reports');
 });
 
 
