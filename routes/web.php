@@ -29,6 +29,8 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::post('members/{id}', 'MemberController@update')->name('members.update');
     Route::post('members/{id}/password', 'MemberController@updatePassword')->name('members.update.password');
     Route::post('members/{id}/deactivate', 'MemberController@deactivate')->name('members.deactivate');
+    Route::post('/members/{id}/promote', 'MemberController@promote')->name('member.promote'); //TODO: NEW MIDDLEWARE FOR ADMIN
+    Route::post('/members/{id}/demote', 'MemberController@demote')->name('member.demote'); //TODO: NEW MIDDLEWARE FOR ADMIN
 
     //Search
     Route::get('search/{query}', 'HomeController@search')->name("search");
@@ -60,6 +62,8 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 
     Route::get('publications/reports', 'PublicationController@view_reports')->name('reports')->middleware('authorizationReport');
     Route::post('/api/publications/{id}/report/resolved', 'PublicationController@resolve_report')->middleware('authorizationReport');
+
+
 });
 
 

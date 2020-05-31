@@ -23,7 +23,12 @@ class MemberController extends Controller
         //
     }
 
-    public static function getActivity($id)
+    public function date($a, $b)
+    {
+        return ($a->publication->date > $b->publication->date) ? -1 : 1;
+    }
+
+    public function getActivity($id)
     {
 
         $member = Member::find($id);
@@ -42,7 +47,7 @@ class MemberController extends Controller
         $info = $final_merge->all();
 
         usort($info, array($this, 'date'));
-        return $final_merge;
+        return $info;
     }
 
     public function favorites($id)
@@ -236,8 +241,27 @@ class MemberController extends Controller
         return redirect()->route('home');
     }
 
-    public function date($a, $b)
-    {
-        return ($a->publication->date > $b->publication->date) ? -1 : 1;
+    public function promote($id){
+
+        $member = Member::find($id);
+
+        $member->moderator = true;
+
+        $member->save();
+
+        return redirect()->route('members', $id);
+
+    }
+
+    public function demote($id){
+
+        $member = Member::find($id);
+
+        $member->moderator = false;
+
+        $member->save();
+
+        return redirect()->route('members', $id);
+
     }
 }
