@@ -23,7 +23,7 @@ class MemberController extends Controller
         //
     }
 
-    public function getActivity($id)
+    public static function getActivity($id)
     {
 
         $member = Member::find($id);
@@ -74,7 +74,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-        if ($member == null || !$member->person->visible)
+        if ($member == null)
             abort(403, 'Access denied');
 
         $info = MemberController::getActivity($id);

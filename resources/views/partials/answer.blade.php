@@ -6,7 +6,7 @@ $visible = $publication->visible;
 ?>
 @if($visible)
 
-<div class="py-2">
+<div class="py-2" id="{{$answer->id_commentable_publication}}">
     @include('activities.header_activity', ['memberId' => $owner->id_person, 'name' => $owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$owner->person->visible])    
     <p class="card-text"> {{ $publication->description }}</p>
 

@@ -266,7 +266,7 @@ function sendDeletePublication(event) {
 
   let id_publication = this.dataset.publicationId;
 
-  sendAjaxRequest('POST', '/api/publications/' + id_publication + '/delete',{}, publicationDeletedHandler, event.target);
+  sendAjaxRequest('POST', '/api/publications/' + id_publication + '/delete', {}, publicationDeletedHandler, event.target);
 
   event.preventDefault();
 }
@@ -365,8 +365,9 @@ function reportAddedHandler() {
     return;
   }
 
-  createSucessMessage("Publication was reported with sucess", document.querySelector('#content div div'));
-  this.extraInfo.reset();
+  createSucessMessage("Publication was reported with success", document.querySelector('#content div div'));
+  this.extraInfo.querySelector(".dismiss").click();
+  //this.extraInfo.reset();
 
 }
 
@@ -457,7 +458,7 @@ function createResponse(publication, person, photo) {
 
     + like_buttons +
 
-    `<div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="` +  publication.id + ` ">
+    `<div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="` + publication.id + ` ">
     <label class="btn btn-secondary px-1 py-0 favorite" id="favorite` + publication.id + `" toggle="" data-placement="bottom" title="Guardar" >
         <i class="far fa-star"></i>
         <input type="checkbox" name="save" id="save" autocomplete="off" >

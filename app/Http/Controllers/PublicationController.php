@@ -7,6 +7,7 @@ use App\Reported;
 use App\Question;
 use App\Comment;
 use App\Response;
+use App\Person;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -38,12 +39,13 @@ class PublicationController extends Controller
 
             $reported = Reported::where([
                 "id_publication" => $id,
-                "id_member" => Auth::user()->id
+                "id_member" => Auth::user()->id,
+                "motive" => $request->input('motive')
             ])->first();
 
             if ($reported != null) {
 
-                $reported = DB::update('update reported set motive = ? where id_publication = ? AND id_member = ?', [$request->input('motive'), $id, Auth::user()->id]);
+                $reported = DB::update('update reported set resolved = false where id_publication = ? AND id_member = ?', [$id, Auth::user()->id]);
 
                 DB::commit();
 
@@ -77,6 +79,8 @@ class PublicationController extends Controller
             return response()->json(['error' => 'User not authenticated!'], 403);
 
 
+        //TODO: make sure it is the owner, admin or moderator who are deliting
+
         DB::beginTransaction();
         
         if (!Publication::find($id)){
@@ -98,11 +102,26 @@ class PublicationController extends Controller
 
     function view_reports() {
 
+
         $reportedQuestions = Question::whereHas('reported')->get();
         $reportedResponses = Response::whereHas('reported')->get();
         $reportedComments = Comment::whereHas('reported')->get();
 
         return view('pages.reports', ['questions' => $reportedQuestions, 'answers' => $reportedResponses, 'comments' => $reportedComments]);
+
+    }
+
+    function resolve_report(Request $request, $id) {
+
+        if (!Publication::find($id)){
+            return response()->json(['error' => "No publication was found with id equal to ".$id], 404);
+        }
+
+        DB::beginTransaction();
+
+        DB::update('update reported set resolved = ? where id_publication = ?', [$request->input('resolved'), $id]);
+
+        DB::commit();
 
     }
     

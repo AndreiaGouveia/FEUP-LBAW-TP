@@ -44,6 +44,6 @@ class Comment extends Model
     }
 
     public function reported() {
-        return $this->hasMany('App\Reported', 'id_publication', 'id_publication')->where('resolved', false);
+        return $this->hasMany('App\Reported', 'id_publication', 'id_publication')->where('resolved', false)->select('motive')->groupBy('motive')->distinct();
     }
 }

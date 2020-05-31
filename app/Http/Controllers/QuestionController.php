@@ -22,6 +22,10 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
+
+        if ($question == null)
+            abort(404);
+
         $publication = Publication::find($id);
 
         return view('pages.question',  ['question' => $question, 'publication' => $publication]);
@@ -56,7 +60,7 @@ class QuestionController extends Controller
                 'title' => $inputs['title']
             ]);
 
-            if(array_key_exists('tags', $inputs)) {
+            if (array_key_exists('tags', $inputs)) {
                 foreach ($inputs['tags'] as &$value) {
 
                     TagQuestion::create([
@@ -70,7 +74,6 @@ class QuestionController extends Controller
             Flash::success('Question added successfully.');
 
             return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
-
         } catch (\Exception $e) {
 
             DB::rollBack();
