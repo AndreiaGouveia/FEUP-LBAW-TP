@@ -170,6 +170,13 @@ CREATE TABLE favorite (
     PRIMARY KEY (id_commentable_publication, id_member)
 );
 
+CREATE TABLE about_us (
+    date timestamp NOT NULL DEFAULT now(),
+    id_admin INTEGER REFERENCES administrator (id_person) ON UPDATE CASCADE ON DELETE CASCADE,
+    description TEXT NOT NULL,
+    PRIMARY KEY (date, id_admin)
+);
+
 
 
 CREATE FUNCTION check_own_like() RETURNS TRIGGER AS 

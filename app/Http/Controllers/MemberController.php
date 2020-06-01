@@ -38,10 +38,6 @@ class MemberController extends Controller
         $answers = $member->answers;
         $comments = $member->comments;
 
-        /*var_dump(count($questions->toArray()));
-        var_dump(count($answers->toArray()));
-        var_dump(count($comments->toArray()));*/
-
         $merge = $questions->merge($answers);
         $final_merge = $comments->merge($merge);
         $info = $final_merge->all();

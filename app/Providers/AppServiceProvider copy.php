@@ -28,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
         \Blade::directive('endisModerator', function() {
             return "<?php endif; ?>";
         });
+
+        \Blade::directive('markdown', function ($expression) {
+            return "<?php echo (new Parsedown)->text($expression); ?>";
+          });
     
     }
 

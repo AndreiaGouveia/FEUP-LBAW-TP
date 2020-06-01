@@ -18,7 +18,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 
     //Static Pages
     Route::get('home', 'HomeController@show')->name('home');
-    Route::view('about_us', 'pages.about_us');
+    Route::get('about', 'AdministratorController@about')->name('about');
 
 
     //Members
@@ -35,6 +35,9 @@ Route::group(['middleware' => ['unactiveUser']], function () {
         Route::post('/members/{id}/demote', 'MemberController@demote')->name('member.demote');
         Route::post('/members/{id}/ban', 'MemberController@ban')->name('member.ban');
         Route::post('/members/{id}/unban', 'MemberController@unban')->name('member.unban');
+        Route::get('/admin/panel', 'AdministratorController@panel')->name('admin.panel');
+        Route::get('about/edit', 'AdministratorController@edit_about_us' );
+        Route::post('about/edit', 'AdministratorController@update_about_us' )->name('about.edit');
     });
 
     //Search
@@ -67,8 +70,6 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 
     Route::get('publications/reports', 'PublicationController@view_reports')->name('reports')->middleware('authorizationReport');
     Route::post('/api/publications/{id}/report/resolved', 'PublicationController@resolve_report')->middleware('authorizationReport');
-
-
 });
 
 
