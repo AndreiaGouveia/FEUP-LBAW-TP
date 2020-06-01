@@ -118,7 +118,7 @@
         <a class="btn btn-secondary btn-sm m-2" href="{{ route('reports')}}">
             <h3 class="m-2">Conteúdo Reportado</h3>
         </a>
-        <a class="btn btn-secondary btn-sm m-2" href="{{ route('reports')}}">
+        <a class="btn btn-secondary btn-sm m-2" href="{{ route('about.edit')}}">
             <h3 class="m-2">Editar Página Sobre Nós</h3>
         </a>
     </div>

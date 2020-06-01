@@ -36,8 +36,8 @@ Route::group(['middleware' => ['unactiveUser']], function () {
         Route::post('/members/{id}/ban', 'MemberController@ban')->name('member.ban');
         Route::post('/members/{id}/unban', 'MemberController@unban')->name('member.unban');
         Route::get('/admin/panel', 'AdministratorController@panel')->name('admin.panel');
-        Route::get('about/edit', 'AdministratorController@edit_about_us' );
-        Route::post('about/edit', 'AdministratorController@update_about_us' )->name('about.edit');
+        Route::get('about/edit', 'AdministratorController@edit_about_us' )->name('about.edit');
+        Route::post('about/edit', 'AdministratorController@update_about_us' )->name('about.edit.post');
     });
 
     //Search

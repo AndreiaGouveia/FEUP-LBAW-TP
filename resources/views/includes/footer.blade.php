@@ -15,7 +15,7 @@
                     <h6 class="col md-2 mb-2 font-weight-bold link-color">Home</h6>
                 </a>
 
-                <a class="col md-2 mb-2" href="{{ url('about_us') }}">
+                <a class="col md-2 mb-2" href="{{ route('about') }}">
                     <h6 class="col md-2 mb-2 font-weight-bold link-color">Sobre Nós</h6>
                 </a>
 

@@ -52,7 +52,8 @@ if (Auth::check()) {
 
                 @isAdmin()
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item">Editar página 'Sobre Nós'</a>
+                <a class="dropdown-item" href="{{ route('admin.panel') }}">Painel do Admistrador</a>
+                <a class="dropdown-item" href="{{ route('about.edit') }}">Editar página 'Sobre Nós'</a>
                 <a class="dropdown-item" href="{{ route('reports') }}">Conteúdo Reportado</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>

@@ -18,7 +18,7 @@
     <h3 class="font-weight-normal mb-3">Editar Sobre Nós</h3>
     <hr class="section-break" />
 
-    <form id="add_question" method="POST" action="{{ route('about.edit') }}">
+    <form id="add_question" method="POST" action="{{ route('about.edit.post') }}">
         <div class="form-group">
             @csrf
             <!--SUPER DUPER IMPORTANTE-->

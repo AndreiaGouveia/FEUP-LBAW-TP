@@ -129,7 +129,7 @@ class AdministratorController extends Controller
     {
         $aboutUs = AboutUs::select('description')->orderBy('date', 'desc')->first();
 
-        return view('pages.edit_about_us',  ['description' => $aboutUs->description]);
+        return view('pages.edit_about',  ['description' => $aboutUs->description]);
     }
 
     public function update_about_us(Request $request)
