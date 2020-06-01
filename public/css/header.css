@@ -41,6 +41,10 @@
     color: #04CC4A;
 }
 
+.page-item:first-child .page-link, .page-item:last-child .page-link{
+    border-radius: .25rem;
+}
+
 label.btn-secondary{
     background-color: transparent;
     border-color: transparent;
