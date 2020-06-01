@@ -10,10 +10,6 @@
 
 @section('content')
 
-@foreach($monthly_activity_info as $tets)
-{{$tets}}
-@endforeach
-
 <div class="col-md-7 mx-auto">
     <div class=" mt-5">
         <h1 class="font-weight-normal mb-3">Painel do Admistrador</h1>
