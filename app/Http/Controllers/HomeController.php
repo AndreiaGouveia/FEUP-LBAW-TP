@@ -18,7 +18,7 @@ class HomeController extends Controller
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
-                        ->orderBy('publication.date')
+                        ->orderBy('publication.date', 'desc')
                         ->get();
 
                 $popular_tags = DB::table('tag_question')
@@ -134,7 +134,9 @@ class HomeController extends Controller
                                 ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes', 'desc')
+                                ->orderBy('publication.date', 'desc')
                                 ->get();
+
                 } else if ($filter == 'recent') {
                         $filter = 1;
 
@@ -154,7 +156,7 @@ class HomeController extends Controller
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
                                 ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
-                                ->orderBy('publication.id', 'desc')
+                                ->orderBy('publication.date', 'desc')
                                 ->get();
                 } else if ($filter == 'mostLiked') {
                         $filter = 2;
@@ -177,6 +179,7 @@ class HomeController extends Controller
                                 ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes')
+                                ->orderBy('publication.date', 'desc')
                                 ->get();
                 } else if ($filter == 'leastLiked') {
                         $filter = 3;
@@ -199,6 +202,7 @@ class HomeController extends Controller
                                 ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('dislikes', 'desc')
                                 ->orderBy('likes')
+                                ->orderBy('publication.date', 'desc')
                                 ->get();
                 }
 
@@ -234,7 +238,7 @@ class HomeController extends Controller
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
                                 ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
-                                ->orderBy('publication.id', 'desc')
+                                ->orderBy('publication.date', 'desc')
                                 ->get();
                 } else if ($filter == 'mostLiked') {
                         $filter = 2;
@@ -253,6 +257,7 @@ class HomeController extends Controller
                                 ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes')
+                                ->orderBy('publication.date', 'desc')
                                 ->get();
                 } else if ($filter == 'leastLiked') {
                         $filter = 3;
@@ -271,6 +276,7 @@ class HomeController extends Controller
                                 ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('dislikes', 'desc')
                                 ->orderBy('likes')
+                                ->orderBy('publication.date', 'desc')
                                 ->get();
                 } else {
                         $filter = 0;
@@ -289,6 +295,7 @@ class HomeController extends Controller
                                 ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes', 'desc')
+                                ->orderBy('publication.date', 'desc')
                                 ->get();
                 }
 

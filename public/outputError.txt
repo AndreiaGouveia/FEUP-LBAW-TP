@@ -6,3 +6,5 @@
 2020-05-26 20:06:43 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (11, 16, false))
 2020-06-01 01:00:50 - SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "publication" violates foreign key constraint "publication_id_owner_fkey"
 DETAIL:  Key (id_owner)=(1) is not present in table "member". (SQL: insert into "publication" ("description", "id_owner") values (A, 1) returning "id")
+2020-06-01 01:21:32 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (11, 16, true))
+2020-06-01 01:21:33 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (11, 16, true))

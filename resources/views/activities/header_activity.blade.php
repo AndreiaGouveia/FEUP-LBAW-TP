@@ -8,7 +8,7 @@ $link = (isset($link_profile) && !$anonymous && !$banned) ? $link_profile : "ima
     <a @if(!$anonymous && !$banned) href="{{route('members', $memberId) }}" @endif><p class="name-and-action font-weight-bold d-inline">{{$banned ? "[Banned]" : (($anonymous) ? "[Anonymous]" : $name)}}</p></a>
         <p class="name-and-action d-inline">{{$action}}</p>
         <p class="name-and-action font-weight-bold d-inline">{{$actionInBold}}</p><br>
-        <p><small>{{$date}}</small></p>
+        <p><small>{{ date("Y-m-d",strtotime($date))}}</small></p>
     </div>
 </div>
 </a>

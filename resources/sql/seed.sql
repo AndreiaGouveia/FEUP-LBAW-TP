@@ -107,7 +107,7 @@ CREATE TABLE publication
 (
     id SERIAL PRIMARY KEY,
     description TEXT NOT NULL,
-    date DATE NOT NULL DEFAULT now(),
+    date timestamp NOT NULL DEFAULT now(),
     id_owner INTEGER REFERENCES member (id_person) ON UPDATE CASCADE ON DELETE CASCADE,
     visible BOOLEAN DEFAULT TRUE
 );
