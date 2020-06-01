@@ -342,9 +342,8 @@ function publicationDeletedHandler() {
     return;
   }
 
-
   createSucessMessage("Publication was deleted with sucess", document.querySelector('#content div div'));
-  this.extraInfo.reset();
+  this.extraInfo.querySelector(".dismiss").click();
 }
 
 function reportAddedHandler() {
@@ -367,7 +366,6 @@ function reportAddedHandler() {
 
   createSucessMessage("Publication was reported with success", document.querySelector('#content div div'));
   this.extraInfo.querySelector(".dismiss").click();
-  //this.extraInfo.reset();
 
 }
 

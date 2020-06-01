@@ -28,6 +28,9 @@ class QuestionController extends Controller
 
         $publication = Publication::find($id);
 
+        if(!$publication->visible)
+            abort(404);
+
         return view('pages.question',  ['question' => $question, 'publication' => $publication]);
     }
 

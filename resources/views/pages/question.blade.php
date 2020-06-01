@@ -14,7 +14,6 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 @endsection
 
 @section('content')
-@if($publication->visible)
 
 <div class="container mt-5">
 
@@ -76,6 +75,5 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
     </div>
 </div>
-@endif
 
 @endsection
