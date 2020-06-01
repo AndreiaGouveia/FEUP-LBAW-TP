@@ -37,7 +37,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
                     </div>
 
                     <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $question->id_commentable_publication }}" >
-                        @include('interation.info_content', ['commentable_publication' => $question->commentable_publication ])
+                        @include('interation.info_content', ['type' => $question])
                     </div>
 
                 </div>

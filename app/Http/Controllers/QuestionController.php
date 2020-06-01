@@ -7,6 +7,7 @@ use App\Commentable_publication;
 use App\Publication;
 use App\Question;
 use App\TagQuestion;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -86,5 +87,74 @@ class QuestionController extends Controller
             Flash::error('Error adding question!');
             return redirect()->route('add.questions');
         }
+    }
+
+    public function edit($id){
+
+        $question = Question::find($id);
+
+        $temp = Tag::get();
+
+        $locations = array();
+        array_push($locations, ' ');
+
+        foreach ($temp as &$value) {
+            $new_location_array = array();
+
+            if (isset($value->name))
+                array_push($new_location_array, $value->city);
+
+            array_push($locations, $value->name);
+        }
+
+        $tags = array();
+        $temp = $question->tags;
+        foreach($temp as $tagElement){
+            array_push($tags , $tagElement->main_tag->name);
+        }
+
+        return view('pages.edit_question' ,  ['question' => $question , "id" => $id , "locations" =>$locations , "tags" =>$tags]);
+    }
+
+    public function update(Request $request , $id){
+
+    $user = Auth::user();
+
+            $inputs = $request->all();
+            //title, description and tags
+           try {
+                DB::beginTransaction();
+
+                $question = Question::find($id);
+
+                $question->title = $inputs['title'];
+                $question->save();
+                $publication = Publication::find($question->publication['id']);
+                $publication->description =  $inputs['description'];
+                $publication->save();
+
+                TagQuestion::where('id_question',$id)->delete();
+
+                foreach($inputs['tags'] as &$tag){
+                    TagQuestion::create([
+                        'id_tag' => $tag,
+                        'id_question' => $question->id_commentable_publication
+                    ]);
+                }
+
+                DB::commit();
+                Flash::success('Question edited successfully.');
+
+                return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
+
+            } catch (\Exception $e) {
+
+                DB::rollBack();
+
+                ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
+
+                Flash::error('Error editing question!');
+                return redirect()->route('edit.question' , [$id]);
+            }
     }
 }

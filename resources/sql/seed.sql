@@ -323,7 +323,7 @@ CREATE FUNCTION check_edit() RETURNS TRIGGER AS
 
 	IF EXISTS (SELECT *
 		FROM response
-		WHERE response.question = OLD.id)
+		WHERE response.id_question = OLD.id)
 	THEN RAISE EXCEPTION 'Publication cant be edited because it already has answers associted';
         END IF;
 		
