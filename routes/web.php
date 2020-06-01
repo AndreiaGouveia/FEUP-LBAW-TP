@@ -30,6 +30,13 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::post('members/{id}/password', 'MemberController@updatePassword')->name('members.update.password');
     Route::post('members/{id}/deactivate', 'MemberController@deactivate')->name('members.deactivate');
 
+    Route::group(['middleware' => ['admin']], function () {
+        Route::post('/members/{id}/promote', 'MemberController@promote')->name('member.promote');
+        Route::post('/members/{id}/demote', 'MemberController@demote')->name('member.demote');
+        Route::post('/members/{id}/ban', 'MemberController@ban')->name('member.ban');
+        Route::post('/members/{id}/unban', 'MemberController@unban')->name('member.unban');
+    });
+
     //Search
     Route::get('search/{query}', 'HomeController@search')->name("search");
     Route::post('search', 'HomeController@postSearch')->name("search.post");
@@ -58,12 +65,18 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 
     Route::post('api/publications/{id}/report', 'PublicationController@report');
     Route::post('api/publications/{id}/delete', 'PublicationController@delete');
+
+    Route::get('publications/reports', 'PublicationController@view_reports')->name('reports')->middleware('authorizationReport');
+    Route::post('/api/publications/{id}/report/resolved', 'PublicationController@resolve_report')->middleware('authorizationReport');
+
+
 });
 
 
 //ROUTES TO ACTIVATE ACCOUNT
 Route::post('members/{id}/activate', 'MemberController@activate')->name('members.activate');
 Route::get('members/{id}/activate', 'MemberController@show_activate')->name('members.show.activate');
+Route::get('members/{id}/ban', 'MemberController@show_ban')->name('members.show.ban');
 
 
 //Authentication

@@ -25,6 +25,7 @@
             <div>
                 <h2 class="font-weight-normal mb-3">Questões Populares </h2>
                 @each('activities.basic_activity', $questions, 'question')
+                {{ $questions->links() }}
             </div>
 
         </div>

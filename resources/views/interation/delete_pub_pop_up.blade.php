@@ -10,7 +10,7 @@
             </div>
             <p class="px-3 my-2">de certeza que quer eliminar a sua publicação?</p>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary dismiss" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Submeter</button>
             </div>
         </div>

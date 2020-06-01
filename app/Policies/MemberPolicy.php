@@ -81,6 +81,11 @@ class MemberPolicy
         return $user->id == $member->id_person;
     }
 
+    public function ban(Person $user, Member $member)
+    {
+        return $user->id == $member->id_person;
+    }
+
     public function favorites(Person $user, Member $member) {
 
         return $user->id == $member->id_person;

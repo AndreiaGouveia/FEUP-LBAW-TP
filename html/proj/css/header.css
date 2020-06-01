@@ -35,7 +35,8 @@
     color: #04CC4A;
 }
 
-.btn-secondary {
+.btn-secondary, .page-item:first-child .page-link {
+    border-radius: .25rem !important;
     background-color: transparent;
     border-color: #04CC4A;
     color: #04CC4A;

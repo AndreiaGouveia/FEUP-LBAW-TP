@@ -6,7 +6,7 @@ $link =  "images/default.png";
 
 if (Auth::check()) {
     $member = App\Member::find(Auth::user()->id);
-    if ($member->photo != null)
+    if ($member != null && $member->photo != null)
         $link = $member->photo->url;
 }
 

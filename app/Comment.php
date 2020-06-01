@@ -42,4 +42,8 @@ class Comment extends Model
     {
         return $this->hasOne('App\Response', 'id_commentable_publication', 'id_commentable_publication');
     }
+
+    public function reported() {
+        return $this->hasMany('App\Reported', 'id_publication', 'id_publication')->where('resolved', false)->select('motive')->groupBy('motive')->distinct();
+    }
 }

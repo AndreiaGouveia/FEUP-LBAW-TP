@@ -70,7 +70,8 @@ CREATE TABLE person (
     username TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    visible BOOLEAN DEFAULT TRUE
+    visible BOOLEAN DEFAULT TRUE,
+    ban BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE administrator (
@@ -106,7 +107,7 @@ CREATE TABLE publication
 (
     id SERIAL PRIMARY KEY,
     description TEXT NOT NULL,
-    date DATE NOT NULL DEFAULT now(),
+    date timestamp NOT NULL DEFAULT now(),
     id_owner INTEGER REFERENCES member (id_person) ON UPDATE CASCADE ON DELETE CASCADE,
     visible BOOLEAN DEFAULT TRUE
 );
@@ -445,9 +446,9 @@ AFTER DELETE ON likes
 FOR EACH ROW EXECUTE PROCEDURE update_points_delete();	
 
 
-CREATE INDEX search_question ON question USING GIST (to_tsvector('english' , title || ' '));
-CREATE INDEX search_publication ON publication USING GIST (to_tsvector('english' , description || ' '));
-CREATE INDEX search_tag ON tag USING GIST (to_tsvector('english' , name));
+CREATE INDEX search_question ON question USING GIST (to_tsvector('portuguese' , title || ' '));
+CREATE INDEX search_publication ON publication USING GIST (to_tsvector('portuguese' , description || ' '));
+CREATE INDEX search_tag ON tag USING GIST (to_tsvector('portuguese' , name));
 
 
 

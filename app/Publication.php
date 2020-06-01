@@ -23,10 +23,18 @@ class Publication extends Model
     protected $primaryKey = 'id';
 
     //associations
-    public function owner(){return $this->belongsTo('App\Member', 'id_owner', 'id_person');}
+    public function owner()
+    {
+        return $this->belongsTo('App\Member', 'id_owner', 'id_person');
+    }
 
-    public function commentable_publications(){return $this->hasMany('App\Commentable_publication');}
+    public function commentable_publications()
+    {
+        return $this->hasMany('App\Commentable_publication');
+    }
 
-    public function comments(){return $this->hasMany('App\Comments');}
-
+    public function comments()
+    {
+        return $this->hasMany('App\Comments');
+    }
 }

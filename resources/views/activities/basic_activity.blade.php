@@ -4,19 +4,18 @@ use App\Question;
 
 $commentable_publication = Question::find($question->id)->commentable_publication;
 $publication = Question::find($question->id)->publication;
-$visible = $publication->visible ;
 
 ?>
-@if($visible)
+@if($publication->visible)
 
 <div class="activity py-4 px-4 border-top">
 
-    @include('activities.header_activity', ['memberId' => $question->memberId, 'name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date, "anonymous" => !$question->visible])
+    @include('activities.header_activity', ['memberId' => $question->memberId, 'name' => $question->name, "link_profile" => $question->url, 'action' => "", 'actionInBold' => "", "date" => $question->date, "anonymous" => !$question->visible, "banned" => $question->ban])
 
     <a href="{{ route('show.question', $question->id) }}">
-        <h5 class="title"><?= $question->title  ?></h5>
+        <h5 class="title">{{$question->title }}</h5>
     </a>
-    <p class="text"><?= $question->description ?></p>
+    <p class="text">{{$question->description }}</p>
 
 
     <div class="row mt-4 px-0 mx-0">

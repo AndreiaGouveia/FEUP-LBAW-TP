@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use Illuminate\Support\Facades\Auth;
 
@@ -6,7 +6,8 @@ $commentable_publication = $type->commentable_publication;
 
 $favorite = false;
 $owner = false;
-if(Auth::check()){
+
+if (Auth::check()) {
 
     $favorite = $commentable_publication->favoritePub(Auth::user()->id);
     $owner = $commentable_publication->publication->id_owner == Auth::user()->id;
@@ -21,9 +22,9 @@ if(Auth::check()){
 @include('interation.like_buttons', ['commentable_publication' => $commentable_publication, 'likes' => $commentable_publication->likes->count(), 'dislikes' => $commentable_publication->dislikes->count()])
 
 <div class="save-button ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="{{ $commentable_publication->id_publication }}">
-    <label class="btn btn-secondary px-1 py-0 favorite <?= $favorite ? "active" : "" ?>" toggle="" data-placement="bottom" title="Guardar" >
+    <label class="btn btn-secondary px-1 py-0 favorite <?= $favorite ? "active" : "" ?>" toggle="" data-placement="bottom" title="Guardar">
         <i class="far fa-star"></i>
-        <input type="checkbox" name="save" id="save" autocomplete="off" >
+        <input type="checkbox" name="save" id="save" autocomplete="off">
     </label>
 </div>
 
@@ -32,21 +33,38 @@ if(Auth::check()){
         <i class="fas fa-ellipsis-h"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-    @if($owner)
 
-        @if(get_class($type) == "App\Question")
-        <a class="dropdown-item" href="{{route('edit.question' , $commentable_publication->id_publication)}}">Editar</a>
+        @if($owner)
+
+            @if(get_class($type) == "App\Question")
+                 <a class="dropdown-item" href="{{route('edit.question' , $commentable_publication->id_publication)}}">Editar</a>
+            @elseif (get_class($type) == "App\Answer")
+                 <a class="dropdown-item" href="#">Editar</a>
+            @elseif (get_class($type) == "App\Comment")
+                 <a class="dropdown-item" href="#">Editar</a>
+            @endif
+
+            <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp{{ $commentable_publication->id_publication }}">Eliminar</a>
+            <div class="dropdown-divider"></div>
         @else
-        <a class="dropdown-item" href="#">EditarAnswer</a>
-        @endif
 
-        <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp{{ $commentable_publication->id_publication }}">Eliminar</a>
-        <div class="dropdown-divider"></div>
-    @endif
+            @isAdmin()
+                <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp{{ $commentable_publication->id_publication }}">Eliminar</a>
+                <div class="dropdown-divider"></div>
+
+            @else
+
+                @isModerator()
+                    <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp{{ $commentable_publication->id_publication }}">Eliminar</a>
+                    <div class="dropdown-divider"></div>
+                @endisModerator
+
+            @endisAdmin
+        
+        @endif
         <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport{{ $commentable_publication->id_publication }}">Reportar</a>
     </div>
 </div>
 
 @include('interation.report_pop_up', ['idOfPopUp' => 'popUpReport' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
 @include('interation.delete_pub_pop_up', ['idOfPopUp' => 'deletingPublicationPopUp' . $commentable_publication->id_publication, 'id_publication' => $commentable_publication->id_publication])
-

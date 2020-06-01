@@ -34,6 +34,7 @@
                 </select>
             </div>
             @each('activities.basic_activity', $questions, 'question')
+            {{ $questions->links() }}
         </div>
         
         <aside class="col-md mb-4">

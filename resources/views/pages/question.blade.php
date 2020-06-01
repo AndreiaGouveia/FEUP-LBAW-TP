@@ -1,7 +1,6 @@
 <?php
 
 $link_image = ($publication->owner->photo != null) ? $publication->owner->photo->url : null;
-$visible = $publication->visible;
 ?>
 
 @extends('layouts.app')
@@ -15,7 +14,6 @@ $visible = $publication->visible;
 @endsection
 
 @section('content')
-@if($visible)
 
 <div class="container mt-5">
 
@@ -23,7 +21,7 @@ $visible = $publication->visible;
 
     <div class="row">
         <div class="main-content col-md-8">
-            @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$publication->owner->person->visible])
+            @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$publication->owner->person->visible, "banned" => $publication->owner->person->ban])
             <div class="pb-3 mb-1 border-bottom">
                 <h2>{{ $question->title }}</h2>
 
@@ -77,6 +75,5 @@ $visible = $publication->visible;
 
     </div>
 </div>
-@endif
 
 @endsection

@@ -23,6 +23,11 @@ class MemberController extends Controller
         //
     }
 
+    public function date($a, $b)
+    {
+        return ($a->publication->date > $b->publication->date) ? -1 : 1;
+    }
+
     public function getActivity($id)
     {
 
@@ -74,7 +79,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
 
-        if ($member == null || !$member->person->visible)
+        if ($member == null)
             abort(403, 'Access denied');
 
         $info = MemberController::getActivity($id);
@@ -236,8 +241,66 @@ class MemberController extends Controller
         return redirect()->route('home');
     }
 
-    public function date($a, $b)
+    public function promote($id){
+
+        $member = Member::find($id);
+
+        $member->moderator = true;
+
+        $member->save();
+
+        return redirect()->route('members', $id);
+
+    }
+
+    public function demote($id){
+
+        $member = Member::find($id);
+
+        $member->moderator = false;
+
+        $member->save();
+
+        return redirect()->route('members', $id);
+
+    }
+
+    /**
+     * Activate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_ban($id)
     {
-        return ($a->publication->date > $b->publication->date) ? -1 : 1;
+
+        $member = Member::find($id);
+        $this->authorize('ban', $member);
+
+        return view('pages.ban', ['member' => $member]);
+    }
+
+    public function ban($id){
+
+        $person = Person::find($id);
+
+        $person->ban = true;
+
+        $person->save();
+
+        return redirect()->route('members', $id);
+
+    }
+
+    public function unban($id){
+
+        $person = Person::find($id);
+
+        $person->ban = false;
+
+        $person->save();
+
+        return redirect()->route('members', $id);
+
     }
 }

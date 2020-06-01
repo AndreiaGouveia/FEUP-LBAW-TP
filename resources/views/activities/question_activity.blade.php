@@ -1,13 +1,12 @@
 <?php 
 
 $link_profile = ($question->publication->owner->photo) ? $question->publication->owner->photo->url : null;
-$visible =$question->publication->visible ;
 ?>
 
-@if($visible)
+@if($question->publication->visible)
 <div class="activity py-4 px-4 border-top">
 
-    @include('activities.header_activity', ['memberId' => $question->publication->id_owner, 'name' => $question->publication->owner->name, "link_profile" => $link_profile, 'action' => "perguntou", 'actionInBold' => "", "date" => $question->publication->date, "anonymous" => !$question->publication->owner->person->visible])
+    @include('activities.header_activity', ['memberId' => $question->publication->id_owner, 'name' => $question->publication->owner->name, "link_profile" => $link_profile, 'action' => "perguntou", 'actionInBold' => "", "date" => $question->publication->date, "anonymous" => !$question->publication->owner->person->visible, "banned" => $question->publication->owner->person->ban])
 
     <a href="{{ route('show.question', $question->id_commentable_publication) }}">
         <h5 class="title">{{ $question->title }}</h5>
