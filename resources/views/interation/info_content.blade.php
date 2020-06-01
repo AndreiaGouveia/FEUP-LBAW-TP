@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 
+$commentable_publication = $type->commentable_publication;
+
 $favorite = false;
 $owner = false;
-
 if(Auth::check()){
 
     $favorite = $commentable_publication->favoritePub(Auth::user()->id);
@@ -32,7 +33,13 @@ if(Auth::check()){
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     @if($owner)
-        <a class="dropdown-item" href="#">Editar</a>
+
+        @if(get_class($type) == "App\Question")
+        <a class="dropdown-item" href="{{route('edit.question' , $commentable_publication->id_publication)}}">Editar</a>
+        @else
+        <a class="dropdown-item" href="#">EditarAnswer</a>
+        @endif
+
         <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp{{ $commentable_publication->id_publication }}">Eliminar</a>
         <div class="dropdown-divider"></div>
     @endif

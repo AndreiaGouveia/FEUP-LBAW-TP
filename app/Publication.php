@@ -16,10 +16,11 @@ class Publication extends Model
      * @var array
      */
     protected $fillable = [
-        'id' , 'description' , 'date', 'id_owner', 'visible'
+        'description' , 'date', 'id_owner', 'visible'
     ];
 
     protected $table = 'publication';
+    protected $primaryKey = 'id';
 
     //associations
     public function owner(){return $this->belongsTo('App\Member', 'id_owner', 'id_person');}

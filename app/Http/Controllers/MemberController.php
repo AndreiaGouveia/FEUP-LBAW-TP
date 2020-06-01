@@ -42,7 +42,7 @@ class MemberController extends Controller
         $info = $final_merge->all();
 
         usort($info, array($this, 'date'));
-        return $final_merge;
+        return $info;
     }
 
     public function favorites($id)
