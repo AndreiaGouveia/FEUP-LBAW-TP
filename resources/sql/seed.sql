@@ -446,9 +446,9 @@ AFTER DELETE ON likes
 FOR EACH ROW EXECUTE PROCEDURE update_points_delete();	
 
 
-CREATE INDEX search_question ON question USING GIST (to_tsvector('english' , title || ' '));
-CREATE INDEX search_publication ON publication USING GIST (to_tsvector('english' , description || ' '));
-CREATE INDEX search_tag ON tag USING GIST (to_tsvector('english' , name));
+CREATE INDEX search_question ON question USING GIST (to_tsvector('portuguese' , title || ' '));
+CREATE INDEX search_publication ON publication USING GIST (to_tsvector('portuguese' , description || ' '));
+CREATE INDEX search_tag ON tag USING GIST (to_tsvector('portuguese' , name));
 
 
 

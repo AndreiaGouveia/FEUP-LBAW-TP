@@ -46,7 +46,7 @@ class HomeController extends Controller
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                        ->whereRaw('to_tsquery(?) @@ to_tsvector( question.title || \' \') OR to_tsquery(?) @@ to_tsvector( publication.description || \' \')', [$query, $query])
+                        ->whereRaw('to_tsquery(?) @@ to_tsvector( question.title || \' \' || publication.description)', [$query])
                         ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description');
         }
 
@@ -162,7 +162,7 @@ class HomeController extends Controller
                         ->simplePaginate($this->posts_per_page);
 
                 $questions = $this->getSearchResults($query)
-                        ->orderByRaw('ts_rank_cd(to_tsvector(question.title || \' \'), ?), ts_rank_cd(to_tsvector(publication.description || \' \'), ?), likes, dislikes, publication.date desc', [$query, $query])
+                        ->orderByRaw('ts_rank_cd(to_tsvector( question.title || \' \' || publication.description), ?), likes, dislikes, publication.date desc', [$query])
                         ->simplePaginate($this->posts_per_page);
 
 
@@ -205,7 +205,7 @@ class HomeController extends Controller
                         $filter = 0;
 
                         $questions = $this->getSearchResults($query)
-                                ->orderByRaw('ts_rank_cd(to_tsvector(question.title || \' \'), ?), ts_rank_cd(to_tsvector(publication.description || \' \'), ?), likes, dislikes, publication.date desc', [$query, $query])
+                                ->orderByRaw('ts_rank_cd(to_tsvector( question.title || \' \' || publication.description), ?), likes, dislikes, publication.date desc', [$query])
                                 ->simplePaginate($this->posts_per_page);
                 }
 
