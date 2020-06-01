@@ -70,7 +70,8 @@ CREATE TABLE person (
     username TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    visible BOOLEAN DEFAULT TRUE
+    visible BOOLEAN DEFAULT TRUE,
+    ban BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE administrator (

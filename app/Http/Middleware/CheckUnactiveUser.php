@@ -19,8 +19,12 @@ class CheckUnactiveUser
     {
         if(Auth::check()){
 
+            if(Auth::user()->ban)
+                return redirect()->route('members.show.ban', Auth::user()->id);
+
             if(!Auth::user()->visible)
                 return redirect()->route('members.show.activate', Auth::user()->id);
+
         }
 
         return $next($request);

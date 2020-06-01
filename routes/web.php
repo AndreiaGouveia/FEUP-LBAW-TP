@@ -29,8 +29,13 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::post('members/{id}', 'MemberController@update')->name('members.update');
     Route::post('members/{id}/password', 'MemberController@updatePassword')->name('members.update.password');
     Route::post('members/{id}/deactivate', 'MemberController@deactivate')->name('members.deactivate');
-    Route::post('/members/{id}/promote', 'MemberController@promote')->name('member.promote'); //TODO: NEW MIDDLEWARE FOR ADMIN
-    Route::post('/members/{id}/demote', 'MemberController@demote')->name('member.demote'); //TODO: NEW MIDDLEWARE FOR ADMIN
+
+    Route::group(['middleware' => ['admin']], function () {
+        Route::post('/members/{id}/promote', 'MemberController@promote')->name('member.promote');
+        Route::post('/members/{id}/demote', 'MemberController@demote')->name('member.demote');
+        Route::post('/members/{id}/ban', 'MemberController@ban')->name('member.ban');
+        Route::post('/members/{id}/unban', 'MemberController@unban')->name('member.unban');
+    });
 
     //Search
     Route::get('search/{query}', 'HomeController@search')->name("search");
@@ -70,6 +75,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 //ROUTES TO ACTIVATE ACCOUNT
 Route::post('members/{id}/activate', 'MemberController@activate')->name('members.activate');
 Route::get('members/{id}/activate', 'MemberController@show_activate')->name('members.show.activate');
+Route::get('members/{id}/ban', 'MemberController@show_ban')->name('members.show.ban');
 
 
 //Authentication

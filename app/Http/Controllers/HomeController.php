@@ -10,14 +10,14 @@ class HomeController extends Controller
         public function show()
         {
                 $data_question = DB::table('question')
-                        ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'))
+                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'))
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
                         ->join('person', 'publication.id_owner', '=', 'person.id')
                         ->join('member', 'person.id', '=', 'member.id_person')
                         ->leftJoin('photo', 'photo.id', '=', 'member.id_photo')
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
-                        ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                        ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                         ->orderBy('publication.date')
                         ->get();
 
@@ -38,7 +38,7 @@ class HomeController extends Controller
                         ->get();
 
                 $questions = DB::table('question')
-                        ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                         ->where('question.title', 'ilike', '%' . $query . '%')
                         ->orWhere('publication.description', 'ilike', '%' . $query . '%')
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
@@ -48,7 +48,7 @@ class HomeController extends Controller
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                        ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                        ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                         ->orderBy('likes', 'desc')
                         ->orderBy('dislikes', 'desc')
                         ->get();
@@ -67,7 +67,7 @@ class HomeController extends Controller
         public function searchTopic($input)
         {
                 $questions = DB::table('question')
-                        ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                         ->whereIn('question.id_commentable_publication', (DB::table('question')
                                 ->select('publication.id')
                                 ->where('tag.name', '=', $input)
@@ -81,7 +81,7 @@ class HomeController extends Controller
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                        ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                        ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                         ->orderBy('publication.date')
                         ->get();
 
@@ -117,7 +117,7 @@ class HomeController extends Controller
                         $filter = 0;
 
                         $questions = DB::table('question')
-                                ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                                 ->whereIn('question.id_commentable_publication', (DB::table('question')
                                         ->select('publication.id')
                                         ->where('tag.name', '=', $input)
@@ -131,7 +131,7 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                                ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes', 'desc')
                                 ->get();
@@ -139,7 +139,7 @@ class HomeController extends Controller
                         $filter = 1;
 
                         $questions = DB::table('question')
-                                ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                                 ->whereIn('question.id_commentable_publication', (DB::table('question')
                                         ->select('publication.id')
                                         ->where('tag.name', '=', $input)
@@ -153,14 +153,14 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                                ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('publication.id', 'desc')
                                 ->get();
                 } else if ($filter == 'mostLiked') {
                         $filter = 2;
 
                         $questions = DB::table('question')
-                                ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                                 ->whereIn('question.id_commentable_publication', (DB::table('question')
                                         ->select('publication.id')
                                         ->where('tag.name', '=', $input)
@@ -174,7 +174,7 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                                ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes')
                                 ->get();
@@ -182,7 +182,7 @@ class HomeController extends Controller
                         $filter = 3;
 
                         $questions = DB::table('question')
-                                ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                                 ->whereIn('question.id_commentable_publication', (DB::table('question')
                                         ->select('publication.id')
                                         ->where('tag.name', '=', $input)
@@ -196,7 +196,7 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                                ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('dislikes', 'desc')
                                 ->orderBy('likes')
                                 ->get();
@@ -223,7 +223,7 @@ class HomeController extends Controller
                         $filter = 1;
 
                         $questions = DB::table('question')
-                                ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                                 ->where('question.title', 'ilike', '%' . $query . '%')
                                 ->orWhere('publication.description', 'ilike', '%' . $query . '%')
                                 ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
@@ -233,14 +233,14 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                                ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('publication.id', 'desc')
                                 ->get();
                 } else if ($filter == 'mostLiked') {
                         $filter = 2;
 
                         $questions = DB::table('question')
-                                ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                                 ->where('question.title', 'ilike', '%' . $query . '%')
                                 ->orWhere('publication.description', 'ilike', '%' . $query . '%')
                                 ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
@@ -250,7 +250,7 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                                ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes')
                                 ->get();
@@ -258,7 +258,7 @@ class HomeController extends Controller
                         $filter = 3;
 
                         $questions = DB::table('question')
-                                ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                                 ->where('question.title', 'ilike', '%' . $query . '%')
                                 ->orWhere('publication.description', 'ilike', '%' . $query . '%')
                                 ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
@@ -268,7 +268,7 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                                ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('dislikes', 'desc')
                                 ->orderBy('likes')
                                 ->get();
@@ -276,7 +276,7 @@ class HomeController extends Controller
                         $filter = 0;
 
                         $questions = DB::table('question')
-                                ->select('person.id as memberId', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                                 ->where('question.title', 'ilike', '%' . $query . '%')
                                 ->orWhere('publication.description', 'ilike', '%' . $query . '%')
                                 ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
@@ -286,7 +286,7 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                                 ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                                ->groupBy('person.id', 'member.name', 'person.visible', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
+                                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes', 'desc')
                                 ->get();

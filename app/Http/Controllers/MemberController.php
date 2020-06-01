@@ -264,4 +264,43 @@ class MemberController extends Controller
         return redirect()->route('members', $id);
 
     }
+
+    /**
+     * Activate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_ban($id)
+    {
+
+        $member = Member::find($id);
+        $this->authorize('ban', $member);
+
+        return view('pages.ban', ['member' => $member]);
+    }
+
+    public function ban($id){
+
+        $person = Person::find($id);
+
+        $person->ban = true;
+
+        $person->save();
+
+        return redirect()->route('members', $id);
+
+    }
+
+    public function unban($id){
+
+        $person = Person::find($id);
+
+        $person->ban = false;
+
+        $person->save();
+
+        return redirect()->route('members', $id);
+
+    }
 }
