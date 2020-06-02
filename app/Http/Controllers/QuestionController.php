@@ -30,17 +30,17 @@ class QuestionController extends Controller
         $publication = Publication::find($id);
 
         $search_results =  DB::table('question')
-        ->select('question.title', 'publication.id')
-        ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
-        ->where("publication.visible", "=", "true")
-        ->where("publication.id", "!=", $id)
-        ->take(10)
-        ->get();
+            ->select('question.title', 'publication.id')
+            ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
+            ->where("publication.visible", "=", "true")
+            ->where("publication.id", "!=", $id)
+            ->take(10)
+            ->get();
 
-        if(!$publication->visible)
+        if (!$publication->visible)
             abort(404);
 
-            
+
         return view('pages.question',  ['question' => $question, 'publication' => $publication, 'similar_questions' => $search_results]);
     }
 
@@ -60,7 +60,7 @@ class QuestionController extends Controller
 
 
             $publication = Publication::create([
-                'description' => $inputs['description'],
+                'description' => ($inputs['description'] == null) ? "" : $inputs['description'],
                 'id_owner' => $user->id
             ]);
 
@@ -84,7 +84,7 @@ class QuestionController extends Controller
             }
 
             DB::commit();
-            Flash::success('Question added successfully.');
+            Flash::success('Pergunta adicionada com sucesso.');
 
             return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
         } catch (\Exception $e) {
@@ -93,12 +93,13 @@ class QuestionController extends Controller
 
             ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
 
-            Flash::error('Error adding question!');
+            Flash::error('Erro ao Adicionar Pergunta!');
             return redirect()->route('add.questions');
         }
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $question = Question::find($id);
 
@@ -118,53 +119,50 @@ class QuestionController extends Controller
 
         $tags = array();
         $temp = $question->tags;
-        foreach($temp as $tagElement){
-            array_push($tags , $tagElement->main_tag->name);
+        foreach ($temp as $tagElement) {
+            array_push($tags, $tagElement->main_tag->name);
         }
 
-        return view('pages.edit_question' ,  ['question' => $question , "id" => $id , "locations" =>$locations , "tags" =>$tags]);
+        return view('pages.edit_question',  ['question' => $question, "id" => $id, "locations" => $locations, "tags" => $tags]);
     }
 
-    public function update(Request $request , $id){
+    public function update(Request $request, $id)
+    {
+        $inputs = $request->all();
+        //title, description and tags
+        try {
+            DB::beginTransaction();
 
-    $user = Auth::user();
+            $question = Question::find($id);
 
-            $inputs = $request->all();
-            //title, description and tags
-           try {
-                DB::beginTransaction();
+            $question->title = $inputs['title'];
+            $question->save();
+            $publication = Publication::find($question->publication['id']);
+            $publication->description =  ($inputs['description'] == null) ? "" : $inputs['description'];
+            $publication->save();
 
-                $question = Question::find($id);
+            TagQuestion::where('id_question', $id)->delete();
 
-                $question->title = $inputs['title'];
-                $question->save();
-                $publication = Publication::find($question->publication['id']);
-                $publication->description =  $inputs['description'];
-                $publication->save();
-
-                TagQuestion::where('id_question',$id)->delete();
-
-                if(array_key_exists('tags' , $inputs))
-                foreach($inputs['tags'] as &$tag){
+            if (array_key_exists('tags', $inputs))
+                foreach ($inputs['tags'] as &$tag) {
                     TagQuestion::create([
                         'id_tag' => $tag,
                         'id_question' => $question->id_commentable_publication
                     ]);
                 }
 
-                DB::commit();
-                Flash::success('Question edited successfully.');
+            DB::commit();
+            Flash::success('Pergunta editada com sucesso.');
 
-                return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
+            return redirect()->route('show.question', ['id' => $question->id_commentable_publication]);
+        } catch (\Exception $e) {
 
-            } catch (\Exception $e) {
+            DB::rollBack();
 
-                DB::rollBack();
+            ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
 
-                ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
-
-                Flash::error('Error editing question!');
-                return redirect()->route('edit.question' , [$id]);
-            }
+            Flash::error('Erro ao editar Pergunta!');
+            return redirect()->route('edit.question', [$id]);
+        }
     }
 }

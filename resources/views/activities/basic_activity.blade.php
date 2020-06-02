@@ -15,8 +15,8 @@ $publication = Question::find($question->id)->publication;
     <a href="{{ route('show.question', $question->id) }}">
         <h5 class="title">{{$question->title }}</h5>
     </a>
-    <p class="text">{{$question->description }}</p>
 
+    <div class="description_inline">@markdown($question->description)</div>
 
     <div class="row mt-4 px-0 mx-0">
         <div class="info row justify-content-start d-line mx-0">

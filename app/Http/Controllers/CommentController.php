@@ -91,7 +91,7 @@ class CommentController extends Controller
             $publication->save();
 
             DB::commit();
-            Flash::success('Comment edited successfully.');
+            Flash::success('Comentário Editado com Sucesso.');
 
             if($comment->commentsResponse != NULL)
             return redirect()->route('show.question', ['id' => $comment->commentsResponse->id_question]);
@@ -104,7 +104,7 @@ class CommentController extends Controller
 
              ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
 
-             Flash::error('Error editing comment!');
+             Flash::error('Erro ao Editar o Comentário!');
              return redirect()->route('edit.comment' , [$id]);
         }
     }

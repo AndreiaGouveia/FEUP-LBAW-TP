@@ -67,6 +67,8 @@ DROP TRIGGER IF EXISTS update_points
 ON likes;
 DROP TRIGGER IF EXISTS update_points_delete
 ON likes;
+DROP TRIGGER IF EXISTS tsvectorupdate
+ON question;
 
 DROP FUNCTION IF EXISTS check_own_like
 () CASCADE;
@@ -94,10 +96,11 @@ DROP FUNCTION IF EXISTS update_points
 () CASCADE;
 DROP FUNCTION IF EXISTS update_points_delete
 () CASCADE;
+DROP FUNCTION IF EXISTS question_search_trigger
+() CASCADE;
 
-DROP INDEX IF EXISTS search_question;
-DROP INDEX IF EXISTS search_publication;
 DROP INDEX IF EXISTS search_tag;
+DROP INDEX IF EXISTS tsv_idx;
 
 -- Types --
 
@@ -190,7 +193,8 @@ CREATE TABLE comment
 CREATE TABLE question
 (
     id_commentable_publication INTEGER PRIMARY KEY REFERENCES commentable_publication (id_publication) ON UPDATE CASCADE ON DELETE CASCADE,
-    title TEXT NOT NULL
+    title TEXT NOT NULL,
+    tsv tsvector
 );
 
 CREATE TABLE response
@@ -589,17 +593,26 @@ ROW
 EXECUTE PROCEDURE update_points_delete
 ();
 
+CREATE FUNCTION question_search_trigger() RETURNS trigger AS $$
+begin
+  new.tsv :=
+    setweight(to_tsvector(coalesce(new.title,'')), 'A') ||
+    setweight(to_tsvector(coalesce((select description
+									from publication
+									where publication.id = new.id_commentable_publication ),'')), 'D');
+  return new;
+end
+$$ LANGUAGE plpgsql;
 
-CREATE INDEX search_question ON question USING GIST
-(to_tsvector
-('portuguese' , title || ' '));
-CREATE INDEX search_publication ON publication USING GIST
-(to_tsvector
-('portuguese' , description || ' '));
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
+ON question FOR EACH ROW EXECUTE PROCEDURE question_search_trigger();
+
+
 CREATE INDEX search_tag ON tag USING GIST
 (to_tsvector
 ('portuguese' , name));
 
+CREATE INDEX tsv_idx ON question USING gin(tsv);
 
 
 

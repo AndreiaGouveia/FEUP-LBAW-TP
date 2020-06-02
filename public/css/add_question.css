@@ -20,3 +20,11 @@
     border-color: #04CC4A !important;
     color: #04CC4A !important;
 }
+
+button.btn-link.btn-sm {
+    background-color: transparent;
+border-color: transparent;
+color: #04CC4A;
+
+}
+

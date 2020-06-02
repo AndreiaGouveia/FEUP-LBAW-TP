@@ -1,8 +1,6 @@
 <?php
 
-
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Blade;
 
 if (Auth::check()) {
 
@@ -38,7 +36,10 @@ if (Auth::check()) {
         </form>
 
         @auth
+        @isAdmin()
+        @else
         <a type="button" class="btn btn-primary mr-4" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
+        @endisAdmin
 
         <div class="btn-group">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

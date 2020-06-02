@@ -16,7 +16,7 @@ class Question extends Model
      * @var array
      */
     protected $fillable = [
-        'id_commentable_publication','title'
+        'id_commentable_publication','title', 'tsv'
     ];
 
     protected $table = 'question';

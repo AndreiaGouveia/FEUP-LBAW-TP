@@ -27,10 +27,10 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
         <div class="main-content col-md-8">
             @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$publication->owner->person->visible, "banned" => $publication->owner->person->ban])
             <div class="pb-3 mb-1 border-bottom">
-                <h2>{{ $question->title }}</h2>
+                <h1>{{ $question->title }}</h1>
 
                 <div class="description mt-3">
-                    <p>{{ $publication->description }}</p>
+                    @markdown($publication->description)
                 </div>
 
                 <div class="row justify-content-between align-items-center mt-4 mb-3 px-0 mx-0">

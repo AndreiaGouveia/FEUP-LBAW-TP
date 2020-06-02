@@ -34,7 +34,7 @@
                     <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'recent']) }}">Recente</option>
                     <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'mostLiked']) }}">Mais Gostados</option>
                     <option value="{{ route('filtered.search', ['search' => $search, 'filter' => 'leastLiked']) }}">Menos Gostados</option>
-                    
+
                     <script>
                         document.getElementById("filter").selectedIndex = <?php echo json_encode($filter); ?>;
                     </script>
@@ -45,8 +45,9 @@
                 <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list">
                     @each('activities.basic_activity', $questions, 'question')
                     {{ $questions->links() }}
+
                 </div>
-                
+
                 <div class="tab-pane fade" id="list-topics" role="tabpanel" aria-labelledby="list-topics-list">
                     <div class="container mt-5">
                         <div class="row flex-column-reverse flex-lg-row">

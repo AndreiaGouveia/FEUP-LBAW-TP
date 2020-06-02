@@ -137,7 +137,7 @@ class AdministratorController extends Controller
 
         AboutUs::create([
             'id_admin' => Auth::user()->id,
-            'description' => $request->input('description')
+            'description' => ($request->input('description') == null) ? "" : $request->input('description')
             ]);
 
         return redirect()->route('about');

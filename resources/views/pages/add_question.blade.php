@@ -50,16 +50,20 @@ Adicionar Pergunta
 
             <div class="content mb-4">
                 <label for="inputTitle">Titulo</label>
-                <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" value="{{ old('inputTitle') }}" required="" autofocus="">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Adicione um pequeno título descritivo da sua questão."><i class="fas fa-question-circle"></i></button>
+                <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" value="{{ old('title') }}" required="" autofocus="">
             </div>
 
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
-                <textarea form="add_question" id="textAreaDescription" name="description" value="{{ old('description') }}" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"></textarea>
+                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Explicite a sua pergunta com todos os pormenores que achar relevantes."><i class="fas fa-question-circle"></i></button>
+                <textarea form="add_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" autofocus="" rows="6"></textarea>
+
             </div>
 
             <div class="content mb-4">
                 <label for="inputTopics">Tópicos</label>
+                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Adicione tópicos simples relacionados com a sua pergunta de modo a ser mais facilmente encontrada por outros utilizadores."><i class="fas fa-question-circle"></i></button>
                 <br>
 
                 <select id="inputTopics" class="input-topics" name="tags[]" multiple="multiple">
@@ -83,10 +87,29 @@ Adicionar Pergunta
 </div>
 
 <script>
+    var easyMDE = new EasyMDE({
+        element: document.getElementById('textAreaDescription'),
+        initialValue: <?= json_encode(old('description')) ?>,
+        renderingConfig: {
+            singleLineBreaks: true,
+            sanitizerFunction: function(renderedHTML) {
+                return DOMPurify.sanitize(renderedHTML)
+            },
+        },
+        lineWrapping: false,
+    });
+</script>
+
+<script>
     // In your Javascript (external .js resource or <script> tag)
     $(document).ready(function() {
-    $('.input-topics').select2();
+        $('.input-topics').select2();
     });
+
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
 </script>
 
 @endsection
