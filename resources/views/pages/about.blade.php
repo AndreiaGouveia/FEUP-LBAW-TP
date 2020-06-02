@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-About Us
+Sobre Nós
 @endsection
 
 @section('stylesheets')
