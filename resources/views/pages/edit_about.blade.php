@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Editar Sobre Nós
+@endsection
+
 @section('stylesheets')
 @parent
 

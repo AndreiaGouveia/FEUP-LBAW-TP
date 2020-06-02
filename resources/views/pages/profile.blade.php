@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+{{ $member->name }}
+@endsection
+
 @section('stylesheets')
 @parent
 <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">

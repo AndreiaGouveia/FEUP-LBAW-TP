@@ -30,13 +30,12 @@ class QuestionController extends Controller
         $publication = Publication::find($id);
 
         $search_results =  DB::table('question')
-        ->select('question.title', 'question.id_question')
+        ->select('question.title', 'publication.id')
         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
         ->where("publication.visible", "=", "true")
-        ->whereRaw('to_tsquery(?) @@ to_tsvector( question.title || \' \' || publication.description)', [$question->title])
-        ->groupBy('question.title', 'question.id_question')
-        ->orderByRaw('ts_rank_cd(to_tsvector( question.title || \' \' || publication.description), ?)', [$question->title])
-        ->take(10);
+        ->where("publication.id", "!=", $id)
+        ->take(10)
+        ->get();
 
         if(!$publication->visible)
             abort(404);

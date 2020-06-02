@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+{{ "Editar " . $question->title }}
+@endsection
+
 @section('stylesheets')
 @parent
 
@@ -27,20 +31,17 @@
 
             <div class="content mb-4">
                 <label for="inputTitle">Titulo</label>
-                <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" value="<?php echo $question->title; ?>" required="" autofocus="">
+                <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" value="{{$question->title}}" required="" autofocus="">
             </div>
 
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
-                <textarea form="edit_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"><?php echo $question->publication->description; ?></textarea>
+                <textarea form="edit_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6">{{ $question->publication->description }}</textarea>
             </div>
 
             <div class="content mb-4">
                 <label for="inputTopics">Tópicos</label>
                 <br>
-                @php
-                var_dump($locations);
-                @endphp
 
                 <select id="inputTopics" class="input-topics" name="tags[]" multiple="multiple">
                 @foreach ($locations as $key => $location)

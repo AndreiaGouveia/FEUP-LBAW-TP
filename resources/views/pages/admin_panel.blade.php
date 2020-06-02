@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Painel do Admistrador
+@endsection
+
 @section('stylesheets')
 @parent
 
