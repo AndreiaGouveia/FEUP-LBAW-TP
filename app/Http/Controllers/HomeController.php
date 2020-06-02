@@ -123,7 +123,7 @@ class HomeController extends Controller
 
                         $questions = $this->getSearchQuestionsWithTopic($input)
                                 ->orderBy('likes', 'desc')
-                                ->orderBy('dislikes', 'desc')
+                                ->orderBy('dislikes')
                                 ->orderBy('publication.date', 'desc')
                                 ->simplePaginate($this->posts_per_page);
                 } else if ($filter == 'recent') {
@@ -163,6 +163,9 @@ class HomeController extends Controller
 
                 $questions = $this->getSearchResults($query)
                         ->orderBy('rank', 'desc')
+                        ->orderBy('likes', 'desc')
+                        ->orderBy('dislikes')
+                        ->orderBy('publication.date', 'desc')
                         ->simplePaginate($this->posts_per_page);
 
 
@@ -185,7 +188,6 @@ class HomeController extends Controller
                                 ->orderBy('publication.date', 'desc')
                                 ->orderBy('rank', 'desc')
                                 ->simplePaginate($this->posts_per_page);
-                                
                 } else if ($filter == 'mostLiked') {
                         $filter = 2;
 
@@ -209,6 +211,9 @@ class HomeController extends Controller
 
                         $questions = $this->getSearchResults($query)
                                 ->orderBy('rank', 'desc')
+                                ->orderBy('likes', 'desc')
+                                ->orderBy('dislikes')
+                                ->orderBy('publication.date', 'desc')
                                 ->simplePaginate($this->posts_per_page);
                 }
 
