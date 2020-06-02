@@ -6,7 +6,7 @@ $commentable_publication = $type->commentable_publication;
 
 $favorite = false;
 $owner = false;
-
+var_dump(get_class($type));
 if (Auth::check()) {
 
     $favorite = $commentable_publication->favoritePub(Auth::user()->id);
@@ -38,8 +38,8 @@ if (Auth::check()) {
 
             @if(get_class($type) == "App\Question")
                  <a class="dropdown-item" href="{{route('edit.question' , $commentable_publication->id_publication)}}">Editar</a>
-            @elseif (get_class($type) == "App\Answer")
-                 <a class="dropdown-item" href="#">Editar</a>
+            @elseif (get_class($type) == "App\Response")
+                 <a class="dropdown-item" href="{{route('edit.response' , $commentable_publication->id_publication)}}">Editar</a>
             @elseif (get_class($type) == "App\Comment")
                  <a class="dropdown-item" href="#">Editar</a>
             @endif
