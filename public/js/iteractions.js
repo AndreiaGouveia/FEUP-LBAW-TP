@@ -415,6 +415,7 @@ function createComment(publication, person, photo) {
             <p class="font-weight-bold d-inline">` + person.name + `</p>
             <p class="d-inline">` + publication.description + `</p>
         </div>
+
     </div>`;
 
   return new_comment;
@@ -468,7 +469,7 @@ function createResponse(publication, person, photo) {
             <i class="fas fa-ellipsis-h"></i>
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Editar</a>
+            <a class="dropdown-item" href="/response/`+ publication.id + `/edit">Editar</a>
             <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp`+ publication.id + `">Eliminar</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport`+ publication.id + `">Reportar</a>
