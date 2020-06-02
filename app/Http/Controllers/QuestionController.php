@@ -30,18 +30,18 @@ class QuestionController extends Controller
         $publication = Publication::find($id);
 
         $search_results =  DB::table('question')
-        ->select('question.title', 'question.id_question', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+        ->select('question.title', 'question.id_question')
         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
-        ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
         ->where("publication.visible", "=", "true")
         ->whereRaw('to_tsquery(?) @@ to_tsvector( question.title || \' \' || publication.description)', [$question->title])
         ->groupBy('question.title', 'question.id_question')
-        ->orderByRaw('ts_rank_cd(to_tsvector( question.title || \' \' || publication.description), ?), likes, dislikes, publication.date desc', [$question->title])
+        ->orderByRaw('ts_rank_cd(to_tsvector( question.title || \' \' || publication.description), ?)', [$question->title])
         ->take(10);
 
         if(!$publication->visible)
             abort(404);
 
+            
         return view('pages.question',  ['question' => $question, 'publication' => $publication, 'similar_questions' => $search_results]);
     }
 
