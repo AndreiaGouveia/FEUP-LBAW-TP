@@ -31,7 +31,10 @@ if (Auth::check()) {
             </button>
 
             @auth
+            @isAdmin()
+            @else
             <a type="button" class="btn btn-primary btn-sm mr-3" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle"></i></a>
+            @endisAdmin
             @endauth
 
             <div class="btn-group">
