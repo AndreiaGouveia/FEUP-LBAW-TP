@@ -62,6 +62,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
         Route::post('api/publications/{id}/report', 'PublicationController@report');
     });
 
+    //Only Admin can do these things
     Route::group(['middleware' => ['admin']], function () {
         Route::post('/members/{id}/promote', 'MemberController@promote')->name('member.promote');
         Route::post('/members/{id}/demote', 'MemberController@demote')->name('member.demote');
