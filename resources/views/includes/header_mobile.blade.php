@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 
 if (Auth::check()) {
     if (Auth::user()->isAdmin()) {
