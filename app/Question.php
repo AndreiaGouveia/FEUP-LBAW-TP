@@ -32,6 +32,6 @@ class Question extends Model
     public function tags(){return $this->hasMany('App\TagQuestion', 'id_question', 'id_commentable_publication');}
 
     public function reported() {
-        return $this->hasMany('App\Reported', 'id_publication', 'id_commentable_publication')->where('resolved', false);
+        return $this->hasMany('App\Reported', 'id_publication', 'id_commentable_publication')->where('resolved', false)->select('motive')->groupBy('motive')->distinct();
     }
 }

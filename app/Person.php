@@ -19,7 +19,7 @@ class Person extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id' ,'username', 'email', 'password','visible',
+        'id' ,'username', 'email', 'password','visible', 'ban'
     ];
 
     protected $table = 'person';
@@ -34,6 +34,8 @@ class Person extends Authenticatable
     ];
 
     public function isAdmin(){return $this->hasOne('App\Administrator', 'id_person', 'id')->exists(); }
+
+    public function isModerator() { ($this->member) ? $this->member->moderator : false;}
 
     public function member(){return $this->hasOne('App\Member', 'id_person', 'id'); }
 }

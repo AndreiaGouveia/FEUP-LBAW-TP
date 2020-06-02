@@ -46,3 +46,7 @@
     opacity:0;
     cursor: pointer;
 }
+
+.tab-content {
+    width: 100%;
+}

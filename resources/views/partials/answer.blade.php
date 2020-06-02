@@ -1,17 +1,16 @@
 <?php
 
 $link_image = ($owner->photo != null) ? $owner->photo->url : null;
-$visible = $publication->visible;
 
 ?>
-@if($visible)
+@if($publication->visible)
 
-<div class="py-2">
-    @include('activities.header_activity', ['memberId' => $owner->id_person, 'name' => $owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$owner->person->visible])    
+<div class="py-2" id="{{$answer->id_commentable_publication}}">
+    @include('activities.header_activity', ['memberId' => $owner->id_person, 'name' => $owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$owner->person->visible, "banned" => !$owner->person->ban])    
     <p class="card-text"> {{ $publication->description }}</p>
 
     <div class="info row justify-content-end mx-0">
-        @include('interation.info_content', ['commentable_publication' => $answer->commentable_publication ])
+        @include('interation.info_content', ['type' => $answer])
     </div>
 
     

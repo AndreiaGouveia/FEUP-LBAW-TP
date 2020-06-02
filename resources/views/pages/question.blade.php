@@ -1,10 +1,13 @@
 <?php
 
 $link_image = ($publication->owner->photo != null) ? $publication->owner->photo->url : null;
-$visible = $publication->visible;
 ?>
 
 @extends('layouts.app')
+
+@section('title')
+{{ $question->title }}
+@endsection
 
 @section('stylesheets')
 
@@ -15,7 +18,6 @@ $visible = $publication->visible;
 @endsection
 
 @section('content')
-@if($visible)
 
 <div class="container mt-5">
 
@@ -23,7 +25,7 @@ $visible = $publication->visible;
 
     <div class="row">
         <div class="main-content col-md-8">
-            @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$publication->owner->person->visible])
+            @include('activities.header_activity', ['memberId' => $publication->owner->id_person, 'name' => $publication->owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$publication->owner->person->visible, "banned" => $publication->owner->person->ban])
             <div class="pb-3 mb-1 border-bottom">
                 <h2>{{ $question->title }}</h2>
 
@@ -38,8 +40,8 @@ $visible = $publication->visible;
                         @endforeach
                     </div>
 
-                    <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $question->id_commentable_publication }}" >
-                        @include('interation.info_content', ['commentable_publication' => $question->commentable_publication ])
+                    <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $question->id_commentable_publication }}">
+                        @include('interation.info_content', ['type' => $question])
                     </div>
 
                 </div>
@@ -72,11 +74,22 @@ $visible = $publication->visible;
             </div>
 
         </div>
-        
-        <aside class="col-md mb-4"><!-- TODO: side bar !--></aside>
+
+        <aside class="col-md mb-4">
+
+            <h6>Recomendações</h6>
+            <hr class="section-break" />
+            <div class="recommendations-tab">
+                @foreach ($similar_questions as $similar_question)
+                <a class="link-color" href="{{route('show.question', $similar_question->id)}}">
+                    <p class="card-text">{{ $similar_question->title }}</p>
+                </a>
+                @endforeach
+            </div>
+
+        </aside>
 
     </div>
 </div>
-@endif
 
 @endsection

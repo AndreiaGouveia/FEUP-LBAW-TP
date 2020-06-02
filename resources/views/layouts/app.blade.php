@@ -9,18 +9,26 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>@yield('title')</title>
 
 
+  @yield('javascript')
   <script type="text/javascript">
     // Fix for Firefox autofocus CSS bug
     // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
   </script>
-  <script type="text/javascript" src={{ asset('js/app.js') }} defer>
-  </script>
 
-<script type="text/javascript" src={{ asset('js/image_settings.js') }} defer>
-  </script>
+  <!-- javascript needed for user iteration with app (likes, dislikes, etc) -->
+  <script type="text/javascript" src={{ asset('js/iteractions.js') }} defer></script>
+
+  <!-- javascript to sanatize markdown -->
+  <script type="text/javascript" src={{ asset('js/sanitize_markdown.js') }} defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+  <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.0.11/purify.min.js"></script>
+
 
 
   <!-- Bootstrap CSS -->
@@ -32,7 +40,7 @@
 
   <!-- Styles -->
   @section('stylesheets')
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/header.css') }}">  
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/header.css') }}">
   <link rel="stylesheet" type="text/css" media="print" href="{{ asset('css/print.css') }}" />
   @show
 

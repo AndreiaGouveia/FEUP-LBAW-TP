@@ -17,11 +17,10 @@
                 @include('interation.report_radio_button', ['content' => "Conteúdo de natureza sexual", 'value' => 'Nudity'])
                 @include('interation.report_radio_button', ['content' => "Assédio", 'value' => 'Harassment'])
                 @include('interation.report_radio_button', ['content' => "Lesões Autoprovocadas", 'value' => 'Self Harm'])
-
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary dismiss" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Submeter</button>
             </div>
         </div>

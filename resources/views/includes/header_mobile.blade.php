@@ -47,10 +47,11 @@ if (Auth::check()) {
                         <p style="margin-left: 1.7rem"><?= $name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                     </div>
 
-                    @if(auth()->user()->isAdmin())
+                    @isAdmin()
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item">Editar página 'Sobre Nós'</a>
-                    <a class="dropdown-item">Conteúdo sinalizado</a>
+                    <a class="dropdown-item" href="{{ route('admin.panel') }}">Painel do Admistrador</a>
+                    <a class="dropdown-item" href="{{ route('about.edit') }}">Editar página 'Sobre Nós'</a>
+                    <a class="dropdown-item" href="{{ route('reports') }}">Conteúdo Reportado</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
                     @else
@@ -59,9 +60,13 @@ if (Auth::check()) {
                     <a class="dropdown-item" href="{{ route('member.content', Auth::user()->id) }}">O meu Conteúdo</a>
                     <a class="dropdown-item" href="{{ route('member.favorites', Auth::user()->id) }}">Favoritos</a>
                     <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
+                    @isModerator()
+                    <a class="dropdown-item" href="{{ route('reports') }}">Conteúdo Reportado</a>
+                    @endisModerator()
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
-                    @endif
+                    @endisAdmin
+
                     @endauth
 
                     @guest

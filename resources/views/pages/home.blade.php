@@ -10,6 +10,10 @@
 
 @section('content')
 
+@section('title')
+{{ config('app.name', 'Laravel') }}
+@endsection
+
 <header class="welcome d-flex justify-content-between align-items-center">
     <div class="flex-fill ml-5">
         <h1 class="text-center">Bem-Vindo ao Papagaio!</h1>
@@ -25,6 +29,7 @@
             <div>
                 <h2 class="font-weight-normal mb-3">Questões Populares </h2>
                 @each('activities.basic_activity', $questions, 'question')
+                {{ $questions->links() }}
             </div>
 
         </div>
