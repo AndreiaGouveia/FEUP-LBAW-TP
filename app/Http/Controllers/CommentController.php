@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
 use App\Comment;
 use App\Commentable_publication;
 use App\Publication;
@@ -66,5 +67,45 @@ class CommentController extends Controller
     public function destroy(Response $response)
     {
         //
+    }
+
+    public function edit($id)
+    {
+        $comment = Comment::find($id);
+        return view('pages.edit_comment' ,  ['comment' => $comment , "id" => $id]);
+    }
+
+    public function update(Request $request , $id)
+    {
+        $user = Auth::user();
+
+        $inputs = $request->all();
+        //title, description and tags
+        try {
+            DB::beginTransaction();
+
+            $comment = Comment::find($id);
+
+            $publication = Publication::find($comment->publication['id']);
+            $publication->description =  $inputs['description'];
+            $publication->save();
+
+            DB::commit();
+            Flash::success('Comment edited successfully.');
+
+            if($comment->commentsResponse != NULL)
+            return redirect()->route('show.question', ['id' => $comment->commentsResponse->id_question]);
+
+            return redirect()->route('show.question', ['id' => $comment->id_commentable_publication]);
+
+        } catch (\Exception $e) {
+
+             DB::rollBack();
+
+             ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
+
+             Flash::error('Error editing comment!');
+             return redirect()->route('edit.comment' , [$id]);
+        }
     }
 }

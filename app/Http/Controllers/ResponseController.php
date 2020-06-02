@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
 use App\Commentable_publication;
 use App\Publication;
 use App\Response;
@@ -68,6 +69,43 @@ class ResponseController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+
+    public function edit($id)
+        {
+            $response = Response::find($id);
+            return view('pages.edit_response' ,  ['response' => $response , "id" => $id]);
+        }
+
+    public function update(Request $request , $id)
+        {
+            $user = Auth::user();
+
+                        $inputs = $request->all();
+                        //title, description and tags
+                       try {
+                            DB::beginTransaction();
+
+                            $response = Response::find($id);
+
+                            $publication = Publication::find($response->publication['id']);
+                            $publication->description =  $inputs['description'];
+                            $publication->save();
+
+                            DB::commit();
+                            Flash::success('Response edited successfully.');
+
+                            return redirect()->route('show.question', ['id' => $response->id_question]);
+
+                        } catch (\Exception $e) {
+
+                            DB::rollBack();
+
+                            ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
+
+                            Flash::error('Error editing response!');
+                            return redirect()->route('edit.response' , [$id]);
+                        }
+        }
     
     /**
      * Remove the specified resource from storage.

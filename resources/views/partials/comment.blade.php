@@ -9,6 +9,7 @@ $link_image = ($comment->publication->owner->photo != null && $comment->publicat
         <div class="p-1">
             <p class="font-weight-bold d-inline">{{ $comment->publication->owner->person->ban ? "[Banned]" : ($comment->publication->owner->person->visible ? $comment->publication->owner->name : "[Anonymous]" )}}</p>
             <p class="d-inline">{{ $comment->publication->description }}</p>
+            <p class="d-inline">@include('interation.comment_options', ['type' => $comment])</p>
         </div>
     </div>
 </div>
