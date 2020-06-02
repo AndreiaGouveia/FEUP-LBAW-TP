@@ -60,8 +60,8 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::post('response/{id}/edit', 'ResponseController@update')->name("update.response")->middleware('auth');
 
     //Comments
-    Route::get('response/{id}/edit', 'CommentController@edit')->name("edit.comment")->middleware('auth');
-    Route::post('response/{id}/edit', 'CommentController@update')->name("update.comment")->middleware('auth');
+    Route::get('comment/{id}/edit', 'CommentController@edit')->name("edit.comment")->middleware('auth');
+    Route::post('comment/{id}/edit', 'CommentController@update')->name("update.comment")->middleware('auth');
 
     // API
     Route::post('api/questions/{id}/answers', 'ResponseController@store');

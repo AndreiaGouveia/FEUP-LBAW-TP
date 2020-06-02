@@ -16,10 +16,7 @@ $publication = Question::find($question->id)->publication;
         <h5 class="title">{{$question->title }}</h5>
     </a>
 
-    <div class="description mt-3">
-        @markdown($question->description)
-    </div>
-
+    <div class="description_inline">@markdown($question->description)</div>
 
     <div class="row mt-4 px-0 mx-0">
         <div class="info row justify-content-start d-line mx-0">

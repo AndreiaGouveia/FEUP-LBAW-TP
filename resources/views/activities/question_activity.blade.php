@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $link_profile = ($question->publication->owner->photo) ? $question->publication->owner->photo->url : null;
 ?>
@@ -11,7 +11,7 @@ $link_profile = ($question->publication->owner->photo) ? $question->publication-
     <a href="{{ route('show.question', $question->id_commentable_publication) }}">
         <h5 class="title">{{ $question->title }}</h5>
     </a>
-    <p class="text">{{ $question->publication->description }}</p>
+    <div class="description_inline">@markdown($question->publication->description)</div>
     <div class="row mt-4 px-0 mx-0">
         <div class="topics align-items-center">
             @foreach ($question->tags as $tag_question)

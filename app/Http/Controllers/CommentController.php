@@ -81,13 +81,7 @@ class CommentController extends Controller
 
         $inputs = $request->all();
         //title, description and tags
-
-        $comment = Comment::find($id);
-
-                    $publication = Publication::find($comment->publication['id']);
-                   var_dump( $publication->description);
-                   var_dump($inputs);
-        /*try {
+        try {
             DB::beginTransaction();
 
             $comment = Comment::find($id);
@@ -99,7 +93,10 @@ class CommentController extends Controller
             DB::commit();
             Flash::success('Comment edited successfully.');
 
-            return redirect()->route('show.question', ['id' => $response->id_question]);
+            if($comment->commentsResponse != NULL)
+            return redirect()->route('show.question', ['id' => $comment->commentsResponse->id_question]);
+
+            return redirect()->route('show.question', ['id' => $comment->id_commentable_publication]);
 
         } catch (\Exception $e) {
 
@@ -109,6 +106,6 @@ class CommentController extends Controller
 
              Flash::error('Error editing comment!');
              return redirect()->route('edit.comment' , [$id]);
-        }*/
+        }
     }
 }

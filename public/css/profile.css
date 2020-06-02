@@ -45,12 +45,12 @@ p {
 }
 
 
-.description img {
+.description_inline img {
     display: none;
 }
 
-.description a { display: none; }
+.description_inline a { display: none; }
 
-.description h1, .description h2, .description h3, .description h4, .description h5, .description h6 {
+.description_inline h1, .description_inline h2, .description_inline h3, .description_inline h4, .description_inline h5, .description_inline h6 {
     font-size: 1rem;
 }
