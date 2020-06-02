@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Member;
 use App\Person;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
+use Socialite;
 
 class RegisterController extends Controller
 {
@@ -73,7 +75,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        if($person == null){
+        if ($person == null) {
             DB::rollBack();
             return abort(404);
         }
@@ -88,5 +90,60 @@ class RegisterController extends Controller
         return $person;
     }
 
+    /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Google.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        try {
+            $user = Socialite::driver('google')->user();
+        } catch (\Exception $e) {
+            return redirect('/login');
+        }
+
+
+        // check if they're an existing user
+        $existingUser = Person::where('email', $user->email)->first();
+        if ($existingUser) {
+            // log them in
+            Auth::loginUsingId($existingUser->id);
+        } else {
+
+            DB::beginTransaction();
+
+            $person = Person::create([
+                'username' => $user->id,
+                'email' => $user->email,
+                'password' => md5(rand(1,10000))
+            ]);
     
+            if ($person == null) {
+                DB::rollBack();
+                return abort(404);
+            }
+    
+            Member::create([
+                'id_person' => $person->id,
+                'name' => $user->name
+            ]);
+    
+            DB::commit();
+
+            Auth::loginUsingId($person->id);
+        }
+
+        return redirect()->to('/home');
+    }
 }
