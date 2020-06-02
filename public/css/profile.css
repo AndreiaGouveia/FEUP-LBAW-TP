@@ -43,3 +43,14 @@ p {
         padding-left: 0.3rem!important;
     }
 }
+
+
+.description img {
+    display: none;
+}
+
+.description a { display: none; }
+
+.description h1, .description h2, .description h3, .description h4, .description h5, .description h6 {
+    font-size: 1rem;
+}

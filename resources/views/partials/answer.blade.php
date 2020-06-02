@@ -6,7 +6,7 @@ $link_image = ($owner->photo != null) ? $owner->photo->url : null;
 @if($publication->visible)
 
 <div class="py-2" id="{{$answer->id_commentable_publication}}">
-    @include('activities.header_activity', ['memberId' => $owner->id_person, 'name' => $owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$owner->person->visible, "banned" => !$owner->person->ban])    
+    @include('activities.header_activity', ['memberId' => $owner->id_person, 'name' => $owner->name, "link_profile" => $link_image, 'action' => "", 'actionInBold' => "", "date" => $publication->date, "anonymous" => !$owner->person->visible, "banned" => $owner->person->ban])    
     <p class="card-text"> {{ $publication->description }}</p>
 
     <div class="info row justify-content-end mx-0">
