@@ -21,7 +21,7 @@ Editar Comentário
 
     @include('flash::message')
 
-    <h3 class="font-weight-normal mb-3">Editar Resposta</h3>
+    <h3 class="font-weight-normal mb-3">Editar Comentário</h3>
     <hr class="section-break" />
 
     <form id="edit_comment" method="POST" action="{{ route('update.comment', [$id]) }}">
@@ -31,10 +31,8 @@ Editar Comentário
 
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
-                <textarea form="edit_answer" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"><?php echo $comment->publication->description; ?></textarea>
+                <textarea form="edit_comment" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"><?php echo $comment->publication->description; ?></textarea>
             </div>
-
-
 
             <div class="d-flex justify-content-end d-inline">
                 <button class="btn btn-secondary mr-2">Cancelar</button>
