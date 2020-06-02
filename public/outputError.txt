@@ -17,3 +17,7 @@ DETAIL:  Failing row contains (15, null, 2020-06-01 20:52:32.910838, 16, t). (SQ
 2020-06-01 20:53:44 - SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "description" violates not-null constraint
 DETAIL:  Failing row contains (16, null, 2020-06-01 20:53:44.828474, 16, t). (SQL: insert into "publication" ("description", "id_owner") values (?, 16) returning "id")
 2020-06-02 01:00:01 - Undefined variable: question
+2020-06-02 12:28:31 - Undefined index: description
+2020-06-02 12:28:52 - Undefined index: description
+2020-06-02 12:38:13 - Invalid argument supplied for foreach()
+2020-06-02 12:40:25 - Invalid argument supplied for foreach()

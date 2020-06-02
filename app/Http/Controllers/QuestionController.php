@@ -144,6 +144,7 @@ class QuestionController extends Controller
 
                 TagQuestion::where('id_question',$id)->delete();
 
+                if(array_key_exists('tags' , $inputs))
                 foreach($inputs['tags'] as &$tag){
                     TagQuestion::create([
                         'id_tag' => $tag,
