@@ -77,8 +77,8 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
             <hr class="section-break" />
             <div class="recommendations-tab">
                 @foreach ($similar_questions as $similar_question)
-                <a href="{{route('show.question', 1)}}">
-                    <p class="card-text">{{ $similar_question }}</p>
+                <a class="link-color" href="{{route('show.question', $similar_question->id)}}">
+                    <p class="card-text">{{ $similar_question->title }}</p>
                 </a>
                 @endforeach
             </div>

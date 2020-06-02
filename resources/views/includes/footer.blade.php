@@ -11,12 +11,12 @@
                     </div>
                 </div>
 
-                <a class="col md-2 mb-2" href="{{ url('home') }}">
-                    <h6 class="col md-2 mb-2 font-weight-bold link-color">Home</h6>
+                <a class="col md-2 mb-2 link-color" href="{{ url('home') }}">
+                    <h6 class="col md-2 mb-2 font-weight-bold">Home</h6>
                 </a>
 
-                <a class="col md-2 mb-2" href="{{ route('about') }}">
-                    <h6 class="col md-2 mb-2 font-weight-bold link-color">Sobre Nós</h6>
+                <a class="col md-2 mb-2 link-color" href="{{ route('about') }}">
+                    <h6 class="col md-2 mb-2 font-weight-bold">Sobre Nós</h6>
                 </a>
 
             </div>
