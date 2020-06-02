@@ -36,7 +36,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
                         @endforeach
                     </div>
 
-                    <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $question->id_commentable_publication }}" >
+                    <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $question->id_commentable_publication }}">
                         @include('interation.info_content', ['type' => $question])
                     </div>
 
@@ -70,8 +70,20 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
             </div>
 
         </div>
-        
-        <aside class="col-md mb-4"><!-- TODO: side bar !--></aside>
+
+        <aside class="col-md mb-4">
+
+            <h6>Recomendações</h6>
+            <hr class="section-break" />
+            <div class="recommendations-tab">
+                @foreach ($similar_questions as $similar_question)
+                <a href="{{route('show.question', 1)}}">
+                    <p class="card-text">{{ $similar_question }}</p>
+                </a>
+                @endforeach
+            </div>
+
+        </aside>
 
     </div>
 </div>

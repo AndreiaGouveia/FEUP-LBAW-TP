@@ -68,7 +68,7 @@ if (Auth::check()) {
                 @endisModerator()
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
-                @endisAdmin
+                @endisAdmin()
             </div>
         </div>
         @endauth
