@@ -39,6 +39,7 @@ class HomeController extends Controller
 
                 return DB::table('question')
                         ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                        ->selectRaw('ts_rank_cd(question.tsv, plainto_tsquery(?)) as rank', [$query])
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
                         ->join('person', 'publication.id_owner', '=', 'person.id')
                         ->join('member', 'person.id', '=', 'member.id_person')
@@ -46,8 +47,8 @@ class HomeController extends Controller
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                        ->whereRaw('to_tsquery(?) @@ to_tsvector( question.title || \' \' || publication.description)', [$query])
-                        ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description');
+                        ->whereRaw('to_tsquery(?) @@ tsv', [$query])
+                        ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', 'question.tsv');
         }
 
         public function getSearchTopics($query)
@@ -63,21 +64,21 @@ class HomeController extends Controller
         {
 
                 return DB::table('question')
-                ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
-                ->whereIn('question.id_commentable_publication', (DB::table('question')
-                        ->select('publication.id')
-                        ->where('tag.name', '=', $topic)
+                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                        ->whereIn('question.id_commentable_publication', (DB::table('question')
+                                ->select('publication.id')
+                                ->where('tag.name', '=', $topic)
+                                ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
+                                ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
+                                ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')))
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
+                        ->join('person', 'publication.id_owner', '=', 'person.id')
+                        ->join('member', 'person.id', '=', 'member.id_person')
+                        ->leftJoin('photo', 'photo.id', '=', 'member.id_photo')
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
-                        ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')))
-                ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
-                ->join('person', 'publication.id_owner', '=', 'person.id')
-                ->join('member', 'person.id', '=', 'member.id_person')
-                ->leftJoin('photo', 'photo.id', '=', 'member.id_photo')
-                ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
-                ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
-                ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description');
+                        ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
+                        ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
+                        ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description');
         }
 
         public function show()
@@ -143,7 +144,7 @@ class HomeController extends Controller
                         $filter = 3;
 
                         $questions = $this->getSearchQuestionsWithTopic($input)
-                        ->orderBy('dislikes', 'desc')
+                                ->orderBy('dislikes', 'desc')
                                 ->orderBy('likes')
                                 ->orderBy('publication.date', 'desc')
                                 ->simplePaginate($this->posts_per_page);
@@ -158,11 +159,10 @@ class HomeController extends Controller
         public function search($query)
         {
                 $topics = $this->getSearchTopics($query)
-                        ->orderBy('rank', 'desc')
                         ->simplePaginate($this->posts_per_page);
 
                 $questions = $this->getSearchResults($query)
-                        ->orderByRaw('ts_rank_cd(to_tsvector( question.title || \' \' || publication.description), ?), likes, dislikes, publication.date desc', [$query])
+                        ->orderBy('rank', 'desc')
                         ->simplePaginate($this->posts_per_page);
 
 
@@ -176,21 +176,23 @@ class HomeController extends Controller
         public function filteredSearch($query, $filter)
         {
                 $topics =  $this->getSearchTopics($query)
-                ->orderBy('rank', 'desc')
-                ->simplePaginate($this->posts_per_page);
+                        ->simplePaginate($this->posts_per_page);
 
                 if ($filter == 'recent') {
                         $filter = 1;
 
                         $questions = $this->getSearchResults($query)
                                 ->orderBy('publication.date', 'desc')
+                                ->orderBy('rank', 'desc')
                                 ->simplePaginate($this->posts_per_page);
+                                
                 } else if ($filter == 'mostLiked') {
                         $filter = 2;
 
                         $questions = $this->getSearchResults($query)
                                 ->orderBy('likes', 'desc')
                                 ->orderBy('dislikes')
+                                ->orderBy('rank', 'desc')
                                 ->orderBy('publication.date', 'desc')
                                 ->simplePaginate($this->posts_per_page);
                 } else if ($filter == 'leastLiked') {
@@ -199,13 +201,14 @@ class HomeController extends Controller
                         $questions = $this->getSearchResults($query)
                                 ->orderBy('dislikes', 'desc')
                                 ->orderBy('likes')
+                                ->orderBy('rank', 'desc')
                                 ->orderBy('publication.date', 'desc')
                                 ->simplePaginate($this->posts_per_page);
                 } else {
                         $filter = 0;
 
                         $questions = $this->getSearchResults($query)
-                                ->orderByRaw('ts_rank_cd(to_tsvector( question.title || \' \' || publication.description), ?), likes, dislikes, publication.date desc', [$query])
+                                ->orderBy('rank', 'desc')
                                 ->simplePaginate($this->posts_per_page);
                 }
 
