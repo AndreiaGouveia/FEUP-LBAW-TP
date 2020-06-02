@@ -92,7 +92,7 @@ class ResponseController extends Controller
                             $publication->save();
 
                             DB::commit();
-                            Flash::success('Response edited successfully.');
+                            Flash::success('Resposta editada com Sucesso!');
 
                             return redirect()->route('show.question', ['id' => $response->id_question]);
 
@@ -102,7 +102,7 @@ class ResponseController extends Controller
 
                             ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
 
-                            Flash::error('Error editing response!');
+                            Flash::error('Erro ao editar Resposta!');
                             return redirect()->route('edit.response' , [$id]);
                         }
         }
