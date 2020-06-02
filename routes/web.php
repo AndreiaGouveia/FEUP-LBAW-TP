@@ -48,6 +48,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::get('search/{search}/{filter}', 'HomeController@filteredSearch')->name('filtered.search');
 
     //Questions
+    Route::get('questions/{id}#{id2}', 'QuestionController@show')->name("show.question.element");
     Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
     Route::get('questions', 'QuestionController@create')->name('add.questions')->middleware('auth');
     Route::post('questions', 'QuestionController@store')->name("store.question")->middleware('auth');

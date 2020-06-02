@@ -94,7 +94,7 @@ class ResponseController extends Controller
                             DB::commit();
                             Flash::success('Response edited successfully.');
 
-                            return redirect()->route('show.question', ['id' => $response->id_question]);
+                            return redirect()->route('show.question.element', ['id' => $response->id_question , 'id2' => $id]);
 
                         } catch (\Exception $e) {
 
