@@ -36,7 +36,7 @@
 
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
-                <textarea form="edit_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6">{{ $question->publication->description }}</textarea>
+                <textarea form="edit_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" autofocus="" rows="6"></textarea>
             </div>
 
             <div class="content mb-4">
@@ -44,13 +44,13 @@
                 <br>
 
                 <select id="inputTopics" class="input-topics" name="tags[]" multiple="multiple">
-                @foreach ($locations as $key => $location)
+                    @foreach ($locations as $key => $location)
                     @if(in_array($location, $tags))
-                     <option value={{$key}} selected="selected">{{$location}}</option>
-                     @else
-                     <option value={{$key}} >{{$location}}</option>
-                     @endif
-                @endforeach
+                    <option value={{$key}} selected="selected">{{$location}}</option>
+                    @else
+                    <option value={{$key}}>{{$location}}</option>
+                    @endif
+                    @endforeach
                 </select>
 
             </div>
@@ -65,9 +65,23 @@
 </div>
 
 <script>
+    var easyMDE = new EasyMDE({
+        element: document.getElementById('textAreaDescription'),
+        initialValue: <?= json_encode($question->publication->description) ?>,
+        renderingConfig: {
+            singleLineBreaks: true,
+            sanitizerFunction: function(renderedHTML) {
+                return DOMPurify.sanitize(renderedHTML)
+            },
+        },
+        lineWrapping: false,
+    });
+</script>
+
+<script>
     // In your Javascript (external .js resource or <script> tag)
     $(document).ready(function() {
-    $('.input-topics').select2();
+        $('.input-topics').select2();
     });
 </script>
 

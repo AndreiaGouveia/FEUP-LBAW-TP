@@ -50,12 +50,12 @@ Adicionar Pergunta
 
             <div class="content mb-4">
                 <label for="inputTitle">Titulo</label>
-                <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" value="{{ old('inputTitle') }}" required="" autofocus="">
+                <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" value="{{ old('title') }}" required="" autofocus="">
             </div>
 
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
-                <textarea form="add_question" id="textAreaDescription" name="description" value="{{ old('description') }}" class="form-control" placeholder="Descrição" required="" autofocus="" rows="6"></textarea>
+                <textarea form="add_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" autofocus="" rows="6"></textarea>
             </div>
 
             <div class="content mb-4">
@@ -83,9 +83,23 @@ Adicionar Pergunta
 </div>
 
 <script>
+    var easyMDE = new EasyMDE({
+        element: document.getElementById('textAreaDescription'),
+        initialValue: <?= json_encode(old('description')) ?>,
+        renderingConfig: {
+            singleLineBreaks: true,
+            sanitizerFunction: function(renderedHTML) {
+                return DOMPurify.sanitize(renderedHTML)
+            },
+        },
+        lineWrapping: false,
+    });
+</script>
+
+<script>
     // In your Javascript (external .js resource or <script> tag)
     $(document).ready(function() {
-    $('.input-topics').select2();
+        $('.input-topics').select2();
     });
 </script>
 

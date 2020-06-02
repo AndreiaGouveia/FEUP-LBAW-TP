@@ -21,3 +21,21 @@ DETAIL:  Failing row contains (16, null, 2020-06-01 20:53:44.828474, 16, t). (SQ
 2020-06-02 12:28:52 - Undefined index: description
 2020-06-02 12:38:13 - Invalid argument supplied for foreach()
 2020-06-02 12:40:25 - Invalid argument supplied for foreach()
+2020-06-02 12:52:46 - SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "description" violates not-null constraint
+DETAIL:  Failing row contains (12, null, 2020-06-02 12:52:46.589058, 1, t). (SQL: insert into "publication" ("description", "id_owner") values (?, 1) returning "id")
+2020-06-02 12:53:57 - SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "publication" violates foreign key constraint "publication_id_owner_fkey"
+DETAIL:  Key (id_owner)=(1) is not present in table "member". (SQL: insert into "publication" ("description", "id_owner") values (, 1) returning "id")
+2020-06-02 12:56:37 - SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "publication" violates foreign key constraint "publication_id_owner_fkey"
+DETAIL:  Key (id_owner)=(1) is not present in table "member". (SQL: insert into "publication" ("description", "id_owner") values (, 1) returning "id")
+2020-06-02 12:57:31 - SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "publication" violates foreign key constraint "publication_id_owner_fkey"
+DETAIL:  Key (id_owner)=(1) is not present in table "member". (SQL: insert into "publication" ("description", "id_owner") values (, 1) returning "id")
+2020-06-02 12:57:45 - SQLSTATE[23503]: Foreign key violation: 7 ERROR:  insert or update on table "publication" violates foreign key constraint "publication_id_owner_fkey"
+DETAIL:  Key (id_owner)=(1) is not present in table "member". (SQL: insert into "publication" ("description", "id_owner") values (A, 1) returning "id")
+2020-06-02 13:12:01 - SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "description" violates not-null constraint
+DETAIL:  Failing row contains (18, null, 2020-06-02 12:59:46.052701, 16, t). (SQL: update "publication" set "description" = ? where "id" = 18)
+2020-06-02 13:13:23 - SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "description" violates not-null constraint
+DETAIL:  Failing row contains (18, null, 2020-06-02 12:59:46.052701, 16, t). (SQL: update "publication" set "description" = ? where "id" = 18)
+2020-06-02 13:13:26 - SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "description" violates not-null constraint
+DETAIL:  Failing row contains (18, null, 2020-06-02 12:59:46.052701, 16, t). (SQL: update "publication" set "description" = ? where "id" = 18)
+2020-06-02 13:13:34 - SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "description" violates not-null constraint
+DETAIL:  Failing row contains (18, null, 2020-06-02 12:59:46.052701, 16, t). (SQL: update "publication" set "description" = ? where "id" = 18)
