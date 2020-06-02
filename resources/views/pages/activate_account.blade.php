@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+Ativar Conta
+@endsection
 
 @section('stylesheets')
 @parent

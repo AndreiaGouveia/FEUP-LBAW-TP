@@ -19,6 +19,10 @@ foreach ($temp as &$value) {
 
 @extends('layouts.app')
 
+@section('title')
+Adicionar Pergunta
+@endsection
+
 @section('stylesheets')
 @parent
 

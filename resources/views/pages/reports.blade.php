@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Conteúdo Reportado
+@endsection
+
 @section('stylesheets')
 @parent
 

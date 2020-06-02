@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+{{ $search . " - Pesquisa Tópico" }}
+@endsection
+
 @section('stylesheets')
 @parent
 <link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.css') }}">
@@ -17,7 +21,7 @@
         <div class="main-content col-md-8">
             <div class="mb-3">
                 <h2 class="font-weight-normal text-secondary d-inline">Perguntas com o tópico </h2>
-                <h2 class="d-inline"><?= $search ?></h2>
+                <h2 class="d-inline">{{$search}}</h2>
             </div>
 
             <div class="row container justify-content-between mb-4">

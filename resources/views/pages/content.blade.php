@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+O meu conteúdo
+@endsection
+
 @section('stylesheets')
 @parent
 <link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.css') }}">

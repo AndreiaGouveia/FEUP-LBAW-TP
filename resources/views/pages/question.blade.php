@@ -5,6 +5,10 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
 @extends('layouts.app')
 
+@section('title')
+{{ $question->title }}
+@endsection
+
 @section('stylesheets')
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/question.css') }}">
