@@ -7,8 +7,8 @@ Conteúdo Reportado
 @section('stylesheets')
 @parent
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/question.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/question.min.css') }}">
 
 @endsection
 

@@ -8,7 +8,7 @@ Editar Comentário
 @parent
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/add_question.min.css') }}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
