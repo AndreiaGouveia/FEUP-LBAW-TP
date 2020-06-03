@@ -38,8 +38,7 @@
         @endif
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sessão</button>
-
-        <div class="m-3"><a class="card-text" href="#">Esqueceu-se da sua palavra-passe?</a></div>
+        <div class="m-3"><a class="card-text" href="{{url('/forgotPassword') }}">Esqueceu-se da sua palavra-passe?</a></div>
 
         <hr class="section-break" />
 

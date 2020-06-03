@@ -9,6 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Mail\welcomeMail ;
 
 // IF USER IS LOGGED IN AND IS ACCOUNT IS NOT ACTIVE/VISIBLE WE REDIRECT TO ACTIVE
 Route::group(['middleware' => ['unactiveUser']], function () {
@@ -19,6 +20,11 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     //Static Pages
     Route::get('home', 'HomeController@show')->name('home');
     Route::get('about', 'AdministratorController@about')->name('about');
+
+    //EMAIL
+    Route::get('/email', function(){
+        return new welcomeMail();
+    });
 
 
     //Members
@@ -79,6 +85,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::get('search/tags/{tag}', 'HomeController@searchTopic')->name("search.topic");
 
     //Questions
+    Route::get('questions/{id}#{id2}', 'QuestionController@show')->name("show.question.element");
     Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
    
     //API
@@ -101,6 +108,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('/forgotPassword', 'Auth\ForgotPassword@forgot');
 
 Route::get('/redirect', 'Auth\RegisterController@redirectToProvider')->name('registerGoogle');;
 Route::get('/callback', 'Auth\RegisterController@handleProviderCallback');

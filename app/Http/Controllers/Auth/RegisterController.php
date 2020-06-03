@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Member;
 use App\Person;
+use App\Mail\welcomeMail;
+
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
 use Socialite;
 
 class RegisterController extends Controller
@@ -86,6 +90,8 @@ class RegisterController extends Controller
         ]);
 
         DB::commit();
+
+        Mail::to($data['email'])->send(new welcomeMail());
 
         return $person;
     }
