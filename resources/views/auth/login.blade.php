@@ -43,7 +43,7 @@
         <hr class="section-break" />
 
         <a class="btn btn-outline-dark" href="{{ route('registerGoogle') }}" role="button" style="text-transform:none">
-            <img width="20px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            <img width="20px" alt="Google log-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
             Iniciar sessão com o Google
         </a>
 

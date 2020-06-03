@@ -409,7 +409,7 @@ function createComment(publication, person, photo) {
   let new_comment = document.createElement('div');
   new_comment.className = "p-2"
   new_comment.innerHTML = `
-    <img src="` + link_image + `" class="img-comment mr-2 mt-1" alt="">
+    <img src="` + link_image + `" class="img-comment mr-2 mt-1" alt="profilePictureUser">
     <div class="card comment-section">
         <div class="p-1 d-flex justify-content-between">
             <div>
@@ -443,7 +443,7 @@ function createResponse(publication, person, photo) {
 
   let header_ativity = `
   <div class="header-card mb-3">
-  <img src="`+ link_image + `" class="img_inside mr-2" alt="">
+  <img src="`+ link_image + `" class="img_inside mr-2" alt="profilePictureUser">
     <div class="header-text">
       <p class="name-and-action font-weight-bold d-inline">`+ person.name + `</p><br>
       <p><small>` + publication.date + `</small></p>
@@ -508,7 +508,7 @@ function createResponse(publication, person, photo) {
 
             <form class="form-inline comment-box mt-3" name="comment-box`+ publication.id + `" data-publication-id="` + publication.id + `">
               <input type="hidden" name="id_publication" value="`+ publication.id + `">
-                <img src="`+ link_image + `" class="img-comment mr-2 mt-1" alt="">
+                <img src="`+ link_image + `" class="img-comment mr-2 mt-1" alt="profilePictureUser">
                   <input class="form-control flex-fill" name="comment_text" required="" type="text"></input>
                   <button type="submit" class="btn btn-primary ml-1">Comentar</button>
     </form>

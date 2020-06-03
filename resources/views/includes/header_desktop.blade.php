@@ -18,7 +18,7 @@ if (Auth::check()) {
 <nav class="navbar navbar-expand navbar-light bg-light">
 
     <a class="navbar-brand px-2 mr-5" href="{{ url('home') }}">
-        <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="">
+        <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="logo">
         Papagaio
     </a>
 
@@ -48,7 +48,7 @@ if (Auth::check()) {
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="dropdown-item">
-                    <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="">
+                    <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="profilePicture">
                     <p style="margin-left: 1.7rem">{{$name}}<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                 </div>
 

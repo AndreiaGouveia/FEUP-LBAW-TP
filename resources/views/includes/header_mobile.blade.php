@@ -20,7 +20,7 @@ if (Auth::check()) {
     <nav class="navbar navbar-expand">
 
         <a class="navbar-brand mr-5" href="home">
-            <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="">
+            <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="logo">
         </a>
 
 
@@ -47,7 +47,7 @@ if (Auth::check()) {
                     @auth
 
                     <div class="dropdown-item">
-                        <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="">
+                        <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="profilePicture">
                         <p style="margin-left: 1.7rem"><?= $name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
                     </div>
 

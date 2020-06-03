@@ -85,7 +85,7 @@ foreach ($temp as &$value) {
 
                     <div class="avatar-zone">
                         <label for="profPhoto">Foto de Perfil</label><br>
-                        <img src='{{asset("storage/$link")}}' id="profilePic" class="img-settings" alt="">
+                        <img src='{{asset("storage/$link")}}' id="profilePic" class="img-settings" alt="profilePicture">
                     </div>
 
                     <input type="file" class="upload_btn" id="profPhoto" name="photo" />

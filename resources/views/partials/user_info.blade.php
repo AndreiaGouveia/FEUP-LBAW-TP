@@ -22,7 +22,7 @@ $location = implode(",", $location_array);
 
 <div class="profile_info">
 
-    <img src='{{asset("storage/$link")}}' class="img d-inline-block align-center" alt="">
+    <img src='{{asset("storage/$link")}}' class="img d-inline-block align-center" alt="profilePictureUser">
     <h6><br></h6>
     <div class="profile_data">
 
