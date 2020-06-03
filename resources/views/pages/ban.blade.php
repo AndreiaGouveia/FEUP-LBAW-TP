@@ -7,7 +7,7 @@ Banido
 @section('stylesheets')
 @parent
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/login.min.css') }}">
 @endsection
 
 @section('content')

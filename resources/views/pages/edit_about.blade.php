@@ -7,9 +7,9 @@ Editar Sobre Nós
 @section('stylesheets')
 @parent
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/add_question.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/add_questionmin.css') }}">
 
 @endsection
 

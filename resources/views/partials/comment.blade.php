@@ -1,10 +1,10 @@
 <?php
 
-$link_image = ($comment->publication->owner->photo != null && $comment->publication->owner->person->visible && !$comment->publication->owner->person->ban) ?  $comment->publication->owner->photo->url : "images/default.png";
+$link = ($comment->publication->owner->photo != null && $comment->publication->owner->person->visible && !$comment->publication->owner->person->ban) ?  $comment->publication->owner->photo->url : "images/default.png";
 ?>
 
 <div class="p-2" id="{{$comment->id_publication}}">
-    <img src="{{ $link_image }}" class="img-comment mr-2 mt-1" alt="profilePic">
+    <img src='{{asset("storage/$link")}}' class="img-comment mr-2 mt-1" alt="profilePic">
     <div class="card comment-section">
         <div class="p-1 d-flex justify-content-between">
         <div>

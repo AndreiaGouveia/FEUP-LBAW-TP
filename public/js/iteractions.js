@@ -404,7 +404,13 @@ function commentAddedHandler() {
 
 function createComment(publication, person, photo) {
 
-  let link_image = (photo != null) ? 'storage/app/' + photo.url : "https://i.stack.imgur.com/l60Hf.png";
+  $window_location = window.location.origin;
+
+  if (!$window_location) {
+    $window_location = window.location.href.split('/').slice(0, 3).join('/')
+  }
+
+  let link_image = (photo != null) ? $window_location + '/storage/' + photo.url : $window_location + '/storage/' + "images/default.png";
 
   let new_comment = document.createElement('div');
   new_comment.className = "p-2"
@@ -439,7 +445,14 @@ function createComment(publication, person, photo) {
 
 function createResponse(publication, person, photo) {
 
-  let link_image = (photo != null) ? 'storage/app/' + photo.url : "https://i.stack.imgur.com/l60Hf.png";
+
+  $window_location = window.location.origin;
+
+  if (!$window_location) {
+    $window_location = window.location.href.split('/').slice(0, 3).join('/')
+  }
+
+  let link_image = (photo != null) ? $window_location + '/storage/' + photo.url : $window_location + '/storage/' + "images/default.png";
 
   let header_ativity = `
   <div class="header-card mb-3">

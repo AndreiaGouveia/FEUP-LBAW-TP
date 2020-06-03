@@ -8,7 +8,7 @@ Painel do Admistrador
 @parent
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/graph.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/graph.min.css') }}">
 
 @endsection
 
