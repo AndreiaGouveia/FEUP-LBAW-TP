@@ -8,7 +8,7 @@ use App\Publication;
 use App\AboutUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\welcomeMail ;
+use App\Mail\WelcomeMail ;
 
 class AdministratorController extends Controller
 {
@@ -78,6 +78,6 @@ class AdministratorController extends Controller
     }
 
     public function email() {
-        return new welcomeMail();
+        return new WelcomeMail();
     }
 }
