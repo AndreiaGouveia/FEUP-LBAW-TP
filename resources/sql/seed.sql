@@ -621,7 +621,7 @@ INSERT INTO person
 VALUES
     ('admin', 'admin@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
     ('gustavo_Mendes', 'gustavinho@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('mariaJoana1', 'mariajoana99@hotmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('mariaJoana1', 'joana@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
     ('PedroGustus', 'pedro2Augusto@yahoo.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
     ('Maria', 'maria@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
     ('Fernando_Mendez', 'precoCerto@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
@@ -660,11 +660,11 @@ INSERT INTO member
     (id_person, name, biography, points, id_location, medal, moderator)
 VALUES
     (2, 'Gustavo Mendes', 'Sou amante da natureza. Não passo um dia sem os meus gatos que só comem a ração de melhor qualidade.', 3000, 1, 'Gold', true),
-    (3, 'Maria Joana Da Silva', 'Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.', 1, 2, 'Gold', true),
+    (3, 'Maria Joana Da Silva', 'Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.', 1, 2, null, false),
     (4, 'Pedro Augusto', 'Olá! Sou o Pedro e adoro papagaios.', 4001, 3, 'Silver', true),
     (5, 'Maria Sousa', 'Produzo ração para animais.', 120000, 4, 'Bronze', true),
-    (6, 'Fernando Mendes', 'Olá! Sai-me sempre a sorte grande naquelas rodas marotas.', 1, 5, 'Bronze', true),
-    (7, 'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.', 1, 6, 'Silver', true);
+    (6, 'Fernando Mendes', 'Olá! Sai-me sempre a sorte grande naquelas rodas marotas.', 2001, 5, 'Bronze', true),
+    (7, 'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.', 4001, 6, 'Silver', true);
 
 INSERT INTO member
     (id_person, name, biography, id_location)
