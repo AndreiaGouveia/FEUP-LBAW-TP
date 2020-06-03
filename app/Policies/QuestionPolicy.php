@@ -23,4 +23,9 @@ class QuestionPolicy
         return $question != null;
     }
 
+    public function update(Person $user, Question $question) {
+        return $user->isMember() && ($user->id == $question->publication->id_owner);
+
+    }
+
 }

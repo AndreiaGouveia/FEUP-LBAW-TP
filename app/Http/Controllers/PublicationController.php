@@ -24,16 +24,15 @@ class PublicationController extends Controller
      */
     public function report(Request $request, $id)
     {
-        if (!Auth::check())
-            return response()->json(['error' => 'User not authenticated!'], 403);
-
 
         DB::beginTransaction();
-        
 
-        if (!Publication::find($id)){
-            return response()->json(['error' => "No publication was found with id equal to ".$id], 404);
+
+        if (!Publication::find($id)) {
+            return response()->json(['error' => "No publication was found with id equal to " . $id], 404);
         }
+
+        $this->authorize('report', Publication::find($id));
 
         try {
 
@@ -61,7 +60,6 @@ class PublicationController extends Controller
             DB::commit();
 
             return response()->json(200);
-
         } catch (\Exception $e) {
 
             DB::rollBack();
@@ -69,29 +67,25 @@ class PublicationController extends Controller
             ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
 
             return response()->json(['error' => $e->getMessage()], 400);
-
         }
     }
 
     public function delete($id)
     {
-        if (!Auth::check())
-            return response()->json(['error' => 'User not authenticated!'], 403);
-
-
-        //TODO: make sure it is the owner, admin or moderator who are deliting
-
-        DB::beginTransaction();
         
-        if (!Publication::find($id)){
-            return response()->json(['error' => "No publication was found with id equal to ".$id], 404);
+        DB::beginTransaction();
+
+        if (!Publication::find($id)) {
+            return response()->json(['error' => "No publication was found with id equal to " . $id], 404);
         }
+
+
+        $this->authorize('delete', Publication::find($id));
 
         try {
             $delete_publication = DB::table('publication')->where('id', $id)->update(['visible' => false]);
             DB::commit();
             return response()->json(200);
-
         } catch (\Exception $e) {
 
             DB::rollBack();
@@ -100,21 +94,21 @@ class PublicationController extends Controller
         }
     }
 
-    function view_reports() {
-
+    function view_reports()
+    {
 
         $reportedQuestions = Question::whereHas('reported')->get();
         $reportedResponses = Response::whereHas('reported')->get();
         $reportedComments = Comment::whereHas('reported')->get();
 
         return view('pages.reports', ['questions' => $reportedQuestions, 'answers' => $reportedResponses, 'comments' => $reportedComments]);
-
     }
 
-    function resolve_report(Request $request, $id) {
+    function resolve_report(Request $request, $id)
+    {
 
-        if (!Publication::find($id)){
-            return response()->json(['error' => "No publication was found with id equal to ".$id], 404);
+        if (!Publication::find($id)) {
+            return response()->json(['error' => "No publication was found with id equal to " . $id], 404);
         }
 
         DB::beginTransaction();
@@ -122,7 +116,5 @@ class PublicationController extends Controller
         DB::update('update reported set resolved = ? where id_publication = ?', [$request->input('resolved'), $id]);
 
         DB::commit();
-
     }
-    
 }

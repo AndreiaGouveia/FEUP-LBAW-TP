@@ -83,10 +83,9 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::get('search/{query}', 'HomeController@search')->name("search");
     Route::post('search', 'HomeController@postSearch')->name("search.post");
     Route::get('search/tags/{tag}', 'HomeController@searchTopic')->name("search.topic");
-    Route::get('search/tags/{tag}/{filter}', 'HomeController@filteredSearchTopic')->name("filtered.search.topic");
-    Route::get('search/{search}/{filter}', 'HomeController@filteredSearch')->name('filtered.search');
 
     //Questions
+    Route::get('questions/{id}#{id2}', 'QuestionController@show')->name("show.question.element");
     Route::get('questions/{id}', 'QuestionController@show')->name("show.question");
    
     //API

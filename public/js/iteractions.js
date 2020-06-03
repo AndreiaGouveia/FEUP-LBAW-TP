@@ -262,8 +262,6 @@ function sendReport(event) {
 
 function sendDeletePublication(event) {
 
-  console.log("AQUI");
-
   let id_publication = this.dataset.publicationId;
 
   sendAjaxRequest('POST', '/api/publications/' + id_publication + '/delete', {}, publicationDeletedHandler, event.target);
@@ -411,9 +409,26 @@ function createComment(publication, person, photo) {
   new_comment.innerHTML = `
     <img src="` + link_image + `" class="img-comment mr-2 mt-1" alt="">
     <div class="card comment-section">
-        <div class="p-1">
-            <p class="font-weight-bold d-inline">` + person.name + `</p>
-            <p class="d-inline">` + publication.description + `</p>
+        <div class="p-1 d-flex justify-content-between">
+            <div>
+                <p class="font-weight-bold d-inline">` + person.name + `</p>
+                <p class="d-inline">` + publication.description + `</p>
+            </div>
+            <div class="info row justify-content-end align-items-center mx-0" data-publication-id="` + publication.id + `">
+                <div class="dropdown">
+                    <button class="btn px-1 py-0 ml-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+
+                            <a class="dropdown-item" href="/comment/` + publication.id + `/edit">Editar</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp`+ publication.id + `">Eliminar</a>
+                            <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport`+ publication.id + `">Reportar</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>`;
 
@@ -468,7 +483,7 @@ function createResponse(publication, person, photo) {
             <i class="fas fa-ellipsis-h"></i>
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Editar</a>
+            <a class="dropdown-item" href="/response/`+ publication.id + `/edit">Editar</a>
             <a class="dropdown-item" data-toggle="modal" data-target="#deletingPublicationPopUp`+ publication.id + `">Eliminar</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport`+ publication.id + `">Reportar</a>

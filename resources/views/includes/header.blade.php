@@ -4,5 +4,3 @@
 <header class="sticky-top d-xl-none">
     @include('includes.header_mobile')
 </header>
-
-<!-- TODO: Change Links -->

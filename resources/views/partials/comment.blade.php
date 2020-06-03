@@ -6,10 +6,14 @@ $link_image = ($comment->publication->owner->photo != null && $comment->publicat
 <div class="p-2" id="{{$comment->id_publication}}">
     <img src="{{ $link_image }}" class="img-comment mr-2 mt-1" alt="">
     <div class="card comment-section">
-        <div class="p-1">
+        <div class="p-1 d-flex justify-content-between">
+        <div>
             <p class="font-weight-bold d-inline">{{ $comment->publication->owner->person->ban ? "[Banned]" : ($comment->publication->owner->person->visible ? $comment->publication->owner->name : "[Anonymous]" )}}</p>
             <p class="d-inline">{{ $comment->publication->description }}</p>
-            <p class="d-inline">@include('interation.comment_options', ['type' => $comment])</p>
+        </div>
+            <div class="info row justify-content-end align-items-center mx-0" data-publication-id="{{ $comment->id_commentable_publication }}">
+            @include('interation.comment_options', ['type' => $comment])
+           </div>
         </div>
     </div>
 </div>

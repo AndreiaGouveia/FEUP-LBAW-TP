@@ -36,7 +36,11 @@ if (Auth::check()) {
             @endisAdmin
 
         @endif
+        
+        @isAdmin()
+        @else
         <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport{{ $type->id_publication }}">Reportar</a>
+        @endisAdmin
     </div>
 </div>
 
