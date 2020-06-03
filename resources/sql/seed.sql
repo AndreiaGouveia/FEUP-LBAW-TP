@@ -620,19 +620,19 @@ INSERT INTO person
     (username,email,password)
 VALUES
     ('admin', 'admin@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('gustavo_Mendes', 'gustavinho@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('mariaJoana1', 'joana@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('PedroGustus', 'pedro2Augusto@yahoo.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('Maria', 'maria@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('Fernando_Mendez', 'precoCerto@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('GuidaEmanuela', 'emanuelazita1234@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('AnabelaDeMalhadas', 'epico2010anabela@yahoo.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('PapagaioLover', 'dancingParrotLover@outlook.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('RicardoPereira', 'faltaDeCha@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('MarianaSousa', 'marianaSousa25@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('JoseAlves', 'queInformacaoDramatica@yahoo.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('QuimOvelha', 'quimquimquim@hotmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('CoelhoPassos', 'coelhoJose123@outlook.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq');
+    ('gustavo_Mendes', 'gustavinho@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('mariaJoana1', 'joana@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('PedroGustus', 'pedro2Augusto@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('Maria', 'maria@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('Fernando_Mendez', 'precoCerto@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('GuidaEmanuela', 'emanuelazita1234@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('AnabelaDeMalhadas', 'epico2010anabela@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('PapagaioLover', 'dancingParrotLover@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('RicardoPereira', 'faltaDeCha@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('MarianaSousa', 'marianaSousa25@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('JoseAlves', 'queInformacaoDramatica@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('QuimOvelha', 'quimquimquim@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('CoelhoPassos', 'coelhoJose123@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq');
 
 INSERT INTO administrator
 VALUES
