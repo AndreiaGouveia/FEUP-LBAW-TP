@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class welcomeMail extends Mailable
+class ForgotPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class welcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.welcome');
+        return $this->markdown('emails.forgotPassword');
     }
 }
