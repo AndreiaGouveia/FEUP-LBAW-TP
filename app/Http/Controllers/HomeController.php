@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller
 {
@@ -156,7 +157,7 @@ class HomeController extends Controller
                 return view('pages.search_topic',  ['search' => $input, 'questions' => $questions, 'popular_tags' => $popular_tags, 'filter' => $filter]);
         }
 
-        public function search($query)
+        public function search(Request $request, $query)
         {
                 $topics = $this->getSearchTopics($query)
                         ->simplePaginate($this->posts_per_page);
@@ -169,11 +170,9 @@ class HomeController extends Controller
                         ->simplePaginate($this->posts_per_page);
 
 
-                $popular_tags = $this->getPopularTopics();
-
                 $filter = 0;
 
-                return view('pages.search',  ['search' => $query, 'questions' => $questions, 'topics' => $topics, 'popular_tags' => $popular_tags, 'filter' => $filter]);
+                return view('pages.search',  ['search' => $query, 'questions' => $questions, 'topics' => $topics, 'filter' => Input::get('filter', 'relevant'), 'time' => Input::get('time'), 'tag' => Input::get('tag', 0) ]);
         }
 
         public function filteredSearch($query, $filter)
