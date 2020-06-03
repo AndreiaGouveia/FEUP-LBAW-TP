@@ -1,4 +1,5 @@
 @component('mail::message')
+<img src="img_girl.jpg">
 # Bem-vindo ao Papagaio!
 
 Entre no mundo do conhecimento Animal. 
