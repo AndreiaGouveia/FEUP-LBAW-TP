@@ -82,7 +82,7 @@ function drawHeaderMemberMobile()
             <div class="navbar-collapse navbar-nav form-inline justify-content-end">
 
                 <button class="btn btn-secondary btn-sm mr-3" type="button" id="searchMobileButton" data-toggle="collapse" data-target="#searchBarInput" aria-expanded="false" aria-controls="searchBarInput">
-                    <i class="fa fa-search"></i></button>
+                    <i class="fa fa-search"></i>
                 </button>
 
                 <a type="button" class="btn btn-primary btn-sm mr-3" href="add_question.php"><i class="fas fa-plus-circle"></i></a>
@@ -172,8 +172,8 @@ function drawHeaderVisitorDesktop()
                 </div>
             </form>
 
-            <a type="button" class="btn btn-log-in mr-1" href="login.php">Iniciar sessão</a>
-            <a type="button" class="btn btn-primary" href="sign_up.php">Registar</a>
+            <a class="btn btn-log-in mr-1" href="login.php">Iniciar sessão</a>
+            <a class="btn btn-primary" href="sign_up.php">Registar</a>
 
             </form>
         </div>

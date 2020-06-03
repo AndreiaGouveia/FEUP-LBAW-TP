@@ -184,6 +184,24 @@ class MemberController extends Controller
         return redirect()->route('members', $id);
     }
 
+    public function resetPassword(Request $request, $id)
+    {
+        $member = Member::find($id);
+        $person = Person::find($id);
+
+        $validatedData = $request->validate([
+            'password' => 'required|string|min:6|confirmed'
+        ]);
+
+        $inputs = $request->all();
+
+        $person->password =  Hash::make($inputs['password']);
+
+        $person->save();
+
+        return redirect()->route('home');
+    }
+
     /**
      * Deactivate the specified resource from storage.
      *

@@ -55,13 +55,13 @@ class Member extends Authenticatable
 
     public function favoriteQuestions() {
 
-        return $this->hasManyThrough('App\Question', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication')->orderBy('publication.date', 'desc');
+        return $this->hasManyThrough('App\Question', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication')->orderBy('question.id_commentable_publication');
 
     }
 
     public function favoriteAnswers() {
 
-        return $this->hasManyThrough('App\Response', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication')->orderBy('publication.date', 'desc');
+        return $this->hasManyThrough('App\Response', 'App\Favorite', 'id_member', 'id_commentable_publication', 'id_person', 'id_commentable_publication')->orderBy('response.id_commentable_publication');
 
     }
 }

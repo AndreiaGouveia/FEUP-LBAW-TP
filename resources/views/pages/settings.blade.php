@@ -12,7 +12,7 @@ Definições
 @endsection
 
 @section('javascript')
-<script type="text/javascript" src={{ asset('js/image_settings.js') }} defer></script>
+<script src={{ asset('js/image_settings.js') }} defer></script>
 @endsection
 
 @section('content')

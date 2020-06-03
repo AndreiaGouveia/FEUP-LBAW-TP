@@ -12,7 +12,7 @@ if (Auth::check()) {
 
 <div class="dropdown">
     <button class="btn px-1 py-0 ml-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-ellipsis-h"></i>
+        <i class="fas fa-ellipsis-h" aria-label="Mais Opcões"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 
@@ -36,7 +36,11 @@ if (Auth::check()) {
             @endisAdmin
 
         @endif
+        
+        @isAdmin()
+        @else
         <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport{{ $type->id_publication }}">Reportar</a>
+        @endisAdmin
     </div>
 </div>
 

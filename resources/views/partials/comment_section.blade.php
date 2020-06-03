@@ -16,7 +16,7 @@ if (Auth::check()) {
     @each('partials.comment', $comments , 'comment')
 
     <form class="form-inline comment-box mt-3" name="comment-box{{ $id_publication }}" data-publication-id="{{ $id_publication }}">
-        <img src='{{asset("storage/$link")}}' class="img-comment mr-2 mt-1" alt="">
+        <img src='{{asset("storage/$link")}}' class="img-comment mr-2 mt-1" alt="profilePic">
         <input class="form-control flex-fill" name="comment_text" required="" type="text"></input>
         <button type="submit" class="btn btn-primary ml-1">Comentar</button>
     </form>

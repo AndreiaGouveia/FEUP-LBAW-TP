@@ -6,7 +6,7 @@
 
                 <div class="col md-2 mb-2">
                     <div class="row justify-content-center">
-                        <img src="{{ asset('../images/logo.png') }}" width="20" height="25" alt="">
+                        <img src="{{ asset('../images/logo.png') }}" width="20" height="25" alt="logo">
                         <h6 class="ml-2">Papagaio</h6>
                     </div>
                 </div>

@@ -9,7 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Mail\welcomeMail ;
 
 // IF USER IS LOGGED IN AND IS ACCOUNT IS NOT ACTIVE/VISIBLE WE REDIRECT TO ACTIVE
 Route::group(['middleware' => ['unactiveUser']], function () {
@@ -22,9 +21,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::get('about', 'AdministratorController@about')->name('about');
 
     //EMAIL
-    Route::get('/email', function(){
-        return new welcomeMail();
-    });
+    Route::get('/email', 'AdministratorController@email');
 
 
     //Members
@@ -83,8 +80,6 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::get('search/{query}', 'HomeController@search')->name("search");
     Route::post('search', 'HomeController@postSearch')->name("search.post");
     Route::get('search/tags/{tag}', 'HomeController@searchTopic')->name("search.topic");
-    Route::get('search/tags/{tag}/{filter}', 'HomeController@filteredSearchTopic')->name("filtered.search.topic");
-    Route::get('search/{search}/{filter}', 'HomeController@filteredSearch')->name('filtered.search');
 
     //Questions
     Route::get('questions/{id}#{id2}', 'QuestionController@show')->name("show.question.element");
@@ -110,7 +105,14 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
-Route::get('/forgotPassword', 'Auth\ForgotPassword@forgot');
+Route::get('/forgotPassword', 'Auth\ForgotPasswordController@forgot');
+Route::post('/forgotPassword', 'Auth\ForgotPasswordController@password');
+Route::get('resetPassword/{id}', 'Auth\ForgotPasswordController@reset')->name('resetPassword');
+Route::post('resetPassword/{id}/password', 'MemberController@resetPassword')->name('reset.password');
+
+
+
+
 
 Route::get('/redirect', 'Auth\RegisterController@redirectToProvider')->name('registerGoogle');;
 Route::get('/callback', 'Auth\RegisterController@handleProviderCallback');

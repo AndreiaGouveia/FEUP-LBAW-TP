@@ -56,7 +56,7 @@ return [
     */
 
     
-    'from' => ['address' => 'lbaw2052@gmail.com', 'name' => 'papagaio'],
+    'from' => ['address' => 'lbaw2052@gmail.com', 'name' => 'Papagaio'],
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
     */
 
     'markdown' => [
-        'theme' => 'default',
+        'theme' => 'papagaio-theme',
 
         'paths' => [
             resource_path('views/vendor/mail'),

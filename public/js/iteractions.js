@@ -95,7 +95,7 @@ function sendLikeRequest(event) {
     if (id_publication)
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: true }, likeRemovedHandler, this);
 
-    return;
+    event.preventDefault();
   }
 
   let parentDiv = this.parentElement;
@@ -120,7 +120,7 @@ function sendDislikeRequest(event) {
     if (id_publication)
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: false }, likeRemovedHandler, this);
 
-    return;
+      event.preventDefault();
   }
 
   let parentDiv = this.parentElement;
@@ -145,7 +145,7 @@ function sendFavoriteRequest(event) {
     if (id_publication)
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/favorites/delete', {}, favoriteRemovedHandler, this);
 
-    return;
+      event.preventDefault();
   }
 
   let parentDiv = this.parentElement;
@@ -247,6 +247,20 @@ function sendCreateResponseRequest(event) {
   event.preventDefault();
 }
 
+function sendCreateCommentRequest(event) {
+
+  let id_publication = this.dataset.publicationId;
+  let comment_text = this.querySelector('input[name=comment_text]').value;
+
+  console.log(id_publication)
+
+  if (comment_text != '')
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/comments', { description: comment_text }, commentAddedHandler, event.target);
+
+  event.preventDefault();
+
+}
+
 function sendReport(event) {
 
   console.log("AQUIreport");
@@ -262,27 +276,11 @@ function sendReport(event) {
 
 function sendDeletePublication(event) {
 
-  console.log("AQUI");
-
   let id_publication = this.dataset.publicationId;
 
   sendAjaxRequest('POST', '/api/publications/' + id_publication + '/delete', {}, publicationDeletedHandler, event.target);
 
   event.preventDefault();
-}
-
-function sendCreateCommentRequest(event) {
-
-  let id_publication = this.dataset.publicationId;
-  let comment_text = this.querySelector('input[name=comment_text]').value;
-
-  console.log(id_publication)
-
-  if (comment_text != '')
-    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/comments', { description: comment_text }, commentAddedHandler, event.target);
-
-  event.preventDefault();
-
 }
 
 function responseAddedHandler() {
@@ -316,6 +314,8 @@ function responseAddedHandler() {
   //Add event listener to response comment section form
   let commentCreator = document.querySelector('#commentSection' + info.publication.id + " form");
   commentCreator.addEventListener('submit', sendCreateCommentRequest);
+  console.log(commentCreator);
+
 
   let number_anwers = document.querySelector('#number_answers');
   number_anwers.innerHTML = parseInt(number_anwers.innerHTML) + 1;
@@ -409,7 +409,7 @@ function createComment(publication, person, photo) {
   let new_comment = document.createElement('div');
   new_comment.className = "p-2"
   new_comment.innerHTML = `
-    <img src="` + link_image + `" class="img-comment mr-2 mt-1" alt="">
+    <img src="` + link_image + `" class="img-comment mr-2 mt-1" alt="userPic">
     <div class="card comment-section">
         <div class="p-1 d-flex justify-content-between">
             <div>
@@ -443,7 +443,7 @@ function createResponse(publication, person, photo) {
 
   let header_ativity = `
   <div class="header-card mb-3">
-  <img src="`+ link_image + `" class="img_inside mr-2" alt="">
+  <img src="`+ link_image + `" class="img_inside mr-2" alt="userPic">
     <div class="header-text">
       <p class="name-and-action font-weight-bold d-inline">`+ person.name + `</p><br>
       <p><small>` + publication.date + `</small></p>
@@ -453,12 +453,12 @@ function createResponse(publication, person, photo) {
   let like_buttons =
     `<div class="like-buttons ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="` + publication.id + `">
     <label class="btn btn-secondary px-1 py-0 like" id="like` + publication.id + `">
-        <input type="radio" name="options" autocomplete="off">
+        <input type="radio" name="options">
         <i class="far fa-thumbs-up"></i>
         0
     </label>
     <label class="btn btn-secondary px-1 py-0 ml-2 dislike" id="dislike` + publication.id + `">
-        <input type="radio" name="options" autocomplete="off">
+        <input type="radio" name="options">
         <i class="far fa-thumbs-down d-inline"></i>
         0
     </label>
@@ -508,7 +508,7 @@ function createResponse(publication, person, photo) {
 
             <form class="form-inline comment-box mt-3" name="comment-box`+ publication.id + `" data-publication-id="` + publication.id + `">
               <input type="hidden" name="id_publication" value="`+ publication.id + `">
-                <img src="`+ link_image + `" class="img-comment mr-2 mt-1" alt="">
+                <img src="`+ link_image + `" class="img-comment mr-2 mt-1" alt="userPic">
                   <input class="form-control flex-fill" name="comment_text" required="" type="text"></input>
                   <button type="submit" class="btn btn-primary ml-1">Comentar</button>
     </form>

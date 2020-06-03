@@ -58,34 +58,27 @@ class CommentController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Response $response)
-    {
-        //
-    }
-
     public function edit($id)
     {
         $comment = Comment::find($id);
-        return view('pages.edit_comment' ,  ['comment' => $comment , "id" => $id]);
+
+        $this->authorize('update', $comment);
+
+        return view('pages.edit_comment',  ['comment' => $comment, "id" => $id]);
     }
 
-    public function update(Request $request , $id)
+    public function update(Request $request, $id)
     {
-        $user = Auth::user();
-
         $inputs = $request->all();
         //title, description and tags
+
+        DB::beginTransaction();
+
+        $comment = Comment::find($id);
+
+        $this->authorize('update', $comment);
+
         try {
-            DB::beginTransaction();
-
-            $comment = Comment::find($id);
-
             $publication = Publication::find($comment->publication['id']);
             $publication->description =  $inputs['description'];
             $publication->save();
@@ -93,19 +86,18 @@ class CommentController extends Controller
             DB::commit();
             Flash::success('Comentário Editado com Sucesso.');
 
-            if($comment->commentsResponse != NULL)
-            return redirect()->route('show.question', ['id' => $comment->commentsResponse->id_question]);
+            if ($comment->commentsResponse != NULL)
+                return redirect()->route('show.question', ['id' => $comment->commentsResponse->id_question]);
 
             return redirect()->route('show.question', ['id' => $comment->id_commentable_publication]);
-
         } catch (\Exception $e) {
 
-             DB::rollBack();
+            DB::rollBack();
 
-             ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
+            ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
 
-             Flash::error('Erro ao Editar o Comentário!');
-             return redirect()->route('edit.comment' , [$id]);
+            Flash::error('Erro ao Editar o Comentário!');
+            return redirect()->route('edit.comment', [$id]);
         }
     }
 }

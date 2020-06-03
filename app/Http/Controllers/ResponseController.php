@@ -71,50 +71,43 @@ class ResponseController extends Controller
     }
 
     public function edit($id)
-        {
-            $response = Response::find($id);
-            return view('pages.edit_response' ,  ['response' => $response , "id" => $id]);
-        }
-
-    public function update(Request $request , $id)
-        {
-            $user = Auth::user();
-
-                        $inputs = $request->all();
-                        //title, description and tags
-                       try {
-                            DB::beginTransaction();
-
-                            $response = Response::find($id);
-
-                            $publication = Publication::find($response->publication['id']);
-                            $publication->description =  $inputs['description'];
-                            $publication->save();
-
-                            DB::commit();
-                            Flash::success('Resposta editada com Sucesso!');
-
-                            return redirect()->route('show.question.element', ['id' => $response->id_question , 'id2' => $id]);
-
-                        } catch (\Exception $e) {
-
-                            DB::rollBack();
-
-                            ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
-
-                            Flash::error('Erro ao editar Resposta!');
-                            return redirect()->route('edit.response' , [$id]);
-                        }
-        }
-    
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Response $response)
     {
-        //
+        $response = Response::find($id);
+
+        $this->authorize('update', $response);
+
+        return view('pages.edit_response',  ['response' => $response, "id" => $id]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $inputs = $request->all();
+        //title, description and tags
+
+        DB::beginTransaction();
+
+        $response = Response::find($id);
+
+        $this->authorize('update', $response);
+
+        try {
+
+            $publication = Publication::find($response->publication['id']);
+            $publication->description =  $inputs['description'];
+            $publication->save();
+
+            DB::commit();
+            Flash::success('Resposta editada com Sucesso!');
+
+            return redirect()->route('show.question.element', ['id' => $response->id_question, 'id2' => $id]);
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            ErrorFile::outputToFile($e->getMessage(), date('Y-m-d H:i:s'));
+
+            Flash::error('Erro ao editar Resposta!');
+            return redirect()->route('edit.response', [$id]);
+        }
     }
 }

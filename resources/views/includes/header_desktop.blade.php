@@ -18,7 +18,7 @@ if (Auth::check()) {
 <nav class="navbar navbar-expand navbar-light bg-light">
 
     <a class="navbar-brand px-2 mr-5" href="{{ url('home') }}">
-        <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="">
+        <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="logo">
         Papagaio
     </a>
 
@@ -38,7 +38,7 @@ if (Auth::check()) {
         @auth
         @isAdmin()
         @else
-        <a type="button" class="btn btn-primary mr-4" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
+        <a class="btn btn-primary mr-4" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
         @endisAdmin
 
         <div class="btn-group">
@@ -48,8 +48,8 @@ if (Auth::check()) {
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="dropdown-item">
-                    <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="">
-                    <p style="margin-left: 1.7rem">{{$name}}<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                    <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="userPic">
+                    <p style="margin-left: 1.7rem">{{$name}}@isModerator()<span class="badge badge-light"><i class="fas fa-shield-alt" aria-label="Moderador"></i></span>@endisModerator()</p>
                 </div>
 
                 @isAdmin()
@@ -76,8 +76,8 @@ if (Auth::check()) {
         @endauth
 
         @guest
-        <a type="button" class="btn btn-log-in mr-1" href="{{ route('login') }}">Iniciar sessão</a>
-        <a type="button" class="btn btn-primary" href="{{ route('register') }}">Registar</a>
+        <a class="btn btn-log-in mr-1" href="{{ route('login') }}">Iniciar sessão</a>
+        <a class="btn btn-primary" href="{{ route('register') }}">Registar</a>
         @endguest
 
     </div>

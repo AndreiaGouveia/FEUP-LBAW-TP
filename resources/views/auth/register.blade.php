@@ -54,6 +54,7 @@
       <label>
         <input type="checkbox" required> Eu aceito os termos e condições.
       </label>
+      <br>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Registar</button>
 

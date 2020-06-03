@@ -1,24 +1,31 @@
 <?php
 
 namespace App\Mail;
+use App\Person;
+
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class welcomeMail extends Mailable
+class ForgotPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $user;
+    public $user_email;
+    public $user_id;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    
+    public function __construct(Person $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +35,6 @@ class welcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.welcome');
+        return $this->markdown('emails.forgotPassword');
     }
 }

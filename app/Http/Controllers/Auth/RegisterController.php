@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Member;
 use App\Person;
-use App\Mail\welcomeMail;
+use App\Mail\WelcomeMail;
 
 use Auth;
 use App\Http\Controllers\Controller;
@@ -91,7 +91,7 @@ class RegisterController extends Controller
 
         DB::commit();
 
-        Mail::to($data['email'])->send(new welcomeMail());
+        Mail::to($data['email'])->send(new WelcomeMail());
 
         return $person;
     }
