@@ -19,7 +19,7 @@ if (Auth::check()) {
 <div class="nav-bar navbar-expand navbar-light bg-light pb-2">
     <nav class="navbar navbar-expand">
 
-        <a class="navbar-brand mr-5" href="home">
+        <a class="navbar-brand mr-5" href="{{ url('home') }}">
             <img src="{{ asset('../images/logo.png') }}" width="35" height="42" class="d-inline-block align-center" alt="logo">
         </a>
 
