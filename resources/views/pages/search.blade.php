@@ -62,8 +62,6 @@ foreach ($temp as &$value) {
                 </select>
             </div>
 
-            {{$filter}}
-
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="list-questions" role="tabpanel" aria-labelledby="list-questions-list">
                     @each('activities.basic_activity', $questions, 'question')
@@ -111,7 +109,7 @@ foreach ($temp as &$value) {
                     <span class="checkmark"></span>
                 </label>
                 <label class="container-checkbox">Último Mês
-                    <input type="radio" value="lastMounth" name="time" <?php if($time == "lastMouth") echo "checked" ?>>
+                    <input type="radio" value="lastMonth" name="time" <?php if($time == "lastMonth") echo "checked" ?>>
                     <span class="checkmark"></span>
                 </label>
                 <label class="container-checkbox">Desde Sempre
@@ -141,12 +139,6 @@ foreach ($temp as &$value) {
         </aside>
     </div>
 </div>
-
-<script>
-    function filter(value) {
-        window.location.href = value
-    }
-</script>
 
 <script>
     // In your Javascript (external .js resource or <script> tag)

@@ -169,10 +169,70 @@ class HomeController extends Controller
                         ->orderBy('publication.date', 'desc')
                         ->simplePaginate($this->posts_per_page);
 
+                switch (Input::get('filter', 'relevant')) {
 
-                $filter = 0;
+                        case 'recent':
+                                $questions = $this->getSearchResults($query)
+                                        ->orderBy('publication.date', 'desc')
+                                        ->orderBy('rank', 'desc');
 
-                return view('pages.search',  ['search' => $query, 'questions' => $questions, 'topics' => $topics, 'filter' => Input::get('filter', 'relevant'), 'time' => Input::get('time'), 'tag' => Input::get('tag', 0) ]);
+                                break;
+                        case 'mostLiked':
+                                $questions = $this->getSearchResults($query)
+                                        ->orderBy('likes', 'desc')
+                                        ->orderBy('dislikes')
+                                        ->orderBy('rank', 'desc')
+                                        ->orderBy('publication.date', 'desc');
+                                break;
+                        case 'leastLiked':
+                                $questions = $this->getSearchResults($query)
+                                        ->orderBy('dislikes', 'desc')
+                                        ->orderBy('likes')
+                                        ->orderBy('rank', 'desc')
+                                        ->orderBy('publication.date', 'desc');
+                                break;
+                        case 'relevant':
+                                $questions = $this->getSearchResults($query)
+                                        ->orderBy('rank', 'desc')
+                                        ->orderBy('likes', 'desc')
+                                        ->orderBy('dislikes')
+                                        ->orderBy('publication.date', 'desc');
+
+                                break;
+                }
+
+                if (Input::get('tag', 0) != 0) {
+                        $questions = $questions->whereIn('question.id_commentable_publication', (DB::table('question')
+                                ->select('publication.id')
+                                ->where('tag.id', '=', Input::get('tag'))
+                                ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
+                                ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
+                                ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')));
+                }
+                //->whereRaw('date > date_trunc(\'month\', CURRENT_DATE) - INTERVAL \'1 year\'')
+
+                switch (Input::get('time')) {
+                        case 'lastHour':
+                                $questions = $questions
+                                        ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 hour\'');
+                                break;
+                        case 'lastDay':
+                                $questions = $questions
+                                ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 day\'');
+                        break;
+
+                        case 'lastWeek':
+                                $questions = $questions
+                                ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 week\'');
+                        break;
+
+                        case 'lastMonth':
+                                $questions = $questions
+                                ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 month\'');
+                        break;
+                }
+
+                return view('pages.search',  ['search' => $query, 'questions' => $questions->simplePaginate($this->posts_per_page), 'topics' => $topics, 'filter' => Input::get('filter', 'relevant'), 'time' => Input::get('time'), 'tag' => Input::get('tag', 0)]);
         }
 
         public function filteredSearch($query, $filter)
