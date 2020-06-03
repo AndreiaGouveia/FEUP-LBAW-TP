@@ -73,19 +73,24 @@ class ResponseController extends Controller
     public function edit($id)
     {
         $response = Response::find($id);
+
+        $this->authorize('update', $response);
+
         return view('pages.edit_response',  ['response' => $response, "id" => $id]);
     }
 
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
-
         $inputs = $request->all();
         //title, description and tags
-        try {
-            DB::beginTransaction();
 
-            $response = Response::find($id);
+        DB::beginTransaction();
+
+        $response = Response::find($id);
+
+        $this->authorize('update', $response);
+
+        try {
 
             $publication = Publication::find($response->publication['id']);
             $publication->description =  $inputs['description'];
@@ -104,16 +109,5 @@ class ResponseController extends Controller
             Flash::error('Erro ao editar Resposta!');
             return redirect()->route('edit.response', [$id]);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Response $response)
-    {
-        //
     }
 }

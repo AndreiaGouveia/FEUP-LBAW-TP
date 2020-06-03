@@ -130,10 +130,14 @@ class QuestionController extends Controller
     {
         $inputs = $request->all();
         //title, description and tags
-        try {
-            DB::beginTransaction();
 
-            $question = Question::find($id);
+        DB::beginTransaction();
+
+        $question = Question::find($id);
+
+        try {
+
+            $this->authorize('update', Question::find($id));
 
             $question->title = $inputs['title'];
             $question->save();

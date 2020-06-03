@@ -262,8 +262,6 @@ function sendReport(event) {
 
 function sendDeletePublication(event) {
 
-  console.log("AQUI");
-
   let id_publication = this.dataset.publicationId;
 
   sendAjaxRequest('POST', '/api/publications/' + id_publication + '/delete', {}, publicationDeletedHandler, event.target);
