@@ -45,7 +45,7 @@
   @show
 
 
-  <meta property="og:title" content="{{@yield('title')}}" />
+  <meta property="og:title" content="Papagaio" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://ibb.co/kJfh6fP" />
   <meta property="og:url" content="lbaw2052.lbaw-prod.fe.up.pt" />
