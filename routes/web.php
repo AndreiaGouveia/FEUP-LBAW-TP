@@ -109,7 +109,9 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
-Route::get('/forgotPassword', 'Auth\ForgotPassword@forgot');
+Route::get('/forgotPassword', 'Auth\ForgotPasswordController@forgot');
+Route::post('/forgotPassword', 'Auth\ForgotPasswordController@password');
+
 
 Route::get('/redirect', 'Auth\RegisterController@redirectToProvider')->name('registerGoogle');;
 Route::get('/callback', 'Auth\RegisterController@handleProviderCallback');

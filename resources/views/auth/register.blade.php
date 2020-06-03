@@ -54,6 +54,10 @@
       <label>
         <input type="checkbox" required> Eu aceito os termos e condições.
       </label>
+      <br>
+      <label>
+        <a href="{{ url('/forgotPassword') }}"> Esqueceu-se da sua palavra-passe? </a>
+      </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Registar</button>
 
