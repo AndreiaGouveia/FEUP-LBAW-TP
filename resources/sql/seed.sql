@@ -699,45 +699,77 @@ VALUES
 INSERT INTO publication
     (id_owner, description)
 VALUES
+    (2, 'Ele só come 2kgs de comida por dia. Por favor, ajudem!'),
+    (3, 'Como somos o que comemos, acham que existe essa possibilidade?'),
+    (4, 'Nunca consigo deixar crescer a erva do meu quintal porque os meus cães estão sempre a comê-la e não entendo porquê! Por favor ajudem!'),
+    (5, 'Ultimamente tenho observado o meu cão a dormir e reparei que ele é muito irrequieto e surgiu-me esta questão: será que ele está a sonhar? '),
+    (6, ''),
+    (7, ''),
+    (8, 'O meu gato ronrona todo o dia e toda a noite, porque isto acontece?'),
+    (9, 'O meu gato nunca ronrona... quer dizer que não está feliz?'),
+    (10, ''),
+    (11, 'O meu gato está sempre a destruir os brinquedos que lhe compro, como posso fazer-lhe um duradouro?'),
+    (12, ''),
+    (13, 'Recentemente ofereceram-me um pequeno gatinho, mas os meus animais anteriores não o aceitam... O que devo fazer?'),
+    (14, 'Outro dia uma amiga disse-me isto e gostava de saber se é verdade ou não.'),
     (2, ''),
     (3, ''),
-    (4, 'Por favor ajudem!'),
-    (6, 'Pode ser por causa do tipo de comida, as calorias por kg variam muito e quanto mais elevado,mais engorda'),
-    (7, 'Ahhh não tinha pensado nisto'),
-    (8, ''),
-    (9, ''),
-    (10, ''),
-    (11, ''),
-    (12, '');
+    (4, 'Não pode dar tanta comida ao seu gato e depois dizer que ele é gordo...'),
+    (5, 'Pode ser por causa do tipo de comida, as calorias por kg variam muito e quanto mais elevado,mais engorda'),
+    (6, '2Kgs???'),
+    (7, 'Acho que se enganou na quantidade de comida que escreveu...'),
+    (8, 'Que tipo de comida dá ao seu gato??');
 
 INSERT INTO commentable_publication
 VALUES
+    (1),
     (2),
     (3),
     (4),
     (5),
     (6),
     (7),
-    (8);
-
-INSERT INTO comment
-VALUES
-    (9, 2),
-    (10, 3),
-    (8, 4);
+    (8),
+    (9),
+    (10),
+    (11),
+    (12),
+    (13),
+    (14),
+    (15),
+    (16),
+    (17);
 
 INSERT INTO question
 VALUES
-    (2, 'Porque é que o meu gato é tão gordo? Ele só come 2kgs de comida por dia. Porfavor, ajudem!'),
-    (3, 'Se eu um dia comer comida de cão, torno-me num cão? Porque somos o que comemos!');
+    (1, 'Porque é que o meu gato é tão gordo?'),
+    (2, 'Se eu um dia comer comida de cão, torno-me num cão?'),
+    (3, 'Porque é que os cães comem erva?'),
+    (4, 'Os cães sonham?'),
+    (5, 'Porque é que os cães perseguem a sua cauda?'),
+    (6, 'Porque o gato tem medo de pepino?'),
+    (7, 'Porque os gatos ronronam?'),
+    (8, 'Porque alguns gatos não ronronam?'),
+    (9, 'Porque é que os cães têm bigodes?'),
+    (10, 'Como fazer brinquedos para gatos?'),
+    (11, 'Porque é que o meu gato mia?'),
+    (12, 'Como introduzir o cão a um novo membro da família (Bebés, gatos, papagaios, etc)?'),
+    (13, 'Consigo saber se o meu cão está doente apenas pelo nariz?'),
+    (14, 'Porque os gatos mordem o cobertor?'),
+    (15, 'Quanto tempo um gato vive?');
+
 
 INSERT INTO response
 VALUES
-    (4, 2),
-    (5, 2),
-    (6, 2),
-    (7, 2),
-    (8, 2);
+    (16, 1),
+    (17, 1);
+
+
+INSERT INTO comment
+VALUES
+    (18, 1),
+    (19, 1),
+    (20, 1);
 
 INSERT INTO tag_question
 VALUES
@@ -746,7 +778,10 @@ VALUES
     (5, 2),
     (3, 3),
     (4, 3),
-    (10, 3);
+    (10, 3),
+    (3, 1),
+    (4, 1),
+    (10, 1);
 
 INSERT INTO reported
 VALUES
@@ -759,7 +794,17 @@ VALUES
     (4, 2, true),
     (5, 2, false),
     (4, 3, true),
-    (5, 3, false);
+    (5, 3, false),
+    (1, 3, true),
+    (1, 4, false),
+    (1, 5, true),
+    (1, 6, false),
+    (1, 7, true),
+    (1, 8, false),
+    (1, 9, true),
+    (1, 10, false),
+    (1, 11, false),
+    (1, 12, false);
 
 INSERT INTO favorite
     (id_member, id_commentable_publication)
