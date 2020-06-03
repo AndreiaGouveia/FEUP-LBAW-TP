@@ -656,45 +656,27 @@ VALUES
     ('South Korea'),
     ('United States of America');
 
-INSERT INTO photo
-    (url)
-VALUES
-    ('https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-    ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
-    ('https://statig1.akamaized.net/bancodeimagens/5i/6x/4l/5i6x4ly396q2ioenmxznv4zd3.jpg'),
-    ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
-    ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSWFL6RbANo3ZyKyv1lHNH3P0DQfHaFkD9U-poSa77AHpJKm7rT'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLd7v7uPEqbURs_qnqQ29GuKYvj2kg8308IX0Z_7iCEyDR0dl3'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRuOX_1JWUYSZL7QDfFUuaht2qDVW-e1JZ4oOmFLSs_j2hruE-i'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRCxxjozfjyFiOUdS8N5lIt_CnuBG7yOZB2gdp-LOXpiLkn-vRF'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuQst6y8kRBEx7GQ7QG5GQiXXLGnoQGBgHVTELRhHAIHPfB_oz'),
-    ('https://i.insider.com/5a9f1d915cc41020008b45f3?width=889&format=jpeg'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSlsNTSmsrjZDUY2-YcfkBf-sWFDaNTOF3KRELqqn_oYGV8SaQ'),
-    ('https://www.themckenziefirm.com/wp-content/uploads/2019/03/AdobeStock_250034790-e1553990171364.jpeg'),
-    ('https://images.pexels.com/photos/3273851/pexels-photo-3273851.jpeg?cs=srgb&dl=cidade-meio-urbano-cama-leito-3273851.jpg&fm=jpg'),
-    ('https://images.pexels.com/photos/3786128/pexels-photo-3786128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
 
 INSERT INTO member
-    (id_person, name, biography, points, id_location, id_photo, medal, moderator)
+    (id_person, name, biography, points, id_location, medal, moderator)
 VALUES
-    (2, 'Gustavo Mendes', 'Sou amante da natureza. Não passo um dia sem os meus gatos que só comem a ração de melhor qualidade.', 3000, 1, 1, 'Gold', true),
-    (3, 'Maria Joana Da Silva', 'Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.', 1, 2, 2, 'Gold', true),
-    (4, 'Pedro Augusto', 'Olá! Sou o Pedro e adoro papagaios.', 4001, 3, 3, 'Silver', true),
-    (5, 'Henrique Sousa', 'Produzo ração para animais.', 120000, 4, 4, 'Bronze', true),
-    (6, 'Fernando Mendes', 'Olá! Sai-me sempre a sorte grande naquelas rodas marotas.', 1, 5, 5, 'Bronze', true),
-    (7, 'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.', 1, 6, 6, 'Silver', true);
+    (2, 'Gustavo Mendes', 'Sou amante da natureza. Não passo um dia sem os meus gatos que só comem a ração de melhor qualidade.', 3000, 1, 'Gold', true),
+    (3, 'Maria Joana Da Silva', 'Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.', 1, 2, 'Gold', true),
+    (4, 'Pedro Augusto', 'Olá! Sou o Pedro e adoro papagaios.', 4001, 3, 'Silver', true),
+    (5, 'Henrique Sousa', 'Produzo ração para animais.', 120000, 4, 'Bronze', true),
+    (6, 'Fernando Mendes', 'Olá! Sai-me sempre a sorte grande naquelas rodas marotas.', 1, 5, 'Bronze', true),
+    (7, 'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.', 1, 6, 'Silver', true);
 
 INSERT INTO member
-    (id_person, name, biography, id_location, id_photo)
+    (id_person, name, biography, id_location)
 VALUES
-    (8, 'Anabela De Malhadas', 'Bom dia! Adoro animais, mas prefiro gatos.', 7, 7),
-    (9, 'Guilherme Fernandes', 'Não dou descrição pois sei que é o governo a espiar em mim.', 8, 8),
-    (10, 'Ricardo Pereira', 'Falta-vos chá.', 9, 9),
-    (11, 'Mariana Sousa', 'Boas! Desde os meus 8 anos sempre amei os bichinhos de 4 patas. Tenho 4 cães.', 10, 10),
-    (12, 'Jose Alves', 'Adiciona-me no Facebook :)', 11, 11),
-    (13, 'Joaquim Ovelha', 'Adoro ler e ouvir musica.', 12, 12),
-    (14, 'Passos Coelho', 'Gosto de ler livros de economia.', 13, 13);
+    (8, 'Anabela De Malhadas', 'Bom dia! Adoro animais, mas prefiro gatos.', 7),
+    (9, 'Guilherme Fernandes', 'Não dou descrição pois sei que é o governo a espiar em mim.', 8),
+    (10, 'Ricardo Pereira', 'Falta-vos chá.', 9),
+    (11, 'Mariana Sousa', 'Boas! Desde os meus 8 anos sempre amei os bichinhos de 4 patas. Tenho 4 cães.', 10),
+    (12, 'Jose Alves', 'Adiciona-me no Facebook :)', 11),
+    (13, 'Joaquim Ovelha', 'Adoro ler e ouvir musica.', 12),
+    (14, 'Passos Coelho', 'Gosto de ler livros de economia.', 13);
 
 INSERT INTO tag
     (name)
@@ -728,11 +710,6 @@ VALUES
     (10, ''),
     (11, ''),
     (12, '');
-
-INSERT INTO photo_in_publication
-VALUES(14, 1);
-INSERT INTO photo_in_publication
-VALUES(15, 2);
 
 INSERT INTO commentable_publication
 VALUES
