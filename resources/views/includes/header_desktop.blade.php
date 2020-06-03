@@ -12,6 +12,7 @@ if (Auth::check()) {
         $link = ($member->photo != null) ? $member->photo->url : "images/default.png";
         $name = $member->name;
     }
+    var_dump($member->moderator);
 }
 ?>
 
@@ -49,11 +50,11 @@ if (Auth::check()) {
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="dropdown-item">
                     <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="userPic">
-                    @isModerator()
+                    @if($member->moderator == true)
                     <p style="margin-left: 1.7rem">{{$name}}<span class="badge badge-light"><i class="fas fa-shield-alt" aria-label="Moderador"></i></span></p>
                     @else
                     <p style="margin-left: 1.7rem">{{$name}}</p>
-                    @endisModerator()
+                    @endif()
                     </div>
 
                 @isAdmin()
@@ -69,9 +70,9 @@ if (Auth::check()) {
                 <a class="dropdown-item" href="{{ route('member.content', Auth::user()->id) }}">O meu Conteúdo</a>
                 <a class="dropdown-item" href="{{ route('member.favorites', Auth::user()->id) }}">Favoritos</a>
                 <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
-                @isModerator()
+                @if($member->moderator == true)
                 <a class="dropdown-item" href="{{ route('reports') }}">Conteúdo Reportado</a>
-                @endisModerator()
+                @endif()
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
                 @endisAdmin()
