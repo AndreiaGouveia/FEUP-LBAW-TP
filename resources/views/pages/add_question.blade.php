@@ -26,9 +26,9 @@ Adicionar Pergunta
 @section('stylesheets')
 @parent
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/add_question.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/add_question.min.css') }}">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
@@ -50,20 +50,20 @@ Adicionar Pergunta
 
             <div class="content mb-4">
                 <label for="inputTitle">Titulo</label>
-                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Adicione um pequeno título descritivo da sua questão."><i class="fas fa-question-circle"></i></button>
+                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Adicione um pequeno título descritivo da sua questão."><i class="fas fa-question-circle" aria-label="Detalhes sobre Campo"></i></button>
                 <input id="inputTitle" name="title" class="form-control" placeholder="Titulo" value="{{ old('title') }}" required="" autofocus="">
             </div>
 
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
-                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Explicite a sua pergunta com todos os pormenores que achar relevantes."><i class="fas fa-question-circle"></i></button>
-                <textarea form="add_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" autofocus="" rows="6"></textarea>
+                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Explicite a sua pergunta com todos os pormenores que achar relevantes."><i class="fas fa-question-circle" aria-label="Detalhes sobre campo"></i></button>
+                <textarea form="add_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" rows="6"></textarea>
 
             </div>
 
             <div class="content mb-4">
                 <label for="inputTopics">Tópicos</label>
-                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Adicione tópicos simples relacionados com a sua pergunta de modo a ser mais facilmente encontrada por outros utilizadores."><i class="fas fa-question-circle"></i></button>
+                <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Adicione tópicos simples relacionados com a sua pergunta de modo a ser mais facilmente encontrada por outros utilizadores."><i class="fas fa-question-circle" aria-label="Detalhes sobre o campo"></i></button>
                 <br>
 
                 <select id="inputTopics" class="input-topics" name="tags[]" multiple="multiple">

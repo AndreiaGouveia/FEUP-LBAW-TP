@@ -6,13 +6,13 @@ Definições
 
 @section('stylesheets')
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.min.css') }}">
 
 @parent
 @endsection
 
 @section('javascript')
-<script type="text/javascript" src={{ asset('js/image_settings.js') }} defer></script>
+<script src={{ asset('js/image_settings.js') }} defer></script>
 @endsection
 
 @section('content')

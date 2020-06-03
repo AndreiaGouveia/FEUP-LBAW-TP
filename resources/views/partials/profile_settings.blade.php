@@ -39,7 +39,7 @@ foreach ($temp as &$value) {
 <h3 class="font-weight-normal mb-3">Alterar Perfil</h3>
 <hr class="section-break" />
 
-<form role="form" method="POST" action="{{ route('members.update', $member->id_person) }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('members.update', $member->id_person) }}" enctype="multipart/form-data">
     <div class="form-group">
 
         <div class="row flex-column-reverse flex-lg-row">
@@ -55,7 +55,7 @@ foreach ($temp as &$value) {
 
                 <div class="content mb-4">
                     <label for="inputEmail">Email</label>
-                    <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email" value="{{ $person->email }}" required="" autofocus="">
+                    <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email" value="{{ $person->email }}" required="">
                 </div>
                 @if ($errors->has('email'))
                 <span class="error">
@@ -84,11 +84,11 @@ foreach ($temp as &$value) {
                 <div class="content mb-4">
 
                     <div class="avatar-zone">
-                        <label for="profilePic">Foto de Perfil</label><br>
-                        <img src='{{asset("storage/$link")}}' id="profilePic" class="img-settings" alt="">
+                        <label for="profPhoto">Foto de Perfil</label><br>
+                        <img src='{{asset("storage/$link")}}' id="profilePic" class="img-settings" alt="userPic">
                     </div>
 
-                    <input type="file" class="upload_btn" name="photo" />
+                    <input type="file" class="upload_btn" id="profPhoto" name="photo" />
                     <div class="overlay-layer">Upload photo</div>
 
                 </div>
@@ -99,7 +99,7 @@ foreach ($temp as &$value) {
 
         <div class="content mb-4">
             <label for="textAreaBio">Bio<small class="font-italic"> - Optional</small></label>
-            <textarea type="text" id="textAreaBio" name="biography" class="form-control" placeholder="Bio" value="{{ $member->biography }}" autofocus="" rows="3"></textarea>
+            <textarea id="textAreaBio" name="biography" class="form-control" placeholder="Bio" rows="3">{{ $member->biography }}</textarea>
         </div>
 
         <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Atualizar Perfil</button></div>

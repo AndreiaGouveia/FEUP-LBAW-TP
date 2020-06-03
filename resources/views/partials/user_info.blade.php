@@ -22,20 +22,20 @@ $location = implode(",", $location_array);
 
 <div class="profile_info">
 
-    <img src='{{asset("storage/$link")}}' class="img d-inline-block align-center" alt="">
+    <img src='{{asset("storage/$link")}}' class="img d-inline-block align-center" alt="profilePic">
     <h6><br></h6>
     <div class="profile_data">
 
         <div class="row container">
             <h2>{{$member->name}}</h2>
-            <h2>@if($member->moderator)<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span>@endif</h2>
+            <h2>@if($member->moderator)<span class="badge badge-light"><i class="fas fa-shield-alt" aria-label="Moderador"></i></span>@endif</h2>
 
             @isAdmin()
                 @if($member->person->ban)
                     <form method="post" action="{{ route('member.unban', $member->id_person)}}" class="ml-2">
                         @csrf
                         <button type="submit" class="btn px-1 py-0" autocomplete="off">
-                            <h2 class="m-0"><i class="fas fa-check-circle"></i></h2>
+                            <h2 class="m-0"><i class="fas fa-check-circle" aria-label="Desbanir"></i></h2>
                         </button>
                     </form>
                 @else
@@ -43,21 +43,21 @@ $location = implode(",", $location_array);
                         <form method="post" action="{{ route('member.demote', $member->id_person)}}">
                             @csrf
                             <button type="submit" class="btn px-1 py-0" autocomplete="off">
-                                <h2 class="m-0"><i class="fas fa-arrow-alt-circle-down"></i></h2>
+                                <h2 class="m-0"><i class="fas fa-arrow-alt-circle-down" aria-label="Despromover Moderador"></i></h2>
                             </button>
                         </form>
                     @else
                         <form method="post" action="{{ route('member.promote', $member->id_person)}}" class="ml-2">
                             @csrf
                             <button type="submit" class="btn px-1 py-0" autocomplete="off">
-                                <h2 class="m-0"><i class="fas fa-arrow-alt-circle-up"></i></h2>
+                                <h2 class="m-0"><i class="fas fa-arrow-alt-circle-up" aria-label="Tornar Moderador"></i></h2>
                             </button>
                         </form>
                     @endif
                     <form method="post" action="{{ route('member.ban', $member->id_person)}}" class="ml-2">
                         @csrf
                         <button type="submit" class="btn px-1 py-0" autocomplete="off">
-                            <h2 class="m-0"><i class="fas fa-ban"></i></h2>
+                            <h2 class="m-0"><i class="fas fa-ban" aria-label="Banir"></i></h2>
                         </button>
                     </form>
                 @endif

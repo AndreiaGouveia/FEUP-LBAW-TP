@@ -620,20 +620,19 @@ INSERT INTO person
     (username,email,password)
 VALUES
     ('admin', 'admin@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('gustavo_Mendes', 'gustavinho@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('mariaJoana1', 'mariajoana99@hotmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('PedroGustus', 'pedro2Augusto@yahoo.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('Maria', 'maria@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('Henrique2004', 'henrique_2004_santos@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('Fernando_Mendez', 'precoCerto@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('GuidaEmanuela', 'emanuelazita1234@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('AnabelaDeMalhadas', 'epico2010anabela@yahoo.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('PapagaioLover', 'dancingParrotLover@outlook.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('RicardoPereira', 'faltaDeCha@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('MarianaSousa', 'marianaSousa25@gmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('JoseAlves', 'queInformacaoDramatica@yahoo.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('QuimOvelha', 'quimquimquim@hotmail.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
-    ('CoelhoPassos', 'coelhoJose123@outlook.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq');
+    ('gustavo_Mendes', 'gustavinho@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('mariaJoana1', 'joana@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('PedroGustus', 'pedro2Augusto@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('Maria', 'maria@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('Fernando_Mendez', 'precoCerto@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('GuidaEmanuela', 'emanuelazita1234@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('AnabelaDeMalhadas', 'epico2010anabela@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('PapagaioLover', 'dancingParrotLover@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('RicardoPereira', 'faltaDeCha@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('MarianaSousa', 'marianaSousa25@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('JoseAlves', 'queInformacaoDramatica@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('QuimOvelha', 'quimquimquim@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq'),
+    ('CoelhoPassos', 'coelhoJose123@papagaio.com', '$2y$12$8F2OA0N/x/9SrItNaqkoXuJVy4yP9kul7j8bSuMTf0s/PhWYsepnq');
 
 INSERT INTO administrator
 VALUES
@@ -656,45 +655,27 @@ VALUES
     ('South Korea'),
     ('United States of America');
 
-INSERT INTO photo
-    (url)
-VALUES
-    ('https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-    ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
-    ('https://statig1.akamaized.net/bancodeimagens/5i/6x/4l/5i6x4ly396q2ioenmxznv4zd3.jpg'),
-    ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
-    ('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSWFL6RbANo3ZyKyv1lHNH3P0DQfHaFkD9U-poSa77AHpJKm7rT'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLd7v7uPEqbURs_qnqQ29GuKYvj2kg8308IX0Z_7iCEyDR0dl3'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRuOX_1JWUYSZL7QDfFUuaht2qDVW-e1JZ4oOmFLSs_j2hruE-i'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRCxxjozfjyFiOUdS8N5lIt_CnuBG7yOZB2gdp-LOXpiLkn-vRF'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuQst6y8kRBEx7GQ7QG5GQiXXLGnoQGBgHVTELRhHAIHPfB_oz'),
-    ('https://i.insider.com/5a9f1d915cc41020008b45f3?width=889&format=jpeg'),
-    ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSlsNTSmsrjZDUY2-YcfkBf-sWFDaNTOF3KRELqqn_oYGV8SaQ'),
-    ('https://www.themckenziefirm.com/wp-content/uploads/2019/03/AdobeStock_250034790-e1553990171364.jpeg'),
-    ('https://images.pexels.com/photos/3273851/pexels-photo-3273851.jpeg?cs=srgb&dl=cidade-meio-urbano-cama-leito-3273851.jpg&fm=jpg'),
-    ('https://images.pexels.com/photos/3786128/pexels-photo-3786128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
 
 INSERT INTO member
-    (id_person, name, biography, points, id_location, id_photo, medal, moderator)
+    (id_person, name, biography, points, id_location, medal, moderator)
 VALUES
-    (2, 'Gustavo Mendes', 'Sou amante da natureza. Não passo um dia sem os meus gatos que só comem a ração de melhor qualidade.', 3000, 1, 1, 'Gold', true),
-    (3, 'Maria Joana Da Silva', 'Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.', 1, 2, 2, 'Gold', true),
-    (4, 'Pedro Augusto', 'Olá! Sou o Pedro e adoro papagaios.', 4001, 3, 3, 'Silver', true),
-    (5, 'Henrique Sousa', 'Produzo ração para animais.', 120000, 4, 4, 'Bronze', true),
-    (6, 'Fernando Mendes', 'Olá! Sai-me sempre a sorte grande naquelas rodas marotas.', 1, 5, 5, 'Bronze', true),
-    (7, 'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.', 1, 6, 6, 'Silver', true);
+    (2, 'Gustavo Mendes', 'Sou amante da natureza. Não passo um dia sem os meus gatos que só comem a ração de melhor qualidade.', 3000, 1, 'Gold', true),
+    (3, 'Maria Joana Da Silva', 'Sou a Maria, tenho 20 anos e adoro passear com os meus dois gatos.', 1, 2, null, false),
+    (4, 'Pedro Augusto', 'Olá! Sou o Pedro e adoro papagaios.', 4001, 3, 'Silver', true),
+    (5, 'Maria Sousa', 'Produzo ração para animais.', 120000, 4, 'Bronze', true),
+    (6, 'Fernando Mendes', 'Olá! Sai-me sempre a sorte grande naquelas rodas marotas.', 2001, 5, 'Bronze', true),
+    (7, 'Margarida Emanuela', 'Sou a margarida, no entanto prefiro que me chamem de manuela. Emanuela só os meus pais.', 4001, 6, 'Silver', true);
 
 INSERT INTO member
-    (id_person, name, biography, id_location, id_photo)
+    (id_person, name, biography, id_location)
 VALUES
-    (8, 'Anabela De Malhadas', 'Bom dia! Adoro animais, mas prefiro gatos.', 7, 7),
-    (9, 'Guilherme Fernandes', 'Não dou descrição pois sei que é o governo a espiar em mim.', 8, 8),
-    (10, 'Ricardo Pereira', 'Falta-vos chá.', 9, 9),
-    (11, 'Mariana Sousa', 'Boas! Desde os meus 8 anos sempre amei os bichinhos de 4 patas. Tenho 4 cães.', 10, 10),
-    (12, 'Jose Alves', 'Adiciona-me no Facebook :)', 11, 11),
-    (13, 'Joaquim Ovelha', 'Adoro ler e ouvir musica.', 12, 12),
-    (14, 'Passos Coelho', 'Gosto de ler livros de economia.', 13, 13);
+    (8, 'Anabela De Malhadas', 'Bom dia! Adoro animais, mas prefiro gatos.', 7),
+    (9, 'Guilherme Fernandes', 'Não dou descrição pois sei que é o governo a espiar em mim.', 8),
+    (10, 'Ricardo Pereira', 'Falta-vos chá.', 9),
+    (11, 'Mariana Sousa', 'Boas! Desde os meus 8 anos sempre amei os bichinhos de 4 patas. Tenho 4 cães.', 10),
+    (12, 'Jose Alves', 'Adiciona-me no Facebook :)', 11),
+    (13, 'Joaquim Ovelha', 'Adoro ler e ouvir musica.', 12),
+    (14, 'Passos Coelho', 'Gosto de ler livros de economia.', 13);
 
 INSERT INTO tag
     (name)
@@ -718,50 +699,77 @@ VALUES
 INSERT INTO publication
     (id_owner, description)
 VALUES
+    (2, 'Ele só come 2kgs de comida por dia. Por favor, ajudem!'),
+    (3, 'Como somos o que comemos, acham que existe essa possibilidade?'),
+    (4, 'Nunca consigo deixar crescer a erva do meu quintal porque os meus cães estão sempre a comê-la e não entendo porquê! Por favor ajudem!'),
+    (5, 'Ultimamente tenho observado o meu cão a dormir e reparei que ele é muito irrequieto e surgiu-me esta questão: será que ele está a sonhar? '),
+    (6, ''),
+    (7, ''),
+    (8, 'O meu gato ronrona todo o dia e toda a noite, porque isto acontece?'),
+    (9, 'O meu gato nunca ronrona... quer dizer que não está feliz?'),
+    (10, ''),
+    (11, 'O meu gato está sempre a destruir os brinquedos que lhe compro, como posso fazer-lhe um duradouro?'),
+    (12, ''),
+    (13, 'Recentemente ofereceram-me um pequeno gatinho, mas os meus animais anteriores não o aceitam... O que devo fazer?'),
+    (14, 'Outro dia uma amiga disse-me isto e gostava de saber se é verdade ou não.'),
     (2, ''),
     (3, ''),
-    (4, 'Por favor ajudem!'),
-    (6, 'Pode ser por causa do tipo de comida, as calorias por kg variam muito e quanto mais elevado,mais engorda'),
-    (7, 'Ahhh não tinha pensado nisto'),
-    (8, ''),
-    (9, ''),
-    (10, ''),
-    (11, ''),
-    (12, '');
-
-INSERT INTO photo_in_publication
-VALUES(14, 1);
-INSERT INTO photo_in_publication
-VALUES(15, 2);
+    (4, 'Não pode dar tanta comida ao seu gato e depois dizer que ele é gordo...'),
+    (5, 'Pode ser por causa do tipo de comida, as calorias por kg variam muito e quanto mais elevado,mais engorda'),
+    (6, '2Kgs???'),
+    (7, 'Acho que se enganou na quantidade de comida que escreveu...'),
+    (8, 'Que tipo de comida dá ao seu gato??');
 
 INSERT INTO commentable_publication
 VALUES
+    (1),
     (2),
     (3),
     (4),
     (5),
     (6),
     (7),
-    (8);
-
-INSERT INTO comment
-VALUES
-    (9, 2),
-    (10, 3),
-    (8, 4);
+    (8),
+    (9),
+    (10),
+    (11),
+    (12),
+    (13),
+    (14),
+    (15),
+    (16),
+    (17);
 
 INSERT INTO question
 VALUES
-    (2, 'Porque é que o meu gato é tão gordo? Ele só come 2kgs de comida por dia. Porfavor, ajudem!'),
-    (3, 'Se eu um dia comer comida de cão, torno-me num cão? Porque somos o que comemos!');
+    (1, 'Porque é que o meu gato é tão gordo?'),
+    (2, 'Se eu um dia comer comida de cão, torno-me num cão?'),
+    (3, 'Porque é que os cães comem erva?'),
+    (4, 'Os cães sonham?'),
+    (5, 'Porque é que os cães perseguem a sua cauda?'),
+    (6, 'Porque o gato tem medo de pepino?'),
+    (7, 'Porque os gatos ronronam?'),
+    (8, 'Porque alguns gatos não ronronam?'),
+    (9, 'Porque é que os cães têm bigodes?'),
+    (10, 'Como fazer brinquedos para gatos?'),
+    (11, 'Porque é que o meu gato mia?'),
+    (12, 'Como introduzir o cão a um novo membro da família (Bebés, gatos, papagaios, etc)?'),
+    (13, 'Consigo saber se o meu cão está doente apenas pelo nariz?'),
+    (14, 'Porque os gatos mordem o cobertor?'),
+    (15, 'Quanto tempo um gato vive?');
+
 
 INSERT INTO response
 VALUES
-    (4, 2),
-    (5, 2),
-    (6, 2),
-    (7, 2),
-    (8, 2);
+    (16, 1),
+    (17, 1);
+
+
+INSERT INTO comment
+VALUES
+    (18, 1),
+    (19, 1),
+    (20, 1);
 
 INSERT INTO tag_question
 VALUES
@@ -770,7 +778,10 @@ VALUES
     (5, 2),
     (3, 3),
     (4, 3),
-    (10, 3);
+    (10, 3),
+    (3, 1),
+    (4, 1),
+    (10, 1);
 
 INSERT INTO reported
 VALUES
@@ -783,7 +794,17 @@ VALUES
     (4, 2, true),
     (5, 2, false),
     (4, 3, true),
-    (5, 3, false);
+    (5, 3, false),
+    (1, 3, true),
+    (1, 4, false),
+    (1, 5, true),
+    (1, 6, false),
+    (1, 7, true),
+    (1, 8, false),
+    (1, 9, true),
+    (1, 10, false),
+    (1, 11, false),
+    (1, 12, false);
 
 INSERT INTO favorite
     (id_member, id_commentable_publication)

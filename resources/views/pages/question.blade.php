@@ -11,8 +11,8 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
 @section('stylesheets')
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/question.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/question.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.min.css') }}">
 
 @parent
 @endsection
@@ -66,7 +66,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
                 <form id="response_form">
                     <div class="form-group">
                         <input type="hidden" id="id_question" name="id_question" value="{{ $question->id_commentable_publication }}">
-                        <label for="exampleInputEmail1">A tua Resposta</label>
+                        <label for="response_text">A tua Resposta</label>
                         <textarea form="response_form" id="response_text" name="response_text" class="form-control" id="exampleFormControlTextarea1" rows="3" required=""></textarea>
                     </div>
                     <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Responder</button></div>

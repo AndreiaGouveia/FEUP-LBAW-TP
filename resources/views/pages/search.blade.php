@@ -24,10 +24,10 @@ foreach ($temp as &$value) {
 
 @section('stylesheets')
 @parent
-<link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/search.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/main_page.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/search.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.min.css') }}">
 @endsection
 
 @section('javascript')
