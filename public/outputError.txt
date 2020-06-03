@@ -39,3 +39,4 @@ DETAIL:  Failing row contains (18, null, 2020-06-02 12:59:46.052701, 16, t). (SQ
 DETAIL:  Failing row contains (18, null, 2020-06-02 12:59:46.052701, 16, t). (SQL: update "publication" set "description" = ? where "id" = 18)
 2020-06-02 13:13:34 - SQLSTATE[23502]: Not null violation: 7 ERROR:  null value in column "description" violates not-null constraint
 DETAIL:  Failing row contains (18, null, 2020-06-02 12:59:46.052701, 16, t). (SQL: update "publication" set "description" = ? where "id" = 18)
+2020-06-02 17:48:47 - SQLSTATE[P0001]: Raise exception: 7 ERROR:  A member is not allowed to like/dislike their own question/answer  (SQL: insert into likes  values (11, 16, false))
