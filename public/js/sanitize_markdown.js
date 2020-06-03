@@ -1,9 +1,9 @@
 let formArray = document.querySelectorAll('form');
 for (form of formArray) {
-    form.addEventListener('submit', sendCreateCommentRequest);
+    form.addEventListener('submit', sanitizeForm);
 }
 
-function sendCreateCommentRequest(event) {
+function sanitizeForm(event) {
 
     let  textAreaArray = this.querySelectorAll('textarea');
 

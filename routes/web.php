@@ -9,7 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Mail\ForgotPasswordMail ;
 
 // IF USER IS LOGGED IN AND IS ACCOUNT IS NOT ACTIVE/VISIBLE WE REDIRECT TO ACTIVE
 Route::group(['middleware' => ['unactiveUser']], function () {
@@ -22,9 +21,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
     Route::get('about', 'AdministratorController@about')->name('about');
 
     //EMAIL
-    Route::get('/email', function(){
-        return new ForgotPasswordMail();
-    });
+    Route::get('/email', 'AdministratorController@email');
 
 
     //Members
