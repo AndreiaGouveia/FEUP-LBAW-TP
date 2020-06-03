@@ -1,7 +1,7 @@
 <h3 class="font-weight-normal mb-3">Alterar Palavra-Passe</h3>
 <hr class="section-break" />
 
-<form role="form" method="POST" action="{{ route('members.update.password', ['id' => $member->id_person] )}}">
+<form method="POST" action="{{ route('members.update.password', ['id' => $member->id_person] )}}">
     <div class="form-group">
 
         @csrf
@@ -9,7 +9,7 @@
 
         <div class="content mb-4">
             <label for="inputPreviousPassword">Palavra-Passe Antiga</label>
-            <input type="password" name="old_password" id="inputPreviousPassword" class="form-control" placeholder="Palavra-Passe Antiga" required="" autofocus="">
+            <input type="password" name="old_password" id="inputPreviousPassword" class="form-control" placeholder="Palavra-Passe Antiga" required="">
         </div>
         @if ($errors->has('old_password'))
         <span class="error">
@@ -19,12 +19,12 @@
 
         <div class="content mb-4">
             <label for="inputNewPassword">Nova Palavra-Passe</label>
-            <input type="password" name="password" id="inputNewPassword" class="form-control" placeholder="Nova Palavra-Passe" required="" autofocus="">
+            <input type="password" name="password" id="inputNewPassword" class="form-control" placeholder="Nova Palavra-Passe" required="">
         </div>
 
         <div class="content mb-4">
             <label for="inputConfirmationOfNewPassword">Confirmação de Nova Palavra-Passe</label>
-            <input type="password" name="password_confirmation" id="inputConfirmationOfNewPassword" class="form-control" placeholder="Confirmação de Nova Palavra-Passe" required="" autofocus="">
+            <input type="password" name="password_confirmation" id="inputConfirmationOfNewPassword" class="form-control" placeholder="Confirmação de Nova Palavra-Passe" required="">
         </div>
         @if ($errors->has('password'))
         <span class="error">
@@ -48,7 +48,7 @@
     </div>
 
 
-    <form role="form" method="POST" action="{{ route('members.deactivate', ['id' => $member->id_person] )}}">
+    <form method="POST" action="{{ route('members.deactivate', ['id' => $member->id_person] )}}">
         @csrf
         <!--SUPER DUPER IMPORTANTE-->
 

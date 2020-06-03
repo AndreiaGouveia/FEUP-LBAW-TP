@@ -57,7 +57,7 @@ Adicionar Pergunta
             <div class="content mb-4">
                 <label for="textAreaDescription">Descrição</label>
                 <button type="button" class="btn btn-link btn-sm" data-toggle="popover" data-content="Explicite a sua pergunta com todos os pormenores que achar relevantes."><i class="fas fa-question-circle"></i></button>
-                <textarea form="add_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" autofocus="" rows="6"></textarea>
+                <textarea form="add_question" id="textAreaDescription" name="description" class="form-control" placeholder="Descrição" rows="6"></textarea>
 
             </div>
 

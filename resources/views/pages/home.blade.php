@@ -19,7 +19,7 @@
         <h1 class="text-center">Bem-Vindo ao Papagaio!</h1>
         <h2 class="text-center mt-3 d-none d-xl-block">Entre no mundo do conhecimento Animal.</h2>
     </div>
-    <img src="..\images\logo.png" class="welcomeLogo" alt="logoBig">
+    <img src="../images/logo.png" class="welcomeLogo" alt="logoBig">
 </header>
 
 <div class="container main-page-container mt-5">

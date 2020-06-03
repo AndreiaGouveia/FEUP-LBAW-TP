@@ -453,12 +453,12 @@ function createResponse(publication, person, photo) {
   let like_buttons =
     `<div class="like-buttons ml-4 btn-group btn-group-toggle" data-toggle="buttons" data-publication-id="` + publication.id + `">
     <label class="btn btn-secondary px-1 py-0 like" id="like` + publication.id + `">
-        <input type="radio" name="options" autocomplete="off">
+        <input type="radio" name="options">
         <i class="far fa-thumbs-up"></i>
         0
     </label>
     <label class="btn btn-secondary px-1 py-0 ml-2 dislike" id="dislike` + publication.id + `">
-        <input type="radio" name="options" autocomplete="off">
+        <input type="radio" name="options">
         <i class="far fa-thumbs-down d-inline"></i>
         0
     </label>

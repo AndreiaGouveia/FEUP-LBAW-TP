@@ -14,7 +14,7 @@ Conteúdo Reportado
 
 @section('javascript')
 
-<script type="text/javascript" src={{ asset('js/manage_report.js') }} defer>
+<script src={{ asset('js/manage_report.js') }} defer>
   </script>
 
 @endsection

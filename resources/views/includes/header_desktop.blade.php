@@ -38,7 +38,7 @@ if (Auth::check()) {
         @auth
         @isAdmin()
         @else
-        <a type="button" class="btn btn-primary mr-4" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
+        <a class="btn btn-primary mr-4" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle mr-1"></i> Adicionar Pergunta</a>
         @endisAdmin
 
         <div class="btn-group">
@@ -76,8 +76,8 @@ if (Auth::check()) {
         @endauth
 
         @guest
-        <a type="button" class="btn btn-log-in mr-1" href="{{ route('login') }}">Iniciar sessão</a>
-        <a type="button" class="btn btn-primary" href="{{ route('register') }}">Registar</a>
+        <a class="btn btn-log-in mr-1" href="{{ route('login') }}">Iniciar sessão</a>
+        <a class="btn btn-primary" href="{{ route('register') }}">Registar</a>
         @endguest
 
     </div>

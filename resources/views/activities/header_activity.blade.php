@@ -11,4 +11,3 @@ $link = (isset($link_profile) && !$anonymous && !$banned) ? $link_profile : "ima
         <p><small>{{ date("Y-m-d",strtotime($date))}}</small></p>
     </div>
 </div>
-</a>

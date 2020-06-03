@@ -27,23 +27,23 @@ if (Auth::check()) {
         <div class="navbar-collapse navbar-nav form-inline justify-content-end">
 
             <button class="btn btn-secondary btn-sm mr-3" type="button" id="searchMobileButton" data-toggle="collapse" data-target="#searchBarInput" aria-expanded="false" aria-controls="searchBarInput">
-                <i class="fa fa-search"></i></button>
+                <i class="fa fa-search"></i>
             </button>
 
             @auth
             @isAdmin()
             @else
-            <a type="button" class="btn btn-primary btn-sm mr-3" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle"></i></a>
+            <a class="btn btn-primary btn-sm mr-3" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle"></i></a>
             @endisAdmin
             @endauth
 
             <div class="btn-group">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i>
                 </button>
 
 
-                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
                     @auth
 
                     <div class="dropdown-item">
