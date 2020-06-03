@@ -11,8 +11,8 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
 @section('stylesheets')
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/question.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/question.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.min.css') }}">
 
 @parent
 @endsection

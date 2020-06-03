@@ -6,7 +6,7 @@ Definições
 
 @section('stylesheets')
 
-<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/settings.min.css') }}">
 
 @parent
 @endsection
