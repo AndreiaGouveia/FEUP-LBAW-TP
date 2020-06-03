@@ -9,7 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Mail\welcomeMail ;
+use App\Mail\ForgotPasswordMail ;
 
 // IF USER IS LOGGED IN AND IS ACCOUNT IS NOT ACTIVE/VISIBLE WE REDIRECT TO ACTIVE
 Route::group(['middleware' => ['unactiveUser']], function () {
@@ -23,7 +23,7 @@ Route::group(['middleware' => ['unactiveUser']], function () {
 
     //EMAIL
     Route::get('/email', function(){
-        return new welcomeMail();
+        return new ForgotPasswordMail();
     });
 
 
@@ -110,6 +110,8 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 Route::get('/forgotPassword', 'Auth\ForgotPasswordController@forgot');
 Route::post('/forgotPassword', 'Auth\ForgotPasswordController@password');
+Route::post('/forgotPassword', 'Auth\ForgotPasswordController@password');
+
 
 
 Route::get('/redirect', 'Auth\RegisterController@redirectToProvider')->name('registerGoogle');;
