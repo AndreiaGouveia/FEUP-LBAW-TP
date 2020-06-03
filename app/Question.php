@@ -29,6 +29,8 @@ class Question extends Model
 
     public function answers(){return $this->hasMany('App\Response', 'id_question', 'id_commentable_publication');}
 
+    public function count_answers() { return $this->hasManyThrough('App\Publication', 'App\Response', 'id_question', 'id', 'id_commentable_publication', 'id_commentable_publication')->where('visible', true)->count(); }
+
     public function tags(){return $this->hasMany('App\TagQuestion', 'id_question', 'id_commentable_publication');}
 
     public function reported() {

@@ -26,8 +26,6 @@ Conteúdo Reportado
         <h1 class="font-weight-normal mb-3">Conteúdo Reportado</h1>
         <hr class="section-break" />
 
-        @each('partials.reported_comment', $comments, 'comment')
-
         <div class="row container justify-content-between mb-4">
             <div class="list-group list-group-horizontal mb-2" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active py-2" id="list-questions-list" data-toggle="list" href="#list-questions" role="tab" aria-controls="questions">Perguntas</a>

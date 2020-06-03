@@ -49,11 +49,11 @@ if (Auth::check()) {
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="dropdown-item">
                     <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="userPic">
-                    @if($member->moderator == true)
-                    <p style="margin-left: 1.7rem">{{$name}}<span class="badge badge-light"><i class="fas fa-shield-alt" aria-label="Moderador"></i></span></p>
+                    @isModerator()
+                    <p style="margin-left: 1.7rem" class="mb-0">{{$name}}<span class="badge badge-light"><i class="fas fa-shield-alt" aria-label="Moderador"></i></span></p>
                     @else
-                    <p style="margin-left: 1.7rem">{{$name}}</p>
-                    @endif()
+                    <p style="margin-left: 1.7rem" class="mb-0">{{$name}}</p>
+                    @endisModerator()
                     </div>
 
                 @isAdmin()
@@ -69,9 +69,9 @@ if (Auth::check()) {
                 <a class="dropdown-item" href="{{ route('member.content', Auth::user()->id) }}">O meu Conteúdo</a>
                 <a class="dropdown-item" href="{{ route('member.favorites', Auth::user()->id) }}">Favoritos</a>
                 <a class="dropdown-item" href="{{ route('settings', Auth::user()->id) }}">Definições</a>
-                @if($member->moderator == true)
+                @isModerator()
                 <a class="dropdown-item" href="{{ route('reports') }}">Conteúdo Reportado</a>
-                @endif()
+                @endisModerator()
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}">Terminar Sessão</a>
                 @endisAdmin()

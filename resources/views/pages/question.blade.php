@@ -54,7 +54,7 @@ $link_image = ($publication->owner->photo != null) ? $publication->owner->photo-
 
             <div class="responseSection mt-4">
 
-                <h5><span id="number_answers">{{ $question->answers->count() }}</span> respostas</h5>
+                <h5><span id="number_answers">{{ $question->count_answers() }}</span> respostas</h5>
 
                 <hr class="section-break" />
                 <ul class="list-unstyled" id="response_section">

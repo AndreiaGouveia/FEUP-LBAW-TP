@@ -37,7 +37,7 @@ class Person extends Authenticatable
 
     public function isMember(){return $this->hasOne('App\Member', 'id_person', 'id')->exists(); }
 
-    public function isModerator() { ($this->member) ? $this->member->moderator : false;}
+    public function isModerator() { return ($this->member != null) ? true : false;}
 
     public function member(){return $this->hasOne('App\Member', 'id_person', 'id'); }
 }

@@ -39,7 +39,7 @@ class HomeController extends Controller
         {
 
                 return DB::table('question')
-                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(DISTINCT tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                         ->selectRaw('ts_rank_cd(question.tsv, plainto_tsquery(?)) as rank', [$query])
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
                         ->join('person', 'publication.id_owner', '=', 'person.id')
@@ -49,6 +49,7 @@ class HomeController extends Controller
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
                         ->whereRaw('to_tsquery(?) @@ tsv', [$query])
+                        ->where('publication.visible', "=", true)                        
                         ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', 'question.tsv');
         }
 
@@ -65,7 +66,7 @@ class HomeController extends Controller
         {
 
                 return DB::table('question')
-                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
+                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(DISTINCT tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                         ->whereIn('question.id_commentable_publication', (DB::table('question')
                                 ->select('publication.id')
                                 ->where('tag.name', '=', $topic)
@@ -79,21 +80,25 @@ class HomeController extends Controller
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
+                        ->where('publication.visible', "=", true)
                         ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description');
         }
 
         public function show()
         {
                 $data_question = DB::table('question')
-                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(tag.name)) tags'))
+                        ->select('person.id as memberId', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', DB::raw('array_to_json(array_agg(DISTINCT tag.name)) tags'), DB::raw('COUNT(nullif(likes.likes, false)) likes'), DB::raw('COUNT(nullif(likes.likes, true)) dislikes'))
                         ->join('publication', 'publication.id', '=', 'question.id_commentable_publication')
                         ->join('person', 'publication.id_owner', '=', 'person.id')
                         ->join('member', 'person.id', '=', 'member.id_person')
                         ->leftJoin('photo', 'photo.id', '=', 'member.id_photo')
+                        ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
+                        ->where('publication.visible', "=", true)
                         ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description')
                         ->orderBy('publication.date', 'desc')
+                        ->orderBy('publication.id', 'desc')
                         ->simplePaginate($this->posts_per_page);
 
                 $popular_tags = $this->getPopularTopics();

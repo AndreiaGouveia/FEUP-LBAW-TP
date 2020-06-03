@@ -3,7 +3,7 @@
 $link = ($comment->publication->owner->photo != null && $comment->publication->owner->person->visible && !$comment->publication->owner->person->ban) ?  $comment->publication->owner->photo->url : "images/default.png";
 ?>
 
-<div class="p-2" id="{{$comment->id_publication}}">
+<div class="p-2 comment_" id="{{$comment->id_publication}}">
     <img src='{{asset("storage/$link")}}' class="img-comment mr-2 mt-1" alt="profilePic">
     <div class="card comment-section">
         <div class="p-1 d-flex justify-content-between">

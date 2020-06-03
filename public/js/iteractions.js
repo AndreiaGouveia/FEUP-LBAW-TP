@@ -120,7 +120,7 @@ function sendDislikeRequest(event) {
     if (id_publication)
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: false }, likeRemovedHandler, this);
 
-      event.preventDefault();
+    event.preventDefault();
   }
 
   let parentDiv = this.parentElement;
@@ -145,7 +145,7 @@ function sendFavoriteRequest(event) {
     if (id_publication)
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/favorites/delete', {}, favoriteRemovedHandler, this);
 
-      event.preventDefault();
+    event.preventDefault();
   }
 
   let parentDiv = this.parentElement;
@@ -263,9 +263,6 @@ function sendCreateCommentRequest(event) {
 
 function sendReport(event) {
 
-  console.log("AQUIreport");
-
-
   let id_publication = this.dataset.publicationId;
   let motive = event.target.querySelector('input:checked').value;
 
@@ -301,21 +298,17 @@ function responseAddedHandler() {
   }
 
   deletingPreviousErrorMessage(this.extraInfo);
+  this.extraInfo.reset();
   let info = JSON.parse(this.response);
 
   let new_response = createResponse(info.publication, info.person, info.photo);
 
   let response_section = document.querySelector('#response_section');
-  let textarea = document.querySelector('#response_text');
-  textarea.value = "";
-
   response_section.appendChild(new_response);
 
   //Add event listener to response comment section form
   let commentCreator = document.querySelector('#commentSection' + info.publication.id + " form");
   commentCreator.addEventListener('submit', sendCreateCommentRequest);
-  console.log(commentCreator);
-
 
   let number_anwers = document.querySelector('#number_answers');
   number_anwers.innerHTML = parseInt(number_anwers.innerHTML) + 1;
@@ -328,6 +321,12 @@ function responseAddedHandler() {
 
   let favoriteButton = response_section.querySelector("#favorite" + info.publication.id);
   favoriteButton.addEventListener('click', sendFavoriteRequest);
+
+  let popUpReport = response_section.querySelector("#popUpReport" + info.publication.id + " form");
+  popUpReport.addEventListener('submit', sendReport);
+
+  let popUpDelete = response_section.querySelector("#deletingPublicationPopUp" + info.publication.id + " form");
+  popUpDelete.addEventListener('submit', sendDeletePublication);
 
 
 }
@@ -344,6 +343,25 @@ function publicationDeletedHandler() {
 
   createSucessMessage("Publication was deleted with sucess", document.querySelector('#content div div'));
   this.extraInfo.querySelector(".dismiss").click();
+
+  let pub = document.getElementById(this.extraInfo.dataset.publicationId);
+
+  if (pub != null) {
+
+    if (pub.classList.contains("answer")) {
+
+      pub.nextElementSibling.nextElementSibling.remove();
+      pub.nextElementSibling.remove();
+      pub.remove();
+
+
+      let number_anwers = document.querySelector('#number_answers');
+      number_anwers.innerHTML = parseInt(number_anwers.innerHTML) - 1;
+
+    } else if (pub.classList.contains("comment_")) {
+      pub.remove();
+    }
+  }
 }
 
 function reportAddedHandler() {
@@ -395,10 +413,17 @@ function commentAddedHandler() {
   let new_comment = createComment(info.publication, info.person, info.photo);
 
   let form = document.querySelector('form[name=comment-box' + info.comment.id_commentable_publication + ']');
-  form.value = "";
+  form.reset();
 
   let comment_section = form.parentElement;
   comment_section.insertBefore(new_comment, form);
+
+
+  let popUpReport = new_comment.querySelector("#popUpReport" + info.publication.id + " form");
+  popUpReport.addEventListener('submit', sendReport);
+
+  let popUpDelete = new_comment.querySelector("#deletingPublicationPopUp" + info.publication.id + " form");
+  popUpDelete.addEventListener('submit', sendDeletePublication);
 
 }
 
@@ -413,7 +438,8 @@ function createComment(publication, person, photo) {
   let link_image = (photo != null) ? $window_location + '/storage/' + photo.url : $window_location + '/storage/' + "images/default.png";
 
   let new_comment = document.createElement('div');
-  new_comment.className = "p-2"
+  new_comment.className = "p-2 comment_";
+  new_comment.id = publication.id;
   new_comment.innerHTML = `
     <img src="` + link_image + `" class="img-comment mr-2 mt-1" alt="userPic">
     <div class="card comment-section">
@@ -438,9 +464,75 @@ function createComment(publication, person, photo) {
                 </div>
             </div>
         </div>
-    </div>`;
+    </div>
+    `
+    + createReportPopUp('popUpReport' + publication.id, publication.id) + `
+    `
+    + createDeletePopUp('deletingPublicationPopUp' + publication.id, publication.id);
 
   return new_comment;
+}
+
+function report_radio_button(content, value, idOfPopUp) {
+  return `<div class="form-check py-1">
+  <label>
+      <input class="form-check-input" type="radio" value="` + value + `" name="` + idOfPopUp + `" required>
+     ` + content + `</label>
+  </div>`
+}
+
+function createReportPopUp(idOfPopUp, id_publication) {
+
+  return ` <div class="modal fade" id="` + idOfPopUp + `" tabindex="-1" role="dialog" aria-labelledby="#` + idOfPopUp + `Label" aria-hidden="true">
+  <form class="modal-dialog modal-dialog-centered report" role="document" data-publication-id="` + id_publication + `">
+      <div class="modal-content px-3">
+          <div class="modal-header mb-2">
+              <h5 class="modal-title" id="` + idOfPopUp + `Label">Reportar Conteúdo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="mb-2 px-2 content">
+          ` + report_radio_button("Spam ou conteúdo enganoso", 'Spam', idOfPopUp) + `
+          ` + report_radio_button("Conteúdo abusivo/incitação ao ódio", 'Hate speach', idOfPopUp) + `
+          ` + report_radio_button("Terrorismo", 'Terrorism', idOfPopUp) + `
+          ` + report_radio_button("Dispersão de Notícias Falsas", 'Fake News', idOfPopUp) + `
+          ` + report_radio_button("Vendas Ilegais", 'Illegal Sales', idOfPopUp) + `
+          ` + report_radio_button("Conteúdo violento ou repulsivo", 'Violence', idOfPopUp) + `
+          ` + report_radio_button("Conteúdo de natureza sexual", 'Nudity', idOfPopUp) + `
+          ` + report_radio_button("Assédio", 'Harassment', idOfPopUp) + `
+          ` + report_radio_button("Lesões Autoprovocadas", 'Self Harm', idOfPopUp) + `
+          </div>
+
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary dismiss" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Submeter</button>
+          </div>
+      </div>
+  </form>
+</div> `;
+}
+
+function createDeletePopUp(idOfPopUp, id_publication) {
+
+  return ` 
+  <div class="modal fade" id="` + idOfPopUp + `" tabindex="-1" role="dialog" aria-labelledby="#` + idOfPopUp + `Label" aria-hidden="true">
+      <form class="modal-dialog modal-dialog-centered deletePub" role="document" data-publication-id="`+ id_publication + `">
+          <div class="modal-content px-3">
+              <div class="modal-header mb-2">
+                  <h5 class="modal-title" id="{{ $idOfPopUp }}Label">Eliminar Conteúdo</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <p class="px-3 my-2">de certeza que quer eliminar a sua publicação?</p>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary dismiss" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Submeter</button>
+              </div>
+          </div>
+      </form>
+  </div> `;
 }
 
 function createResponse(publication, person, photo) {
@@ -459,7 +551,7 @@ function createResponse(publication, person, photo) {
   <img src="`+ link_image + `" class="img_inside mr-2" alt="userPic">
     <div class="header-text">
       <p class="name-and-action font-weight-bold d-inline">`+ person.name + `</p><br>
-      <p><small>` + publication.date + `</small></p>
+      <p><small>` + publication.date.split(" ")[0] + `</small></p>
     </div>
   </div>`;
 
@@ -503,12 +595,17 @@ function createResponse(publication, person, photo) {
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" data-toggle="modal" data-target="#popUpReport`+ publication.id + `">Reportar</a>
           </div>
-        </div>`;
+        </div>
+  
+        `
+    + createReportPopUp('popUpReport' + publication.id, publication.id) + `
+        `
+    + createDeletePopUp('deletingPublicationPopUp' + publication.id, publication.id);
 
   let new_response = document.createElement('div');
   new_response.className = "p-2"
   new_response.innerHTML = `
-  <div class="py-2">
+  <div class="py-2 answer" + id="` + publication.id + `">
           ` + header_ativity +
     `<p class="card-text">` + publication.description + `</p>
           <div class="info row justify-content-end mx-0">`
