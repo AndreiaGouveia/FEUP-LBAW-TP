@@ -19,8 +19,8 @@
         <div> {{session('error')}} </div>
     @endif
 
-    @if(session('sucess'))
-        <div> {{session('sucess')}} </div>
+    @if(session('success'))
+        <div> {{session('success')}} </div>
     @endif
     
     <div class="content">
