@@ -26,7 +26,6 @@ class ForgotPasswordController extends Controller
     public function password(Request $request)
     {
        
-
         $existingUser = Person::where('email',$request->email)->first();
 
         if ($existingUser == null) {
@@ -40,9 +39,18 @@ class ForgotPasswordController extends Controller
     }
 
     public function sendEmail($user){
+        $email = new ForgotPasswordMail($user);
+        $email->user_email = $user->email;
+        $email->user_id = $user->id;
 
-        Mail::to($user['email'])->send(new ForgotPasswordMail());
-
+        Mail::to( $email->user_email)->send($email);
     }
+
+    public function reset($id){
+        $user = Person::find($id);
+
+        return view('pages.resetPassword',  ['user' => $user]);
+    }
+   
    
 }

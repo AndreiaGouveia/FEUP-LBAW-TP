@@ -24,7 +24,7 @@
     </header>
 
     @slot('subcopy')
-        @component('mail::button', ['url' => route('home')])
+        @component('mail::button', ['url' => route('resetPassword', $user_id)])
         Alterar
         @endcomponent
     @endslot

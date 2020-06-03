@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Mail;
+use App\Person;
+
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -11,14 +13,19 @@ class ForgotPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
+    public $user_email;
+    public $user_id;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    
+    public function __construct(Person $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
