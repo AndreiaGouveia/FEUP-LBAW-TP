@@ -6,7 +6,6 @@
         @component('mail::header', ['url' => config('app.url')])    
  
         <a class="navbar-brand px-2 mr-5" href="{{ url('home') }}">
-            ![logo](uploads/6af7119af9a632079fe2e1fe4e8f2c25/logo.png)
             Papagaio
         </a>
    
