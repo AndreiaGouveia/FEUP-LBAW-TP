@@ -4,7 +4,7 @@ $link_image = ($comment->publication->owner->photo != null && $comment->publicat
 ?>
 
 <div class="p-2" id="{{$comment->id_publication}}">
-    <img src="{{ $link_image }}" class="img-comment mr-2 mt-1" alt="profilePictureUser">
+    <img src="{{ $link_image }}" class="img-comment mr-2 mt-1" alt="profilePic">
     <div class="card comment-section">
         <div class="p-1 d-flex justify-content-between">
         <div>

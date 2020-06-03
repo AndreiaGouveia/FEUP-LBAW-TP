@@ -33,7 +33,7 @@ if (Auth::check()) {
             @auth
             @isAdmin()
             @else
-            <a class="btn btn-primary btn-sm mr-3" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle"></i></a>
+            <a class="btn btn-primary btn-sm mr-3" href="{{ route('add.questions') }}"><i class="fas fa-plus-circle" aria-label="Adicionar Pergunta"></i></a>
             @endisAdmin
             @endauth
 
@@ -47,8 +47,8 @@ if (Auth::check()) {
                     @auth
 
                     <div class="dropdown-item">
-                        <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="profilePicture">
-                        <p style="margin-left: 1.7rem"><?= $name ?><span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                        <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="userPic">
+                        <p style="margin-left: 1.7rem"><?= $name ?><span class="badge badge-light"><i class="fas fa-shield-alt" aria-label="Moderador"></i></span></p>
                     </div>
 
                     @isAdmin()

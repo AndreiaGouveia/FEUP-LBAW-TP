@@ -48,8 +48,8 @@ if (Auth::check()) {
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="dropdown-item">
-                    <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="profilePicture">
-                    <p style="margin-left: 1.7rem">{{$name}}<span class="badge badge-light"><i class="fas fa-shield-alt"></i></span></p>
+                    <img src='{{asset("storage/$link")}}' class="img-header float-left" alt="userPic">
+                    <p style="margin-left: 1.7rem">{{$name}}<span class="badge badge-light"><i class="fas fa-shield-alt" aria-label="Moderador"></i></span></p>
                 </div>
 
                 @isAdmin()
