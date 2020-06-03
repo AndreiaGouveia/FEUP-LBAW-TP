@@ -95,7 +95,7 @@ function sendLikeRequest(event) {
     if (id_publication)
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: true }, likeRemovedHandler, this);
 
-    return;
+    event.preventDefault();
   }
 
   let parentDiv = this.parentElement;
@@ -120,7 +120,7 @@ function sendDislikeRequest(event) {
     if (id_publication)
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: false }, likeRemovedHandler, this);
 
-    return;
+      event.preventDefault();
   }
 
   let parentDiv = this.parentElement;
@@ -145,7 +145,7 @@ function sendFavoriteRequest(event) {
     if (id_publication)
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/favorites/delete', {}, favoriteRemovedHandler, this);
 
-    return;
+      event.preventDefault();
   }
 
   let parentDiv = this.parentElement;
@@ -247,6 +247,20 @@ function sendCreateResponseRequest(event) {
   event.preventDefault();
 }
 
+function sendCreateCommentRequest(event) {
+
+  let id_publication = this.dataset.publicationId;
+  let comment_text = this.querySelector('input[name=comment_text]').value;
+
+  console.log(id_publication)
+
+  if (comment_text != '')
+    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/comments', { description: comment_text }, commentAddedHandler, event.target);
+
+  event.preventDefault();
+
+}
+
 function sendReport(event) {
 
   console.log("AQUIreport");
@@ -267,20 +281,6 @@ function sendDeletePublication(event) {
   sendAjaxRequest('POST', '/api/publications/' + id_publication + '/delete', {}, publicationDeletedHandler, event.target);
 
   event.preventDefault();
-}
-
-function sendCreateCommentRequest(event) {
-
-  let id_publication = this.dataset.publicationId;
-  let comment_text = this.querySelector('input[name=comment_text]').value;
-
-  console.log(id_publication)
-
-  if (comment_text != '')
-    sendAjaxRequest('POST', '/api/publications/' + id_publication + '/comments', { description: comment_text }, commentAddedHandler, event.target);
-
-  event.preventDefault();
-
 }
 
 function responseAddedHandler() {
@@ -314,6 +314,8 @@ function responseAddedHandler() {
   //Add event listener to response comment section form
   let commentCreator = document.querySelector('#commentSection' + info.publication.id + " form");
   commentCreator.addEventListener('submit', sendCreateCommentRequest);
+  console.log(commentCreator);
+
 
   let number_anwers = document.querySelector('#number_answers');
   number_anwers.innerHTML = parseInt(number_anwers.innerHTML) + 1;
