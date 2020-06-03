@@ -103,96 +103,92 @@ class HomeController extends Controller
 
         public function searchTopic($input)
         {
-                $questions = $this->getSearchQuestionsWithTopic($input)
-                        ->orderBy('publication.date')
-                        ->simplePaginate($this->posts_per_page);
-
-
-                $popular_tags = $this->getPopularTopics();
-
-
-                $filter = 0;
-
-                return view('pages.search_topic',  ['search' => $input, 'questions' => $questions, 'popular_tags' => $popular_tags, 'filter' => $filter]);
-        }
-
-
-        public function filteredSearchTopic($input, $filter)
-        {
-                if ($filter == 'relevant') {
-                        $filter = 0;
-
-                        $questions = $this->getSearchQuestionsWithTopic($input)
-                                ->orderBy('likes', 'desc')
-                                ->orderBy('dislikes')
-                                ->orderBy('publication.date', 'desc')
-                                ->simplePaginate($this->posts_per_page);
-                } else if ($filter == 'recent') {
-                        $filter = 1;
-
-                        $questions = $this->getSearchQuestionsWithTopic($input)
-                                ->orderBy('publication.date', 'desc')
-                                ->simplePaginate($this->posts_per_page);
-                } else if ($filter == 'mostLiked') {
-                        $filter = 2;
-
-                        $questions = $this->getSearchQuestionsWithTopic($input)
-                                ->orderBy('likes', 'desc')
-                                ->orderBy('dislikes')
-                                ->orderBy('publication.date', 'desc')
-                                ->simplePaginate($this->posts_per_page);
-                } else if ($filter == 'leastLiked') {
-                        $filter = 3;
-
-                        $questions = $this->getSearchQuestionsWithTopic($input)
-                                ->orderBy('dislikes', 'desc')
-                                ->orderBy('likes')
-                                ->orderBy('publication.date', 'desc')
-                                ->simplePaginate($this->posts_per_page);
-                }
-
-                $popular_tags = $this->getPopularTopics();
-
-
-                return view('pages.search_topic',  ['search' => $input, 'questions' => $questions, 'popular_tags' => $popular_tags, 'filter' => $filter]);
-        }
-
-        public function search(Request $request, $query)
-        {
-                $topics = $this->getSearchTopics($query)
-                        ->simplePaginate($this->posts_per_page);
-
-                $questions = $this->getSearchResults($query)
-                        ->orderBy('rank', 'desc')
-                        ->orderBy('likes', 'desc')
-                        ->orderBy('dislikes')
-                        ->orderBy('publication.date', 'desc')
-                        ->simplePaginate($this->posts_per_page);
+                $questions = $this->getSearchQuestionsWithTopic($input);
 
                 switch (Input::get('filter', 'relevant')) {
 
                         case 'recent':
-                                $questions = $this->getSearchResults($query)
+                                $questions = $questions
+                                        ->orderBy('publication.date', 'desc');
+
+                                break;
+                        case 'mostLiked':
+                                $questions = $questions
+                                        ->orderBy('likes', 'desc')
+                                        ->orderBy('dislikes')
+                                        ->orderBy('publication.date', 'desc');
+                                break;
+                        case 'leastLiked':
+                                $questions = $questions
+                                        ->orderBy('dislikes', 'desc')
+                                        ->orderBy('likes')
+                                        ->orderBy('publication.date', 'desc');
+                                break;
+                        case 'relevant':
+                                $questions = $questions
+                                        ->orderBy('likes', 'desc')
+                                        ->orderBy('dislikes')
+                                        ->orderBy('publication.date', 'desc');
+
+                                break;
+                }
+
+                switch (Input::get('time')) {
+                        case 'lastHour':
+                                $questions = $questions
+                                        ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 hour\'');
+                                break;
+                        case 'lastDay':
+                                $questions = $questions
+                                        ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 day\'');
+                                break;
+
+                        case 'lastWeek':
+                                $questions = $questions
+                                        ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 week\'');
+                                break;
+
+                        case 'lastMonth':
+                                $questions = $questions
+                                        ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 month\'');
+                                break;
+                }
+
+
+                return view('pages.search_topic',  ['search' => $input, 'questions' => $questions->simplePaginate($this->posts_per_page), 'filter' => Input::get('filter', 'relevant'), 'time' => Input::get('time')]);
+        }
+
+        public function search($query)
+        {
+                $topics = $this->getSearchTopics($query)
+                        ->simplePaginate($this->posts_per_page);
+
+                $questions = $this->getSearchResults($query);
+
+                switch (Input::get('filter', 'relevant')) {
+
+                        case 'recent':
+                                $questions = $questions
                                         ->orderBy('publication.date', 'desc')
                                         ->orderBy('rank', 'desc');
 
                                 break;
                         case 'mostLiked':
-                                $questions = $this->getSearchResults($query)
+                                $questions = $questions
                                         ->orderBy('likes', 'desc')
                                         ->orderBy('dislikes')
                                         ->orderBy('rank', 'desc')
                                         ->orderBy('publication.date', 'desc');
                                 break;
                         case 'leastLiked':
-                                $questions = $this->getSearchResults($query)
+                                $questions = $questions
                                         ->orderBy('dislikes', 'desc')
                                         ->orderBy('likes')
                                         ->orderBy('rank', 'desc')
                                         ->orderBy('publication.date', 'desc');
                                 break;
                         case 'relevant':
-                                $questions = $this->getSearchResults($query)
+                                $questions = $questions
                                         ->orderBy('rank', 'desc')
                                         ->orderBy('likes', 'desc')
                                         ->orderBy('dislikes')
@@ -209,7 +205,6 @@ class HomeController extends Controller
                                 ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                                 ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')));
                 }
-                //->whereRaw('date > date_trunc(\'month\', CURRENT_DATE) - INTERVAL \'1 year\'')
 
                 switch (Input::get('time')) {
                         case 'lastHour':
@@ -218,69 +213,20 @@ class HomeController extends Controller
                                 break;
                         case 'lastDay':
                                 $questions = $questions
-                                ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 day\'');
-                        break;
+                                        ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 day\'');
+                                break;
 
                         case 'lastWeek':
                                 $questions = $questions
-                                ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 week\'');
-                        break;
+                                        ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 week\'');
+                                break;
 
                         case 'lastMonth':
                                 $questions = $questions
-                                ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 month\'');
-                        break;
+                                        ->whereRaw('date > CURRENT_DATE - INTERVAL \'1 month\'');
+                                break;
                 }
 
                 return view('pages.search',  ['search' => $query, 'questions' => $questions->simplePaginate($this->posts_per_page), 'topics' => $topics, 'filter' => Input::get('filter', 'relevant'), 'time' => Input::get('time'), 'tag' => Input::get('tag', 0)]);
-        }
-
-        public function filteredSearch($query, $filter)
-        {
-                $topics =  $this->getSearchTopics($query)
-                        ->simplePaginate($this->posts_per_page);
-
-                if ($filter == 'recent') {
-                        $filter = 1;
-
-                        $questions = $this->getSearchResults($query)
-                                ->orderBy('publication.date', 'desc')
-                                ->orderBy('rank', 'desc')
-                                ->simplePaginate($this->posts_per_page);
-                } else if ($filter == 'mostLiked') {
-                        $filter = 2;
-
-                        $questions = $this->getSearchResults($query)
-                                ->orderBy('likes', 'desc')
-                                ->orderBy('dislikes')
-                                ->orderBy('rank', 'desc')
-                                ->orderBy('publication.date', 'desc')
-                                ->simplePaginate($this->posts_per_page);
-                } else if ($filter == 'leastLiked') {
-                        $filter = 3;
-
-                        $questions = $this->getSearchResults($query)
-                                ->orderBy('dislikes', 'desc')
-                                ->orderBy('likes')
-                                ->orderBy('rank', 'desc')
-                                ->orderBy('publication.date', 'desc')
-                                ->simplePaginate($this->posts_per_page);
-                } else {
-                        $filter = 0;
-
-                        $questions = $this->getSearchResults($query)
-                                ->orderBy('rank', 'desc')
-                                ->orderBy('likes', 'desc')
-                                ->orderBy('dislikes')
-                                ->orderBy('publication.date', 'desc')
-                                ->simplePaginate($this->posts_per_page);
-                }
-
-                $topics = $this->getSearchTopics($query)->simplePaginate($this->posts_per_page);
-
-                $popular_tags = $this->getPopularTopics();
-
-
-                return view('pages.search',  ['search' => $query, 'questions' => $questions, 'topics' => $topics, 'popular_tags' => $popular_tags, 'filter' => $filter]);
         }
 }
