@@ -12,7 +12,6 @@ if (Auth::check()) {
         $link = ($member->photo != null) ? $member->photo->url : "images/default.png";
         $name = $member->name;
     }
-    var_dump($member->moderator);
 }
 ?>
 
