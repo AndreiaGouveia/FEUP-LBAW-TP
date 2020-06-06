@@ -96,13 +96,14 @@ function sendLikeRequest(event) {
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: true }, likeRemovedHandler, this);
 
     event.preventDefault();
-  }
+  } else {
 
   let parentDiv = this.parentElement;
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
     sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes', { like: true }, likeAddedHandler, this);
+  }
 
 }
 
@@ -121,7 +122,7 @@ function sendDislikeRequest(event) {
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes/delete', { like: false }, likeRemovedHandler, this);
 
     event.preventDefault();
-  }
+  } else {
 
   let parentDiv = this.parentElement;
   let id_publication = parentDiv.dataset.publicationId;
@@ -129,6 +130,7 @@ function sendDislikeRequest(event) {
   if (id_publication)
     sendAjaxRequest('POST', '/api/publications/' + id_publication + '/likes', { like: false }, likeAddedHandler, this);
 
+  }
 }
 
 function sendFavoriteRequest(event) {
@@ -146,13 +148,14 @@ function sendFavoriteRequest(event) {
       sendAjaxRequest('POST', '/api/publications/' + id_publication + '/favorites/delete', {}, favoriteRemovedHandler, this);
 
     event.preventDefault();
-  }
+  } else {
 
   let parentDiv = this.parentElement;
   let id_publication = parentDiv.dataset.publicationId;
 
   if (id_publication)
     sendAjaxRequest('POST', '/api/publications/' + id_publication + '/favorites', {}, favoriteAddedHandler, this);
+  }
 
 
 }

@@ -48,7 +48,7 @@ class HomeController extends Controller
                         ->leftJoin('tag_question', 'tag_question.id_question', '=', 'question.id_commentable_publication')
                         ->leftJoin('tag', 'tag.id', "=", 'tag_question.id_tag')
                         ->leftJoin('likes', 'likes.id_commentable_publication', '=', 'question.id_commentable_publication')
-                        ->whereRaw('to_tsquery(?) @@ tsv', [$query])
+                        ->whereRaw('plainto_tsquery(?) @@ tsv', [$query])
                         ->where('publication.visible', "=", true)                        
                         ->groupBy('person.id', 'member.name', 'person.visible', 'person.ban', 'photo.url', 'publication.id', 'publication.date', 'question.title', 'publication.description', 'question.tsv');
         }
@@ -57,7 +57,7 @@ class HomeController extends Controller
         {
 
                 return DB::table('tag')->selectRaw('tag.name, ts_rank_cd(textsearch, query) AS rank')
-                        ->fromRaw('tag, to_tsquery(?) AS query, to_tsvector( name) AS textsearch', [$query])
+                        ->fromRaw('tag, plainto_tsquery(?) AS query, to_tsvector(name) AS textsearch', [$query])
                         ->whereRaw('query @@ textsearch')
                         ->orderBy('rank', 'desc');
         }
