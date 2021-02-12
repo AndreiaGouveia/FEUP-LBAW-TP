@@ -4,8 +4,6 @@ O nosso projeto *Papagaio* consiste numa aplicação *web* de perguntas e respos
 
 ## 1. Installation
 
-Versão Final: https://git.fe.up.pt/lbaw/lbaw1920/lbaw2052.git
-
 ```
 $ composer install
 $ php artisan storage:link
@@ -14,8 +12,6 @@ $ php artisan serve
 ```
 
 ## 2. Usage
-
-URL para o produto: http://lbaw2052.lbaw-prod.fe.up.pt  
 
 ### 2.1. Administration Credentials
 
